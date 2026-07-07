@@ -38,7 +38,7 @@ return [
         ['id' => 17, 'slug' => 'partner-hub', 'name' => 'Partner Hub', 'status' => 'completed'],
         ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'completed'],
         ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'completed'],
-        ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'pending'],
+        ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'completed'],
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'pending'],
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'pending'],
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'pending'],
@@ -73,6 +73,10 @@ return [
                 'cms.create',
                 'cms.update',
                 'cms.publish',
+                'media.view',
+                'media.upload',
+                'media.update',
+                'media.delete',
             ],
         ],
         'manager' => [
@@ -83,6 +87,7 @@ return [
                 'users.view',
                 'modules.view',
                 'cms.view',
+                'media.view',
             ],
         ],
         'editor' => [
@@ -95,6 +100,10 @@ return [
                 'cms.create',
                 'cms.update',
                 'cms.publish',
+                'media.view',
+                'media.upload',
+                'media.update',
+                'media.delete',
             ],
         ],
         'viewer' => [
@@ -131,6 +140,10 @@ return [
         'cms.create' => ['name' => 'Create CMS Pages', 'group' => 'CMS'],
         'cms.update' => ['name' => 'Update CMS Pages', 'group' => 'CMS'],
         'cms.publish' => ['name' => 'Publish CMS Pages', 'group' => 'CMS'],
+        'media.view' => ['name' => 'View Media Library', 'group' => 'Media Library'],
+        'media.upload' => ['name' => 'Upload Media Assets', 'group' => 'Media Library'],
+        'media.update' => ['name' => 'Update Media Assets', 'group' => 'Media Library'],
+        'media.delete' => ['name' => 'Delete Media Assets', 'group' => 'Media Library'],
     ],
 
     /*
@@ -2284,6 +2297,109 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Media Library
+    |--------------------------------------------------------------------------
+    */
+
+    'media_library' => [
+        'max_upload_kb' => 5120,
+        'allowed_mime_types' => [
+            'image/jpeg' => ['jpg', 'jpeg'],
+            'image/png' => ['png'],
+            'image/webp' => ['webp'],
+            'image/svg+xml' => ['svg'],
+            'application/pdf' => ['pdf'],
+            'text/plain' => ['txt'],
+        ],
+        'categories' => [
+            ['slug' => 'brand', 'label' => 'Brand Assets'],
+            ['slug' => 'marketing', 'label' => 'Marketing'],
+            ['slug' => 'portfolio', 'label' => 'Portfolio'],
+            ['slug' => 'team', 'label' => 'Team'],
+            ['slug' => 'documents', 'label' => 'Documents'],
+        ],
+        'seed_assets' => [
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000001',
+                'fixture' => 'cyratech-logo-primary.svg',
+                'filename' => 'cyratech-logo-primary.svg',
+                'title' => 'Cyra-Tech Primary Logo',
+                'category' => 'brand',
+                'alt_text' => 'Cyra-Tech primary wordmark on dark background',
+                'caption' => 'Primary logo for dark surfaces',
+                'description' => 'Approved primary Cyra-Tech wordmark for enterprise collateral and digital properties.',
+                'metadata' => ['width' => 240, 'height' => 64],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000002',
+                'fixture' => 'cyratech-logo-mark.svg',
+                'filename' => 'cyratech-logo-mark.svg',
+                'title' => 'Cyra-Tech Logo Mark',
+                'category' => 'brand',
+                'alt_text' => 'Cyra-Tech triangular logo mark',
+                'caption' => 'Compact mark for favicons and app icons',
+                'description' => 'Square logo mark used for favicons, app icons, and compact placements.',
+                'metadata' => ['width' => 64, 'height' => 64],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000003',
+                'fixture' => 'hero-enterprise-abstract.svg',
+                'filename' => 'hero-enterprise-abstract.svg',
+                'title' => 'Enterprise Hero Abstract',
+                'category' => 'marketing',
+                'alt_text' => 'Abstract gradient hero background with cyan and purple shapes',
+                'caption' => 'Homepage and campaign hero background',
+                'description' => 'Abstract gradient artwork for enterprise homepage and campaign hero sections.',
+                'metadata' => ['width' => 640, 'height' => 360],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000004',
+                'fixture' => 'innovation-lab-banner.svg',
+                'filename' => 'innovation-lab-banner.svg',
+                'title' => 'Innovation Lab Banner',
+                'category' => 'marketing',
+                'alt_text' => 'Innovation Lab promotional banner',
+                'caption' => 'Innovation Lab landing banner',
+                'description' => 'Promotional banner asset for Innovation Lab program pages and event materials.',
+                'metadata' => ['width' => 640, 'height' => 360],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000005',
+                'fixture' => 'portfolio-case-study-cover.svg',
+                'filename' => 'portfolio-case-study-cover.svg',
+                'title' => 'Portfolio Case Study Cover',
+                'category' => 'portfolio',
+                'alt_text' => 'Portfolio case study cover template',
+                'caption' => 'Case study cover template',
+                'description' => 'Cover artwork template for portfolio case studies and client success stories.',
+                'metadata' => ['width' => 480, 'height' => 320],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000006',
+                'fixture' => 'leadership-headshot-placeholder.svg',
+                'filename' => 'leadership-headshot-placeholder.svg',
+                'title' => 'Leadership Headshot Placeholder',
+                'category' => 'team',
+                'alt_text' => 'Generic leadership profile placeholder avatar',
+                'caption' => 'Leadership profile placeholder',
+                'description' => 'Placeholder avatar for leadership profiles awaiting approved photography.',
+                'metadata' => ['width' => 320, 'height' => 320],
+            ],
+            [
+                'uuid' => 'a1000001-0000-4000-8000-000000000007',
+                'fixture' => 'brand-usage-guidelines.txt',
+                'filename' => 'brand-usage-guidelines.txt',
+                'title' => 'Brand Usage Guidelines',
+                'category' => 'documents',
+                'mime_type' => 'text/plain',
+                'extension' => 'txt',
+                'description' => 'Internal brand usage guidelines for Cyra-Tech marketing and partner teams.',
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -2386,7 +2502,7 @@ return [
                         ['label' => 'Homepage Builder', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Pages', 'route' => 'admin.cms.index', 'permission' => 'cms.view'],
                         ['label' => 'Navigation', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
-                        ['label' => 'Media Library', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Media Library', 'route' => 'admin.media.index', 'permission' => 'media.view'],
                         ['label' => 'Component Library', 'route' => 'admin.design-system', 'permission' => 'modules.view'],
                     ],
                 ],

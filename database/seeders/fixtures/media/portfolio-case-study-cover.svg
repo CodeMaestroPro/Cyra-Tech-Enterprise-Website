@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="Portfolio case study cover">
+  <rect width="480" height="320" fill="#0b1120"/>
+  <rect x="32" y="32" width="416" height="180" rx="16" fill="#1e293b"/>
+  <text x="48" y="250" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600">Digital Core Modernization</text>
+</svg>

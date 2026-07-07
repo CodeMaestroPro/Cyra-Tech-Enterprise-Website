@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             ClientUserSeeder::class,
             AdminUserSeeder::class,
             CmsSeeder::class,
+            MediaLibrarySeeder::class,
         ]);
     }
 }

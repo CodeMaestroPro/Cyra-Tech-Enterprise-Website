@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\MediaLibraryController;
 use App\Http\Controllers\Api\CmsController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\PartnerHubController;
@@ -78,6 +79,23 @@ Route::get('/pages/{slug}', [CmsController::class, 'show'])->name('api.pages.sho
 Route::middleware(['web', 'auth', 'permission:cms.view'])->prefix('cms')->name('api.cms.')->group(function () {
     Route::get('/pages', [CmsController::class, 'adminIndex'])->name('pages.index');
     Route::get('/pages/{slug}', [CmsController::class, 'adminShow'])->name('pages.show');
+});
+
+Route::get('/media/assets', [MediaLibraryController::class, 'index'])->name('api.media.assets.index');
+Route::get('/media/assets/{uuid}', [MediaLibraryController::class, 'show'])->name('api.media.assets.show');
+
+Route::middleware(['web', 'auth', 'permission:media.view'])->prefix('media')->name('api.media.')->group(function () {
+    Route::get('/', [MediaLibraryController::class, 'adminIndex'])->name('index');
+    Route::get('/{uuid}', [MediaLibraryController::class, 'adminShow'])->name('show');
+    Route::post('/', [MediaLibraryController::class, 'store'])
+        ->middleware('permission:media.upload')
+        ->name('store');
+    Route::put('/{uuid}', [MediaLibraryController::class, 'update'])
+        ->middleware('permission:media.update')
+        ->name('update');
+    Route::delete('/{uuid}', [MediaLibraryController::class, 'destroy'])
+        ->middleware('permission:media.delete')
+        ->name('destroy');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');

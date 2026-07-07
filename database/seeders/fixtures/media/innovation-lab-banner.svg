@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Innovation lab banner">
+  <rect width="640" height="360" fill="#111827"/>
+  <rect x="48" y="48" width="544" height="264" rx="24" fill="#0b1120" stroke="#06b6d4" stroke-width="4"/>
+  <text x="80" y="130" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">Innovation Lab</text>
+  <text x="80" y="180" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="20">Prototype. Validate. Scale.</text>
+</svg>

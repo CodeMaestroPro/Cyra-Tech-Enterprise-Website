@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Leadership headshot placeholder">
+  <rect width="320" height="320" rx="160" fill="#1e293b"/>
+  <circle cx="160" cy="120" r="56" fill="#94a3b8"/>
+  <path d="M64 280 C64 220 104 188 160 188 C216 188 256 220 256 280 Z" fill="#94a3b8"/>
+</svg>

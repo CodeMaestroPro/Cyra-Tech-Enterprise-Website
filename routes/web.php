@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MediaLibraryController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
@@ -111,5 +112,19 @@ Route::middleware(['auth', 'permission:dashboard.access'])
             Route::post('/{slug}/unpublish', [CmsController::class, 'unpublish'])
                 ->middleware('permission:cms.publish')
                 ->name('unpublish');
+        });
+
+        Route::middleware('permission:media.view')->prefix('media')->name('media.')->group(function () {
+            Route::get('/', [MediaLibraryController::class, 'index'])->name('index');
+            Route::post('/', [MediaLibraryController::class, 'store'])
+                ->middleware('permission:media.upload')
+                ->name('store');
+            Route::get('/{uuid}/edit', [MediaLibraryController::class, 'edit'])->name('edit');
+            Route::put('/{uuid}', [MediaLibraryController::class, 'update'])
+                ->middleware('permission:media.update')
+                ->name('update');
+            Route::delete('/{uuid}', [MediaLibraryController::class, 'destroy'])
+                ->middleware('permission:media.delete')
+                ->name('destroy');
         });
     });
