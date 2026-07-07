@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\HomepageController;
+use App\Http\Controllers\Api\InnovationLabController;
 use App\Http\Controllers\Api\IndustriesController;
 use App\Http\Controllers\Api\LeadershipController;
 use App\Http\Controllers\Api\NavigationController;
@@ -37,6 +38,9 @@ Route::get('/industries/{slug}', [IndustriesController::class, 'show'])->name('a
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('api.portfolio.index');
 Route::get('/portfolio/{slug}', [PortfolioController::class, 'show'])->name('api.portfolio.show');
+
+Route::get('/innovation-lab', [InnovationLabController::class, 'index'])->name('api.innovation-lab.index');
+Route::get('/innovation-lab/{slug}', [InnovationLabController::class, 'show'])->name('api.innovation-lab.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

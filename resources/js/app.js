@@ -1,6 +1,7 @@
 import './bootstrap';
 import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
+import { initInnovationLabPage } from './pages/innovation-lab';
 import { initIndustriesPage } from './pages/industries';
 import { initPortfolioPage } from './pages/portfolio';
 import { initProductsPage } from './pages/products';
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductsPage();
     initIndustriesPage();
     initPortfolioPage();
+    initInnovationLabPage();
     initDesignSystemPage();
     initNavigation();
     initModals();

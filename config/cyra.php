@@ -30,7 +30,7 @@ return [
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'completed'],
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'completed'],
         ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'completed'],
-        ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'pending'],
+        ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'completed'],
         ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'pending'],
         ['id' => 14, 'slug' => 'insights', 'name' => 'Insights', 'status' => 'pending'],
         ['id' => 15, 'slug' => 'careers', 'name' => 'Careers', 'status' => 'pending'],
@@ -1195,6 +1195,133 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Innovation Lab Content
+    |--------------------------------------------------------------------------
+    */
+
+    'innovation_lab' => [
+        'seo' => [
+            'title' => 'Innovation Lab | Cyra-Tech',
+            'description' => 'Cyra-Tech Innovation Lab combines research, rapid prototyping, and production engineering to turn bold ideas into enterprise-ready products.',
+            'keywords' => ['innovation lab', 'AI copilots', 'proof of concept', 'design sprints', 'emerging technology'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Innovation Lab',
+            'title' => 'Prototype the future before your market demands it',
+            'description' => 'Cyra-Tech Innovation Lab combines research, rapid prototyping, and production engineering to turn bold ideas into enterprise-ready products with governance built in.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Programs'],
+            ['slug' => 'ai-automation', 'label' => 'AI & Automation'],
+            ['slug' => 'emerging-tech', 'label' => 'Emerging Tech'],
+            ['slug' => 'venture-design', 'label' => 'Venture & Design'],
+        ],
+        'initiatives' => [
+            [
+                'slug' => 'ai-copilot-studio',
+                'category' => 'ai-automation',
+                'title' => 'AI Copilot Studio',
+                'tagline' => 'Design, prototype, and productionize enterprise AI copilots.',
+                'summary' => 'Rapid copilot development with governance, evaluation, and human-in-the-loop controls.',
+                'description' => 'The AI Copilot Studio helps enterprises move from copilot concepts to production pilots with model evaluation frameworks, prompt governance, and integration patterns for existing systems of record.',
+                'focus_areas' => ['Executive copilots', 'Domain-specific assistants', 'Knowledge retrieval', 'Responsible AI guardrails'],
+                'deliverables' => ['Copilot architecture blueprint', 'Working prototype', 'Evaluation scorecard', 'Production readiness roadmap'],
+                'timeline' => '6–10 weeks',
+                'badge' => 'Flagship',
+                'icon' => 'ai',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'intelligent-automation-lab',
+                'category' => 'ai-automation',
+                'title' => 'Intelligent Automation Lab',
+                'tagline' => 'Automate complex workflows with AI-assisted orchestration.',
+                'summary' => 'Intelligent automation proof-of-concepts for cross-system enterprise workflows.',
+                'description' => 'Cyra-Tech\'s Intelligent Automation Lab prototypes decision-aware workflows that combine rules, AI classification, and human approvals with full audit trails for regulated environments.',
+                'focus_areas' => ['Process mining', 'Decision automation', 'Exception handling', 'Workflow observability'],
+                'deliverables' => ['Workflow prototype', 'Automation ROI model', 'Integration map', 'Operational runbook'],
+                'timeline' => '8–12 weeks',
+                'badge' => 'Automation',
+                'icon' => 'flow',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'emerging-tech-poc',
+                'category' => 'emerging-tech',
+                'title' => 'Emerging Tech PoC Lab',
+                'tagline' => 'Evaluate next-generation technologies with structured proof-of-concepts.',
+                'summary' => 'Structured proof-of-concepts for quantum readiness, edge AI, and advanced analytics.',
+                'description' => 'The Emerging Tech PoC Lab provides a disciplined framework to assess novel technologies against enterprise use cases, security requirements, and total cost of ownership before full investment.',
+                'focus_areas' => ['Technology scouting', 'Feasibility assessment', 'Security review', 'TCO modeling'],
+                'deliverables' => ['PoC implementation', 'Technical assessment report', 'Risk & compliance review', 'Scale recommendation'],
+                'timeline' => '4–8 weeks',
+                'badge' => 'Research',
+                'icon' => 'transform',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'spatial-edge-lab',
+                'category' => 'emerging-tech',
+                'title' => 'Spatial & Edge Lab',
+                'tagline' => 'Prototype spatial computing and edge intelligence experiences.',
+                'summary' => 'Spatial computing and edge AI experiments for field operations and immersive training.',
+                'description' => 'Cyra-Tech explores spatial interfaces, edge inference, and mixed-reality workflows for industries where field teams need real-time guidance, remote expert support, and contextual data overlays.',
+                'focus_areas' => ['Edge inference', 'Mixed-reality workflows', 'Field operations UX', 'Device integration'],
+                'deliverables' => ['Interactive prototype', 'Hardware compatibility matrix', 'Latency benchmarks', 'Deployment playbook'],
+                'timeline' => '6–10 weeks',
+                'badge' => 'Experimental',
+                'icon' => 'pulse',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'design-sprint-studio',
+                'category' => 'venture-design',
+                'title' => 'Design Sprint Studio',
+                'tagline' => 'Compress months of discovery into focused design sprints.',
+                'summary' => 'Facilitated design sprints to validate product concepts with users and executives.',
+                'description' => 'Design Sprint Studio brings cross-functional teams together to define problems, prototype solutions, and test with stakeholders in accelerated cycles aligned to enterprise procurement and governance.',
+                'focus_areas' => ['Problem framing', 'Rapid prototyping', 'User validation', 'Executive alignment'],
+                'deliverables' => ['Sprint outcomes report', 'Validated prototypes', 'Roadmap recommendations', 'Stakeholder decision brief'],
+                'timeline' => '2–4 weeks',
+                'badge' => 'Sprint',
+                'icon' => 'studio',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'venture-partnership-hub',
+                'category' => 'venture-design',
+                'title' => 'Venture Partnership Hub',
+                'tagline' => 'Co-innovate with startups and research partners at enterprise scale.',
+                'summary' => 'Venture partnerships connecting enterprise challenges with startup innovation pipelines.',
+                'description' => 'The Venture Partnership Hub helps Cyra-Tech clients identify, evaluate, and integrate startup solutions with enterprise architecture standards, security reviews, and joint go-to-market models.',
+                'focus_areas' => ['Partner scouting', 'Due diligence', 'Pilot integration', 'Joint innovation models'],
+                'deliverables' => ['Partner shortlist', 'Pilot integration plan', 'Commercial framework', 'Innovation portfolio map'],
+                'timeline' => '8–16 weeks',
+                'badge' => 'Partnership',
+                'icon' => 'integration',
+                'is_featured' => false,
+            ],
+        ],
+        'methodology' => [
+            'eyebrow' => 'Lab Methodology',
+            'title' => 'From hypothesis to production-ready innovation',
+            'description' => 'Every Innovation Lab engagement follows a disciplined path that balances speed with enterprise governance.',
+            'points' => [
+                'Discover — align on use cases, success metrics, and constraints',
+                'Prototype — build working experiments with measurable evaluation criteria',
+                'Validate — test with users, security, and compliance stakeholders',
+                'Productionize — hand off to engineering with architecture and operational readiness',
+            ],
+        ],
+        'cta' => [
+            'title' => 'Ready to prototype your next breakthrough?',
+            'description' => 'Partner with Cyra-Tech Innovation Lab to explore AI, emerging tech, and venture-led programs with enterprise-grade delivery.',
+            'action' => ['label' => 'Book a Lab Session', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1306,7 +1433,7 @@ return [
                         ['label' => 'Services', 'route' => 'solutions', 'permission' => 'modules.view'],
                         ['label' => 'Industries', 'route' => 'industries', 'permission' => 'modules.view'],
                         ['label' => 'Products', 'route' => 'products', 'permission' => 'modules.view'],
-                        ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Innovation Lab', 'route' => 'innovation-lab', 'permission' => 'modules.view'],
                         ['label' => 'Portfolio', 'route' => 'portfolio', 'permission' => 'modules.view'],
                         ['label' => 'Case Studies', 'route' => 'portfolio', 'permission' => 'modules.view'],
                     ],

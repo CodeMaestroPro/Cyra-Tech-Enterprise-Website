@@ -59,14 +59,24 @@ class NavigationTest extends TestCase
             ->assertSee('NovaBank Digital Core');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_innovation_lab_page_renders_full_innovation_lab_module(): void
     {
         $response = $this->get(route('innovation-lab'));
 
         $response
             ->assertOk()
+            ->assertViewIs('innovation-lab.index')
+            ->assertSee('AI Copilot Studio');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('community'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Innovation Lab')
+            ->assertSee('Community')
             ->assertSee('Module 04 (Global Navigation)');
     }
 

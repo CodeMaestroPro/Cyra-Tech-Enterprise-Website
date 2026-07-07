@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
+use App\Http\Controllers\Web\InnovationLabController;
 use App\Http\Controllers\Web\IndustriesController;
 use App\Http\Controllers\Web\LeadershipController;
 use App\Http\Controllers\Web\PortfolioController;
@@ -37,8 +38,10 @@ Route::get('/industries/{slug}', [IndustriesController::class, 'show'])->name('i
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 Route::get('/portfolio/{slug}', [PortfolioController::class, 'show'])->name('portfolio.show');
 
+Route::get('/innovation-lab', [InnovationLabController::class, 'index'])->name('innovation-lab');
+Route::get('/innovation-lab/{slug}', [InnovationLabController::class, 'show'])->name('innovation-lab.show');
+
 $previewPages = [
-    'innovation-lab',
     'community',
     'insights',
     'careers',
