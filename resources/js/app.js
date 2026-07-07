@@ -1,6 +1,7 @@
 import './bootstrap';
 import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
+import { initCareersPage } from './pages/careers';
 import { initInsightsPage } from './pages/insights';
 import { initCommunityPage } from './pages/community';
 import { initInnovationLabPage } from './pages/innovation-lab';
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInnovationLabPage();
     initCommunityPage();
     initInsightsPage();
+    initCareersPage();
     initDesignSystemPage();
     initNavigation();
     initModals();

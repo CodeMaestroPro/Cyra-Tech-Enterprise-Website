@@ -89,14 +89,24 @@ class NavigationTest extends TestCase
             ->assertSee('The Executive Guide to AI Readiness');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_careers_page_renders_full_careers_module(): void
     {
         $response = $this->get(route('careers'));
 
         $response
             ->assertOk()
+            ->assertViewIs('careers.index')
+            ->assertSee('Senior Cloud Architect');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('contact'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Careers')
+            ->assertSee('Contact')
             ->assertSee('Module 04 (Global Navigation)');
     }
 

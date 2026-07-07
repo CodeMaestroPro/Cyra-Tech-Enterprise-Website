@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CareersController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
@@ -49,6 +50,9 @@ Route::get('/community/{slug}', [CommunityController::class, 'show'])->name('api
 
 Route::get('/insights', [InsightsController::class, 'index'])->name('api.insights.index');
 Route::get('/insights/{slug}', [InsightsController::class, 'show'])->name('api.insights.show');
+
+Route::get('/careers', [CareersController::class, 'index'])->name('api.careers.index');
+Route::get('/careers/{slug}', [CareersController::class, 'show'])->name('api.careers.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

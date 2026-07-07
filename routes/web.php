@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\CommunityController;
+use App\Http\Controllers\Web\CareersController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\HomepageController;
@@ -49,8 +50,10 @@ Route::get('/community/{slug}', [CommunityController::class, 'show'])->name('com
 Route::get('/insights', [InsightsController::class, 'index'])->name('insights');
 Route::get('/insights/{slug}', [InsightsController::class, 'show'])->name('insights.show');
 
+Route::get('/careers', [CareersController::class, 'index'])->name('careers');
+Route::get('/careers/{slug}', [CareersController::class, 'show'])->name('careers.show');
+
 $previewPages = [
-    'careers',
     'contact',
 ];
 

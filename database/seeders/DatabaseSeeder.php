@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             InnovationLabSeeder::class,
             CommunitySeeder::class,
             InsightSeeder::class,
+            CareerSeeder::class,
             AdminUserSeeder::class,
         ]);
     }
