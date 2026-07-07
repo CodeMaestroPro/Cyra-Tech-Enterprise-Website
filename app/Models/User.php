@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Concerns\HasRoles;
+use App\Models\ClientAccount;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'password',
         'is_active',
         'last_login_at',
+        'client_account_id',
     ];
 
     protected $hidden = [
@@ -40,5 +42,10 @@ class User extends Authenticatable
     public function isActive(): bool
     {
         return (bool) $this->is_active;
+    }
+
+    public function clientAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(ClientAccount::class);
     }
 }

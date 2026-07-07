@@ -49,6 +49,19 @@ class AuthService extends BaseService
         request()->session()->regenerateToken();
     }
 
+    public function resolveHomeRoute(User $user): string
+    {
+        if ($user->hasPermission('dashboard.access')) {
+            return route('admin.dashboard');
+        }
+
+        if ($user->hasPermission('client-portal.access')) {
+            return route('client-portal.dashboard');
+        }
+
+        return route('home');
+    }
+
     /**
      * @return array<string, mixed>
      */

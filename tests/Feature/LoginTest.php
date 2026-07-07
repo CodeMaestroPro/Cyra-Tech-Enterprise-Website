@@ -27,7 +27,7 @@ class LoginTest extends TestCase
             ->assertSee('Sign in to your account');
     }
 
-    public function test_authenticated_users_are_redirected_from_login_page(): void
+    public function test_authenticated_admin_users_are_redirected_from_login_page(): void
     {
         $user = User::query()->where('email', config('cyra.admin.email'))->firstOrFail();
 
@@ -36,7 +36,16 @@ class LoginTest extends TestCase
         $response->assertRedirect(route('admin.dashboard'));
     }
 
-    public function test_user_can_login_with_valid_credentials(): void
+    public function test_authenticated_client_users_are_redirected_from_login_page(): void
+    {
+        $user = User::query()->where('email', config('cyra.client_user.email'))->firstOrFail();
+
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $response->assertRedirect(route('client-portal.dashboard'));
+    }
+
+    public function test_admin_user_can_login_with_valid_credentials(): void
     {
         $response = $this->post(route('login.store'), [
             'email' => config('cyra.admin.email'),
@@ -45,6 +54,17 @@ class LoginTest extends TestCase
 
         $response->assertRedirect(route('admin.dashboard'));
         $this->assertAuthenticatedAs(User::query()->where('email', config('cyra.admin.email'))->first());
+    }
+
+    public function test_client_user_can_login_with_valid_credentials(): void
+    {
+        $response = $this->post(route('login.store'), [
+            'email' => config('cyra.client_user.email'),
+            'password' => config('cyra.client_user.password'),
+        ]);
+
+        $response->assertRedirect(route('client-portal.dashboard'));
+        $this->assertAuthenticatedAs(User::query()->where('email', config('cyra.client_user.email'))->first());
     }
 
     public function test_user_cannot_login_with_invalid_credentials(): void

@@ -50,12 +50,7 @@ The Command Center sidebar is grouped into seven sections:
 
 Items with available routes link to admin pages. Future modules appear as muted labels until implemented. Permission checks filter admin items per user.
 
-## Preview Pages
-
-Public routes not yet implemented as full modules render `pages.preview` with module metadata:
-
-- `/about`, `/solutions`, `/products`, `/industries`, `/portfolio`
-- `/innovation-lab`, `/community`, `/insights`, `/careers`, `/contact`
+Public module routes (Modules 5–17) are fully implemented; navigation links resolve to their dedicated controllers and views rather than placeholder pages.
 
 ## API Endpoints
 
@@ -87,10 +82,8 @@ Seeded from `config/cyra.php` via `NavigationSeeder`.
 app/Services/NavigationService.php
 app/Repositories/NavigationItemRepository.php
 app/Models/NavigationItem.php
-app/View/Composers/NavigationComposer.php
 app/Http/Middleware/ShareNavigationData.php
 app/Http/Controllers/Api/NavigationController.php
-app/Http/Controllers/Web/PagePreviewController.php
 resources/views/components/navigation/
 resources/js/components/navigation.js
 config/cyra.php (navigation section)
@@ -104,4 +97,4 @@ php artisan test
 npm run build
 ```
 
-Visit `/` for public navigation, `/about` for a preview page, and `/admin` (authenticated) for the Command Center sidebar.
+Visit `/` for public navigation, `/about` for the About module, and `/admin` (authenticated) for the Command Center sidebar.

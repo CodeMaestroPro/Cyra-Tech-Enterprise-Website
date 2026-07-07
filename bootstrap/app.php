@@ -23,7 +23,23 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->redirectGuestsTo(fn () => route('login'));
-        $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
+        $middleware->redirectUsersTo(function () {
+            $user = auth()->user();
+
+            if ($user === null) {
+                return route('home');
+            }
+
+            if ($user->hasPermission('dashboard.access')) {
+                return route('admin.dashboard');
+            }
+
+            if ($user->hasPermission('client-portal.access')) {
+                return route('client-portal.dashboard');
+            }
+
+            return route('home');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

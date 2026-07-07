@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\CommunityController;
 use App\Http\Controllers\Web\CareersController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\PartnerHubController;
+use App\Http\Controllers\Web\ClientPortalController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\HomepageController;
@@ -61,6 +62,12 @@ Route::post('/contact', [ContactController::class, 'store'])
 
 Route::get('/partner-hub', [PartnerHubController::class, 'index'])->name('partner-hub');
 Route::get('/partner-hub/{slug}', [PartnerHubController::class, 'show'])->name('partner-hub.show');
+
+Route::get('/client-portal', [ClientPortalController::class, 'index'])->name('client-portal');
+Route::middleware(['auth', 'permission:client-portal.access'])->prefix('client-portal')->name('client-portal.')->group(function () {
+    Route::get('/dashboard', [ClientPortalController::class, 'dashboard'])->name('dashboard');
+    Route::get('/engagements/{slug}', [ClientPortalController::class, 'show'])->name('engagements.show');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

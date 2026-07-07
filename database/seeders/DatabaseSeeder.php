@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             InsightSeeder::class,
             CareerSeeder::class,
             PartnerHubSeeder::class,
+            ClientPortalSeeder::class,
+            ClientUserSeeder::class,
             AdminUserSeeder::class,
         ]);
     }

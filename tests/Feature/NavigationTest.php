@@ -120,6 +120,16 @@ class NavigationTest extends TestCase
             ->assertSee('Cloud Alliance Program');
     }
 
+    public function test_client_portal_page_renders_full_client_portal_module(): void
+    {
+        $response = $this->get(route('client-portal'));
+
+        $response
+            ->assertOk()
+            ->assertViewIs('client-portal.index')
+            ->assertSee('Your engagement command center');
+    }
+
     public function test_products_page_renders_full_products_module(): void
     {
         $response = $this->get(route('products'));

@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function create(): View|RedirectResponse
     {
         if (auth()->check()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->to($this->authService->resolveHomeRoute(auth()->user()));
         }
 
         return view('auth.login');
@@ -27,14 +27,14 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request): RedirectResponse
     {
-        $this->authService->attempt(
+        $user = $this->authService->attempt(
             $request->only('email', 'password'),
             $request->boolean('remember'),
         );
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->intended($this->authService->resolveHomeRoute($user));
     }
 
     public function destroy(Request $request): RedirectResponse

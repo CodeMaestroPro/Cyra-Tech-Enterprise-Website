@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\PartnerHubController;
+use App\Http\Controllers\Api\ClientPortalController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
@@ -63,6 +64,12 @@ Route::post('/contact', [ContactController::class, 'store'])
 
 Route::get('/partner-hub', [PartnerHubController::class, 'index'])->name('api.partner-hub.index');
 Route::get('/partner-hub/{slug}', [PartnerHubController::class, 'show'])->name('api.partner-hub.show');
+
+Route::get('/client-portal', [ClientPortalController::class, 'show'])->name('api.client-portal.show');
+Route::middleware(['web', 'auth', 'permission:client-portal.access'])->group(function () {
+    Route::get('/client-portal/dashboard', [ClientPortalController::class, 'dashboard'])->name('api.client-portal.dashboard');
+    Route::get('/client-portal/engagements/{slug}', [ClientPortalController::class, 'showEngagement'])->name('api.client-portal.engagements.show');
+});
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

@@ -36,7 +36,7 @@ return [
         ['id' => 15, 'slug' => 'careers', 'name' => 'Careers', 'status' => 'completed'],
         ['id' => 16, 'slug' => 'contact', 'name' => 'Contact', 'status' => 'completed'],
         ['id' => 17, 'slug' => 'partner-hub', 'name' => 'Partner Hub', 'status' => 'completed'],
-        ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'pending'],
+        ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'completed'],
         ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'pending'],
         ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'pending'],
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'pending'],
@@ -95,10 +95,20 @@ return [
                 'dashboard.access',
             ],
         ],
+        'client' => [
+            'name' => 'Client',
+            'description' => 'Secure access to assigned Cyra-Tech client portal engagements.',
+            'permissions' => [
+                'client-portal.access',
+                'client-portal.view',
+            ],
+        ],
     ],
 
     'permissions' => [
         'dashboard.access' => ['name' => 'Access Dashboard', 'group' => 'Dashboard'],
+        'client-portal.access' => ['name' => 'Access Client Portal', 'group' => 'Client Portal'],
+        'client-portal.view' => ['name' => 'View Client Engagements', 'group' => 'Client Portal'],
         'users.view' => ['name' => 'View Users', 'group' => 'Users'],
         'users.create' => ['name' => 'Create Users', 'group' => 'Users'],
         'users.update' => ['name' => 'Update Users', 'group' => 'Users'],
@@ -121,6 +131,14 @@ return [
         'email' => env('CYRA_ADMIN_EMAIL', 'admin@cyratech.com'),
         'password' => env('CYRA_ADMIN_PASSWORD', 'password'),
         'role' => 'super-admin',
+    ],
+
+    'client_user' => [
+        'name' => env('CYRA_CLIENT_NAME', 'Sarah Mitchell'),
+        'email' => env('CYRA_CLIENT_EMAIL', 'client@novabank.com'),
+        'password' => env('CYRA_CLIENT_PASSWORD', 'password'),
+        'role' => 'client',
+        'account' => 'novabank',
     ],
 
     /*
@@ -421,7 +439,7 @@ return [
                 'content' => [
                     'actions' => [
                         ['label' => 'Contact Us', 'route' => 'contact', 'variant' => 'primary'],
-                        ['label' => 'Client Portal', 'route' => 'login', 'variant' => 'secondary'],
+                        ['label' => 'Client Portal', 'route' => 'client-portal', 'variant' => 'secondary'],
                     ],
                     'variant' => 'gradient',
                 ],
@@ -1951,6 +1969,160 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Client Portal Content
+    |--------------------------------------------------------------------------
+    */
+
+    'client_portal' => [
+        'seo' => [
+            'title' => 'Client Portal | Cyra-Tech',
+            'description' => 'Secure Cyra-Tech client portal for engagement tracking, milestone visibility, deliverables, and priority support.',
+            'keywords' => ['Cyra-Tech client portal', 'engagement tracking', 'enterprise client dashboard', 'delivery status'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Client Portal',
+            'title' => 'Your engagement command center',
+            'description' => 'Track program progress, review milestones, access deliverables, and connect with your Cyra-Tech delivery team in one secure workspace.',
+        ],
+        'features' => [
+            'eyebrow' => 'Portal Capabilities',
+            'title' => 'Everything you need to stay aligned with delivery',
+            'description' => 'The Cyra-Tech Client Portal gives stakeholders transparent visibility into active programs without compromising security or governance.',
+            'points' => [
+                'Real-time engagement status, phase, and progress indicators',
+                'Milestone tracking with upcoming and completed checkpoints',
+                'Deliverable library and delivery team contact directory',
+                'Priority support routing to your assigned account team',
+            ],
+        ],
+        'security' => [
+            'title' => 'Enterprise-grade security',
+            'description' => 'Portal access is role-based, encrypted in transit, and scoped to your organization\'s assigned engagements only.',
+            'points' => [
+                'Session-based authentication with RBAC enforcement',
+                'Engagement data isolated per client account',
+                'Audit-ready access controls and activity logging (coming soon)',
+            ],
+        ],
+        'dashboard_support' => [
+            'title' => 'Need assistance?',
+            'description' => 'Contact your account manager or email support@cyratech.com for priority response on active engagements.',
+        ],
+        'cta' => [
+            'title' => 'Sign in to your workspace',
+            'description' => 'Use your Cyra-Tech client credentials to access assigned engagements and delivery updates.',
+            'action' => ['label' => 'Sign In', 'route' => 'login'],
+        ],
+        'accounts' => [
+            [
+                'slug' => 'novabank',
+                'name' => 'NovaBank',
+                'industry' => 'Financial Services',
+                'region' => 'North America',
+                'account_manager' => 'James Whitfield',
+                'support_email' => 'support@cyratech.com',
+                'engagements' => [
+                    [
+                        'slug' => 'digital-core-modernization',
+                        'portfolio_slug' => 'novabank-digital-core',
+                        'title' => 'Digital Core Modernization',
+                        'status' => 'active',
+                        'phase' => 'Delivery',
+                        'progress' => 68,
+                        'tagline' => 'Cloud-native banking core migration and API modernization.',
+                        'summary' => 'Multi-phase program modernizing NovaBank\'s legacy core with secure APIs and real-time payment rails.',
+                        'description' => 'Cyra-Tech is leading NovaBank through a regulated digital core transformation, including landing zone design, core service decomposition, API gateway rollout, and progressive cutover of high-volume payment workloads.',
+                        'milestones' => ['Landing zone approved', 'API gateway production pilot', 'Payment rail migration wave 1', 'Operational hypercare'],
+                        'deliverables' => ['Architecture decision records', 'Migration runbooks', 'Security assessment reports', 'Executive steering decks'],
+                        'team' => ['James Whitfield — Delivery Director', 'Senior Cloud Architect — Lead Engineer', 'Enterprise Solutions Consultant — Client Partner'],
+                    ],
+                    [
+                        'slug' => 'fraud-analytics-copilot',
+                        'portfolio_slug' => null,
+                        'title' => 'Fraud Analytics Copilot',
+                        'status' => 'active',
+                        'phase' => 'Design',
+                        'progress' => 34,
+                        'tagline' => 'AI-assisted fraud detection with human oversight and compliance guardrails.',
+                        'summary' => 'Innovation Lab pilot embedding intelligent fraud workflows into NovaBank operations.',
+                        'description' => 'This engagement prototypes and validates an AI copilot for fraud analysts, integrating model monitoring, explainability, and escalation workflows aligned to NovaBank risk policies.',
+                        'milestones' => ['Use case discovery complete', 'Prototype evaluation criteria', 'Pilot integration design', 'Production readiness review'],
+                        'deliverables' => ['Use case backlog', 'Model evaluation framework', 'Pilot architecture brief', 'Governance checklist'],
+                        'team' => ['Elena Vasquez — Innovation Lead', 'AI / ML Engineer — Technical Lead', 'Program Delivery Manager — Governance'],
+                    ],
+                    [
+                        'slug' => 'regulatory-reporting-automation',
+                        'portfolio_slug' => null,
+                        'title' => 'Regulatory Reporting Automation',
+                        'status' => 'on-track',
+                        'phase' => 'Hypercare',
+                        'progress' => 92,
+                        'tagline' => 'Automated compliance reporting with auditable data pipelines.',
+                        'summary' => 'Final hypercare phase for automated regulatory reporting and audit trail modernization.',
+                        'description' => 'NovaBank\'s regulatory reporting automation program is completing hypercare with Cyra-Tech support, ensuring reporting pipelines, audit evidence, and operational runbooks are production-stable.',
+                        'milestones' => ['Reporting pipelines live', 'Audit evidence validated', 'Operations handover', 'Program closeout'],
+                        'deliverables' => ['Runbook library', 'Audit trail documentation', 'Operations training materials', 'Closeout report'],
+                        'team' => ['Program Delivery Manager — Lead', 'Lead Full-Stack Engineer — Platform', 'Enterprise Solutions Consultant — Advisor'],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'helix-health',
+                'name' => 'Helix Health Network',
+                'industry' => 'Healthcare',
+                'region' => 'North America',
+                'account_manager' => 'Priya Sharma',
+                'support_email' => 'support@cyratech.com',
+                'engagements' => [
+                    [
+                        'slug' => 'connected-care-platform',
+                        'portfolio_slug' => 'helix-health-network',
+                        'title' => 'Connected Care Platform',
+                        'status' => 'active',
+                        'phase' => 'Delivery',
+                        'progress' => 54,
+                        'tagline' => 'FHIR-enabled care coordination and patient engagement platform.',
+                        'summary' => 'Enterprise platform connecting clinicians, patients, and operational systems across Helix Health.',
+                        'description' => 'Cyra-Tech is delivering Helix Health\'s connected care platform with FHIR integrations, patient portal experiences, and HIPAA-aligned cloud infrastructure for multi-site deployment.',
+                        'milestones' => ['FHIR integration hub live', 'Patient portal beta', 'Clinical workflow automation wave 1', 'Enterprise rollout planning'],
+                        'deliverables' => ['Integration specifications', 'Portal UX prototypes', 'Security compliance pack', 'Rollout roadmap'],
+                        'team' => ['Priya Sharma — Executive Sponsor', 'UX / Product Designer — Experience Lead', 'Senior Cloud Architect — Platform Lead'],
+                    ],
+                    [
+                        'slug' => 'clinical-data-governance',
+                        'portfolio_slug' => null,
+                        'title' => 'Clinical Data Governance',
+                        'status' => 'active',
+                        'phase' => 'Discovery',
+                        'progress' => 22,
+                        'tagline' => 'Enterprise data governance for clinical and operational datasets.',
+                        'summary' => 'Foundational data governance program for Helix Health analytics and AI readiness.',
+                        'description' => 'This engagement establishes data ownership models, quality standards, and governance councils to prepare Helix Health for advanced analytics and responsible AI adoption.',
+                        'milestones' => ['Data domain inventory', 'Stewardship model design', 'Quality rules pilot', 'Council operating model'],
+                        'deliverables' => ['Data domain catalog', 'Governance charter', 'Quality framework', 'Roadmap brief'],
+                        'team' => ['Enterprise Solutions Consultant — Lead', 'Program Delivery Manager — Governance', 'AI / ML Engineer — Advisor'],
+                    ],
+                    [
+                        'slug' => 'telehealth-scale-program',
+                        'portfolio_slug' => null,
+                        'title' => 'Telehealth Scale Program',
+                        'status' => 'planning',
+                        'phase' => 'Discovery',
+                        'progress' => 12,
+                        'tagline' => 'Scaling virtual care capacity across Helix Health regions.',
+                        'summary' => 'Early-stage program planning for telehealth platform scale and regional expansion.',
+                        'description' => 'Cyra-Tech is partnering with Helix Health leadership to define telehealth scaling priorities, platform requirements, and phased rollout plans across regional care networks.',
+                        'milestones' => ['Stakeholder alignment workshops', 'Capacity model draft', 'Platform requirements baseline', 'Program charter approval'],
+                        'deliverables' => ['Workshop outcomes', 'Capacity model', 'Requirements baseline', 'Program charter'],
+                        'team' => ['James Whitfield — Delivery Director', 'Enterprise Solutions Consultant — Strategy Lead', 'Program Delivery Manager — Planning'],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1974,7 +2146,7 @@ return [
                 ['label' => 'Careers', 'route' => 'careers', 'sort' => 10],
             ],
             'actions' => [
-                ['label' => 'Client Portal', 'route' => 'login', 'style' => 'link', 'sort' => 1],
+                ['label' => 'Client Portal', 'route' => 'client-portal', 'style' => 'link', 'sort' => 1],
                 ['label' => 'Contact Us', 'route' => 'contact', 'style' => 'button', 'sort' => 2],
             ],
             'footer_columns' => [
@@ -2008,7 +2180,7 @@ return [
                 [
                     'title' => 'Connect',
                     'links' => [
-                        ['label' => 'Client Portal', 'route' => 'login'],
+                        ['label' => 'Client Portal', 'route' => 'client-portal'],
                         ['label' => 'Newsletter', 'route' => 'home'],
                         ['label' => 'Support', 'route' => 'contact'],
                         ['label' => 'Admin', 'route' => 'login'],
@@ -2039,6 +2211,7 @@ return [
                 [
                     'label' => 'Executive',
                     'items' => [
+                        ['label' => 'Client Portal', 'route' => 'client-portal', 'permission' => 'modules.view'],
                         ['label' => 'Brief', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
                         ['label' => 'Company Pulse', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Business Intelligence', 'permission' => 'dashboard.access', 'available' => false],
