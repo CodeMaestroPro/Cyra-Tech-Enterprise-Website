@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\CommunityController;
 use App\Http\Controllers\Web\CareersController;
+use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\HomepageController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\Web\LeadershipController;
 use App\Http\Controllers\Web\PortfolioController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\SolutionsController;
-use App\Http\Controllers\Web\PagePreviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomepageController::class)->name('home');
@@ -53,15 +53,10 @@ Route::get('/insights/{slug}', [InsightsController::class, 'show'])->name('insig
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');
 Route::get('/careers/{slug}', [CareersController::class, 'show'])->name('careers.show');
 
-$previewPages = [
-    'contact',
-];
-
-foreach ($previewPages as $slug) {
-    Route::get("/{$slug}", [PagePreviewController::class, 'show'])
-        ->defaults('slug', $slug)
-        ->name(str_replace('/', '-', $slug));
-}
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('contact.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

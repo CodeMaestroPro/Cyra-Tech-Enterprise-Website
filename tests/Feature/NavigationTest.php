@@ -99,15 +99,15 @@ class NavigationTest extends TestCase
             ->assertSee('Senior Cloud Architect');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_contact_page_renders_full_contact_module(): void
     {
         $response = $this->get(route('contact'));
 
         $response
             ->assertOk()
-            ->assertViewIs('pages.preview')
-            ->assertSee('Contact')
-            ->assertSee('Module 04 (Global Navigation)');
+            ->assertViewIs('contact.index')
+            ->assertSee('Ready to transform your enterprise?')
+            ->assertSee('Send us a message');
     }
 
     public function test_products_page_renders_full_products_module(): void

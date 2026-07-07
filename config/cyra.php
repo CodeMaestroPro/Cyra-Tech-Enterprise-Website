@@ -34,7 +34,7 @@ return [
         ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'completed'],
         ['id' => 14, 'slug' => 'insights', 'name' => 'Insights', 'status' => 'completed'],
         ['id' => 15, 'slug' => 'careers', 'name' => 'Careers', 'status' => 'completed'],
-        ['id' => 16, 'slug' => 'contact', 'name' => 'Contact', 'status' => 'pending'],
+        ['id' => 16, 'slug' => 'contact', 'name' => 'Contact', 'status' => 'completed'],
         ['id' => 17, 'slug' => 'partner-hub', 'name' => 'Partner Hub', 'status' => 'pending'],
         ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'pending'],
         ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'pending'],
@@ -1743,6 +1743,67 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Contact Content
+    |--------------------------------------------------------------------------
+    */
+
+    'contact' => [
+        'seo' => [
+            'title' => 'Contact Us | Cyra-Tech',
+            'description' => 'Contact Cyra-Tech for sales inquiries, support, partnerships, careers, and general questions. Our team responds within one business day.',
+            'keywords' => ['contact Cyra-Tech', 'enterprise sales', 'support', 'partnerships'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Contact',
+            'title' => 'Ready to transform your enterprise?',
+            'description' => 'Partner with Cyra-Tech to design, build, and scale intelligent systems that deliver lasting impact. Tell us about your goals and our team will respond promptly.',
+        ],
+        'inquiry_types' => [
+            ['slug' => 'sales', 'label' => 'Sales & Solutions'],
+            ['slug' => 'support', 'label' => 'Client Support'],
+            ['slug' => 'partnership', 'label' => 'Partnerships'],
+            ['slug' => 'careers', 'label' => 'Careers & Talent'],
+            ['slug' => 'media', 'label' => 'Media & Press'],
+            ['slug' => 'general', 'label' => 'General Inquiry'],
+        ],
+        'offices' => [
+            [
+                'city' => 'Lagos, Nigeria',
+                'address' => 'Victoria Island Business District',
+                'hours' => 'Mon–Fri, 8:00 AM – 6:00 PM WAT',
+            ],
+            [
+                'city' => 'London, United Kingdom',
+                'address' => 'Canary Wharf Enterprise Quarter',
+                'hours' => 'Mon–Fri, 9:00 AM – 5:30 PM GMT',
+            ],
+            [
+                'city' => 'Washington, DC',
+                'address' => 'Capitol Riverfront Innovation Center',
+                'hours' => 'Mon–Fri, 9:00 AM – 5:00 PM EST',
+            ],
+        ],
+        'channels' => [
+            ['label' => 'Sales', 'email' => 'sales@cyratech.com'],
+            ['label' => 'Support', 'email' => 'support@cyratech.com'],
+            ['label' => 'Careers', 'email' => 'careers@cyratech.com'],
+            ['label' => 'Partnerships', 'email' => 'partners@cyratech.com'],
+        ],
+        'form' => [
+            'eyebrow' => 'Get in Touch',
+            'title' => 'Send us a message',
+            'description' => 'Complete the form and a Cyra-Tech advisor will follow up within one business day.',
+            'submit_label' => 'Send Message',
+            'success_message' => 'Thank you for contacting Cyra-Tech. Our team will respond within one business day.',
+        ],
+        'support' => [
+            'title' => 'Existing clients',
+            'description' => 'For active engagements, reach your delivery team through the Client Portal or email support@cyratech.com for priority assistance.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1862,6 +1923,7 @@ return [
                 [
                     'label' => 'Growth',
                     'items' => [
+                        ['label' => 'Contact', 'route' => 'contact', 'permission' => 'modules.view'],
                         ['label' => 'Leads & CRM', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Partners', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Marketing', 'permission' => 'dashboard.access', 'available' => false],

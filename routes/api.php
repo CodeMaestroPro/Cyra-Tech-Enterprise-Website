@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
@@ -53,6 +54,11 @@ Route::get('/insights/{slug}', [InsightsController::class, 'show'])->name('api.i
 
 Route::get('/careers', [CareersController::class, 'index'])->name('api.careers.index');
 Route::get('/careers/{slug}', [CareersController::class, 'show'])->name('api.careers.show');
+
+Route::get('/contact', [ContactController::class, 'show'])->name('api.contact.show');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('api.contact.store');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

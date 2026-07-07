@@ -2,6 +2,7 @@ import './bootstrap';
 import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
 import { initCareersPage } from './pages/careers';
+import { initContactPage } from './pages/contact';
 import { initInsightsPage } from './pages/insights';
 import { initCommunityPage } from './pages/community';
 import { initInnovationLabPage } from './pages/innovation-lab';
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCommunityPage();
     initInsightsPage();
     initCareersPage();
+    initContactPage();
     initDesignSystemPage();
     initNavigation();
     initModals();
