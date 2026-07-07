@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\PartnerHubController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
@@ -59,6 +60,9 @@ Route::get('/contact', [ContactController::class, 'show'])->name('api.contact.sh
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('api.contact.store');
+
+Route::get('/partner-hub', [PartnerHubController::class, 'index'])->name('api.partner-hub.index');
+Route::get('/partner-hub/{slug}', [PartnerHubController::class, 'show'])->name('api.partner-hub.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

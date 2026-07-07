@@ -3,6 +3,7 @@ import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
 import { initCareersPage } from './pages/careers';
 import { initContactPage } from './pages/contact';
+import { initPartnerHubPage } from './pages/partner-hub';
 import { initInsightsPage } from './pages/insights';
 import { initCommunityPage } from './pages/community';
 import { initInnovationLabPage } from './pages/innovation-lab';
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInsightsPage();
     initCareersPage();
     initContactPage();
+    initPartnerHubPage();
     initDesignSystemPage();
     initNavigation();
     initModals();

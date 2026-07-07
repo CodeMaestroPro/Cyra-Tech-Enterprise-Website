@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\CommunityController;
 use App\Http\Controllers\Web\CareersController;
 use App\Http\Controllers\Web\ContactController;
+use App\Http\Controllers\Web\PartnerHubController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\HomepageController;
@@ -57,6 +58,9 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('contact.store');
+
+Route::get('/partner-hub', [PartnerHubController::class, 'index'])->name('partner-hub');
+Route::get('/partner-hub/{slug}', [PartnerHubController::class, 'show'])->name('partner-hub.show');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

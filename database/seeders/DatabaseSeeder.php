@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CommunitySeeder::class,
             InsightSeeder::class,
             CareerSeeder::class,
+            PartnerHubSeeder::class,
             AdminUserSeeder::class,
         ]);
     }

@@ -110,6 +110,16 @@ class NavigationTest extends TestCase
             ->assertSee('Send us a message');
     }
 
+    public function test_partner_hub_page_renders_full_partner_hub_module(): void
+    {
+        $response = $this->get(route('partner-hub'));
+
+        $response
+            ->assertOk()
+            ->assertViewIs('partner-hub.index')
+            ->assertSee('Cloud Alliance Program');
+    }
+
     public function test_products_page_renders_full_products_module(): void
     {
         $response = $this->get(route('products'));
