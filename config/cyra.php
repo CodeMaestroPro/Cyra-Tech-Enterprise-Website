@@ -16,15 +16,11 @@ return [
     |--------------------------------------------------------------------------
     | Platform Modules
     |--------------------------------------------------------------------------
-    |
-    | Tracks the 25-module enterprise build roadmap. Module 01 is marked
-    | complete once initialization finishes; later modules update status.
-    |
     */
 
     'modules' => [
         ['id' => 1, 'slug' => 'project-initialization', 'name' => 'Project Initialization', 'status' => 'completed'],
-        ['id' => 2, 'slug' => 'authentication-rbac', 'name' => 'Authentication & RBAC', 'status' => 'pending'],
+        ['id' => 2, 'slug' => 'authentication-rbac', 'name' => 'Authentication & RBAC', 'status' => 'completed'],
         ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'pending'],
         ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'pending'],
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'pending'],
@@ -48,6 +44,83 @@ return [
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'pending'],
         ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'pending'],
         ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'pending'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | RBAC Roles & Permissions
+    |--------------------------------------------------------------------------
+    */
+
+    'roles' => [
+        'super-admin' => [
+            'name' => 'Super Administrator',
+            'description' => 'Full platform access across all modules and settings.',
+            'permissions' => ['*'],
+        ],
+        'admin' => [
+            'name' => 'Administrator',
+            'description' => 'Manage users, content, and operational settings.',
+            'permissions' => [
+                'dashboard.access',
+                'users.view',
+                'users.create',
+                'users.update',
+                'roles.view',
+                'settings.view',
+                'modules.view',
+            ],
+        ],
+        'manager' => [
+            'name' => 'Manager',
+            'description' => 'Operational access to dashboard and team workflows.',
+            'permissions' => [
+                'dashboard.access',
+                'users.view',
+                'modules.view',
+            ],
+        ],
+        'editor' => [
+            'name' => 'Editor',
+            'description' => 'Content and module visibility without user administration.',
+            'permissions' => [
+                'dashboard.access',
+                'modules.view',
+            ],
+        ],
+        'viewer' => [
+            'name' => 'Viewer',
+            'description' => 'Read-only dashboard access.',
+            'permissions' => [
+                'dashboard.access',
+            ],
+        ],
+    ],
+
+    'permissions' => [
+        'dashboard.access' => ['name' => 'Access Dashboard', 'group' => 'Dashboard'],
+        'users.view' => ['name' => 'View Users', 'group' => 'Users'],
+        'users.create' => ['name' => 'Create Users', 'group' => 'Users'],
+        'users.update' => ['name' => 'Update Users', 'group' => 'Users'],
+        'users.delete' => ['name' => 'Delete Users', 'group' => 'Users'],
+        'roles.view' => ['name' => 'View Roles', 'group' => 'Roles'],
+        'roles.manage' => ['name' => 'Manage Roles', 'group' => 'Roles'],
+        'settings.view' => ['name' => 'View Settings', 'group' => 'Settings'],
+        'settings.manage' => ['name' => 'Manage Settings', 'group' => 'Settings'],
+        'modules.view' => ['name' => 'View Modules', 'group' => 'Platform'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Admin Bootstrap User
+    |--------------------------------------------------------------------------
+    */
+
+    'admin' => [
+        'name' => env('CYRA_ADMIN_NAME', 'Collins Pever'),
+        'email' => env('CYRA_ADMIN_EMAIL', 'admin@cyratech.com'),
+        'password' => env('CYRA_ADMIN_PASSWORD', 'password'),
+        'role' => 'super-admin',
     ],
 
     /*

@@ -27,7 +27,7 @@ class PlatformApiTest extends TestCase
             ->assertJsonPath('data.stack.backend', 'Laravel 12')
             ->assertJsonPath('data.stack.frontend', 'JavaScript + Blade')
             ->assertJsonPath('data.modules.total', 25)
-            ->assertJsonPath('data.modules.completed', 1);
+            ->assertJsonPath('data.modules.completed', 2);
     }
 
     public function test_platform_modules_endpoint_returns_all_modules(): void
