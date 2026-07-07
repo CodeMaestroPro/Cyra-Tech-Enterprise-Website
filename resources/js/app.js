@@ -1,6 +1,7 @@
 import './bootstrap';
 import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
+import { initProductsPage } from './pages/products';
 import { initSolutionsPage } from './pages/solutions';
 import { initLeadershipPage } from './pages/leadership';
 import { initHomepage } from './pages/homepage';
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHomepage();
     initLeadershipPage();
     initSolutionsPage();
+    initProductsPage();
     initDesignSystemPage();
     initNavigation();
     initModals();

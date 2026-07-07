@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
 use App\Http\Controllers\Web\LeadershipController;
+use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\SolutionsController;
 use App\Http\Controllers\Web\PagePreviewController;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +26,10 @@ Route::get('/leadership', LeadershipController::class)->name('leadership');
 Route::get('/solutions', [SolutionsController::class, 'index'])->name('solutions');
 Route::get('/solutions/{slug}', [SolutionsController::class, 'show'])->name('solutions.show');
 
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/products/{slug}', [ProductsController::class, 'show'])->name('products.show');
+
 $previewPages = [
-    'products',
     'industries',
     'portfolio',
     'innovation-lab',

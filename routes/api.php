@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\HomepageController;
 use App\Http\Controllers\Api\LeadershipController;
 use App\Http\Controllers\Api\NavigationController;
+use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\SolutionsController;
 use App\Http\Controllers\Api\PlatformController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::get('/leadership/{slug}', [LeadershipController::class, 'show'])->name('a
 
 Route::get('/solutions', [SolutionsController::class, 'index'])->name('api.solutions.index');
 Route::get('/solutions/{slug}', [SolutionsController::class, 'show'])->name('api.solutions.show');
+
+Route::get('/products', [ProductsController::class, 'index'])->name('api.products.index');
+Route::get('/products/{slug}', [ProductsController::class, 'show'])->name('api.products.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');

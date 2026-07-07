@@ -41,13 +41,23 @@ class NavigationTest extends TestCase
 
     public function test_preview_page_renders_for_public_routes(): void
     {
-        $response = $this->get(route('products'));
+        $response = $this->get(route('industries'));
 
         $response
             ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Products')
+            ->assertSee('Industries')
             ->assertSee('Module 04 (Global Navigation)');
+    }
+
+    public function test_products_page_renders_full_products_module(): void
+    {
+        $response = $this->get(route('products'));
+
+        $response
+            ->assertOk()
+            ->assertViewIs('products.index')
+            ->assertSee('Cyra Command');
     }
 
     public function test_solutions_page_renders_full_solutions_module(): void

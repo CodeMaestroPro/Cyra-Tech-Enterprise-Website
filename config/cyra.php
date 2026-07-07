@@ -27,7 +27,7 @@ return [
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'completed'],
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'completed'],
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'completed'],
-        ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'pending'],
+        ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'completed'],
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'pending'],
         ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'pending'],
         ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'pending'],
@@ -791,6 +791,129 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Products Content
+    |--------------------------------------------------------------------------
+    */
+
+    'products' => [
+        'seo' => [
+            'title' => 'Platform Products | Cyra-Tech',
+            'description' => 'Discover Cyra-Tech platform products — Command, Pulse, Shield, Connect, Flow, and Studio — built for enterprise operations, analytics, and security.',
+            'keywords' => ['Cyra Command', 'enterprise products', 'platform software', 'Cyra-Tech products'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Products',
+            'title' => 'Platform products built for enterprise velocity',
+            'description' => 'Composable Cyra-Tech products integrate with your stack and scale across teams, regions, and business units with unified governance.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Products'],
+            ['slug' => 'operations', 'label' => 'Operations'],
+            ['slug' => 'analytics', 'label' => 'Analytics'],
+            ['slug' => 'security', 'label' => 'Security'],
+            ['slug' => 'integration', 'label' => 'Integration'],
+            ['slug' => 'automation', 'label' => 'Automation'],
+        ],
+        'items' => [
+            [
+                'slug' => 'cyra-command',
+                'category' => 'operations',
+                'title' => 'Cyra Command',
+                'tagline' => 'Your digital headquarters for enterprise operations.',
+                'summary' => 'Unified operations dashboard for executives, teams, and digital headquarters workflows.',
+                'description' => 'Cyra Command centralizes executive briefings, program dashboards, team workflows, and platform administration in one secure command center designed for enterprise leaders and operators.',
+                'badge' => 'Flagship',
+                'features' => ['Executive briefings', 'Program dashboards', 'Team workspaces', 'Role-based access control'],
+                'use_cases' => ['Executive command centers', 'Digital HQ operations', 'Transformation program offices'],
+                'icon' => 'command',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'cyra-pulse',
+                'category' => 'analytics',
+                'title' => 'Cyra Pulse',
+                'tagline' => 'Real-time intelligence for decisive leadership.',
+                'summary' => 'Real-time business intelligence with executive briefings and automated insights.',
+                'description' => 'Cyra Pulse aggregates enterprise data into live dashboards, automated insights, and executive-ready narratives so leaders can monitor performance and act with confidence.',
+                'badge' => 'Analytics',
+                'features' => ['Live KPI dashboards', 'Automated insight alerts', 'Executive narrative reports', 'Data source connectors'],
+                'use_cases' => ['C-suite reporting', 'Operational analytics', 'Performance management'],
+                'icon' => 'pulse',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'cyra-shield',
+                'category' => 'security',
+                'title' => 'Cyra Shield',
+                'tagline' => 'Enterprise security posture, continuously validated.',
+                'summary' => 'Enterprise security posture management with compliance automation and threat visibility.',
+                'description' => 'Cyra Shield provides continuous control monitoring, compliance automation, and threat visibility across cloud and on-prem environments with audit-ready reporting.',
+                'badge' => 'Security',
+                'features' => ['Posture dashboards', 'Compliance automation', 'Threat intelligence feeds', 'Audit reporting'],
+                'use_cases' => ['Regulated industry compliance', 'Zero-trust monitoring', 'Security operations'],
+                'icon' => 'shield',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'cyra-connect',
+                'category' => 'integration',
+                'title' => 'Cyra Connect',
+                'tagline' => 'Integration fabric for the modern enterprise.',
+                'summary' => 'API management and event-driven integration hub for connected ecosystems.',
+                'description' => 'Cyra Connect enables secure API publishing, partner integrations, and event-driven workflows with observability and lifecycle governance built in.',
+                'badge' => 'Integration',
+                'features' => ['API gateway & management', 'Event streaming', 'Partner onboarding', 'Integration observability'],
+                'use_cases' => ['B2B partner ecosystems', 'Legacy modernization', 'Microservices connectivity'],
+                'icon' => 'integration',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'cyra-flow',
+                'category' => 'automation',
+                'title' => 'Cyra Flow',
+                'tagline' => 'Orchestrate intelligent workflows at scale.',
+                'summary' => 'Workflow automation platform for cross-functional enterprise processes.',
+                'description' => 'Cyra Flow automates approvals, notifications, and multi-system workflows with human-in-the-loop controls, audit trails, and low-code configuration.',
+                'badge' => 'Automation',
+                'features' => ['Visual workflow builder', 'Human-in-the-loop steps', 'System connectors', 'Audit trails'],
+                'use_cases' => ['Approval workflows', 'Customer onboarding', 'Internal service requests'],
+                'icon' => 'flow',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'cyra-studio',
+                'category' => 'operations',
+                'title' => 'Cyra Studio',
+                'tagline' => 'Content and experience management for digital teams.',
+                'summary' => 'Composable content management for marketing sites, portals, and internal experiences.',
+                'description' => 'Cyra Studio empowers digital teams to manage pages, media, navigation, and reusable components with enterprise governance and preview workflows.',
+                'badge' => 'Content',
+                'features' => ['Page builder', 'Media library integration', 'Component governance', 'Preview & publish workflows'],
+                'use_cases' => ['Corporate websites', 'Client portals', 'Internal knowledge hubs'],
+                'icon' => 'studio',
+                'is_featured' => false,
+            ],
+        ],
+        'ecosystem' => [
+            'eyebrow' => 'Product Ecosystem',
+            'title' => 'Built to work better together',
+            'description' => 'Cyra-Tech products share identity, permissions, design language, and data fabric — so your teams operate on one coherent platform.',
+            'points' => [
+                'Unified authentication and RBAC across all products',
+                'Shared design system and component library',
+                'Cross-product analytics and executive reporting',
+                'Modular licensing aligned to enterprise growth',
+            ],
+        ],
+        'cta' => [
+            'title' => 'Ready to explore the Cyra platform?',
+            'description' => 'Schedule a product walkthrough with our team to see how Cyra products fit your enterprise architecture.',
+            'action' => ['label' => 'Book a Demo', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -901,7 +1024,7 @@ return [
                     'items' => [
                         ['label' => 'Services', 'route' => 'solutions', 'permission' => 'modules.view'],
                         ['label' => 'Industries', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Products', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Products', 'route' => 'products', 'permission' => 'modules.view'],
                         ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Portfolio', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Case Studies', 'permission' => 'modules.view', 'available' => false],
