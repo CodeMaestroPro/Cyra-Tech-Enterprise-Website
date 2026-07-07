@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
 use App\Http\Controllers\Web\IndustriesController;
 use App\Http\Controllers\Web\LeadershipController;
+use App\Http\Controllers\Web\PortfolioController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\SolutionsController;
 use App\Http\Controllers\Web\PagePreviewController;
@@ -33,8 +34,10 @@ Route::get('/products/{slug}', [ProductsController::class, 'show'])->name('produ
 Route::get('/industries', [IndustriesController::class, 'index'])->name('industries');
 Route::get('/industries/{slug}', [IndustriesController::class, 'show'])->name('industries.show');
 
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/portfolio/{slug}', [PortfolioController::class, 'show'])->name('portfolio.show');
+
 $previewPages = [
-    'portfolio',
     'innovation-lab',
     'community',
     'insights',

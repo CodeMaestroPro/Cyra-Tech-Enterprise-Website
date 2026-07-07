@@ -29,7 +29,7 @@ return [
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'completed'],
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'completed'],
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'completed'],
-        ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'pending'],
+        ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'completed'],
         ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'pending'],
         ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'pending'],
         ['id' => 14, 'slug' => 'insights', 'name' => 'Insights', 'status' => 'pending'],
@@ -1036,6 +1036,165 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Portfolio Content
+    |--------------------------------------------------------------------------
+    */
+
+    'portfolio' => [
+        'seo' => [
+            'title' => 'Portfolio & Case Studies | Cyra-Tech',
+            'description' => 'Explore Cyra-Tech case studies showcasing measurable outcomes across banking, healthcare, logistics, government, energy, and retail programs.',
+            'keywords' => ['case studies', 'enterprise portfolio', 'digital transformation outcomes', 'Cyra-Tech projects'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Portfolio',
+            'title' => 'Proven outcomes across complex enterprise programs',
+            'description' => 'Cyra-Tech partners with global organizations to deliver transformation programs with transparent milestones, executive governance, and measurable business impact.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Projects'],
+            ['slug' => 'financial', 'label' => 'Financial Services'],
+            ['slug' => 'healthcare', 'label' => 'Healthcare'],
+            ['slug' => 'public-sector', 'label' => 'Public Sector'],
+            ['slug' => 'commercial', 'label' => 'Commercial'],
+            ['slug' => 'industrial', 'label' => 'Industrial'],
+        ],
+        'projects' => [
+            [
+                'slug' => 'novabank-digital-core',
+                'category' => 'financial',
+                'title' => 'NovaBank Digital Core',
+                'client_name' => 'NovaBank',
+                'tagline' => 'Cloud-native banking platform modernization at enterprise scale.',
+                'summary' => 'Migrated 40+ legacy services to a cloud-native banking platform in 14 months.',
+                'description' => 'NovaBank engaged Cyra-Tech to modernize its core banking stack, replacing fragmented legacy services with a secure, API-first platform. The program delivered phased migration, zero-downtime cutovers, and executive dashboards for program governance.',
+                'services' => ['Digital Transformation', 'Cloud & Infrastructure', 'Enterprise Integration', 'Managed Services'],
+                'outcomes' => ['40% faster time-to-market for new products', 'Reduced integration debt across 40+ services', 'Improved audit readiness for regulatory reviews'],
+                'metrics' => [
+                    ['label' => 'Time-to-market', 'value' => '40% faster'],
+                    ['label' => 'Services migrated', 'value' => '40+'],
+                    ['label' => 'Program duration', 'value' => '14 months'],
+                ],
+                'duration' => '14 months',
+                'icon' => 'finance',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'helix-health-network',
+                'category' => 'healthcare',
+                'title' => 'Helix Health Network',
+                'client_name' => 'Helix Health',
+                'tagline' => 'Unified patient data platform with real-time clinical intelligence.',
+                'summary' => 'Unified patient data platform serving 2M+ records with real-time analytics.',
+                'description' => 'Helix Health partnered with Cyra-Tech to consolidate patient records, clinical workflows, and operational analytics into a HIPAA-aligned data platform with FHIR interoperability and executive reporting.',
+                'services' => ['Data & Analytics', 'Enterprise Integration', 'Cybersecurity', 'Managed Services'],
+                'outcomes' => ['99.95% uptime SLA across critical workloads', 'Unified visibility across 2M+ patient records', 'Reduced manual reporting for clinical operations teams'],
+                'metrics' => [
+                    ['label' => 'Platform uptime', 'value' => '99.95%'],
+                    ['label' => 'Records unified', 'value' => '2M+'],
+                    ['label' => 'Reporting cycle', 'value' => '60% faster'],
+                ],
+                'duration' => '18 months',
+                'icon' => 'health',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'astra-logistics-command',
+                'category' => 'commercial',
+                'title' => 'Astra Logistics Command',
+                'client_name' => 'Astra Logistics',
+                'tagline' => 'AI-driven supply chain visibility across a global distribution network.',
+                'summary' => 'AI-driven supply chain visibility across 18 countries and 120 distribution hubs.',
+                'description' => 'Astra Logistics deployed Cyra-Tech\'s intelligence platform to connect warehouse, fleet, and partner systems with predictive analytics, exception management, and executive command dashboards.',
+                'services' => ['AI & Intelligence', 'Data & Analytics', 'Enterprise Integration', 'Cloud & Infrastructure'],
+                'outcomes' => ['22% reduction in logistics operating costs', 'Real-time visibility across 120 distribution hubs', 'Predictive alerts reduced fulfillment delays by 35%'],
+                'metrics' => [
+                    ['label' => 'Cost reduction', 'value' => '22%'],
+                    ['label' => 'Countries connected', 'value' => '18'],
+                    ['label' => 'Distribution hubs', 'value' => '120'],
+                ],
+                'duration' => '12 months',
+                'icon' => 'integration',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'civic-one-portal',
+                'category' => 'public-sector',
+                'title' => 'CivicOne Digital Services',
+                'client_name' => 'CivicOne Agency',
+                'tagline' => 'Accessible citizen services portal with secure identity and workflow automation.',
+                'summary' => 'Modernized citizen-facing services with accessibility-first design and secure cloud infrastructure.',
+                'description' => 'Cyra-Tech helped CivicOne replace legacy citizen portals with an accessible digital services hub, integrated identity verification, and automated case routing aligned to public-sector security standards.',
+                'services' => ['Digital Transformation', 'Cybersecurity', 'Cloud & Infrastructure', 'Managed Services'],
+                'outcomes' => ['50% reduction in service request processing time', 'WCAG 2.1 AA accessibility compliance achieved', 'Unified case management across 12 service lines'],
+                'metrics' => [
+                    ['label' => 'Processing time', 'value' => '50% faster'],
+                    ['label' => 'Service lines', 'value' => '12'],
+                    ['label' => 'Citizen satisfaction', 'value' => '+28 NPS'],
+                ],
+                'duration' => '16 months',
+                'icon' => 'government',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'gridwise-energy-platform',
+                'category' => 'industrial',
+                'title' => 'GridWise Operations Platform',
+                'client_name' => 'GridWise Utilities',
+                'tagline' => 'IoT-enabled grid intelligence with sustainability reporting.',
+                'summary' => 'IoT operations platform connecting field assets, grid analytics, and ESG reporting.',
+                'description' => 'GridWise Utilities engaged Cyra-Tech to build an IoT-enabled operations platform integrating SCADA feeds, field asset telemetry, and sustainability dashboards for executive and regulatory reporting.',
+                'services' => ['Cloud & Infrastructure', 'Data & Analytics', 'Enterprise Integration', 'Managed Services'],
+                'outcomes' => ['Real-time asset performance visibility across 8 regions', 'Automated ESG reporting reduced manual effort by 70%', 'Improved outage response with predictive maintenance alerts'],
+                'metrics' => [
+                    ['label' => 'Regions connected', 'value' => '8'],
+                    ['label' => 'ESG reporting effort', 'value' => '70% less'],
+                    ['label' => 'Outage response', 'value' => '35% faster'],
+                ],
+                'duration' => '20 months',
+                'icon' => 'energy',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'velocity-retail-commerce',
+                'category' => 'commercial',
+                'title' => 'Velocity Retail Commerce',
+                'client_name' => 'Velocity Retail Group',
+                'tagline' => 'Headless commerce platform powering omnichannel growth.',
+                'summary' => 'Headless commerce modernization with inventory intelligence and personalization at scale.',
+                'description' => 'Velocity Retail Group partnered with Cyra-Tech to launch a composable commerce platform connecting storefront, marketplace, and fulfillment systems with real-time inventory and personalization engines.',
+                'services' => ['Digital Transformation', 'Enterprise Integration', 'Data & Analytics', 'AI & Intelligence'],
+                'outcomes' => ['31% increase in digital conversion rates', 'Unified inventory accuracy above 98% across channels', 'Faster campaign launches with modular content workflows'],
+                'metrics' => [
+                    ['label' => 'Conversion lift', 'value' => '31%'],
+                    ['label' => 'Inventory accuracy', 'value' => '98%+'],
+                    ['label' => 'Campaign launch time', 'value' => '45% faster'],
+                ],
+                'duration' => '11 months',
+                'icon' => 'retail',
+                'is_featured' => false,
+            ],
+        ],
+        'impact' => [
+            'eyebrow' => 'Delivery Excellence',
+            'title' => 'Programs built for measurable enterprise impact',
+            'description' => 'Every Cyra-Tech engagement is structured around executive alignment, transparent reporting, and outcome metrics tied to business value.',
+            'points' => [
+                'Executive steering with milestone-based governance',
+                'Cross-functional delivery teams with domain expertise',
+                'Outcome metrics defined upfront and tracked continuously',
+                'Knowledge transfer and operational handoff built into every program',
+            ],
+        ],
+        'cta' => [
+            'title' => 'Ready to discuss your transformation program?',
+            'description' => 'Share your goals with Cyra-Tech strategists and explore a case-study-aligned approach for your organization.',
+            'action' => ['label' => 'Start a Conversation', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1148,8 +1307,8 @@ return [
                         ['label' => 'Industries', 'route' => 'industries', 'permission' => 'modules.view'],
                         ['label' => 'Products', 'route' => 'products', 'permission' => 'modules.view'],
                         ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Portfolio', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Case Studies', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Portfolio', 'route' => 'portfolio', 'permission' => 'modules.view'],
+                        ['label' => 'Case Studies', 'route' => 'portfolio', 'permission' => 'modules.view'],
                     ],
                 ],
                 [

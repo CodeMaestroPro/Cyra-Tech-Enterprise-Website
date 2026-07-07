@@ -49,14 +49,24 @@ class NavigationTest extends TestCase
             ->assertSee('Financial Services');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_portfolio_page_renders_full_portfolio_module(): void
     {
         $response = $this->get(route('portfolio'));
 
         $response
             ->assertOk()
+            ->assertViewIs('portfolio.index')
+            ->assertSee('NovaBank Digital Core');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('innovation-lab'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Portfolio')
+            ->assertSee('Innovation Lab')
             ->assertSee('Module 04 (Global Navigation)');
     }
 
