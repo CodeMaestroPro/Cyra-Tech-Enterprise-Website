@@ -27,4 +27,4 @@ See `docs/modules/` for module-by-module build notes.
 
 ## Repository
 
-https://github.com/CodeMaestroPro/cyra-tech-platform
+https://github.com/CodeMaestroPro/Cyra-Tech-Enterprise-Website

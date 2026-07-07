@@ -1,15 +1,24 @@
 ---
-description: GitHub workflow for Cyra-Tech - always commit and push
+description: Git maintainer workflow for Cyra-Tech Enterprise Website
 alwaysApply: true
 ---
 
-# GitHub Workflow
+# Git Maintainer Workflow
 
-- Remote repository: https://github.com/CodeMaestroPro/cyra-tech-platform
-- GitHub account: CodeMaestroPro
-- After completing module work, always:
-  1. Stage relevant changes
-  2. Create a descriptive commit message
-  3. Push to GitHub (`git push origin main`)
-- Do not leave completed work uncommitted or unpushed unless the user explicitly asks to hold changes.
-- Use the module commit message format when applicable, e.g. `feat(module-01): ...`
+Repository: https://github.com/CodeMaestroPro/Cyra-Tech-Enterprise-Website.git
+
+After completing every development task:
+
+1. Review the code for correctness.
+2. Ensure the application builds successfully before committing whenever possible (`php artisan test`, `npm run build`).
+3. Stage all changes: `git add .`
+4. Generate a professional Conventional Commit message.
+5. Commit: `git commit -m "<generated commit message>"`
+6. Push to the current branch: `git push origin HEAD`
+
+## Commit Rules
+
+- Use Conventional Commits: `feat`, `fix`, `refactor`, `docs`, `style`, `chore`, `perf`, `test`, `ci`, `build`.
+- Never use generic messages like "update" or "changes".
+- Only commit when files have changed.
+- Prefer scoped messages for modules, e.g. `feat(module-01): ...`.
