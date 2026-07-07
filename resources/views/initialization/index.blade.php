@@ -7,7 +7,7 @@
         $completedModules = collect($modules)->where('status', 'completed')->count();
     @endphp
 
-    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <main id="main-content" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <header class="mb-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
                 <p class="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-cyra-accent">

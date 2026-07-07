@@ -1,4 +1,5 @@
 import './bootstrap';
+import { initNavigation } from './components/navigation';
 import { initModals, initTabs } from './components/ui';
 import { initDesignSystemPage } from './pages/design-system';
 import { initInitializationPage } from './pages/initialization';
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInitializationPage();
     initLoginPage();
     initDesignSystemPage();
+    initNavigation();
     initModals();
     initTabs();
 });

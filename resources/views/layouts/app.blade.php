@@ -14,7 +14,19 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('head')
     </head>
-    <body class="min-h-screen bg-cyra-midnight font-sans antialiased text-cyra-text">
+    <body class="min-h-screen bg-cyra-midnight font-sans antialiased text-cyra-text @yield('body_class')">
+        @unless (request()->routeIs('login'))
+            @isset($publicNavigation)
+                <x-navigation.header :navigation="$publicNavigation" />
+            @endisset
+        @endunless
+
         @yield('content')
+
+        @unless (request()->routeIs('login'))
+            @isset($publicNavigation)
+                <x-navigation.footer :navigation="$publicNavigation" />
+            @endisset
+        @endunless
     </body>
 </html>

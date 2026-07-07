@@ -22,7 +22,7 @@ return [
         ['id' => 1, 'slug' => 'project-initialization', 'name' => 'Project Initialization', 'status' => 'completed'],
         ['id' => 2, 'slug' => 'authentication-rbac', 'name' => 'Authentication & RBAC', 'status' => 'completed'],
         ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'completed'],
-        ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'pending'],
+        ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'completed'],
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'pending'],
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'pending'],
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'pending'],
@@ -169,6 +169,165 @@ return [
             'input', 'textarea', 'select', 'checkbox', 'label', 'alert',
             'spinner', 'section-heading', 'breadcrumb', 'table', 'empty-state',
             'modal', 'tabs',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global Navigation
+    |--------------------------------------------------------------------------
+    */
+
+    'navigation' => [
+        'brand' => [
+            'name' => 'Cyra-Tech',
+            'accent' => 'TECH',
+        ],
+        'public' => [
+            'header' => [
+                ['label' => 'Home', 'route' => 'home', 'sort' => 1],
+                ['label' => 'About', 'route' => 'about', 'sort' => 2],
+                ['label' => 'Solutions', 'route' => 'solutions', 'sort' => 3],
+                ['label' => 'Products', 'route' => 'products', 'sort' => 4],
+                ['label' => 'Industries', 'route' => 'industries', 'sort' => 5],
+                ['label' => 'Portfolio', 'route' => 'portfolio', 'sort' => 6],
+                ['label' => 'Innovation Lab', 'route' => 'innovation-lab', 'sort' => 7],
+                ['label' => 'Community', 'route' => 'community', 'sort' => 8],
+                ['label' => 'Insights', 'route' => 'insights', 'sort' => 9],
+                ['label' => 'Careers', 'route' => 'careers', 'sort' => 10],
+            ],
+            'actions' => [
+                ['label' => 'Client Portal', 'route' => 'login', 'style' => 'link', 'sort' => 1],
+                ['label' => 'Contact Us', 'route' => 'contact', 'style' => 'button', 'sort' => 2],
+            ],
+            'footer_columns' => [
+                [
+                    'title' => 'Company',
+                    'links' => [
+                        ['label' => 'About Us', 'route' => 'about'],
+                        ['label' => 'Leadership', 'route' => 'about'],
+                        ['label' => 'Careers', 'route' => 'careers'],
+                        ['label' => 'Contact', 'route' => 'contact'],
+                    ],
+                ],
+                [
+                    'title' => 'Solutions',
+                    'links' => [
+                        ['label' => 'Services', 'route' => 'solutions'],
+                        ['label' => 'Products', 'route' => 'products'],
+                        ['label' => 'Industries', 'route' => 'industries'],
+                        ['label' => 'Innovation Lab', 'route' => 'innovation-lab'],
+                    ],
+                ],
+                [
+                    'title' => 'Resources',
+                    'links' => [
+                        ['label' => 'Portfolio', 'route' => 'portfolio'],
+                        ['label' => 'Insights', 'route' => 'insights'],
+                        ['label' => 'Community', 'route' => 'community'],
+                        ['label' => 'Partner Hub', 'route' => 'contact'],
+                    ],
+                ],
+                [
+                    'title' => 'Connect',
+                    'links' => [
+                        ['label' => 'Client Portal', 'route' => 'login'],
+                        ['label' => 'Newsletter', 'route' => 'home'],
+                        ['label' => 'Support', 'route' => 'contact'],
+                        ['label' => 'Admin', 'route' => 'login'],
+                    ],
+                ],
+            ],
+            'social' => [
+                ['label' => 'LinkedIn', 'url' => 'https://www.linkedin.com/company/cyratech', 'opens_in_new_tab' => true],
+                ['label' => 'X (Twitter)', 'url' => 'https://x.com/cyratech', 'opens_in_new_tab' => true],
+                ['label' => 'GitHub', 'url' => 'https://github.com/CodeMaestroPro', 'opens_in_new_tab' => true],
+                ['label' => 'YouTube', 'url' => 'https://www.youtube.com/@cyratech', 'opens_in_new_tab' => true],
+            ],
+            'legal' => [
+                ['label' => 'Privacy Policy', 'route' => 'about'],
+                ['label' => 'Terms of Service', 'route' => 'about'],
+                ['label' => 'Cookie Policy', 'route' => 'about'],
+                ['label' => 'Accessibility', 'route' => 'about'],
+            ],
+            'newsletter' => [
+                'title' => 'Stay ahead with Cyra-Tech',
+                'description' => 'Enterprise insights, product updates, and innovation stories delivered to your inbox.',
+                'placeholder' => 'Enter your work email',
+                'button' => 'Subscribe',
+            ],
+        ],
+        'admin' => [
+            'groups' => [
+                [
+                    'label' => 'Executive',
+                    'items' => [
+                        ['label' => 'Brief', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
+                        ['label' => 'Company Pulse', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Business Intelligence', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Strategic Roadmap', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'AI Assistant', 'permission' => 'dashboard.access', 'available' => false],
+                    ],
+                ],
+                [
+                    'label' => 'Digital Headquarters',
+                    'items' => [
+                        ['label' => 'Homepage Builder', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Pages', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Navigation', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
+                        ['label' => 'Media Library', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Component Library', 'route' => 'admin.design-system', 'permission' => 'modules.view'],
+                    ],
+                ],
+                [
+                    'label' => 'Solutions',
+                    'items' => [
+                        ['label' => 'Services', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Industries', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Products', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Portfolio', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Case Studies', 'permission' => 'modules.view', 'available' => false],
+                    ],
+                ],
+                [
+                    'label' => 'Growth',
+                    'items' => [
+                        ['label' => 'Leads & CRM', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Partners', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Marketing', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Analytics', 'permission' => 'dashboard.access', 'available' => false],
+                    ],
+                ],
+                [
+                    'label' => 'People',
+                    'items' => [
+                        ['label' => 'Leadership', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Team Members', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Careers', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Applicants', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Community', 'permission' => 'modules.view', 'available' => false],
+                    ],
+                ],
+                [
+                    'label' => 'Operations',
+                    'items' => [
+                        ['label' => 'Projects', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Tasks', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Calendar', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Reports', 'permission' => 'dashboard.access', 'available' => false],
+                    ],
+                ],
+                [
+                    'label' => 'System',
+                    'items' => [
+                        ['label' => 'Users & Roles', 'permission' => 'roles.view', 'available' => false],
+                        ['label' => 'Security', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Logs', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Enterprise Settings', 'permission' => 'dashboard.access', 'available' => false],
+                    ],
+                ],
+            ],
         ],
     ],
 

@@ -4,9 +4,29 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\InitializationController;
+use App\Http\Controllers\Web\PagePreviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', InitializationController::class)->name('home');
+
+$previewPages = [
+    'about',
+    'solutions',
+    'products',
+    'industries',
+    'portfolio',
+    'innovation-lab',
+    'community',
+    'insights',
+    'careers',
+    'contact',
+];
+
+foreach ($previewPages as $slug) {
+    Route::get("/{$slug}", [PagePreviewController::class, 'show'])
+        ->defaults('slug', $slug)
+        ->name(str_replace('/', '-', $slug));
+}
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

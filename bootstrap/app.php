@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \App\Http\Middleware\EnsurePermission::class,
         ]);
 
+        $middleware->web(append: [
+            \App\Http\Middleware\ShareNavigationData::class,
+        ]);
+
         $middleware->redirectGuestsTo(fn () => route('login'));
         $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
     })
