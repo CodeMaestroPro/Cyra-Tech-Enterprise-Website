@@ -31,7 +31,7 @@ return [
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'completed'],
         ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'completed'],
         ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'completed'],
-        ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'pending'],
+        ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'completed'],
         ['id' => 14, 'slug' => 'insights', 'name' => 'Insights', 'status' => 'pending'],
         ['id' => 15, 'slug' => 'careers', 'name' => 'Careers', 'status' => 'pending'],
         ['id' => 16, 'slug' => 'contact', 'name' => 'Contact', 'status' => 'pending'],
@@ -1322,6 +1322,140 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Community Content
+    |--------------------------------------------------------------------------
+    */
+
+    'community' => [
+        'seo' => [
+            'title' => 'Community | Cyra-Tech',
+            'description' => 'Join builders, leaders, and innovators in the Cyra-Tech global community — forums, roundtables, partner networks, and learning programs.',
+            'keywords' => ['technology community', 'enterprise networking', 'Cyra-Tech events', 'partner community'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Community',
+            'title' => 'Join builders, leaders, and innovators shaping what\'s next',
+            'description' => 'Connect with Cyra-Tech practitioners, partners, and enterprise leaders through forums, roundtables, learning programs, and global events.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Programs'],
+            ['slug' => 'forums', 'label' => 'Forums'],
+            ['slug' => 'events', 'label' => 'Events'],
+            ['slug' => 'learning', 'label' => 'Learning'],
+            ['slug' => 'partners', 'label' => 'Partners'],
+        ],
+        'programs' => [
+            [
+                'slug' => 'cyra-connect-forum',
+                'category' => 'forums',
+                'title' => 'Cyra Connect Forum',
+                'tagline' => 'Monthly virtual forum for enterprise technology leaders.',
+                'summary' => 'Peer discussions on transformation, AI adoption, and platform strategy with Cyra-Tech experts.',
+                'description' => 'Cyra Connect Forum brings CIOs, CTOs, and digital leaders together for candid conversations on enterprise technology trends, implementation lessons, and strategic priorities in a moderated virtual setting.',
+                'benefits' => ['Executive peer networking', 'Curated discussion topics', 'Access to Cyra-Tech advisors', 'Session recordings and summaries'],
+                'activities' => ['Monthly virtual sessions', 'Panel discussions', 'Q&A with practitioners', 'Community resource library'],
+                'membership' => 'Open to clients and invited partners',
+                'schedule' => 'Monthly — third Thursday',
+                'badge' => 'Flagship',
+                'icon' => 'integration',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'executive-roundtable',
+                'category' => 'forums',
+                'title' => 'Executive Roundtable',
+                'tagline' => 'Intimate roundtables for C-suite technology decision-makers.',
+                'summary' => 'Small-group executive sessions focused on governance, investment, and innovation strategy.',
+                'description' => 'Executive Roundtable offers confidential, invitation-only gatherings where senior leaders share perspectives on board-level technology priorities, risk management, and long-term digital investment models.',
+                'benefits' => ['Confidential peer exchange', 'Board-ready insights', 'Cross-industry perspectives', 'Executive briefing materials'],
+                'activities' => ['Quarterly roundtables', 'Facilitated discussions', 'Industry benchmarking', 'Executive whitepapers'],
+                'membership' => 'By invitation — C-suite and board advisors',
+                'schedule' => 'Quarterly regional sessions',
+                'badge' => 'Executive',
+                'icon' => 'command',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'innovation-summit',
+                'category' => 'events',
+                'title' => 'Cyra Innovation Summit',
+                'tagline' => 'Annual flagship event for enterprise innovation and technology leadership.',
+                'summary' => 'Two-day summit featuring keynotes, labs, portfolio showcases, and partner showcases.',
+                'description' => 'The Cyra Innovation Summit convenes global clients, partners, and industry leaders for keynotes, hands-on lab sessions, case study showcases, and networking designed to accelerate enterprise innovation programs.',
+                'benefits' => ['Keynote sessions', 'Innovation Lab demos', 'Portfolio case studies', 'Partner ecosystem expo'],
+                'activities' => ['Keynotes & panels', 'Hands-on lab sessions', 'Networking receptions', 'Awards & recognition'],
+                'membership' => 'Open registration — clients, partners, and alumni',
+                'schedule' => 'Annual — October',
+                'badge' => 'Summit',
+                'icon' => 'transform',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'developer-guild',
+                'category' => 'learning',
+                'title' => 'Developer Guild',
+                'tagline' => 'Technical community for engineers building on the Cyra platform.',
+                'summary' => 'Workshops, office hours, and certification paths for platform engineers and architects.',
+                'description' => 'Developer Guild supports engineers and architects with technical workshops, API deep-dives, architecture office hours, and certification pathways aligned to Cyra-Tech platform products and integration patterns.',
+                'benefits' => ['Technical workshops', 'Architecture office hours', 'Certification pathways', 'Open-source contributions'],
+                'activities' => ['Bi-weekly tech talks', 'Hands-on labs', 'Code review sessions', 'Certification exams'],
+                'membership' => 'Open to client engineering teams',
+                'schedule' => 'Bi-weekly virtual sessions',
+                'badge' => 'Technical',
+                'icon' => 'studio',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'practitioner-guild',
+                'category' => 'learning',
+                'title' => 'Practitioner Guild',
+                'tagline' => 'Study groups and certifications for delivery and operations practitioners.',
+                'summary' => 'Structured learning cohorts for project managers, analysts, and operations leaders.',
+                'description' => 'Practitioner Guild provides cohort-based learning for delivery managers, business analysts, and operations leaders with study groups, best-practice playbooks, and Cyra-Tech methodology certifications.',
+                'benefits' => ['Cohort-based learning', 'Methodology playbooks', 'Peer study groups', 'Practitioner certifications'],
+                'activities' => ['Monthly study cohorts', 'Playbook workshops', 'Peer mentoring', 'Certification assessments'],
+                'membership' => 'Open to client practitioners',
+                'schedule' => 'Monthly cohort cycles',
+                'badge' => 'Learning',
+                'icon' => 'pulse',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'partner-network',
+                'category' => 'partners',
+                'title' => 'Partner Network',
+                'tagline' => 'Ecosystem community for Cyra-Tech technology and services partners.',
+                'summary' => 'Partner onboarding, co-selling resources, and joint go-to-market programs.',
+                'description' => 'The Partner Network connects technology vendors, system integrators, and consulting partners with Cyra-Tech co-selling resources, joint solution playbooks, and partner enablement programs.',
+                'benefits' => ['Partner enablement', 'Co-selling resources', 'Joint solution playbooks', 'Partner portal access'],
+                'activities' => ['Partner onboarding', 'Quarterly business reviews', 'Joint marketing programs', 'Solution certification'],
+                'membership' => 'Approved Cyra-Tech partners',
+                'schedule' => 'Ongoing — quarterly reviews',
+                'badge' => 'Partnership',
+                'icon' => 'managed',
+                'is_featured' => false,
+            ],
+        ],
+        'values' => [
+            'eyebrow' => 'Community Values',
+            'title' => 'A community built on collaboration and excellence',
+            'description' => 'Cyra-Tech Community is designed for meaningful connection, knowledge sharing, and responsible innovation across the enterprise technology ecosystem.',
+            'points' => [
+                'Open exchange of ideas with enterprise-grade professionalism',
+                'Inclusive participation across roles, industries, and regions',
+                'Practical knowledge grounded in real delivery experience',
+                'Responsible innovation aligned to security and governance standards',
+            ],
+        ],
+        'cta' => [
+            'title' => 'Ready to join the Cyra-Tech community?',
+            'description' => 'Register your interest and our community team will connect you with programs aligned to your role and goals.',
+            'action' => ['label' => 'Join the Community', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1454,7 +1588,7 @@ return [
                         ['label' => 'Team Members', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Careers', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Applicants', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Community', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Community', 'route' => 'community', 'permission' => 'modules.view'],
                     ],
                 ],
                 [

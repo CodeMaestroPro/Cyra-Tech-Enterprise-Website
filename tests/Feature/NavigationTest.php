@@ -69,14 +69,24 @@ class NavigationTest extends TestCase
             ->assertSee('AI Copilot Studio');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_community_page_renders_full_community_module(): void
     {
         $response = $this->get(route('community'));
 
         $response
             ->assertOk()
+            ->assertViewIs('community.index')
+            ->assertSee('Cyra Connect Forum');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('insights'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Community')
+            ->assertSee('Insights')
             ->assertSee('Module 04 (Global Navigation)');
     }
 

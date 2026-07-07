@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             IndustrySeeder::class,
             PortfolioSeeder::class,
             InnovationLabSeeder::class,
+            CommunitySeeder::class,
             AdminUserSeeder::class,
         ]);
     }

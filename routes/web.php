@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Web\CommunityController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
@@ -41,8 +42,10 @@ Route::get('/portfolio/{slug}', [PortfolioController::class, 'show'])->name('por
 Route::get('/innovation-lab', [InnovationLabController::class, 'index'])->name('innovation-lab');
 Route::get('/innovation-lab/{slug}', [InnovationLabController::class, 'show'])->name('innovation-lab.show');
 
+Route::get('/community', [CommunityController::class, 'index'])->name('community');
+Route::get('/community/{slug}', [CommunityController::class, 'show'])->name('community.show');
+
 $previewPages = [
-    'community',
     'insights',
     'careers',
     'contact',
