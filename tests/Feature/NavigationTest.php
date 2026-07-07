@@ -79,14 +79,24 @@ class NavigationTest extends TestCase
             ->assertSee('Cyra Connect Forum');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_insights_page_renders_full_insights_module(): void
     {
         $response = $this->get(route('insights'));
 
         $response
             ->assertOk()
+            ->assertViewIs('insights.index')
+            ->assertSee('The Executive Guide to AI Readiness');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('careers'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Insights')
+            ->assertSee('Careers')
             ->assertSee('Module 04 (Global Navigation)');
     }
 

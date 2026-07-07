@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\HomepageController;
+use App\Http\Controllers\Api\InsightsController;
 use App\Http\Controllers\Api\InnovationLabController;
 use App\Http\Controllers\Api\IndustriesController;
 use App\Http\Controllers\Api\LeadershipController;
@@ -45,6 +46,9 @@ Route::get('/innovation-lab/{slug}', [InnovationLabController::class, 'show'])->
 
 Route::get('/community', [CommunityController::class, 'index'])->name('api.community.index');
 Route::get('/community/{slug}', [CommunityController::class, 'show'])->name('api.community.show');
+
+Route::get('/insights', [InsightsController::class, 'index'])->name('api.insights.index');
+Route::get('/insights/{slug}', [InsightsController::class, 'show'])->name('api.insights.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');
