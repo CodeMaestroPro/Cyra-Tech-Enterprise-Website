@@ -24,7 +24,7 @@ return [
         ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'completed'],
         ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'completed'],
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'completed'],
-        ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'pending'],
+        ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'completed'],
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'pending'],
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'pending'],
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'pending'],
@@ -424,6 +424,140 @@ return [
                         ['label' => 'Client Portal', 'route' => 'login', 'variant' => 'secondary'],
                     ],
                     'variant' => 'gradient',
+                ],
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | About Pages Content
+    |--------------------------------------------------------------------------
+    */
+
+    'about' => [
+        'pages' => [
+            [
+                'slug' => 'overview',
+                'route_name' => 'about',
+                'nav_label' => 'Overview',
+                'eyebrow' => 'About Cyra-Tech',
+                'title' => 'Engineering intelligent enterprise futures',
+                'description' => 'Cyra-Tech is a global technology partner helping organizations design, build, and scale secure digital platforms that deliver measurable business impact.',
+                'seo' => [
+                    'title' => 'About Cyra-Tech | Enterprise Technology Partner',
+                    'description' => 'Learn about Cyra-Tech\'s mission, approach, and commitment to enterprise digital transformation.',
+                    'keywords' => ['about Cyra-Tech', 'enterprise technology company', 'digital transformation partner'],
+                ],
+                'content' => [
+                    ['type' => 'prose', 'title' => 'Our Story', 'paragraphs' => [
+                        'Founded on a belief that technology should amplify human potential, Cyra-Tech partners with enterprises to translate vision into resilient, intelligent systems.',
+                        'We combine strategy, engineering, and operational excellence to help clients modernize legacy environments, adopt cloud-native architectures, and embed AI responsibly across the organization.',
+                    ]],
+                    ['type' => 'stats-row', 'items' => [
+                        ['label' => 'Founded', 'value' => '2010'],
+                        ['label' => 'Global Offices', 'value' => '8'],
+                        ['label' => 'Enterprise Clients', 'value' => '200+'],
+                        ['label' => 'Countries Served', 'value' => '30+'],
+                    ]],
+                    ['type' => 'feature-list', 'title' => 'How we partner', 'items' => [
+                        ['title' => 'Strategy first', 'description' => 'We align technology roadmaps with executive outcomes before writing a line of code.'],
+                        ['title' => 'Secure by design', 'description' => 'Security, compliance, and governance are embedded from discovery through deployment.'],
+                        ['title' => 'Outcome obsessed', 'description' => 'Every engagement is measured against adoption, performance, and business value.'],
+                    ]],
+                    ['type' => 'cta', 'title' => 'Discover what sets us apart', 'description' => 'Learn why global enterprises partner with Cyra-Tech for complex transformation programs.', 'action' => ['label' => 'Why Choose Us', 'route' => 'about.why-choose-us']],
+                ],
+            ],
+            [
+                'slug' => 'vision-mission',
+                'route_name' => 'about.vision-mission',
+                'nav_label' => 'Vision & Mission',
+                'eyebrow' => 'Purpose',
+                'title' => 'Vision and mission that drive every engagement',
+                'description' => 'Our north star is simple: build technology that empowers people, strengthens organizations, and creates lasting value.',
+                'seo' => [
+                    'title' => 'Vision & Mission | Cyra-Tech',
+                    'description' => 'Cyra-Tech\'s vision and mission for enterprise innovation, intelligence, and impact.',
+                ],
+                'content' => [
+                    ['type' => 'quote-cards', 'items' => [
+                        ['label' => 'Vision', 'quote' => 'To be the most trusted architect of intelligent enterprise ecosystems worldwide.', 'description' => 'We envision a future where every organization can harness technology confidently, ethically, and at scale.'],
+                        ['label' => 'Mission', 'quote' => 'To deliver secure, intelligent, and human-centered technology solutions that accelerate transformation.', 'description' => 'We partner with clients to design, build, and operate digital systems that turn complexity into competitive advantage.'],
+                    ]],
+                    ['type' => 'prose', 'title' => 'Our Purpose', 'paragraphs' => [
+                        'Cyra-Tech exists to bridge the gap between ambition and execution. We help leaders move from fragmented initiatives to cohesive digital programs with clarity, speed, and accountability.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'values',
+                'route_name' => 'about.values',
+                'nav_label' => 'Values',
+                'eyebrow' => 'Core Values',
+                'title' => 'Principles that define how we work',
+                'description' => 'Our values shape every client conversation, architecture decision, and line of code we deliver.',
+                'seo' => [
+                    'title' => 'Core Values | Cyra-Tech',
+                    'description' => 'Integrity, innovation, excellence, and partnership — the values that guide Cyra-Tech.',
+                ],
+                'content' => [
+                    ['type' => 'value-grid', 'items' => [
+                        ['title' => 'Integrity', 'description' => 'We operate with transparency, accountability, and respect for client trust.'],
+                        ['title' => 'Innovation', 'description' => 'We explore emerging technology pragmatically to solve real enterprise challenges.'],
+                        ['title' => 'Excellence', 'description' => 'We hold ourselves to engineering and delivery standards that exceed expectations.'],
+                        ['title' => 'Partnership', 'description' => 'We embed with client teams as long-term collaborators, not transactional vendors.'],
+                        ['title' => 'Impact', 'description' => 'We measure success by business outcomes, not deliverables alone.'],
+                        ['title' => 'Inclusion', 'description' => 'We build diverse teams and accessible solutions that serve every stakeholder.'],
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'history',
+                'route_name' => 'about.history',
+                'nav_label' => 'History',
+                'eyebrow' => 'Our Journey',
+                'title' => 'Fifteen years of enterprise innovation',
+                'description' => 'From a specialist engineering studio to a global technology partner, Cyra-Tech has grown alongside the enterprises we serve.',
+                'seo' => [
+                    'title' => 'Company History | Cyra-Tech',
+                    'description' => 'Explore Cyra-Tech\'s milestones from founding to global enterprise technology leadership.',
+                ],
+                'content' => [
+                    ['type' => 'timeline', 'items' => [
+                        ['year' => '2010', 'title' => 'Cyra-Tech founded', 'description' => 'Launched as a boutique enterprise engineering firm focused on modernization programs.'],
+                        ['year' => '2014', 'title' => 'Cloud practice established', 'description' => 'Expanded into cloud migration, DevOps, and platform engineering for regulated industries.'],
+                        ['year' => '2018', 'title' => 'Global delivery network', 'description' => 'Opened offices across North America, Europe, and Africa to support multinational clients.'],
+                        ['year' => '2021', 'title' => 'AI & Intelligence Lab', 'description' => 'Launched dedicated AI research and production engineering capabilities for enterprise clients.'],
+                        ['year' => '2024', 'title' => 'Digital Headquarters platform', 'description' => 'Introduced Cyra Command — unified operations for executives and digital teams.'],
+                        ['year' => '2026', 'title' => 'Enterprise platform evolution', 'description' => 'Delivering modular platform experiences across 25 capability modules for clients worldwide.'],
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'why-choose-us',
+                'route_name' => 'about.why-choose-us',
+                'nav_label' => 'Why Choose Us',
+                'eyebrow' => 'Differentiators',
+                'title' => 'Why global enterprises choose Cyra-Tech',
+                'description' => 'We combine deep technical expertise with executive-level partnership to deliver programs that scale.',
+                'seo' => [
+                    'title' => 'Why Choose Cyra-Tech | Enterprise Technology Partner',
+                    'description' => 'Discover what sets Cyra-Tech apart: domain expertise, secure delivery, and measurable outcomes.',
+                ],
+                'content' => [
+                    ['type' => 'feature-list', 'items' => [
+                        ['title' => 'Enterprise-grade delivery', 'description' => 'Proven playbooks for complex, multi-year transformation programs across regulated sectors.'],
+                        ['title' => 'Full-stack capabilities', 'description' => 'Strategy, design, engineering, data, AI, security, and managed operations under one partner.'],
+                        ['title' => 'Executive alignment', 'description' => 'Dedicated briefings, roadmaps, and KPI dashboards that keep leadership informed and engaged.'],
+                        ['title' => 'Adaptive teams', 'description' => 'Cross-functional squads that integrate with your organization and scale with program needs.'],
+                    ]],
+                    ['type' => 'stats-row', 'items' => [
+                        ['label' => 'On-time Delivery Rate', 'value' => '96%'],
+                        ['label' => 'Client Retention', 'value' => '92%'],
+                        ['label' => 'Certified Experts', 'value' => '350+'],
+                        ['label' => 'Security Certifications', 'value' => '12'],
+                    ]],
+                    ['type' => 'cta', 'title' => 'Ready to start your transformation?', 'description' => 'Connect with our team to explore how Cyra-Tech can accelerate your next initiative.', 'action' => ['label' => 'Contact Us', 'route' => 'contact']],
                 ],
             ],
         ],

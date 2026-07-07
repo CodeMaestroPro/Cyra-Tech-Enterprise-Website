@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DesignSystemController;
 use App\Http\Controllers\Api\HealthController;
@@ -13,6 +14,9 @@ Route::get('/platform/status', [PlatformController::class, 'status'])->name('api
 Route::get('/platform/modules', [PlatformController::class, 'modules'])->name('api.platform.modules');
 
 Route::get('/homepage', [HomepageController::class, 'show'])->name('api.homepage.show');
+
+Route::get('/about', [AboutController::class, 'index'])->name('api.about.index');
+Route::get('/about/{slug}', [AboutController::class, 'show'])->name('api.about.show');
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
 Route::get('/design-system/catalog', [DesignSystemController::class, 'catalog'])->name('api.design-system.catalog');
