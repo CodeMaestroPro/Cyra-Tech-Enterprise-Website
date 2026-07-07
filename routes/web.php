@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Web\CommunityController;
 use App\Http\Controllers\Web\CareersController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\PartnerHubController;
+use App\Http\Controllers\Web\CmsPageController;
 use App\Http\Controllers\Web\ClientPortalController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
@@ -63,6 +65,8 @@ Route::post('/contact', [ContactController::class, 'store'])
 Route::get('/partner-hub', [PartnerHubController::class, 'index'])->name('partner-hub');
 Route::get('/partner-hub/{slug}', [PartnerHubController::class, 'show'])->name('partner-hub.show');
 
+Route::get('/pages/{slug}', [CmsPageController::class, 'show'])->name('pages.show');
+
 Route::get('/client-portal', [ClientPortalController::class, 'index'])->name('client-portal');
 Route::middleware(['auth', 'permission:client-portal.access'])->prefix('client-portal')->name('client-portal.')->group(function () {
     Route::get('/dashboard', [ClientPortalController::class, 'dashboard'])->name('dashboard');
@@ -88,4 +92,24 @@ Route::middleware(['auth', 'permission:dashboard.access'])
         Route::get('/design-system', DesignSystemController::class)
             ->middleware('permission:modules.view')
             ->name('design-system');
+
+        Route::middleware('permission:cms.view')->prefix('cms')->name('cms.')->group(function () {
+            Route::get('/', [CmsController::class, 'index'])->name('index');
+            Route::get('/create', [CmsController::class, 'create'])
+                ->middleware('permission:cms.create')
+                ->name('create');
+            Route::post('/', [CmsController::class, 'store'])
+                ->middleware('permission:cms.create')
+                ->name('store');
+            Route::get('/{slug}/edit', [CmsController::class, 'edit'])->name('edit');
+            Route::put('/{slug}', [CmsController::class, 'update'])
+                ->middleware('permission:cms.update')
+                ->name('update');
+            Route::post('/{slug}/publish', [CmsController::class, 'publish'])
+                ->middleware('permission:cms.publish')
+                ->name('publish');
+            Route::post('/{slug}/unpublish', [CmsController::class, 'unpublish'])
+                ->middleware('permission:cms.publish')
+                ->name('unpublish');
+        });
     });

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ClientPortalSeeder::class,
             ClientUserSeeder::class,
             AdminUserSeeder::class,
+            CmsSeeder::class,
         ]);
     }
 }

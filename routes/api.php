@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\CmsController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\PartnerHubController;
 use App\Http\Controllers\Api\ClientPortalController;
@@ -69,6 +70,14 @@ Route::get('/client-portal', [ClientPortalController::class, 'show'])->name('api
 Route::middleware(['web', 'auth', 'permission:client-portal.access'])->group(function () {
     Route::get('/client-portal/dashboard', [ClientPortalController::class, 'dashboard'])->name('api.client-portal.dashboard');
     Route::get('/client-portal/engagements/{slug}', [ClientPortalController::class, 'showEngagement'])->name('api.client-portal.engagements.show');
+});
+
+Route::get('/pages', [CmsController::class, 'index'])->name('api.pages.index');
+Route::get('/pages/{slug}', [CmsController::class, 'show'])->name('api.pages.show');
+
+Route::middleware(['web', 'auth', 'permission:cms.view'])->prefix('cms')->name('api.cms.')->group(function () {
+    Route::get('/pages', [CmsController::class, 'adminIndex'])->name('pages.index');
+    Route::get('/pages/{slug}', [CmsController::class, 'adminShow'])->name('pages.show');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');

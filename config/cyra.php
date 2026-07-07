@@ -37,7 +37,7 @@ return [
         ['id' => 16, 'slug' => 'contact', 'name' => 'Contact', 'status' => 'completed'],
         ['id' => 17, 'slug' => 'partner-hub', 'name' => 'Partner Hub', 'status' => 'completed'],
         ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'completed'],
-        ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'pending'],
+        ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'completed'],
         ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'pending'],
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'pending'],
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'pending'],
@@ -69,6 +69,10 @@ return [
                 'roles.view',
                 'settings.view',
                 'modules.view',
+                'cms.view',
+                'cms.create',
+                'cms.update',
+                'cms.publish',
             ],
         ],
         'manager' => [
@@ -78,6 +82,7 @@ return [
                 'dashboard.access',
                 'users.view',
                 'modules.view',
+                'cms.view',
             ],
         ],
         'editor' => [
@@ -86,6 +91,10 @@ return [
             'permissions' => [
                 'dashboard.access',
                 'modules.view',
+                'cms.view',
+                'cms.create',
+                'cms.update',
+                'cms.publish',
             ],
         ],
         'viewer' => [
@@ -118,6 +127,10 @@ return [
         'settings.view' => ['name' => 'View Settings', 'group' => 'Settings'],
         'settings.manage' => ['name' => 'Manage Settings', 'group' => 'Settings'],
         'modules.view' => ['name' => 'View Modules', 'group' => 'Platform'],
+        'cms.view' => ['name' => 'View CMS Pages', 'group' => 'CMS'],
+        'cms.create' => ['name' => 'Create CMS Pages', 'group' => 'CMS'],
+        'cms.update' => ['name' => 'Update CMS Pages', 'group' => 'CMS'],
+        'cms.publish' => ['name' => 'Publish CMS Pages', 'group' => 'CMS'],
     ],
 
     /*
@@ -2123,6 +2136,154 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | CMS Content
+    |--------------------------------------------------------------------------
+    */
+
+    'cms' => [
+        'seo' => [
+            'title' => 'Content | Cyra-Tech',
+            'description' => 'Published legal, policy, and editorial pages managed through the Cyra-Tech CMS.',
+            'keywords' => ['Cyra-Tech CMS', 'legal pages', 'privacy policy', 'terms of service'],
+        ],
+        'statuses' => ['draft', 'published'],
+        'templates' => [
+            ['slug' => 'standard', 'label' => 'Standard Page'],
+            ['slug' => 'legal', 'label' => 'Legal Document'],
+            ['slug' => 'policy', 'label' => 'Policy Page'],
+        ],
+        'pages' => [
+            [
+                'slug' => 'privacy-policy',
+                'title' => 'Privacy Policy',
+                'template' => 'legal',
+                'status' => 'published',
+                'eyebrow' => 'Legal',
+                'excerpt' => 'How Cyra-Tech collects, uses, and protects personal and enterprise data.',
+                'description' => 'This Privacy Policy explains how Cyra-Tech processes information across our websites, client portals, and enterprise services.',
+                'seo' => [
+                    'title' => 'Privacy Policy | Cyra-Tech',
+                    'description' => 'Learn how Cyra-Tech collects, uses, stores, and protects personal and enterprise information.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'Cyra-Tech respects your privacy and is committed to protecting personal and enterprise information entrusted to us. This policy describes the categories of data we collect, the purposes for processing, and the controls available to customers and site visitors.',
+                        'We collect account information, contact details, usage telemetry, support communications, and contractual records necessary to deliver our services, maintain platform security, and meet regulatory obligations.',
+                        'Cyra-Tech does not sell personal data. We share information only with authorized subprocessors, professional advisors, or authorities when required by law or contract.',
+                        'You may request access, correction, export, or deletion of personal data subject to legal retention requirements by contacting privacy@cyratech.com.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'terms-of-service',
+                'title' => 'Terms of Service',
+                'template' => 'legal',
+                'status' => 'published',
+                'eyebrow' => 'Legal',
+                'excerpt' => 'Terms governing use of Cyra-Tech websites, portals, and digital services.',
+                'description' => 'These Terms of Service define the conditions under which you may access Cyra-Tech platforms, content, and client-facing tools.',
+                'seo' => [
+                    'title' => 'Terms of Service | Cyra-Tech',
+                    'description' => 'Review the terms governing access to Cyra-Tech websites, portals, and digital services.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'By accessing Cyra-Tech websites, APIs, or authenticated portals, you agree to these Terms of Service and all applicable policies referenced herein.',
+                        'Cyra-Tech grants a limited, non-exclusive, non-transferable license to use our public content and authorized services for lawful business purposes.',
+                        'Users must not attempt unauthorized access, reverse engineer protected systems, interfere with platform availability, or misuse confidential client data.',
+                        'Cyra-Tech may suspend or terminate access for violations, security incidents, or non-payment under applicable master service agreements.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'cookie-policy',
+                'title' => 'Cookie Policy',
+                'template' => 'policy',
+                'status' => 'published',
+                'eyebrow' => 'Policy',
+                'excerpt' => 'How Cyra-Tech uses cookies and similar technologies on our digital properties.',
+                'description' => 'This Cookie Policy describes the types of cookies we use, why we use them, and how you can manage preferences.',
+                'seo' => [
+                    'title' => 'Cookie Policy | Cyra-Tech',
+                    'description' => 'Understand how Cyra-Tech uses cookies and similar technologies across our websites and portals.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'Cyra-Tech uses cookies and similar technologies to operate secure sessions, remember preferences, analyze traffic, and improve user experience.',
+                        'Strictly necessary cookies support authentication, load balancing, and fraud prevention. Analytics cookies help us understand aggregate usage patterns.',
+                        'You can manage cookie preferences through your browser settings. Disabling certain cookies may limit portal functionality or personalization features.',
+                        'For questions about cookie usage, contact privacy@cyratech.com.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'accessibility',
+                'title' => 'Accessibility Statement',
+                'template' => 'policy',
+                'status' => 'published',
+                'eyebrow' => 'Accessibility',
+                'excerpt' => 'Cyra-Tech commitment to inclusive digital experiences and WCAG-aligned design.',
+                'description' => 'We design and maintain Cyra-Tech digital experiences to be accessible to people with diverse abilities and assistive technologies.',
+                'seo' => [
+                    'title' => 'Accessibility Statement | Cyra-Tech',
+                    'description' => 'Read about Cyra-Tech accessibility standards, testing practices, and support channels.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'Cyra-Tech is committed to providing accessible websites, portals, and product experiences aligned with WCAG 2.1 Level AA wherever reasonably possible.',
+                        'Our design system includes semantic markup, keyboard navigation patterns, visible focus states, color contrast tokens, and screen-reader-friendly components.',
+                        'We regularly audit public pages and client-facing tools, remediate identified barriers, and incorporate accessibility into QA workflows.',
+                        'If you encounter an accessibility barrier, contact accessibility@cyratech.com with the page URL and a description of the issue.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'acceptable-use-policy',
+                'title' => 'Acceptable Use Policy',
+                'template' => 'policy',
+                'status' => 'published',
+                'eyebrow' => 'Policy',
+                'excerpt' => 'Standards for acceptable use of Cyra-Tech platforms, APIs, and shared infrastructure.',
+                'description' => 'This policy outlines permitted and prohibited activities when using Cyra-Tech services, APIs, and collaboration environments.',
+                'seo' => [
+                    'title' => 'Acceptable Use Policy | Cyra-Tech',
+                    'description' => 'Review acceptable use standards for Cyra-Tech platforms, APIs, and shared infrastructure.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'Users of Cyra-Tech services must comply with applicable laws, contractual obligations, and internal security policies at all times.',
+                        'Prohibited activities include distributing malware, launching denial-of-service attacks, harvesting credentials, or uploading unlawful content.',
+                        'Enterprise customers are responsible for ensuring authorized users within their organization follow this policy and applicable data handling rules.',
+                        'Violations may result in access suspension, incident investigation, and notification under contractual breach procedures.',
+                    ]],
+                ],
+            ],
+            [
+                'slug' => 'data-processing-addendum',
+                'title' => 'Data Processing Addendum',
+                'template' => 'legal',
+                'status' => 'published',
+                'eyebrow' => 'Legal',
+                'excerpt' => 'Processor obligations for enterprise customers under applicable privacy regulations.',
+                'description' => 'This Data Processing Addendum describes Cyra-Tech obligations when processing personal data on behalf of enterprise customers.',
+                'seo' => [
+                    'title' => 'Data Processing Addendum | Cyra-Tech',
+                    'description' => 'Review Cyra-Tech data processing obligations for enterprise customers and regulated workloads.',
+                ],
+                'content' => [
+                    ['type' => 'prose', 'paragraphs' => [
+                        'When Cyra-Tech processes personal data on behalf of a customer, we act as a processor and process data only on documented instructions from the customer.',
+                        'Cyra-Tech implements technical and organizational measures including encryption in transit, access controls, logging, and vendor due diligence.',
+                        'Subprocessors are engaged under written agreements requiring equivalent protection standards. Customers may request the current subprocessor list from legal@cyratech.com.',
+                        'Cyra-Tech assists customers with data subject requests, breach notifications, and audit evidence subject to the terms of the applicable agreement.',
+                    ]],
+                ],
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -2194,10 +2355,10 @@ return [
                 ['label' => 'YouTube', 'url' => 'https://www.youtube.com/@cyratech', 'opens_in_new_tab' => true],
             ],
             'legal' => [
-                ['label' => 'Privacy Policy', 'route' => 'about'],
-                ['label' => 'Terms of Service', 'route' => 'about'],
-                ['label' => 'Cookie Policy', 'route' => 'about'],
-                ['label' => 'Accessibility', 'route' => 'about'],
+                ['label' => 'Privacy Policy', 'route' => 'pages.show', 'params' => ['slug' => 'privacy-policy']],
+                ['label' => 'Terms of Service', 'route' => 'pages.show', 'params' => ['slug' => 'terms-of-service']],
+                ['label' => 'Cookie Policy', 'route' => 'pages.show', 'params' => ['slug' => 'cookie-policy']],
+                ['label' => 'Accessibility', 'route' => 'pages.show', 'params' => ['slug' => 'accessibility']],
             ],
             'newsletter' => [
                 'title' => 'Stay ahead with Cyra-Tech',
@@ -2223,7 +2384,7 @@ return [
                     'label' => 'Digital Headquarters',
                     'items' => [
                         ['label' => 'Homepage Builder', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Pages', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Pages', 'route' => 'admin.cms.index', 'permission' => 'cms.view'],
                         ['label' => 'Navigation', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
                         ['label' => 'Media Library', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Component Library', 'route' => 'admin.design-system', 'permission' => 'modules.view'],
