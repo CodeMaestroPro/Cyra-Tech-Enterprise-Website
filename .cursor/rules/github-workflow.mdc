@@ -1,0 +1,15 @@
+---
+description: GitHub workflow for Cyra-Tech - always commit and push
+alwaysApply: true
+---
+
+# GitHub Workflow
+
+- Remote repository: https://github.com/CodeMaestroPro/cyra-tech-platform
+- GitHub account: CodeMaestroPro
+- After completing module work, always:
+  1. Stage relevant changes
+  2. Create a descriptive commit message
+  3. Push to GitHub (`git push origin main`)
+- Do not leave completed work uncommitted or unpushed unless the user explicitly asks to hold changes.
+- Use the module commit message format when applicable, e.g. `feat(module-01): ...`
