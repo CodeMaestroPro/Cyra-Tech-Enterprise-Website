@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
+use App\Http\Controllers\Web\LeadershipController;
 use App\Http\Controllers\Web\PagePreviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ Route::get('/about/vision-mission', [AboutController::class, 'show'])->defaults(
 Route::get('/about/values', [AboutController::class, 'show'])->defaults('slug', 'values')->name('about.values');
 Route::get('/about/history', [AboutController::class, 'show'])->defaults('slug', 'history')->name('about.history');
 Route::get('/about/why-choose-us', [AboutController::class, 'show'])->defaults('slug', 'why-choose-us')->name('about.why-choose-us');
+
+Route::get('/leadership', LeadershipController::class)->name('leadership');
 
 $previewPages = [
     'solutions',

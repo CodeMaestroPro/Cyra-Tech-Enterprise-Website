@@ -25,7 +25,7 @@ return [
         ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'completed'],
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'completed'],
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'completed'],
-        ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'pending'],
+        ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'completed'],
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'pending'],
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'pending'],
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'pending'],
@@ -565,6 +565,110 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Leadership Content
+    |--------------------------------------------------------------------------
+    */
+
+    'leadership' => [
+        'seo' => [
+            'title' => 'Leadership | Cyra-Tech Executive Team',
+            'description' => 'Meet the Cyra-Tech executive leadership team driving enterprise innovation, client success, and responsible technology stewardship.',
+            'keywords' => ['Cyra-Tech leadership', 'executive team', 'CEO', 'technology leadership'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Leadership',
+            'title' => 'Stewards of vision, accountability, and enterprise impact',
+            'description' => 'Cyra-Tech leaders combine deep technical expertise with executive partnership to guide clients through complex transformation programs worldwide.',
+        ],
+        'governance' => [
+            'eyebrow' => 'Governance',
+            'title' => 'Accountability built into how we operate',
+            'description' => 'Our leadership model balances innovation velocity with rigorous governance, ensuring every engagement meets enterprise standards for security, compliance, and transparency.',
+            'pillars' => [
+                [
+                    'title' => 'Executive Oversight',
+                    'description' => 'Senior leaders remain actively engaged in strategic accounts, delivery quality, and client outcomes.',
+                ],
+                [
+                    'title' => 'Ethical Technology',
+                    'description' => 'We embed responsible AI, data privacy, and inclusive design principles across all practices.',
+                ],
+                [
+                    'title' => 'Transparent Reporting',
+                    'description' => 'Clients receive clear program dashboards, risk registers, and executive briefings at every stage.',
+                ],
+            ],
+        ],
+        'cta' => [
+            'title' => 'Partner with proven enterprise leaders',
+            'description' => 'Connect with Cyra-Tech to discuss your transformation goals with our executive team.',
+            'action' => ['label' => 'Contact Us', 'route' => 'contact'],
+        ],
+        'profiles' => [
+            [
+                'slug' => 'collins-pever',
+                'name' => 'Collins Pever',
+                'title' => 'Chief Executive Officer',
+                'tier' => 'executive',
+                'bio' => 'Collins Pever founded Cyra-Tech with a mission to bridge enterprise ambition and execution. He leads global strategy, major client partnerships, and the company\'s long-term platform vision. Under his leadership, Cyra-Tech has delivered transformation programs across financial services, healthcare, and public sector organizations.',
+                'focus_areas' => ['Enterprise Strategy', 'Client Partnerships', 'Platform Vision'],
+                'linkedin_url' => 'https://www.linkedin.com/in/collinspever',
+                'email' => 'collins.pever@cyratech.com',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'amara-okonkwo',
+                'name' => 'Dr. Amara Okonkwo',
+                'title' => 'Chief Technology Officer',
+                'tier' => 'executive',
+                'bio' => 'Dr. Okonkwo oversees Cyra-Tech\'s engineering standards, cloud architecture practice, and innovation roadmap. She brings two decades of experience building secure, scalable platforms for regulated industries and leads the company\'s technical excellence programs.',
+                'focus_areas' => ['Cloud Architecture', 'Engineering Excellence', 'Platform Security'],
+                'linkedin_url' => 'https://www.linkedin.com/in/amaraokonkwo',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'james-whitfield',
+                'name' => 'James Whitfield',
+                'title' => 'Chief Operating Officer',
+                'tier' => 'executive',
+                'bio' => 'James Whitfield manages global delivery operations, client success, and program governance. He ensures Cyra-Tech engagements run with predictable outcomes, strong communication, and measurable business value for enterprise stakeholders.',
+                'focus_areas' => ['Global Delivery', 'Client Success', 'Program Governance'],
+                'linkedin_url' => 'https://www.linkedin.com/in/jameswhitfield',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'elena-vasquez',
+                'name' => 'Elena Vasquez',
+                'title' => 'Chief Innovation Officer',
+                'tier' => 'executive',
+                'bio' => 'Elena Vasquez leads Cyra-Tech\'s Innovation Lab, AI practice, and emerging technology research. She helps clients evaluate, prototype, and productionize intelligent systems that create durable competitive advantage.',
+                'focus_areas' => ['AI & Intelligence', 'Innovation Lab', 'Emerging Technology'],
+                'linkedin_url' => 'https://www.linkedin.com/in/elenavasquez',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'priya-sharma',
+                'name' => 'Priya Sharma',
+                'title' => 'Chief Financial Officer',
+                'tier' => 'extended',
+                'bio' => 'Priya Sharma directs Cyra-Tech\'s financial strategy, enterprise risk management, and commercial operations. She partners with clients on long-term investment models that align technology spend with business outcomes.',
+                'focus_areas' => ['Financial Strategy', 'Risk Management', 'Commercial Operations'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'marcus-chen',
+                'name' => 'Marcus Chen',
+                'title' => 'Chief People Officer',
+                'tier' => 'extended',
+                'bio' => 'Marcus Chen leads talent strategy, culture, and organizational development across Cyra-Tech\'s global teams. He champions inclusive leadership and the growth of high-performance engineering and consulting teams.',
+                'focus_areas' => ['Talent Strategy', 'Culture', 'Organizational Development'],
+                'is_featured' => false,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -596,7 +700,7 @@ return [
                     'title' => 'Company',
                     'links' => [
                         ['label' => 'About Us', 'route' => 'about'],
-                        ['label' => 'Leadership', 'route' => 'about'],
+                        ['label' => 'Leadership', 'route' => 'leadership'],
                         ['label' => 'Careers', 'route' => 'careers'],
                         ['label' => 'Contact', 'route' => 'contact'],
                     ],
@@ -693,7 +797,7 @@ return [
                 [
                     'label' => 'People',
                     'items' => [
-                        ['label' => 'Leadership', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Leadership', 'route' => 'leadership', 'permission' => 'modules.view'],
                         ['label' => 'Team Members', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Careers', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Applicants', 'permission' => 'modules.view', 'available' => false],
