@@ -26,7 +26,7 @@ return [
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'completed'],
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'completed'],
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'completed'],
-        ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'pending'],
+        ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'completed'],
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'pending'],
         ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'pending'],
         ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'pending'],
@@ -669,6 +669,128 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Solutions Content
+    |--------------------------------------------------------------------------
+    */
+
+    'solutions' => [
+        'seo' => [
+            'title' => 'Enterprise Solutions | Cyra-Tech',
+            'description' => 'Explore Cyra-Tech solutions for digital transformation, cloud infrastructure, AI intelligence, cybersecurity, data analytics, and enterprise integration.',
+            'keywords' => ['enterprise solutions', 'digital transformation', 'cloud services', 'AI solutions', 'cybersecurity'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Solutions',
+            'title' => 'End-to-end capabilities for modern enterprises',
+            'description' => 'Cyra-Tech delivers modular solution offerings engineered for performance, resilience, and measurable business outcomes across complex environments.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Solutions'],
+            ['slug' => 'transformation', 'label' => 'Transformation'],
+            ['slug' => 'platform', 'label' => 'Platform'],
+            ['slug' => 'intelligence', 'label' => 'Intelligence'],
+            ['slug' => 'security', 'label' => 'Security'],
+            ['slug' => 'operations', 'label' => 'Operations'],
+        ],
+        'offerings' => [
+            [
+                'slug' => 'digital-transformation',
+                'category' => 'transformation',
+                'title' => 'Digital Transformation',
+                'summary' => 'Modernize legacy systems and build future-ready digital platforms.',
+                'description' => 'Cyra-Tech helps enterprises reimagine operating models, modernize core systems, and deliver customer experiences that scale. We combine discovery, architecture, and agile delivery to reduce transformation risk.',
+                'capabilities' => ['Legacy modernization', 'Platform re-architecture', 'Process automation', 'Change management'],
+                'outcomes' => ['40% faster release cycles', 'Reduced operational friction', 'Improved customer experience'],
+                'icon' => 'transform',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'cloud-infrastructure',
+                'category' => 'platform',
+                'title' => 'Cloud & Infrastructure',
+                'summary' => 'Design secure, scalable cloud foundations with observability built in.',
+                'description' => 'From landing zones to multi-cloud strategy, we architect resilient infrastructure with cost governance, automated operations, and enterprise-grade reliability targets.',
+                'capabilities' => ['Cloud migration', 'Kubernetes platforms', 'FinOps & cost optimization', 'Site reliability engineering'],
+                'outcomes' => ['99.9%+ availability targets', 'Optimized cloud spend', 'Faster deployment pipelines'],
+                'icon' => 'cloud',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'ai-intelligence',
+                'category' => 'intelligence',
+                'title' => 'AI & Intelligence',
+                'summary' => 'Deploy practical AI, automation, and decision intelligence at scale.',
+                'description' => 'Our AI practice focuses on production-ready copilots, intelligent workflows, and data products with governance, monitoring, and human oversight from day one.',
+                'capabilities' => ['AI strategy & roadmaps', 'Copilot development', 'MLOps & model governance', 'Intelligent automation'],
+                'outcomes' => ['Faster decision cycles', 'Higher team productivity', 'Responsible AI adoption'],
+                'icon' => 'ai',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'cybersecurity',
+                'category' => 'security',
+                'title' => 'Cybersecurity',
+                'summary' => 'Protect critical assets with zero-trust and proactive monitoring.',
+                'description' => 'Cyra-Tech embeds security into every layer of the stack — identity, infrastructure, applications, and data — with compliance frameworks tailored to regulated industries.',
+                'capabilities' => ['Zero-trust architecture', 'Security operations', 'Compliance readiness', 'Penetration testing'],
+                'outcomes' => ['Reduced breach exposure', 'Audit-ready controls', 'Improved incident response'],
+                'icon' => 'shield',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'data-analytics',
+                'category' => 'intelligence',
+                'title' => 'Data & Analytics',
+                'summary' => 'Turn enterprise data into actionable intelligence and executive insight.',
+                'description' => 'We design modern data platforms, analytics pipelines, and executive dashboards that unify fragmented data sources and enable confident decision-making.',
+                'capabilities' => ['Data platform engineering', 'BI & executive dashboards', 'Real-time analytics', 'Master data management'],
+                'outcomes' => ['Unified data visibility', 'Self-service analytics', 'Trusted executive reporting'],
+                'icon' => 'data',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'enterprise-integration',
+                'category' => 'platform',
+                'title' => 'Enterprise Integration',
+                'summary' => 'Connect systems, APIs, and partners with reliable integration fabric.',
+                'description' => 'Cyra-Tech builds API ecosystems, event-driven architectures, and integration hubs that keep mission-critical systems synchronized across the enterprise.',
+                'capabilities' => ['API management', 'Event-driven architecture', 'B2B integrations', 'Legacy connectivity'],
+                'outcomes' => ['Reduced integration debt', 'Faster partner onboarding', 'Improved data consistency'],
+                'icon' => 'integration',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'managed-services',
+                'category' => 'operations',
+                'title' => 'Managed Services',
+                'summary' => 'Operate and optimize platforms with dedicated Cyra-Tech engineering teams.',
+                'description' => 'Our managed services extend your capabilities with 24/7 monitoring, incident response, platform enhancements, and continuous improvement aligned to SLAs.',
+                'capabilities' => ['24/7 platform monitoring', 'Incident & problem management', 'Continuous improvement', 'SLA-backed support'],
+                'outcomes' => ['Predictable operations', 'Lower total cost of ownership', 'Continuous platform evolution'],
+                'icon' => 'managed',
+                'is_featured' => false,
+            ],
+        ],
+        'process' => [
+            'eyebrow' => 'Delivery Model',
+            'title' => 'How Cyra-Tech delivers enterprise solutions',
+            'description' => 'A proven engagement model that balances discovery, delivery velocity, and executive visibility.',
+            'steps' => [
+                ['title' => 'Discover', 'description' => 'Assess current state, define outcomes, and align stakeholders on a transformation roadmap.'],
+                ['title' => 'Design', 'description' => 'Architect secure, scalable solutions with clear milestones, risks, and success metrics.'],
+                ['title' => 'Deliver', 'description' => 'Execute in agile increments with transparent reporting and continuous client collaboration.'],
+                ['title' => 'Optimize', 'description' => 'Measure impact, harden operations, and evolve the platform for long-term value.'],
+            ],
+        ],
+        'cta' => [
+            'title' => 'Need a tailored solution architecture?',
+            'description' => 'Our solution architects partner with your team to design programs aligned to your industry, compliance, and growth goals.',
+            'action' => ['label' => 'Talk to an Architect', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -777,7 +899,7 @@ return [
                 [
                     'label' => 'Solutions',
                     'items' => [
-                        ['label' => 'Services', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Services', 'route' => 'solutions', 'permission' => 'modules.view'],
                         ['label' => 'Industries', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Products', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],

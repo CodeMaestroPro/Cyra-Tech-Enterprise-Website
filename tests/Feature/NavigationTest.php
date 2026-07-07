@@ -41,13 +41,23 @@ class NavigationTest extends TestCase
 
     public function test_preview_page_renders_for_public_routes(): void
     {
-        $response = $this->get(route('solutions'));
+        $response = $this->get(route('products'));
 
         $response
             ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Solutions')
+            ->assertSee('Products')
             ->assertSee('Module 04 (Global Navigation)');
+    }
+
+    public function test_solutions_page_renders_full_solutions_module(): void
+    {
+        $response = $this->get(route('solutions'));
+
+        $response
+            ->assertOk()
+            ->assertViewIs('solutions.index')
+            ->assertSee('Digital Transformation');
     }
 
     public function test_about_page_renders_full_about_module(): void
