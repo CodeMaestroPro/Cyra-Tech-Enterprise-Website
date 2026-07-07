@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             LeadershipSeeder::class,
             SolutionSeeder::class,
             ProductSeeder::class,
+            IndustrySeeder::class,
             AdminUserSeeder::class,
         ]);
     }

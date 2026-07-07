@@ -28,7 +28,7 @@ return [
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'completed'],
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'completed'],
         ['id' => 9, 'slug' => 'products', 'name' => 'Products', 'status' => 'completed'],
-        ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'pending'],
+        ['id' => 10, 'slug' => 'industries', 'name' => 'Industries', 'status' => 'completed'],
         ['id' => 11, 'slug' => 'portfolio', 'name' => 'Portfolio', 'status' => 'pending'],
         ['id' => 12, 'slug' => 'innovation-lab', 'name' => 'Innovation Lab', 'status' => 'pending'],
         ['id' => 13, 'slug' => 'community', 'name' => 'Community', 'status' => 'pending'],
@@ -914,6 +914,128 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Industries Content
+    |--------------------------------------------------------------------------
+    */
+
+    'industries' => [
+        'seo' => [
+            'title' => 'Industries | Cyra-Tech',
+            'description' => 'Cyra-Tech delivers domain expertise for financial services, healthcare, government, energy, retail, and technology organizations with compliance-ready engineering.',
+            'keywords' => ['industry expertise', 'regulated industries', 'enterprise consulting', 'sector solutions'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Industries',
+            'title' => 'Deep domain expertise across regulated and high-growth sectors',
+            'description' => 'We partner with leaders in complex industries to modernize platforms, strengthen compliance posture, and deliver measurable outcomes with sector-specific playbooks.',
+        ],
+        'categories' => [
+            ['slug' => 'all', 'label' => 'All Industries'],
+            ['slug' => 'regulated', 'label' => 'Regulated'],
+            ['slug' => 'public-sector', 'label' => 'Public Sector'],
+            ['slug' => 'commercial', 'label' => 'Commercial'],
+            ['slug' => 'industrial', 'label' => 'Industrial'],
+        ],
+        'verticals' => [
+            [
+                'slug' => 'financial-services',
+                'category' => 'regulated',
+                'title' => 'Financial Services',
+                'tagline' => 'Secure, compliant platforms for modern banking and capital markets.',
+                'summary' => 'Secure digital banking, fraud prevention, and regulatory-ready platforms.',
+                'description' => 'Cyra-Tech helps banks, insurers, and fintech organizations modernize core systems while maintaining audit-ready controls, fraud resilience, and customer trust across digital channels.',
+                'challenges' => ['Legacy core modernization', 'Real-time fraud detection', 'Regulatory reporting burden', 'Omnichannel customer expectations'],
+                'capabilities' => ['Digital banking platforms', 'Fraud & risk analytics', 'Core system integration', 'Compliance automation'],
+                'compliance' => ['PCI DSS', 'SOX', 'Basel III', 'GDPR'],
+                'icon' => 'finance',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'healthcare',
+                'category' => 'regulated',
+                'title' => 'Healthcare',
+                'tagline' => 'Patient-centric systems built for interoperability and trust.',
+                'summary' => 'Patient-centric systems, interoperability, and HIPAA-aligned infrastructure.',
+                'description' => 'We design healthcare platforms that connect clinical workflows, patient experiences, and operational data with interoperability standards, privacy controls, and reliable uptime.',
+                'challenges' => ['EHR interoperability', 'Patient data privacy', 'Clinical workflow friction', 'Operational cost pressure'],
+                'capabilities' => ['Patient portal experiences', 'FHIR integration hubs', 'Clinical workflow automation', 'HIPAA-aligned cloud platforms'],
+                'compliance' => ['HIPAA', 'HITECH', 'HL7 FHIR', 'SOC 2'],
+                'icon' => 'health',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'government',
+                'category' => 'public-sector',
+                'title' => 'Government',
+                'tagline' => 'Mission-critical systems with accessibility and citizen experience.',
+                'summary' => 'Mission-critical systems with accessibility, security, and citizen experience.',
+                'description' => 'Cyra-Tech supports public-sector agencies with secure, accessible digital services, legacy modernization, and resilient infrastructure aligned to citizen expectations and procurement standards.',
+                'challenges' => ['Legacy system debt', 'Citizen digital expectations', 'Security & accessibility mandates', 'Budget and procurement cycles'],
+                'capabilities' => ['Citizen service portals', 'Legacy modernization', 'Secure cloud landing zones', 'Accessibility-first UX'],
+                'compliance' => ['Section 508', 'FedRAMP readiness', 'NIST CSF', 'WCAG 2.1'],
+                'icon' => 'government',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'energy-utilities',
+                'category' => 'industrial',
+                'title' => 'Energy & Utilities',
+                'tagline' => 'Intelligent operations for grids, assets, and sustainability programs.',
+                'summary' => 'IoT-enabled operations, grid intelligence, and sustainability analytics.',
+                'description' => 'We help energy and utility organizations connect field operations, grid intelligence, and sustainability reporting with IoT platforms, real-time analytics, and resilient OT/IT integration.',
+                'challenges' => ['Grid modernization', 'Asset performance visibility', 'OT/IT convergence', 'Sustainability reporting'],
+                'capabilities' => ['IoT operations platforms', 'Grid analytics dashboards', 'Asset lifecycle management', 'ESG data pipelines'],
+                'compliance' => ['NERC CIP', 'ISO 27001', 'IEC 62443', 'GHG Protocol'],
+                'icon' => 'energy',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'retail-commerce',
+                'category' => 'commercial',
+                'title' => 'Retail & Commerce',
+                'tagline' => 'Omnichannel experiences powered by inventory and customer intelligence.',
+                'summary' => 'Omnichannel experiences, inventory intelligence, and personalization engines.',
+                'description' => 'Cyra-Tech enables retailers to unify storefront, marketplace, and fulfillment experiences with real-time inventory intelligence, personalization, and scalable commerce platforms.',
+                'challenges' => ['Omnichannel consistency', 'Inventory accuracy', 'Personalization at scale', 'Peak traffic resilience'],
+                'capabilities' => ['Headless commerce platforms', 'Inventory intelligence', 'Customer data platforms', 'Order management modernization'],
+                'compliance' => ['PCI DSS', 'CCPA', 'GDPR', 'SOC 2'],
+                'icon' => 'retail',
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'technology',
+                'category' => 'commercial',
+                'title' => 'Technology',
+                'tagline' => 'Product engineering and platform acceleration for high-growth tech leaders.',
+                'summary' => 'Product engineering, platform modernization, and SaaS acceleration.',
+                'description' => 'We partner with technology companies to accelerate product delivery, modernize SaaS platforms, and scale engineering organizations with cloud-native architecture and DevOps excellence.',
+                'challenges' => ['Platform scalability', 'Release velocity', 'Multi-tenant architecture', 'Global expansion'],
+                'capabilities' => ['SaaS platform engineering', 'Product modernization', 'DevOps & SRE programs', 'API ecosystem design'],
+                'compliance' => ['SOC 2', 'ISO 27001', 'GDPR', 'CSA STAR'],
+                'icon' => 'transform',
+                'is_featured' => false,
+            ],
+        ],
+        'expertise' => [
+            'eyebrow' => 'Sector Playbooks',
+            'title' => 'Industry programs engineered for outcomes',
+            'description' => 'Every Cyra-Tech industry engagement combines domain advisors, compliance-aware engineering, and measurable delivery frameworks.',
+            'points' => [
+                'Sector-specific architecture and compliance patterns',
+                'Executive governance with transparent milestone reporting',
+                'Cross-functional teams spanning strategy, engineering, and operations',
+                'Continuous optimization aligned to industry KPIs',
+            ],
+        ],
+        'cta' => [
+            'title' => 'Need an industry-specific transformation roadmap?',
+            'description' => 'Connect with Cyra-Tech advisors to assess your sector challenges and design a program aligned to your compliance and growth goals.',
+            'action' => ['label' => 'Talk to an Advisor', 'route' => 'contact'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -1023,7 +1145,7 @@ return [
                     'label' => 'Solutions',
                     'items' => [
                         ['label' => 'Services', 'route' => 'solutions', 'permission' => 'modules.view'],
-                        ['label' => 'Industries', 'permission' => 'modules.view', 'available' => false],
+                        ['label' => 'Industries', 'route' => 'industries', 'permission' => 'modules.view'],
                         ['label' => 'Products', 'route' => 'products', 'permission' => 'modules.view'],
                         ['label' => 'Innovation Lab', 'permission' => 'modules.view', 'available' => false],
                         ['label' => 'Portfolio', 'permission' => 'modules.view', 'available' => false],

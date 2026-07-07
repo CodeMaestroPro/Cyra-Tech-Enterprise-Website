@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
+use App\Http\Controllers\Web\IndustriesController;
 use App\Http\Controllers\Web\LeadershipController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\SolutionsController;
@@ -29,8 +30,10 @@ Route::get('/solutions/{slug}', [SolutionsController::class, 'show'])->name('sol
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/{slug}', [ProductsController::class, 'show'])->name('products.show');
 
+Route::get('/industries', [IndustriesController::class, 'index'])->name('industries');
+Route::get('/industries/{slug}', [IndustriesController::class, 'show'])->name('industries.show');
+
 $previewPages = [
-    'industries',
     'portfolio',
     'innovation-lab',
     'community',

@@ -39,14 +39,24 @@ class NavigationTest extends TestCase
             ->assertDontSee('Stay ahead with Cyra-Tech');
     }
 
-    public function test_preview_page_renders_for_public_routes(): void
+    public function test_industries_page_renders_full_industries_module(): void
     {
         $response = $this->get(route('industries'));
 
         $response
             ->assertOk()
+            ->assertViewIs('industries.index')
+            ->assertSee('Financial Services');
+    }
+
+    public function test_preview_page_renders_for_public_routes(): void
+    {
+        $response = $this->get(route('portfolio'));
+
+        $response
+            ->assertOk()
             ->assertViewIs('pages.preview')
-            ->assertSee('Industries')
+            ->assertSee('Portfolio')
             ->assertSee('Module 04 (Global Navigation)');
     }
 
