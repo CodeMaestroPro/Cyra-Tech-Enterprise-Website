@@ -23,8 +23,8 @@ class NavigationTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('CYRA')
-            ->assertSee('Solutions')
-            ->assertSee('Contact Us')
+            ->assertSee('Built on Vision. Driven by Intelligence.')
+            ->assertSee('Explore Solutions')
             ->assertSee('Stay ahead with Cyra-Tech')
             ->assertSee('All rights reserved.');
     }

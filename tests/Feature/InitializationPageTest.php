@@ -18,7 +18,7 @@ class InitializationPageTest extends TestCase
 
     public function test_initialization_page_renders_with_platform_data(): void
     {
-        $response = $this->get(route('home'));
+        $response = $this->get(route('platform.initialization'));
 
         $response
             ->assertOk()

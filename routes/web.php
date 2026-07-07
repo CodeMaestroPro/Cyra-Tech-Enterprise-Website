@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
 use App\Http\Controllers\Web\PagePreviewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', InitializationController::class)->name('home');
+Route::get('/', HomepageController::class)->name('home');
+Route::get('/platform/initialization', InitializationController::class)->name('platform.initialization');
 
 $previewPages = [
     'about',

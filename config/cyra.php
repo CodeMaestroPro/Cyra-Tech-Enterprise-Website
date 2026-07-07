@@ -23,7 +23,7 @@ return [
         ['id' => 2, 'slug' => 'authentication-rbac', 'name' => 'Authentication & RBAC', 'status' => 'completed'],
         ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'completed'],
         ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'completed'],
-        ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'pending'],
+        ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'completed'],
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'pending'],
         ['id' => 7, 'slug' => 'leadership', 'name' => 'Leadership', 'status' => 'pending'],
         ['id' => 8, 'slug' => 'solutions', 'name' => 'Solutions', 'status' => 'pending'],
@@ -169,6 +169,263 @@ return [
             'input', 'textarea', 'select', 'checkbox', 'label', 'alert',
             'spinner', 'section-heading', 'breadcrumb', 'table', 'empty-state',
             'modal', 'tabs',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Homepage Content
+    |--------------------------------------------------------------------------
+    */
+
+    'homepage' => [
+        'seo' => [
+            'title' => 'Cyra-Tech | Built on Vision. Driven by Intelligence.',
+            'description' => 'Cyra-Tech delivers enterprise digital transformation, cloud infrastructure, AI intelligence, and secure innovation for global organizations.',
+            'keywords' => [
+                'enterprise technology',
+                'digital transformation',
+                'cloud infrastructure',
+                'AI solutions',
+                'Cyra-Tech',
+            ],
+        ],
+        'sections' => [
+            [
+                'slug' => 'hero',
+                'type' => 'hero',
+                'eyebrow' => 'Enterprise Technology Partner',
+                'title' => 'Built on Vision. Driven by Intelligence.',
+                'description' => 'Cyra-Tech architects intelligent digital ecosystems that accelerate growth, strengthen security, and unlock enterprise innovation at scale.',
+                'content' => [
+                    'highlights' => [
+                        'Digital Transformation',
+                        'AI & Intelligence',
+                        'Cloud at Scale',
+                        'Secure by Design',
+                    ],
+                    'actions' => [
+                        ['label' => 'Explore Solutions', 'route' => 'solutions', 'variant' => 'primary'],
+                        ['label' => 'Talk to Our Team', 'route' => 'contact', 'variant' => 'secondary'],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'stats',
+                'type' => 'stats',
+                'content' => [
+                    'items' => [
+                        ['label' => 'Enterprise Projects Delivered', 'value' => '500', 'suffix' => '+'],
+                        ['label' => 'Client Satisfaction', 'value' => '98', 'suffix' => '%'],
+                        ['label' => 'Industries Served', 'value' => '25', 'suffix' => '+'],
+                        ['label' => 'Global Technology Experts', 'value' => '120', 'suffix' => '+'],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'partners',
+                'type' => 'logos',
+                'eyebrow' => 'Trusted By',
+                'title' => 'Organizations that scale with Cyra-Tech',
+                'content' => [
+                    'items' => [
+                        'NovaBank', 'Helix Health', 'Astra Logistics', 'Vertex Energy', 'Quantum Retail', 'Pinnacle GovTech',
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'solutions',
+                'type' => 'feature-grid',
+                'eyebrow' => 'Solutions',
+                'title' => 'End-to-end capabilities for modern enterprises',
+                'description' => 'From strategy to execution, Cyra-Tech delivers modular solutions engineered for performance, resilience, and measurable outcomes.',
+                'content' => [
+                    'items' => [
+                        [
+                            'title' => 'Digital Transformation',
+                            'description' => 'Modernize legacy systems, streamline operations, and build future-ready digital platforms.',
+                            'route' => 'solutions',
+                            'icon' => 'transform',
+                        ],
+                        [
+                            'title' => 'Cloud & Infrastructure',
+                            'description' => 'Design secure, scalable cloud architectures with observability and cost optimization built in.',
+                            'route' => 'solutions',
+                            'icon' => 'cloud',
+                        ],
+                        [
+                            'title' => 'AI & Intelligence',
+                            'description' => 'Deploy practical AI, automation, and data intelligence that drive decision velocity.',
+                            'route' => 'innovation-lab',
+                            'icon' => 'ai',
+                        ],
+                        [
+                            'title' => 'Cybersecurity',
+                            'description' => 'Protect critical assets with zero-trust frameworks, compliance readiness, and proactive monitoring.',
+                            'route' => 'solutions',
+                            'icon' => 'shield',
+                        ],
+                    ],
+                    'action' => ['label' => 'View All Solutions', 'route' => 'solutions'],
+                ],
+            ],
+            [
+                'slug' => 'products',
+                'type' => 'card-grid',
+                'eyebrow' => 'Products',
+                'title' => 'Platform products built for enterprise velocity',
+                'description' => 'Composable products that integrate with your stack and scale across teams, regions, and business units.',
+                'content' => [
+                    'items' => [
+                        [
+                            'title' => 'Cyra Command',
+                            'description' => 'Unified operations dashboard for executives, teams, and digital headquarters workflows.',
+                            'route' => 'products',
+                            'badge' => 'Flagship',
+                        ],
+                        [
+                            'title' => 'Cyra Pulse',
+                            'description' => 'Real-time business intelligence with executive briefings and automated insights.',
+                            'route' => 'products',
+                            'badge' => 'Analytics',
+                        ],
+                        [
+                            'title' => 'Cyra Shield',
+                            'description' => 'Enterprise security posture management with compliance automation and threat visibility.',
+                            'route' => 'products',
+                            'badge' => 'Security',
+                        ],
+                    ],
+                    'action' => ['label' => 'Explore Products', 'route' => 'products'],
+                ],
+            ],
+            [
+                'slug' => 'industries',
+                'type' => 'card-grid',
+                'eyebrow' => 'Industries',
+                'title' => 'Deep domain expertise across regulated and high-growth sectors',
+                'content' => [
+                    'columns' => 3,
+                    'items' => [
+                        ['title' => 'Financial Services', 'description' => 'Secure digital banking, fraud prevention, and regulatory-ready platforms.', 'route' => 'industries'],
+                        ['title' => 'Healthcare', 'description' => 'Patient-centric systems, interoperability, and HIPAA-aligned infrastructure.', 'route' => 'industries'],
+                        ['title' => 'Government', 'description' => 'Mission-critical systems with accessibility, security, and citizen experience.', 'route' => 'industries'],
+                        ['title' => 'Energy & Utilities', 'description' => 'IoT-enabled operations, grid intelligence, and sustainability analytics.', 'route' => 'industries'],
+                        ['title' => 'Retail & Commerce', 'description' => 'Omnichannel experiences, inventory intelligence, and personalization engines.', 'route' => 'industries'],
+                        ['title' => 'Technology', 'description' => 'Product engineering, platform modernization, and SaaS acceleration.', 'route' => 'industries'],
+                    ],
+                    'action' => ['label' => 'View Industries', 'route' => 'industries'],
+                ],
+            ],
+            [
+                'slug' => 'innovation-lab',
+                'type' => 'split-feature',
+                'eyebrow' => 'Innovation Lab',
+                'title' => 'Prototype the future before your market demands it',
+                'description' => 'Cyra-Tech Innovation Lab combines research, rapid prototyping, and production engineering to turn bold ideas into enterprise-ready products.',
+                'content' => [
+                    'bullets' => [
+                        'AI copilots and intelligent automation',
+                        'Emerging tech proof-of-concepts',
+                        'Design sprints and venture partnerships',
+                    ],
+                    'action' => ['label' => 'Enter Innovation Lab', 'route' => 'innovation-lab'],
+                ],
+            ],
+            [
+                'slug' => 'portfolio',
+                'type' => 'card-grid',
+                'eyebrow' => 'Portfolio',
+                'title' => 'Proven outcomes across complex enterprise programs',
+                'content' => [
+                    'items' => [
+                        [
+                            'title' => 'NovaBank Digital Core',
+                            'description' => 'Migrated 40+ legacy services to a cloud-native banking platform in 14 months.',
+                            'route' => 'portfolio',
+                            'metric' => '40% faster time-to-market',
+                        ],
+                        [
+                            'title' => 'Helix Health Network',
+                            'description' => 'Unified patient data platform serving 2M+ records with real-time analytics.',
+                            'route' => 'portfolio',
+                            'metric' => '99.95% uptime SLA',
+                        ],
+                        [
+                            'title' => 'Astra Logistics Command',
+                            'description' => 'AI-driven supply chain visibility across 18 countries and 120 distribution hubs.',
+                            'route' => 'portfolio',
+                            'metric' => '22% cost reduction',
+                        ],
+                    ],
+                    'action' => ['label' => 'View Case Studies', 'route' => 'portfolio'],
+                ],
+            ],
+            [
+                'slug' => 'insights',
+                'type' => 'card-grid',
+                'eyebrow' => 'Insights',
+                'title' => 'Executive perspectives on technology and transformation',
+                'content' => [
+                    'items' => [
+                        [
+                            'title' => 'The Executive Guide to AI Readiness',
+                            'description' => 'A practical framework for adopting AI without compromising governance or security.',
+                            'route' => 'insights',
+                            'meta' => '8 min read',
+                        ],
+                        [
+                            'title' => 'Cloud FinOps for Enterprise Scale',
+                            'description' => 'How CIOs are aligning cloud spend with business outcomes and innovation budgets.',
+                            'route' => 'insights',
+                            'meta' => '6 min read',
+                        ],
+                        [
+                            'title' => 'Zero Trust in Regulated Industries',
+                            'description' => 'Implementing identity-first security models across financial and public sector environments.',
+                            'route' => 'insights',
+                            'meta' => '10 min read',
+                        ],
+                    ],
+                    'action' => ['label' => 'Read Insights', 'route' => 'insights'],
+                ],
+            ],
+            [
+                'slug' => 'community',
+                'type' => 'cta-band',
+                'eyebrow' => 'Community',
+                'title' => 'Join builders, leaders, and innovators shaping what\'s next',
+                'description' => 'Connect with Cyra-Tech practitioners, partners, and enterprise leaders in our global technology community.',
+                'content' => [
+                    'action' => ['label' => 'Join the Community', 'route' => 'community'],
+                    'variant' => 'surface',
+                ],
+            ],
+            [
+                'slug' => 'careers',
+                'type' => 'cta-band',
+                'eyebrow' => 'Careers',
+                'title' => 'Build the future of enterprise technology with us',
+                'description' => 'We\'re hiring engineers, strategists, designers, and operators who thrive on complex challenges.',
+                'content' => [
+                    'action' => ['label' => 'View Open Roles', 'route' => 'careers'],
+                    'variant' => 'primary',
+                ],
+            ],
+            [
+                'slug' => 'contact-cta',
+                'type' => 'cta-band',
+                'eyebrow' => 'Let\'s Talk',
+                'title' => 'Ready to transform your enterprise?',
+                'description' => 'Partner with Cyra-Tech to design, build, and scale intelligent systems that deliver lasting impact.',
+                'content' => [
+                    'actions' => [
+                        ['label' => 'Contact Us', 'route' => 'contact', 'variant' => 'primary'],
+                        ['label' => 'Client Portal', 'route' => 'login', 'variant' => 'secondary'],
+                    ],
+                    'variant' => 'gradient',
+                ],
+            ],
         ],
     ],
 
