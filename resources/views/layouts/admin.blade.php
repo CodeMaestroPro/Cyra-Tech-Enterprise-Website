@@ -10,14 +10,26 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="min-h-screen bg-cyra-midnight font-sans antialiased text-cyra-text">
+        @php($user = auth()->user())
         <div class="flex min-h-screen">
             <aside class="hidden w-72 border-r border-cyra-border bg-cyra-navy/80 p-6 lg:block">
                 <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyra-accent">Command Center</p>
                 <h1 class="mt-2 text-xl font-bold">{{ config('cyra.name') }}</h1>
-                <nav class="mt-8 space-y-2 text-sm text-cyra-muted" aria-label="Admin navigation">
-                    <p class="rounded-lg bg-cyra-surface px-3 py-2 text-cyra-text">Dashboard</p>
-                    <p class="px-3 py-2">Users &amp; Roles</p>
-                    <p class="px-3 py-2">Enterprise Settings</p>
+                <nav class="mt-8 space-y-2 text-sm" aria-label="Admin navigation">
+                    <a href="{{ route('admin.dashboard') }}" @class([
+                        'block rounded-lg px-3 py-2',
+                        'bg-cyra-surface text-cyra-text' => request()->routeIs('admin.dashboard'),
+                        'text-cyra-muted hover:bg-cyra-surface/60 hover:text-cyra-text' => ! request()->routeIs('admin.dashboard'),
+                    ])>Dashboard</a>
+                    @if ($user?->hasPermission('modules.view'))
+                        <a href="{{ route('admin.design-system') }}" @class([
+                            'block rounded-lg px-3 py-2',
+                            'bg-cyra-surface text-cyra-text' => request()->routeIs('admin.design-system'),
+                            'text-cyra-muted hover:bg-cyra-surface/60 hover:text-cyra-text' => ! request()->routeIs('admin.design-system'),
+                        ])>Design System</a>
+                    @endif
+                    <span class="block px-3 py-2 text-cyra-muted">Users &amp; Roles</span>
+                    <span class="block px-3 py-2 text-cyra-muted">Enterprise Settings</span>
                 </nav>
             </aside>
 
@@ -26,12 +38,12 @@
                     <div class="flex items-center justify-between gap-4">
                         <div>
                             <p class="text-sm text-cyra-muted">Good Morning,</p>
-                            <p class="text-lg font-semibold text-cyra-text">{{ $user->name }} 👋</p>
+                            <p class="text-lg font-semibold text-cyra-text">{{ $user?->name }} 👋</p>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="text-right">
-                                <p class="text-sm font-medium text-cyra-text">{{ $user->name }}</p>
-                                <p class="text-xs text-cyra-muted">{{ $user->getPrimaryRoleName() ?? 'Team Member' }}</p>
+                                <p class="text-sm font-medium text-cyra-text">{{ $user?->name }}</p>
+                                <p class="text-xs text-cyra-muted">{{ $user?->getPrimaryRoleName() ?? 'Team Member' }}</p>
                             </div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

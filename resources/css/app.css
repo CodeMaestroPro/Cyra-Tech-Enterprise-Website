@@ -49,4 +49,80 @@
     .cyra-gradient-text {
         @apply bg-gradient-to-r from-cyra-primary to-cyra-accent bg-clip-text text-transparent;
     }
+
+    .cyra-display {
+        @apply text-4xl font-bold tracking-tight text-cyra-text sm:text-5xl;
+    }
+
+    .cyra-heading-1 {
+        @apply text-3xl font-bold text-cyra-text;
+    }
+
+    .cyra-heading-2 {
+        @apply text-2xl font-semibold text-cyra-text;
+    }
+
+    .cyra-heading-3 {
+        @apply text-xl font-semibold text-cyra-text;
+    }
+
+    .cyra-body {
+        @apply text-base text-cyra-muted;
+    }
+
+    .cyra-small {
+        @apply text-sm text-cyra-muted;
+    }
+
+    .cyra-caption {
+        @apply text-xs font-medium uppercase tracking-[0.18em] text-cyra-accent;
+    }
+
+    .cyra-input {
+        @apply block w-full rounded-lg border border-cyra-border bg-cyra-navy px-4 py-2.5 text-sm text-cyra-text placeholder:text-cyra-muted focus:border-cyra-primary focus:outline-none focus:ring-2 focus:ring-cyra-primary/30;
+    }
+
+    .cyra-input-error {
+        @apply border-cyra-danger focus:border-cyra-danger focus:ring-cyra-danger/30;
+    }
+
+    .cyra-table-wrap {
+        @apply overflow-hidden rounded-xl border border-cyra-border;
+    }
+
+    .cyra-table {
+        @apply w-full text-left text-sm;
+    }
+
+    .cyra-table thead {
+        @apply bg-cyra-navy text-cyra-muted;
+    }
+
+    .cyra-table th {
+        @apply px-4 py-3 font-medium;
+    }
+
+    .cyra-table td {
+        @apply border-t border-cyra-border px-4 py-3 text-cyra-text;
+    }
+
+    .cyra-tab-active {
+        @apply border-cyra-primary text-cyra-text;
+    }
+
+    .cyra-tab-inactive {
+        @apply border-transparent text-cyra-muted hover:border-cyra-border hover:text-cyra-text;
+    }
+}
+
+@layer components {
+    @keyframes cyra-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .cyra-spinner {
+        animation: cyra-spin 0.8s linear infinite;
+    }
 }

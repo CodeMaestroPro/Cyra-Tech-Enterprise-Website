@@ -11,6 +11,9 @@
         'primary' => 'bg-cyra-primary text-white hover:bg-cyra-primary-hover',
         'secondary' => 'border border-cyra-border bg-cyra-navy text-cyra-text hover:border-cyra-primary/50',
         'ghost' => 'text-cyra-muted hover:bg-cyra-surface hover:text-cyra-text',
+        'success' => 'bg-cyra-success text-white hover:bg-cyra-success/90',
+        'danger' => 'bg-cyra-danger text-white hover:bg-cyra-danger/90',
+        'outline' => 'border border-cyra-primary text-cyra-primary hover:bg-cyra-primary/10',
     ];
 
     $sizes = [

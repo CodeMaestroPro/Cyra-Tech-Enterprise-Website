@@ -10,6 +10,7 @@ use App\Repositories\PlatformModuleRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use App\Services\AuthService;
+use App\Services\DesignSystemService;
 use App\Services\PlatformService;
 use App\Services\RoleService;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoleRepository::class);
         $this->app->singleton(UserRepository::class);
         $this->app->singleton(PlatformService::class);
+        $this->app->singleton(DesignSystemService::class);
         $this->app->singleton(AuthService::class);
         $this->app->singleton(RoleService::class);
     }

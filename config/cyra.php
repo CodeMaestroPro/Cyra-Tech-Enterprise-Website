@@ -21,7 +21,7 @@ return [
     'modules' => [
         ['id' => 1, 'slug' => 'project-initialization', 'name' => 'Project Initialization', 'status' => 'completed'],
         ['id' => 2, 'slug' => 'authentication-rbac', 'name' => 'Authentication & RBAC', 'status' => 'completed'],
-        ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'pending'],
+        ['id' => 3, 'slug' => 'design-system', 'name' => 'Design System', 'status' => 'completed'],
         ['id' => 4, 'slug' => 'global-navigation', 'name' => 'Global Navigation', 'status' => 'pending'],
         ['id' => 5, 'slug' => 'homepage', 'name' => 'Homepage', 'status' => 'pending'],
         ['id' => 6, 'slug' => 'about', 'name' => 'About', 'status' => 'pending'],
@@ -121,6 +121,55 @@ return [
         'email' => env('CYRA_ADMIN_EMAIL', 'admin@cyratech.com'),
         'password' => env('CYRA_ADMIN_PASSWORD', 'password'),
         'role' => 'super-admin',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Design System Tokens
+    |--------------------------------------------------------------------------
+    */
+
+    'design_system' => [
+        'version' => '1.0.0',
+        'stack' => 'Blade + JavaScript + Tailwind CSS 4',
+        'colors' => [
+            'midnight' => '#050810',
+            'navy' => '#0b1120',
+            'surface' => '#111827',
+            'border' => '#1e293b',
+            'text' => '#f8fafc',
+            'muted' => '#94a3b8',
+            'primary' => '#2563eb',
+            'primary-hover' => '#1d4ed8',
+            'accent' => '#06b6d4',
+            'success' => '#22c55e',
+            'warning' => '#f59e0b',
+            'danger' => '#ef4444',
+            'purple' => '#8b5cf6',
+        ],
+        'typography' => [
+            'font-family' => 'Inter, ui-sans-serif, system-ui, sans-serif',
+            'display' => '3rem / 700',
+            'heading-1' => '2.25rem / 700',
+            'heading-2' => '1.875rem / 600',
+            'heading-3' => '1.5rem / 600',
+            'body' => '1rem / 400',
+            'small' => '0.875rem / 400',
+            'caption' => '0.75rem / 500',
+        ],
+        'radii' => [
+            'sm' => '0.375rem',
+            'md' => '0.5rem',
+            'lg' => '0.75rem',
+            'xl' => '0.75rem',
+            'full' => '9999px',
+        ],
+        'components' => [
+            'button', 'badge', 'status-badge', 'card', 'metric-card',
+            'input', 'textarea', 'select', 'checkbox', 'label', 'alert',
+            'spinner', 'section-heading', 'breadcrumb', 'table', 'empty-state',
+            'modal', 'tabs',
+        ],
     ],
 
     /*

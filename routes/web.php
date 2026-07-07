@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DesignSystemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\InitializationController;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,7 @@ Route::middleware(['auth', 'permission:dashboard.access'])
     ->name('admin.')
     ->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
+        Route::get('/design-system', DesignSystemController::class)
+            ->middleware('permission:modules.view')
+            ->name('design-system');
     });
