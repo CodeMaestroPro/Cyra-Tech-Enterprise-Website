@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CmsSeeder::class,
             MediaLibrarySeeder::class,
             AnalyticsSeeder::class,
+            CrmSeeder::class,
         ]);
     }
 }

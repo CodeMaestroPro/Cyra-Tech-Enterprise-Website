@@ -41,7 +41,7 @@ return [
         ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'completed'],
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'completed'],
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'completed'],
-        ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'pending'],
+        ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'completed'],
         ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'pending'],
         ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'pending'],
     ],
@@ -78,6 +78,10 @@ return [
                 'media.update',
                 'media.delete',
                 'analytics.view',
+                'crm.view',
+                'crm.create',
+                'crm.update',
+                'crm.manage',
             ],
         ],
         'manager' => [
@@ -90,6 +94,7 @@ return [
                 'cms.view',
                 'media.view',
                 'analytics.view',
+                'crm.view',
             ],
         ],
         'editor' => [
@@ -147,6 +152,10 @@ return [
         'media.update' => ['name' => 'Update Media Assets', 'group' => 'Media Library'],
         'media.delete' => ['name' => 'Delete Media Assets', 'group' => 'Media Library'],
         'analytics.view' => ['name' => 'View Analytics Dashboard', 'group' => 'Analytics'],
+        'crm.view' => ['name' => 'View CRM Pipeline', 'group' => 'CRM'],
+        'crm.create' => ['name' => 'Create CRM Leads', 'group' => 'CRM'],
+        'crm.update' => ['name' => 'Update CRM Leads', 'group' => 'CRM'],
+        'crm.manage' => ['name' => 'Manage CRM Pipeline', 'group' => 'CRM'],
     ],
 
     /*
@@ -2444,6 +2453,115 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | CRM
+    |--------------------------------------------------------------------------
+    */
+
+    'crm' => [
+        'pipeline_stages' => [
+            ['slug' => 'new', 'label' => 'New', 'color' => 'primary'],
+            ['slug' => 'qualified', 'label' => 'Qualified', 'color' => 'accent'],
+            ['slug' => 'proposal', 'label' => 'Proposal', 'color' => 'warning'],
+            ['slug' => 'negotiation', 'label' => 'Negotiation', 'color' => 'purple'],
+            ['slug' => 'won', 'label' => 'Won', 'color' => 'success'],
+            ['slug' => 'lost', 'label' => 'Lost', 'color' => 'danger'],
+        ],
+        'sources' => [
+            ['slug' => 'website', 'label' => 'Website'],
+            ['slug' => 'contact_form', 'label' => 'Contact Form'],
+            ['slug' => 'referral', 'label' => 'Referral'],
+            ['slug' => 'partner', 'label' => 'Partner Channel'],
+            ['slug' => 'event', 'label' => 'Event / Conference'],
+            ['slug' => 'outbound', 'label' => 'Outbound Prospecting'],
+        ],
+        'priorities' => [
+            ['slug' => 'low', 'label' => 'Low'],
+            ['slug' => 'medium', 'label' => 'Medium'],
+            ['slug' => 'high', 'label' => 'High'],
+        ],
+        'seed_leads' => [
+            [
+                'reference' => 'CRM-SEED-001',
+                'name' => 'Amara Okafor',
+                'email' => 'amara.okafor@novabank.ng',
+                'company' => 'NovaBank Digital',
+                'phone' => '+234 803 555 0101',
+                'job_title' => 'Chief Digital Officer',
+                'source' => 'referral',
+                'pipeline_stage' => 'negotiation',
+                'priority' => 'high',
+                'estimated_value' => 18500000,
+                'notes' => 'Enterprise core banking modernization scoped for Q3 rollout.',
+                'last_contacted_days_ago' => 1,
+            ],
+            [
+                'reference' => 'CRM-SEED-002',
+                'name' => 'Daniel Mensah',
+                'email' => 'daniel.mensah@helixhealth.africa',
+                'company' => 'Helix Health Systems',
+                'phone' => '+234 802 555 0142',
+                'job_title' => 'VP Operations',
+                'source' => 'website',
+                'pipeline_stage' => 'proposal',
+                'priority' => 'high',
+                'estimated_value' => 9200000,
+                'notes' => 'Patient data platform integration and analytics expansion.',
+                'last_contacted_days_ago' => 3,
+            ],
+            [
+                'reference' => 'CRM-SEED-003',
+                'name' => 'Fatima Bello',
+                'email' => 'f.bello@energygrid.ng',
+                'company' => 'EnergyGrid Utilities',
+                'job_title' => 'Head of Technology',
+                'source' => 'event',
+                'pipeline_stage' => 'qualified',
+                'priority' => 'medium',
+                'estimated_value' => 6400000,
+                'notes' => 'IoT operations dashboard pilot requested after innovation summit.',
+                'last_contacted_days_ago' => 5,
+            ],
+            [
+                'reference' => 'CRM-SEED-004',
+                'name' => 'James Osei',
+                'email' => 'james.osei@atlanticlogistics.com',
+                'company' => 'Atlantic Logistics Group',
+                'source' => 'partner',
+                'pipeline_stage' => 'new',
+                'priority' => 'medium',
+                'estimated_value' => 3800000,
+                'notes' => 'Partner-referred supply chain visibility assessment.',
+                'last_contacted_days_ago' => 2,
+            ],
+            [
+                'reference' => 'CRM-SEED-005',
+                'name' => 'Priya Sharma',
+                'email' => 'priya.sharma@globalretail.io',
+                'company' => 'Global Retail Holdings',
+                'source' => 'outbound',
+                'pipeline_stage' => 'won',
+                'priority' => 'high',
+                'estimated_value' => 12500000,
+                'notes' => 'Signed Cyra Pulse analytics rollout for West Africa operations.',
+                'last_contacted_days_ago' => 7,
+            ],
+            [
+                'reference' => 'CRM-SEED-006',
+                'name' => 'Michael Chen',
+                'email' => 'm.chen@legacyfinance.com',
+                'company' => 'Legacy Finance Corp',
+                'source' => 'website',
+                'pipeline_stage' => 'lost',
+                'priority' => 'low',
+                'estimated_value' => 2100000,
+                'notes' => 'Budget cycle deferred; revisit in next fiscal year.',
+                'last_contacted_days_ago' => 14,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Command Center Dashboard
     |--------------------------------------------------------------------------
     */
@@ -2538,6 +2656,7 @@ return [
             ['label' => 'Upload Media', 'icon' => 'media', 'route' => 'admin.media.index'],
             ['label' => 'Create Career', 'icon' => 'career', 'route' => 'careers'],
             ['label' => 'Generate Report', 'icon' => 'report', 'route' => 'admin.analytics.index'],
+            ['label' => 'Manage Leads', 'icon' => 'crm', 'route' => 'admin.crm.index'],
         ],
         'upcoming_events' => [
             ['title' => 'Project Review Meeting', 'datetime' => 'Today, 2:00 PM WAT', 'type' => 'meeting'],
@@ -2693,7 +2812,7 @@ return [
                     'label' => 'Growth',
                     'items' => [
                         ['label' => 'Contact', 'route' => 'contact', 'permission' => 'modules.view'],
-                        ['label' => 'Leads & CRM', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Leads & CRM', 'route' => 'admin.crm.index', 'permission' => 'crm.view'],
                         ['label' => 'Partners', 'route' => 'partner-hub', 'permission' => 'modules.view'],
                         ['label' => 'Marketing', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Insights', 'route' => 'insights', 'permission' => 'modules.view'],

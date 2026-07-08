@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\CrmController;
 use App\Http\Controllers\Admin\MediaLibraryController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -132,4 +133,24 @@ Route::middleware(['auth', 'permission:dashboard.access'])
         Route::get('/analytics', AnalyticsController::class)
             ->middleware('permission:analytics.view')
             ->name('analytics.index');
+
+        Route::middleware('permission:crm.view')->prefix('crm')->name('crm.')->group(function () {
+            Route::get('/', [CrmController::class, 'index'])->name('index');
+            Route::get('/create', [CrmController::class, 'create'])
+                ->middleware('permission:crm.create')
+                ->name('create');
+            Route::post('/', [CrmController::class, 'store'])
+                ->middleware('permission:crm.create')
+                ->name('store');
+            Route::get('/{reference}/edit', [CrmController::class, 'edit'])->name('edit');
+            Route::put('/{reference}', [CrmController::class, 'update'])
+                ->middleware('permission:crm.update')
+                ->name('update');
+            Route::post('/{reference}/stage', [CrmController::class, 'updateStage'])
+                ->middleware('permission:crm.manage')
+                ->name('stage');
+            Route::post('/inquiries/{inquiry}/convert', [CrmController::class, 'convertInquiry'])
+                ->middleware('permission:crm.create')
+                ->name('inquiries.convert');
+        });
     });

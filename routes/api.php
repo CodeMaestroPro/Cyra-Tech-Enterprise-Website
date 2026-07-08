@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\CrmController as ApiCrmController;
 use App\Http\Controllers\Api\DashboardController as ApiDashboardController;
 use App\Http\Controllers\Api\AnalyticsController;
 use App\Http\Controllers\Api\MediaLibraryController;
@@ -110,6 +111,23 @@ Route::post('/analytics/events', [AnalyticsController::class, 'store'])
 
 Route::middleware(['web', 'auth', 'permission:analytics.view'])->prefix('analytics')->name('api.analytics.')->group(function () {
     Route::get('/dashboard', [AnalyticsController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::middleware(['web', 'auth', 'permission:crm.view'])->prefix('crm')->name('api.crm.')->group(function () {
+    Route::get('/', [ApiCrmController::class, 'index'])->name('index');
+    Route::get('/{reference}', [ApiCrmController::class, 'show'])->name('show');
+    Route::post('/', [ApiCrmController::class, 'store'])
+        ->middleware('permission:crm.create')
+        ->name('store');
+    Route::put('/{reference}', [ApiCrmController::class, 'update'])
+        ->middleware('permission:crm.update')
+        ->name('update');
+    Route::patch('/{reference}/stage', [ApiCrmController::class, 'updateStage'])
+        ->middleware('permission:crm.manage')
+        ->name('stage');
+    Route::post('/inquiries/{inquiry}/convert', [ApiCrmController::class, 'convertInquiry'])
+        ->middleware('permission:crm.create')
+        ->name('inquiries.convert');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
