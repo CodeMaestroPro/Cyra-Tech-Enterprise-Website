@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\MediaLibraryController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -127,4 +128,8 @@ Route::middleware(['auth', 'permission:dashboard.access'])
                 ->middleware('permission:media.delete')
                 ->name('destroy');
         });
+
+        Route::get('/analytics', AnalyticsController::class)
+            ->middleware('permission:analytics.view')
+            ->name('analytics.index');
     });

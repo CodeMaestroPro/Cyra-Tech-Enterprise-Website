@@ -39,7 +39,7 @@ return [
         ['id' => 18, 'slug' => 'client-portal', 'name' => 'Client Portal', 'status' => 'completed'],
         ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'completed'],
         ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'completed'],
-        ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'pending'],
+        ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'completed'],
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'pending'],
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'pending'],
         ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'pending'],
@@ -77,6 +77,7 @@ return [
                 'media.upload',
                 'media.update',
                 'media.delete',
+                'analytics.view',
             ],
         ],
         'manager' => [
@@ -88,6 +89,7 @@ return [
                 'modules.view',
                 'cms.view',
                 'media.view',
+                'analytics.view',
             ],
         ],
         'editor' => [
@@ -144,6 +146,7 @@ return [
         'media.upload' => ['name' => 'Upload Media Assets', 'group' => 'Media Library'],
         'media.update' => ['name' => 'Update Media Assets', 'group' => 'Media Library'],
         'media.delete' => ['name' => 'Delete Media Assets', 'group' => 'Media Library'],
+        'analytics.view' => ['name' => 'View Analytics Dashboard', 'group' => 'Analytics'],
     ],
 
     /*
@@ -2400,6 +2403,47 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Analytics
+    |--------------------------------------------------------------------------
+    */
+
+    'analytics' => [
+        'default_range_days' => 30,
+        'range_options' => [7, 14, 30],
+        'seed_days' => 14,
+        'event_types' => [
+            ['slug' => 'page_view', 'label' => 'Page View'],
+            ['slug' => 'module_view', 'label' => 'Module View'],
+            ['slug' => 'form_submit', 'label' => 'Form Submission'],
+            ['slug' => 'portal_login', 'label' => 'Portal Login'],
+        ],
+        'sources' => [
+            ['slug' => 'web', 'label' => 'Public Website'],
+            ['slug' => 'api', 'label' => 'API'],
+            ['slug' => 'admin', 'label' => 'Admin Portal'],
+        ],
+        'insights' => [
+            'Homepage and Solutions continue to drive the highest qualified traffic volume.',
+            'Contact and Partner Hub pages show the strongest conversion intent in the current period.',
+            'Client Portal login activity indicates healthy engagement among assigned enterprise accounts.',
+        ],
+        'seed_patterns' => [
+            ['event_type' => 'page_view', 'source' => 'web', 'subject' => 'home', 'subject_label' => 'Homepage', 'daily_min' => 8, 'daily_max' => 24],
+            ['event_type' => 'page_view', 'source' => 'web', 'subject' => 'solutions', 'subject_label' => 'Solutions', 'daily_min' => 5, 'daily_max' => 14],
+            ['event_type' => 'page_view', 'source' => 'web', 'subject' => 'products', 'subject_label' => 'Products', 'daily_min' => 4, 'daily_max' => 12],
+            ['event_type' => 'page_view', 'source' => 'web', 'subject' => 'contact', 'subject_label' => 'Contact', 'daily_min' => 3, 'daily_max' => 9],
+            ['event_type' => 'page_view', 'source' => 'web', 'subject' => 'pages/privacy-policy', 'subject_label' => 'Privacy Policy', 'daily_min' => 2, 'daily_max' => 6],
+            ['event_type' => 'module_view', 'source' => 'web', 'subject' => 'digital-transformation', 'subject_label' => 'Digital Transformation', 'daily_min' => 2, 'daily_max' => 8],
+            ['event_type' => 'module_view', 'source' => 'web', 'subject' => 'cyra-pulse', 'subject_label' => 'Cyra Pulse', 'daily_min' => 2, 'daily_max' => 7],
+            ['event_type' => 'module_view', 'source' => 'web', 'subject' => 'novabank-digital-core', 'subject_label' => 'NovaBank Digital Core', 'daily_min' => 1, 'daily_max' => 6],
+            ['event_type' => 'form_submit', 'source' => 'web', 'subject' => 'contact', 'subject_label' => 'Contact Form', 'daily_min' => 0, 'daily_max' => 3],
+            ['event_type' => 'form_submit', 'source' => 'web', 'subject' => 'partner-hub', 'subject_label' => 'Partner Hub Inquiry', 'daily_min' => 0, 'daily_max' => 2],
+            ['event_type' => 'portal_login', 'source' => 'web', 'subject' => 'client-portal', 'subject_label' => 'Client Portal', 'daily_min' => 0, 'daily_max' => 2],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -2525,7 +2569,7 @@ return [
                         ['label' => 'Partners', 'route' => 'partner-hub', 'permission' => 'modules.view'],
                         ['label' => 'Marketing', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Insights', 'route' => 'insights', 'permission' => 'modules.view'],
-                        ['label' => 'Analytics', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Analytics', 'route' => 'admin.analytics.index', 'permission' => 'analytics.view'],
                     ],
                 ],
                 [

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             CmsSeeder::class,
             MediaLibrarySeeder::class,
+            AnalyticsSeeder::class,
         ]);
     }
 }

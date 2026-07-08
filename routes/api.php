@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\AnalyticsController;
 use App\Http\Controllers\Api\MediaLibraryController;
 use App\Http\Controllers\Api\CmsController;
 use App\Http\Controllers\Api\ContactController;
@@ -96,6 +97,14 @@ Route::middleware(['web', 'auth', 'permission:media.view'])->prefix('media')->na
     Route::delete('/{uuid}', [MediaLibraryController::class, 'destroy'])
         ->middleware('permission:media.delete')
         ->name('destroy');
+});
+
+Route::post('/analytics/events', [AnalyticsController::class, 'store'])
+    ->middleware(['web', 'throttle:60,1'])
+    ->name('api.analytics.events.store');
+
+Route::middleware(['web', 'auth', 'permission:analytics.view'])->prefix('analytics')->name('api.analytics.')->group(function () {
+    Route::get('/dashboard', [AnalyticsController::class, 'dashboard'])->name('dashboard');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
