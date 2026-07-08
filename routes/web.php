@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\OptimizationController;
 use App\Http\Controllers\Admin\ProjectManagementController;
 use App\Http\Controllers\Admin\CrmController;
 use App\Http\Controllers\Admin\MediaLibraryController;
@@ -177,5 +178,12 @@ Route::middleware(['auth', 'permission:dashboard.access'])
             Route::put('/{reference}/tasks/{taskReference}', [ProjectManagementController::class, 'updateTask'])
                 ->middleware('permission:projects.manage')
                 ->name('tasks.update');
+        });
+
+        Route::middleware('permission:optimization.view')->prefix('optimization')->name('optimization.')->group(function () {
+            Route::get('/', [OptimizationController::class, 'index'])->name('index');
+            Route::post('/actions', [OptimizationController::class, 'runAction'])
+                ->middleware('permission:optimization.manage')
+                ->name('actions');
         });
     });

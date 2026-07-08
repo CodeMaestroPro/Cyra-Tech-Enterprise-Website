@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\OptimizationController as ApiOptimizationController;
 use App\Http\Controllers\Api\ProjectManagementController as ApiProjectManagementController;
 use App\Http\Controllers\Api\CrmController as ApiCrmController;
 use App\Http\Controllers\Api\DashboardController as ApiDashboardController;
@@ -150,6 +151,13 @@ Route::middleware(['web', 'auth', 'permission:projects.view'])->prefix('projects
     Route::put('/{reference}/tasks/{taskReference}', [ApiProjectManagementController::class, 'updateTask'])
         ->middleware('permission:projects.manage')
         ->name('tasks.update');
+});
+
+Route::middleware(['web', 'auth', 'permission:optimization.view'])->prefix('optimization')->name('api.optimization.')->group(function () {
+    Route::get('/dashboard', [ApiOptimizationController::class, 'dashboard'])->name('dashboard');
+    Route::post('/actions', [ApiOptimizationController::class, 'runAction'])
+        ->middleware('permission:optimization.manage')
+        ->name('actions');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');

@@ -43,7 +43,7 @@ return [
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'completed'],
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'completed'],
         ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'completed'],
-        ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'pending'],
+        ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'completed'],
     ],
 
     /*
@@ -86,6 +86,8 @@ return [
                 'projects.create',
                 'projects.update',
                 'projects.manage',
+                'optimization.view',
+                'optimization.manage',
             ],
         ],
         'manager' => [
@@ -100,6 +102,7 @@ return [
                 'analytics.view',
                 'crm.view',
                 'projects.view',
+                'optimization.view',
             ],
         ],
         'editor' => [
@@ -165,6 +168,8 @@ return [
         'projects.create' => ['name' => 'Create Projects', 'group' => 'Project Management'],
         'projects.update' => ['name' => 'Update Projects', 'group' => 'Project Management'],
         'projects.manage' => ['name' => 'Manage Project Tasks', 'group' => 'Project Management'],
+        'optimization.view' => ['name' => 'View Testing & Optimization', 'group' => 'Testing & Optimization'],
+        'optimization.manage' => ['name' => 'Run Optimization Actions', 'group' => 'Testing & Optimization'],
     ],
 
     /*
@@ -2696,6 +2701,122 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Testing & Optimization
+    |--------------------------------------------------------------------------
+    */
+
+    'testing_optimization' => [
+        'health_checks' => [
+            ['slug' => 'application', 'label' => 'Application Runtime', 'description' => 'Laravel application bootstrap and service container.'],
+            ['slug' => 'database', 'label' => 'Database Connectivity', 'description' => 'Primary database connection and query readiness.'],
+            ['slug' => 'storage', 'label' => 'Storage Writable', 'description' => 'Application storage directory permissions.'],
+            ['slug' => 'cache', 'label' => 'Cache Directory', 'description' => 'Bootstrap cache directory availability.'],
+            ['slug' => 'assets', 'label' => 'Compiled Assets', 'description' => 'Vite production build manifest presence.'],
+        ],
+        'performance_checks' => [
+            ['slug' => 'config_cache', 'label' => 'Configuration Cache', 'description' => 'Cached configuration for faster boot times.'],
+            ['slug' => 'route_cache', 'label' => 'Route Cache', 'description' => 'Compiled route map for production routing.'],
+            ['slug' => 'view_cache', 'label' => 'View Cache', 'description' => 'Compiled Blade templates in storage.'],
+            ['slug' => 'compiled_assets', 'label' => 'Frontend Build', 'description' => 'Production CSS and JavaScript bundles.'],
+            ['slug' => 'api_health', 'label' => 'Health Endpoint', 'description' => 'Public API health check route registration.'],
+        ],
+        'seo_checks' => [
+            ['slug' => 'published_cms_pages', 'label' => 'Published CMS Pages', 'description' => 'Legal and editorial pages available publicly.', 'minimum' => 4],
+            ['slug' => 'legal_pages', 'label' => 'Legal Compliance Pages', 'description' => 'Privacy, terms, and cookie policies published.'],
+            ['slug' => 'homepage_route', 'label' => 'Homepage Route', 'description' => 'Primary landing page route registered.'],
+            ['slug' => 'contact_route', 'label' => 'Contact Route', 'description' => 'Lead capture contact page route registered.'],
+            ['slug' => 'sitemap_ready', 'label' => 'Sitemap Readiness', 'description' => 'Published content available for sitemap generation.'],
+        ],
+        'actions' => [
+            [
+                'slug' => 'clear-cache',
+                'label' => 'Clear Application Cache',
+                'description' => 'Flush application, config, route, and view caches.',
+                'command' => 'optimize:clear',
+                'success_message' => 'Application caches cleared successfully.',
+            ],
+            [
+                'slug' => 'cache-config',
+                'label' => 'Cache Configuration',
+                'description' => 'Compile configuration files for production performance.',
+                'command' => 'config:cache',
+                'success_message' => 'Configuration cached successfully.',
+            ],
+            [
+                'slug' => 'cache-routes',
+                'label' => 'Cache Routes',
+                'description' => 'Compile the route map for faster request routing.',
+                'command' => 'route:cache',
+                'success_message' => 'Routes cached successfully.',
+            ],
+            [
+                'slug' => 'cache-views',
+                'label' => 'Cache Views',
+                'description' => 'Pre-compile Blade templates for faster rendering.',
+                'command' => 'view:cache',
+                'success_message' => 'Views cached successfully.',
+            ],
+            [
+                'slug' => 'optimize',
+                'label' => 'Optimize Application',
+                'description' => 'Run Laravel optimize for config, routes, and events.',
+                'command' => 'optimize',
+                'success_message' => 'Application optimized successfully.',
+            ],
+        ],
+        'recommendations' => [
+            [
+                'title' => 'Run full test suite before deployment',
+                'description' => 'Execute php artisan test to validate all 25 modules before production release.',
+                'priority' => 'high',
+            ],
+            [
+                'title' => 'Build production frontend assets',
+                'description' => 'Run npm run build to ensure compiled CSS and JavaScript are current.',
+                'priority' => 'high',
+            ],
+            [
+                'title' => 'Enable route and config caching in production',
+                'description' => 'Use optimization actions after deployment to maximize response performance.',
+                'priority' => 'medium',
+            ],
+        ],
+        'insights' => [
+            'All 25 Cyra-Tech platform modules are tracked with feature test coverage mapping.',
+            'Health, performance, and SEO checks provide a launch-readiness snapshot for enterprise deployment.',
+            'Optimization actions use safe Laravel Artisan commands suitable for staging and production maintenance.',
+        ],
+        'test_suites' => [
+            ['slug' => 'project-initialization', 'label' => 'Project Initialization', 'patterns' => ['Platform', 'Health', 'Initialization']],
+            ['slug' => 'authentication-rbac', 'label' => 'Authentication & RBAC', 'patterns' => ['Login', 'Rbac', 'Auth', 'AdminDashboard', 'DashboardApi']],
+            ['slug' => 'design-system', 'label' => 'Design System', 'patterns' => ['DesignSystem']],
+            ['slug' => 'global-navigation', 'label' => 'Global Navigation', 'patterns' => ['Navigation']],
+            ['slug' => 'homepage', 'label' => 'Homepage', 'patterns' => ['Homepage']],
+            ['slug' => 'about', 'label' => 'About', 'patterns' => ['About']],
+            ['slug' => 'leadership', 'label' => 'Leadership', 'patterns' => ['Leadership']],
+            ['slug' => 'solutions', 'label' => 'Solutions', 'patterns' => ['Solutions']],
+            ['slug' => 'products', 'label' => 'Products', 'patterns' => ['Products']],
+            ['slug' => 'industries', 'label' => 'Industries', 'patterns' => ['Industries']],
+            ['slug' => 'portfolio', 'label' => 'Portfolio', 'patterns' => ['Portfolio']],
+            ['slug' => 'innovation-lab', 'label' => 'Innovation Lab', 'patterns' => ['InnovationLab']],
+            ['slug' => 'community', 'label' => 'Community', 'patterns' => ['Community']],
+            ['slug' => 'insights', 'label' => 'Insights', 'patterns' => ['Insights']],
+            ['slug' => 'careers', 'label' => 'Careers', 'patterns' => ['Careers']],
+            ['slug' => 'contact', 'label' => 'Contact', 'patterns' => ['Contact']],
+            ['slug' => 'partner-hub', 'label' => 'Partner Hub', 'patterns' => ['PartnerHub']],
+            ['slug' => 'client-portal', 'label' => 'Client Portal', 'patterns' => ['ClientPortal']],
+            ['slug' => 'cms', 'label' => 'CMS', 'patterns' => ['Cms']],
+            ['slug' => 'media-library', 'label' => 'Media Library', 'patterns' => ['MediaLibrary']],
+            ['slug' => 'analytics', 'label' => 'Analytics', 'patterns' => ['Analytics']],
+            ['slug' => 'dashboard', 'label' => 'Dashboard', 'patterns' => ['AdminDashboard', 'DashboardApi']],
+            ['slug' => 'crm', 'label' => 'CRM', 'patterns' => ['Crm']],
+            ['slug' => 'project-management', 'label' => 'Project Management', 'patterns' => ['ProjectManagement']],
+            ['slug' => 'testing-optimization', 'label' => 'Testing & Optimization', 'patterns' => ['Optimization']],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Command Center Dashboard
     |--------------------------------------------------------------------------
     */
@@ -2792,6 +2913,7 @@ return [
             ['label' => 'Generate Report', 'icon' => 'report', 'route' => 'admin.analytics.index'],
             ['label' => 'Manage Leads', 'icon' => 'crm', 'route' => 'admin.crm.index'],
             ['label' => 'Manage Projects', 'icon' => 'project', 'route' => 'admin.projects.index'],
+            ['label' => 'QA & Optimization', 'icon' => 'report', 'route' => 'admin.optimization.index'],
         ],
         'upcoming_events' => [
             ['title' => 'Project Review Meeting', 'datetime' => 'Today, 2:00 PM WAT', 'type' => 'meeting'],
@@ -2970,7 +3092,7 @@ return [
                         ['label' => 'Projects', 'route' => 'admin.projects.index', 'permission' => 'projects.view'],
                         ['label' => 'Tasks', 'route' => 'admin.projects.tasks', 'permission' => 'projects.view'],
                         ['label' => 'Calendar', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Reports', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Reports', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
                     ],
                 ],
                 [
@@ -2979,6 +3101,7 @@ return [
                         ['label' => 'Users & Roles', 'permission' => 'roles.view', 'available' => false],
                         ['label' => 'Security', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Logs', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Testing & Optimization', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
                         ['label' => 'Enterprise Settings', 'permission' => 'dashboard.access', 'available' => false],
                     ],
                 ],

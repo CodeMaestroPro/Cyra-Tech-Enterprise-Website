@@ -36,6 +36,7 @@ use App\Services\AuthService;
 use App\Services\CareerService;
 use App\Services\AnalyticsService;
 use App\Services\MediaLibraryService;
+use App\Services\TestingOptimizationService;
 use App\Services\ProjectManagementService;
 use App\Services\CrmService;
 use App\Services\CmsService;
@@ -105,6 +106,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CareerService::class);
         $this->app->singleton(AnalyticsService::class);
         $this->app->singleton(MediaLibraryService::class);
+        $this->app->singleton(TestingOptimizationService::class);
         $this->app->singleton(ProjectManagementService::class);
         $this->app->singleton(CrmService::class);
         $this->app->singleton(CmsService::class);
