@@ -48,6 +48,7 @@ use App\Services\NavigationService;
 use App\Services\PortfolioService;
 use App\Services\ProductService;
 use App\Services\SolutionService;
+use App\Services\DashboardService;
 use App\Services\PlatformService;
 use App\Services\RoleService;
 use Illuminate\Support\Facades\Gate;
@@ -80,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(PermissionRepository::class);
         $this->app->singleton(RoleRepository::class);
         $this->app->singleton(UserRepository::class);
+        $this->app->singleton(DashboardService::class);
         $this->app->singleton(PlatformService::class);
         $this->app->singleton(NavigationService::class);
         $this->app->singleton(HomepageService::class);

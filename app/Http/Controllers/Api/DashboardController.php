@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
-use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class DashboardController extends Controller
 {
@@ -13,10 +13,11 @@ class DashboardController extends Controller
     ) {
     }
 
-    public function __invoke(): View
+    public function show(): JsonResponse
     {
-        return view('admin.dashboard.index', [
-            'dashboard' => $this->dashboardService->getCommandCenter(auth()->user()),
+        return response()->json([
+            'success' => true,
+            'data' => $this->dashboardService->getCommandCenter(auth()->user()),
         ]);
     }
 }

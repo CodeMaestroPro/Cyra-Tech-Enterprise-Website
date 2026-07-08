@@ -24,7 +24,7 @@ class AdminDashboardTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    public function test_authenticated_admin_can_access_dashboard(): void
+    public function test_authenticated_admin_can_access_command_center_dashboard(): void
     {
         $user = User::query()->where('email', config('cyra.admin.email'))->firstOrFail();
 
@@ -33,7 +33,18 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('admin.dashboard.index')
-            ->assertSee('Authentication & RBAC Active')
+            ->assertSee('Command Center')
+            ->assertSee('AI Executive Brief')
+            ->assertSee('Company Pulse')
+            ->assertSee('Recent Activities')
             ->assertSee($user->name);
+    }
+
+    public function test_manager_can_access_command_center_dashboard(): void
+    {
+        $manager = User::factory()->create(['email' => 'manager-dashboard@cyratech.com']);
+        $manager->syncRoles(['manager']);
+
+        $this->actingAs($manager)->get(route('admin.dashboard'))->assertOk();
     }
 }

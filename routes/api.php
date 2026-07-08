@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\DashboardController as ApiDashboardController;
 use App\Http\Controllers\Api\AnalyticsController;
 use App\Http\Controllers\Api\MediaLibraryController;
 use App\Http\Controllers\Api\CmsController;
@@ -97,6 +98,10 @@ Route::middleware(['web', 'auth', 'permission:media.view'])->prefix('media')->na
     Route::delete('/{uuid}', [MediaLibraryController::class, 'destroy'])
         ->middleware('permission:media.delete')
         ->name('destroy');
+});
+
+Route::middleware(['web', 'auth', 'permission:dashboard.access'])->group(function () {
+    Route::get('/dashboard', [ApiDashboardController::class, 'show'])->name('api.dashboard.show');
 });
 
 Route::post('/analytics/events', [AnalyticsController::class, 'store'])

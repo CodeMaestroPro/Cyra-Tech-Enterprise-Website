@@ -40,7 +40,7 @@ return [
         ['id' => 19, 'slug' => 'cms', 'name' => 'CMS', 'status' => 'completed'],
         ['id' => 20, 'slug' => 'media-library', 'name' => 'Media Library', 'status' => 'completed'],
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'completed'],
-        ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'pending'],
+        ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'completed'],
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'pending'],
         ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'pending'],
         ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'pending'],
@@ -2439,6 +2439,134 @@ return [
             ['event_type' => 'form_submit', 'source' => 'web', 'subject' => 'contact', 'subject_label' => 'Contact Form', 'daily_min' => 0, 'daily_max' => 3],
             ['event_type' => 'form_submit', 'source' => 'web', 'subject' => 'partner-hub', 'subject_label' => 'Partner Hub Inquiry', 'daily_min' => 0, 'daily_max' => 2],
             ['event_type' => 'portal_login', 'source' => 'web', 'subject' => 'client-portal', 'subject_label' => 'Client Portal', 'daily_min' => 0, 'daily_max' => 2],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Command Center Dashboard
+    |--------------------------------------------------------------------------
+    */
+
+    'command_center' => [
+        'analytics_range_days' => 30,
+        'kpis' => [
+            [
+                'slug' => 'company-health',
+                'label' => 'Company Health',
+                'value' => 'Excellent',
+                'change' => '+12.5%',
+                'positive' => true,
+                'accent' => 'success',
+            ],
+            [
+                'slug' => 'projects-running',
+                'label' => 'Projects Running',
+                'value' => '26',
+                'change' => '+8.1%',
+                'positive' => true,
+                'accent' => 'primary',
+            ],
+            [
+                'slug' => 'revenue-growth',
+                'label' => 'Revenue Growth',
+                'value' => '₦45.8M',
+                'change' => '+18.3%',
+                'positive' => true,
+                'accent' => 'accent',
+            ],
+            [
+                'slug' => 'new-leads',
+                'label' => 'New Leads',
+                'value' => '14',
+                'change' => '+20.5%',
+                'positive' => true,
+                'accent' => 'purple',
+            ],
+            [
+                'slug' => 'community-reach',
+                'label' => 'Community Reach',
+                'value' => '1.2M',
+                'change' => '+15.7%',
+                'positive' => true,
+                'accent' => 'warning',
+            ],
+        ],
+        'executive_brief' => [
+            'title' => 'AI Executive Brief',
+            'subtitle' => 'Daily Summary',
+            'summary' => [
+                'Partnership requests increased across the Partner Hub with :form_submissions qualified submissions this period.',
+                'Enterprise leads from Solutions and Contact pages remain strong with :page_views page views tracked.',
+                'Client portal login activity confirms healthy engagement across assigned enterprise accounts.',
+                'Conversion rate is holding at :conversion_rate with CMS legal pages driving steady compliance traffic.',
+                'Revenue pipeline indicators remain on track for the current quarter targets.',
+            ],
+            'action_label' => 'Open Executive Report',
+        ],
+        'company_pulse' => [
+            'metrics' => [
+                ['label' => 'Financial Health', 'score' => 92],
+                ['label' => 'Operational Efficiency', 'score' => 85],
+                ['label' => 'Project Delivery', 'score' => 88],
+                ['label' => 'Client Satisfaction', 'score' => 90],
+                ['label' => 'Team Productivity', 'score' => 78],
+                ['label' => 'Innovation Index', 'score' => 83],
+            ],
+        ],
+        'website_analytics' => [
+            'title' => 'Website Analytics Overview',
+            'range_label' => 'Last 30 Days',
+            'metrics' => [
+                ['label' => 'Visitors', 'change' => '+23.5%'],
+                ['label' => 'Page Views', 'change' => '+18.2%'],
+                ['label' => 'Bounce Rate', 'value' => '32.6%', 'change' => '-5.3%'],
+                ['label' => 'Avg. Session', 'value' => '04:35', 'change' => '+12.6%'],
+            ],
+        ],
+        'projects' => [
+            ['name' => 'MediCore System', 'client' => 'MediCore Health', 'status' => 'In Progress', 'status_variant' => 'primary', 'progress' => 72],
+            ['name' => 'AgroSmart Platform', 'client' => 'AgroSmart', 'status' => 'In Progress', 'status_variant' => 'primary', 'progress' => 58],
+            ['name' => 'EduSmart Portal', 'client' => 'EduSmart', 'status' => 'Completed', 'status_variant' => 'success', 'progress' => 100],
+            ['name' => 'CyraCRM Rollout', 'client' => 'Internal', 'status' => 'In Progress', 'status_variant' => 'primary', 'progress' => 46],
+            ['name' => 'TechNova Integration', 'client' => 'TechNova', 'status' => 'In Progress', 'status_variant' => 'primary', 'progress' => 63],
+        ],
+        'quick_actions' => [
+            ['label' => 'Add New Project', 'icon' => 'project', 'route' => 'portfolio'],
+            ['label' => 'Create Blog Post', 'icon' => 'post', 'route' => 'admin.cms.create'],
+            ['label' => 'Add New User', 'icon' => 'user', 'route' => 'admin.dashboard'],
+            ['label' => 'Upload Media', 'icon' => 'media', 'route' => 'admin.media.index'],
+            ['label' => 'Create Career', 'icon' => 'career', 'route' => 'careers'],
+            ['label' => 'Generate Report', 'icon' => 'report', 'route' => 'admin.analytics.index'],
+        ],
+        'upcoming_events' => [
+            ['title' => 'Project Review Meeting', 'datetime' => 'Today, 2:00 PM WAT', 'type' => 'meeting'],
+            ['title' => 'Partnership Discussion', 'datetime' => 'Tomorrow, 10:30 AM WAT', 'type' => 'call'],
+            ['title' => 'Community Program Launch', 'datetime' => 'Thu, 3:00 PM WAT', 'type' => 'event'],
+            ['title' => 'Board Strategy Meeting', 'datetime' => 'Fri, 9:00 AM WAT', 'type' => 'meeting'],
+        ],
+        'tasks' => [
+            ['title' => 'Review MediCore project proposal', 'status' => 'pending', 'due' => 'Due today'],
+            ['title' => 'Approve new partnership request', 'status' => 'pending', 'due' => 'Due today'],
+            ['title' => 'Publish updated privacy policy page', 'status' => 'completed', 'due' => 'Completed'],
+            ['title' => 'Upload Innovation Lab media assets', 'status' => 'pending', 'due' => 'Due tomorrow'],
+        ],
+        'system_status' => [
+            'title' => 'System Status',
+            'services' => [
+                ['slug' => 'website', 'label' => 'Website', 'status' => 'operational'],
+                ['slug' => 'api', 'label' => 'API Services', 'status' => 'operational'],
+                ['slug' => 'database', 'label' => 'Database', 'status' => 'operational'],
+                ['slug' => 'server', 'label' => 'Server', 'status' => 'operational'],
+            ],
+        ],
+        'recent_activities' => [
+            ['title' => 'New project: MediCore System', 'actor' => 'Collins Pever', 'time' => '2 hours ago', 'type' => 'project'],
+            ['title' => 'New user registered', 'actor' => 'john@medicorp.com', 'time' => '4 hours ago', 'type' => 'user'],
+            ['title' => 'Blog post published', 'actor' => 'Admin', 'time' => '6 hours ago', 'type' => 'content'],
+            ['title' => 'New application for UI/UX Designer', 'actor' => 'Careers', 'time' => '8 hours ago', 'type' => 'career'],
+            ['title' => 'Contact message from TechNova', 'actor' => 'Contact', 'time' => '10 hours ago', 'type' => 'lead'],
+            ['title' => 'File uploaded: project-brief.pdf', 'actor' => 'Media Library', 'time' => '12 hours ago', 'type' => 'media'],
         ],
     ],
 
