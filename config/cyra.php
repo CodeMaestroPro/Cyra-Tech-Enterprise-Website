@@ -42,7 +42,7 @@ return [
         ['id' => 21, 'slug' => 'analytics', 'name' => 'Analytics', 'status' => 'completed'],
         ['id' => 22, 'slug' => 'dashboard', 'name' => 'Dashboard', 'status' => 'completed'],
         ['id' => 23, 'slug' => 'crm', 'name' => 'CRM', 'status' => 'completed'],
-        ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'pending'],
+        ['id' => 24, 'slug' => 'project-management', 'name' => 'Project Management', 'status' => 'completed'],
         ['id' => 25, 'slug' => 'testing-optimization', 'name' => 'Testing & Optimization', 'status' => 'pending'],
     ],
 
@@ -82,6 +82,10 @@ return [
                 'crm.create',
                 'crm.update',
                 'crm.manage',
+                'projects.view',
+                'projects.create',
+                'projects.update',
+                'projects.manage',
             ],
         ],
         'manager' => [
@@ -95,6 +99,7 @@ return [
                 'media.view',
                 'analytics.view',
                 'crm.view',
+                'projects.view',
             ],
         ],
         'editor' => [
@@ -156,6 +161,10 @@ return [
         'crm.create' => ['name' => 'Create CRM Leads', 'group' => 'CRM'],
         'crm.update' => ['name' => 'Update CRM Leads', 'group' => 'CRM'],
         'crm.manage' => ['name' => 'Manage CRM Pipeline', 'group' => 'CRM'],
+        'projects.view' => ['name' => 'View Projects', 'group' => 'Project Management'],
+        'projects.create' => ['name' => 'Create Projects', 'group' => 'Project Management'],
+        'projects.update' => ['name' => 'Update Projects', 'group' => 'Project Management'],
+        'projects.manage' => ['name' => 'Manage Project Tasks', 'group' => 'Project Management'],
     ],
 
     /*
@@ -2562,6 +2571,131 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Project Management
+    |--------------------------------------------------------------------------
+    */
+
+    'project_management' => [
+        'statuses' => [
+            ['slug' => 'planning', 'label' => 'Planning', 'variant' => 'warning'],
+            ['slug' => 'in-progress', 'label' => 'In Progress', 'variant' => 'primary'],
+            ['slug' => 'on-hold', 'label' => 'On Hold', 'variant' => 'purple'],
+            ['slug' => 'completed', 'label' => 'Completed', 'variant' => 'success'],
+            ['slug' => 'cancelled', 'label' => 'Cancelled', 'variant' => 'danger'],
+        ],
+        'phases' => [
+            ['slug' => 'discovery', 'label' => 'Discovery'],
+            ['slug' => 'design', 'label' => 'Design'],
+            ['slug' => 'development', 'label' => 'Development'],
+            ['slug' => 'testing', 'label' => 'Testing'],
+            ['slug' => 'deployment', 'label' => 'Deployment'],
+            ['slug' => 'support', 'label' => 'Support'],
+        ],
+        'priorities' => [
+            ['slug' => 'low', 'label' => 'Low'],
+            ['slug' => 'medium', 'label' => 'Medium'],
+            ['slug' => 'high', 'label' => 'High'],
+            ['slug' => 'critical', 'label' => 'Critical'],
+        ],
+        'task_statuses' => [
+            ['slug' => 'pending', 'label' => 'Pending'],
+            ['slug' => 'in-progress', 'label' => 'In Progress'],
+            ['slug' => 'review', 'label' => 'In Review'],
+            ['slug' => 'completed', 'label' => 'Completed'],
+            ['slug' => 'blocked', 'label' => 'Blocked'],
+        ],
+        'seed_projects' => [
+            [
+                'reference' => 'PRJ-SEED-001',
+                'name' => 'MediCore System',
+                'client_name' => 'MediCore Health',
+                'description' => 'Unified patient data platform rollout with analytics and compliance modules.',
+                'status' => 'in-progress',
+                'phase' => 'development',
+                'priority' => 'high',
+                'progress' => 72,
+                'budget' => 18500000,
+                'started_days_ago' => 45,
+                'due_in_days' => 30,
+                'tasks' => [
+                    ['reference' => 'TSK-SEED-001', 'title' => 'Finalize integration architecture', 'status' => 'completed', 'priority' => 'high', 'due_in_days' => -5],
+                    ['reference' => 'TSK-SEED-002', 'title' => 'Deploy staging environment', 'status' => 'in-progress', 'priority' => 'high', 'due_in_days' => 3],
+                    ['reference' => 'TSK-SEED-003', 'title' => 'Client UAT sign-off', 'status' => 'pending', 'priority' => 'medium', 'due_in_days' => 14],
+                ],
+            ],
+            [
+                'reference' => 'PRJ-SEED-002',
+                'name' => 'AgroSmart Platform',
+                'client_name' => 'AgroSmart',
+                'description' => 'IoT-enabled agricultural operations dashboard and supply chain visibility.',
+                'status' => 'in-progress',
+                'phase' => 'development',
+                'priority' => 'medium',
+                'progress' => 58,
+                'budget' => 9200000,
+                'started_days_ago' => 30,
+                'due_in_days' => 45,
+                'tasks' => [
+                    ['reference' => 'TSK-SEED-004', 'title' => 'Sensor data ingestion pipeline', 'status' => 'in-progress', 'priority' => 'high', 'due_in_days' => 7],
+                    ['reference' => 'TSK-SEED-005', 'title' => 'Field operations dashboard', 'status' => 'pending', 'priority' => 'medium', 'due_in_days' => 21],
+                ],
+            ],
+            [
+                'reference' => 'PRJ-SEED-003',
+                'name' => 'EduSmart Portal',
+                'client_name' => 'EduSmart',
+                'description' => 'Learning management portal with analytics and parent engagement modules.',
+                'status' => 'completed',
+                'phase' => 'support',
+                'priority' => 'medium',
+                'progress' => 100,
+                'budget' => 6400000,
+                'started_days_ago' => 120,
+                'due_in_days' => -10,
+                'tasks' => [
+                    ['reference' => 'TSK-SEED-006', 'title' => 'Production launch', 'status' => 'completed', 'priority' => 'high', 'due_in_days' => -15],
+                    ['reference' => 'TSK-SEED-007', 'title' => 'Post-launch support handover', 'status' => 'completed', 'priority' => 'medium', 'due_in_days' => -5],
+                ],
+            ],
+            [
+                'reference' => 'PRJ-SEED-004',
+                'name' => 'CyraCRM Rollout',
+                'client_name' => 'Internal',
+                'description' => 'Internal CRM and lead pipeline deployment across Cyra-Tech growth teams.',
+                'status' => 'in-progress',
+                'phase' => 'deployment',
+                'priority' => 'high',
+                'progress' => 46,
+                'budget' => 3500000,
+                'started_days_ago' => 14,
+                'due_in_days' => 28,
+                'tasks' => [
+                    ['reference' => 'TSK-SEED-008', 'title' => 'Sales team onboarding', 'status' => 'in-progress', 'priority' => 'high', 'due_in_days' => 5],
+                    ['reference' => 'TSK-SEED-009', 'title' => 'CRM analytics integration', 'status' => 'pending', 'priority' => 'medium', 'due_in_days' => 12],
+                ],
+            ],
+            [
+                'reference' => 'PRJ-SEED-005',
+                'name' => 'TechNova Integration',
+                'client_name' => 'TechNova',
+                'description' => 'Enterprise API integration and middleware modernization program.',
+                'status' => 'in-progress',
+                'phase' => 'testing',
+                'priority' => 'high',
+                'progress' => 63,
+                'budget' => 11200000,
+                'started_days_ago' => 60,
+                'due_in_days' => 20,
+                'tasks' => [
+                    ['reference' => 'TSK-SEED-010', 'title' => 'API contract validation', 'status' => 'review', 'priority' => 'high', 'due_in_days' => 2],
+                    ['reference' => 'TSK-SEED-011', 'title' => 'Performance benchmarking', 'status' => 'in-progress', 'priority' => 'medium', 'due_in_days' => 9],
+                ],
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Command Center Dashboard
     |--------------------------------------------------------------------------
     */
@@ -2650,13 +2784,14 @@ return [
             ['name' => 'TechNova Integration', 'client' => 'TechNova', 'status' => 'In Progress', 'status_variant' => 'primary', 'progress' => 63],
         ],
         'quick_actions' => [
-            ['label' => 'Add New Project', 'icon' => 'project', 'route' => 'portfolio'],
+            ['label' => 'Add New Project', 'icon' => 'project', 'route' => 'admin.projects.create'],
             ['label' => 'Create Blog Post', 'icon' => 'post', 'route' => 'admin.cms.create'],
             ['label' => 'Add New User', 'icon' => 'user', 'route' => 'admin.dashboard'],
             ['label' => 'Upload Media', 'icon' => 'media', 'route' => 'admin.media.index'],
             ['label' => 'Create Career', 'icon' => 'career', 'route' => 'careers'],
             ['label' => 'Generate Report', 'icon' => 'report', 'route' => 'admin.analytics.index'],
             ['label' => 'Manage Leads', 'icon' => 'crm', 'route' => 'admin.crm.index'],
+            ['label' => 'Manage Projects', 'icon' => 'project', 'route' => 'admin.projects.index'],
         ],
         'upcoming_events' => [
             ['title' => 'Project Review Meeting', 'datetime' => 'Today, 2:00 PM WAT', 'type' => 'meeting'],
@@ -2832,8 +2967,8 @@ return [
                 [
                     'label' => 'Operations',
                     'items' => [
-                        ['label' => 'Projects', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Tasks', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Projects', 'route' => 'admin.projects.index', 'permission' => 'projects.view'],
+                        ['label' => 'Tasks', 'route' => 'admin.projects.tasks', 'permission' => 'projects.view'],
                         ['label' => 'Calendar', 'permission' => 'dashboard.access', 'available' => false],
                         ['label' => 'Reports', 'permission' => 'dashboard.access', 'available' => false],
                     ],

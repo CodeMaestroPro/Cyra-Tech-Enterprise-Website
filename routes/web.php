@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\ProjectManagementController;
 use App\Http\Controllers\Admin\CrmController;
 use App\Http\Controllers\Admin\MediaLibraryController;
 use App\Http\Controllers\Admin\CmsController;
@@ -152,5 +153,29 @@ Route::middleware(['auth', 'permission:dashboard.access'])
             Route::post('/inquiries/{inquiry}/convert', [CrmController::class, 'convertInquiry'])
                 ->middleware('permission:crm.create')
                 ->name('inquiries.convert');
+        });
+
+        Route::middleware('permission:projects.view')->prefix('projects')->name('projects.')->group(function () {
+            Route::get('/', [ProjectManagementController::class, 'index'])->name('index');
+            Route::get('/tasks', [ProjectManagementController::class, 'tasks'])->name('tasks');
+            Route::get('/create', [ProjectManagementController::class, 'create'])
+                ->middleware('permission:projects.create')
+                ->name('create');
+            Route::post('/', [ProjectManagementController::class, 'store'])
+                ->middleware('permission:projects.create')
+                ->name('store');
+            Route::get('/{reference}/edit', [ProjectManagementController::class, 'edit'])->name('edit');
+            Route::put('/{reference}', [ProjectManagementController::class, 'update'])
+                ->middleware('permission:projects.update')
+                ->name('update');
+            Route::post('/{reference}/progress', [ProjectManagementController::class, 'updateProgress'])
+                ->middleware('permission:projects.manage')
+                ->name('progress');
+            Route::post('/{reference}/tasks', [ProjectManagementController::class, 'storeTask'])
+                ->middleware('permission:projects.manage')
+                ->name('tasks.store');
+            Route::put('/{reference}/tasks/{taskReference}', [ProjectManagementController::class, 'updateTask'])
+                ->middleware('permission:projects.manage')
+                ->name('tasks.update');
         });
     });

@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             MediaLibrarySeeder::class,
             AnalyticsSeeder::class,
             CrmSeeder::class,
+            ProjectManagementSeeder::class,
         ]);
     }
 }

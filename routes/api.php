@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CareersController;
+use App\Http\Controllers\Api\ProjectManagementController as ApiProjectManagementController;
 use App\Http\Controllers\Api\CrmController as ApiCrmController;
 use App\Http\Controllers\Api\DashboardController as ApiDashboardController;
 use App\Http\Controllers\Api\AnalyticsController;
@@ -128,6 +129,27 @@ Route::middleware(['web', 'auth', 'permission:crm.view'])->prefix('crm')->name('
     Route::post('/inquiries/{inquiry}/convert', [ApiCrmController::class, 'convertInquiry'])
         ->middleware('permission:crm.create')
         ->name('inquiries.convert');
+});
+
+Route::middleware(['web', 'auth', 'permission:projects.view'])->prefix('projects')->name('api.projects.')->group(function () {
+    Route::get('/', [ApiProjectManagementController::class, 'index'])->name('index');
+    Route::get('/tasks', [ApiProjectManagementController::class, 'tasks'])->name('tasks');
+    Route::get('/{reference}', [ApiProjectManagementController::class, 'show'])->name('show');
+    Route::post('/', [ApiProjectManagementController::class, 'store'])
+        ->middleware('permission:projects.create')
+        ->name('store');
+    Route::put('/{reference}', [ApiProjectManagementController::class, 'update'])
+        ->middleware('permission:projects.update')
+        ->name('update');
+    Route::patch('/{reference}/progress', [ApiProjectManagementController::class, 'updateProgress'])
+        ->middleware('permission:projects.manage')
+        ->name('progress');
+    Route::post('/{reference}/tasks', [ApiProjectManagementController::class, 'storeTask'])
+        ->middleware('permission:projects.manage')
+        ->name('tasks.store');
+    Route::put('/{reference}/tasks/{taskReference}', [ApiProjectManagementController::class, 'updateTask'])
+        ->middleware('permission:projects.manage')
+        ->name('tasks.update');
 });
 
 Route::get('/design-system/tokens', [DesignSystemController::class, 'tokens'])->name('api.design-system.tokens');
