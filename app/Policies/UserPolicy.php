@@ -28,6 +28,11 @@ class UserPolicy
 
     public function delete(User $user, User $model): bool
     {
-        return $user->hasPermission('users.delete');
+        return $user->hasPermission('users.delete') && $user->id !== $model->id;
+    }
+
+    public function assignRoles(User $user): bool
+    {
+        return $user->hasPermission('roles.manage');
     }
 }

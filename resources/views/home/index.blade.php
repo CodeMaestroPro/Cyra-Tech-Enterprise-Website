@@ -44,6 +44,15 @@
                 @case('split-feature')
                     <x-homepage.split-feature :section="$section" />
                     @break
+                @case('solutions-ecosystem')
+                    <x-homepage.solutions-ecosystem :section="$section" />
+                    @break
+                @case('featured-products')
+                    <x-homepage.featured-products :section="$section" />
+                    @break
+                @case('commitment')
+                    <x-homepage.commitment :section="$section" />
+                    @break
                 @case('cta-band')
                     <x-homepage.cta-band :section="$section" />
                     @break

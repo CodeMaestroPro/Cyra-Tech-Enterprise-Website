@@ -17,7 +17,7 @@ class DesignSystemApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('success', true)
             ->assertJsonPath('data.stack', 'Blade + JavaScript + Tailwind CSS 4')
-            ->assertJsonPath('data.colors.primary', '#2563eb')
+            ->assertJsonPath('data.colors.primary', '#0052ff')
             ->assertJsonStructure([
                 'success',
                 'data' => [

@@ -3,21 +3,21 @@
 ])
 
 @php
-    $brand = $navigation['brand'] ?? config('cyra.navigation.brand', []);
     $headerLinks = $navigation['header'] ?? [];
     $actions = $navigation['actions'] ?? [];
+    $publicSearchIndex = $publicSearchIndex ?? [];
 @endphp
 
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-cyra-primary focus:px-4 focus:py-2 focus:text-white">
     Skip to main content
 </a>
 
-<header class="sticky top-0 z-40 border-b border-cyra-border/80 bg-cyra-midnight/95 backdrop-blur-md" data-navigation-header>
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-3">
+<header class="cyra-header-glass sticky top-0 z-40" data-navigation-header>
+    <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:px-8">
+        <div class="flex min-w-0 items-center gap-2 sm:gap-3 lg:flex-1">
             <button
                 type="button"
-                class="inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-surface hover:text-cyra-text lg:hidden"
+                class="inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-soft hover:text-cyra-text xl:hidden"
                 aria-controls="mobile-navigation"
                 aria-expanded="false"
                 data-mobile-nav-toggle
@@ -28,24 +28,16 @@
                 </svg>
             </button>
 
-            <a href="{{ route('home') }}" class="group flex items-center gap-2" aria-label="{{ $brand['name'] ?? config('cyra.name') }} home">
-                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-cyra-primary to-cyra-accent text-sm font-bold text-white">
-                    C
-                </span>
-                <span class="text-lg font-bold tracking-tight text-cyra-text">
-                    CYRA<span class="text-cyra-accent">{{ $brand['accent'] ?? 'TECH' }}</span>
-                </span>
-            </a>
+            <x-brand.logo size="sm" variant="compact" class="min-w-0" />
         </div>
 
-        <nav class="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
+        <nav class="hidden flex-1 items-center justify-center gap-0.5 xl:flex" aria-label="Primary navigation">
             @foreach ($headerLinks as $link)
                 <a
                     href="{{ $link['url'] }}"
                     @class([
-                        'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                        'bg-cyra-surface text-cyra-text' => $link['active'],
-                        'text-cyra-muted hover:bg-cyra-surface/60 hover:text-cyra-text' => ! $link['active'],
+                        'cyra-nav-link',
+                        'cyra-nav-link-active' => $link['active'],
                     ])
                     @if ($link['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
                 >
@@ -54,38 +46,36 @@
             @endforeach
         </nav>
 
-        <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex flex-1 items-center justify-end gap-2 sm:gap-3">
             <button
                 type="button"
-                class="hidden rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-surface hover:text-cyra-text sm:inline-flex"
-                aria-label="Search (coming soon)"
-                disabled
+                class="inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text"
+                aria-label="Search site"
+                aria-controls="public-nav-search"
+                aria-expanded="false"
+                data-public-nav-search-open
             >
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </button>
 
-            <button
-                type="button"
-                class="hidden rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-surface hover:text-cyra-text md:inline-flex"
-                aria-label="Theme toggle (coming soon)"
-                disabled
-            >
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-            </button>
+            <x-theme.toggle class="hidden md:inline-flex" />
 
             @foreach ($actions as $action)
-                @if (($action['style'] ?? 'link') === 'button')
-                    <x-ui.button href="{{ $action['url'] }}" size="sm">
+                @php($style = $action['style'] ?? 'link')
+                @if ($style === 'button')
+                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="hidden sm:inline-flex">
+                        {{ $action['label'] }}
+                    </x-ui.button>
+                @elseif ($style === 'outline')
+                    <x-ui.button href="{{ $action['url'] }}" variant="outline" size="sm" class="hidden sm:inline-flex">
                         {{ $action['label'] }}
                     </x-ui.button>
                 @else
                     <a
                         href="{{ $action['url'] }}"
-                        class="hidden text-sm font-medium text-cyra-muted transition-colors hover:text-cyra-accent sm:inline-flex"
+                        class="hidden text-sm font-medium text-cyra-muted transition-colors hover:text-cyra-primary sm:inline-flex"
                         @if ($action['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
                     >
                         {{ $action['label'] }}
@@ -95,5 +85,66 @@
         </div>
     </div>
 </header>
+
+<div
+    id="public-nav-search"
+    class="fixed inset-0 z-[60] hidden"
+    data-public-nav-search-panel
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search site navigation"
+>
+    <div class="absolute inset-0 bg-cyra-midnight/80 backdrop-blur-sm" data-public-nav-search-backdrop></div>
+
+    <div class="relative mx-auto flex min-h-full w-full max-w-2xl items-start justify-center px-3 pb-6 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4 sm:pt-[12vh]">
+        <div class="w-full overflow-hidden rounded-2xl border border-cyra-border bg-cyra-surface shadow-2xl shadow-black/30">
+            <div class="flex items-center gap-3 border-b border-cyra-border px-3 py-3 sm:px-4">
+                <label class="relative min-w-0 flex-1">
+                    <span class="sr-only">Search pages and sections</span>
+                    <input
+                        type="search"
+                        placeholder="Search pages, solutions, careers..."
+                        autocomplete="off"
+                        role="combobox"
+                        aria-autocomplete="list"
+                        aria-expanded="false"
+                        aria-controls="public-nav-search-results"
+                        data-public-nav-search-input
+                        class="w-full rounded-lg border border-cyra-border bg-cyra-navy px-4 py-2.5 pl-10 text-sm text-cyra-text placeholder:text-cyra-muted focus:border-cyra-primary focus:outline-none focus:ring-2 focus:ring-cyra-primary/30"
+                    />
+                    <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-cyra-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+                    </svg>
+                </label>
+
+                <button
+                    type="button"
+                    class="inline-flex shrink-0 items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text"
+                    aria-label="Close search"
+                    data-public-nav-search-close
+                >
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div
+                id="public-nav-search-results"
+                data-public-nav-search-results
+                hidden
+                class="max-h-[min(60vh,28rem)] overflow-y-auto"
+                role="listbox"
+            ></div>
+
+            <p class="hidden border-t border-cyra-border px-4 py-2 text-xs text-cyra-muted sm:block">
+                Tip: Press <kbd class="rounded border border-cyra-border px-1.5 py-0.5 font-mono text-[10px]">Ctrl</kbd>+<kbd class="rounded border border-cyra-border px-1.5 py-0.5 font-mono text-[10px]">K</kbd> anywhere to search.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="application/json" id="public-navigation-index">@json($publicSearchIndex)</script>
 
 @include('components.navigation.mobile-menu', ['navigation' => $navigation])

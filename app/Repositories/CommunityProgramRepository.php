@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\CommunityProgram;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class CommunityProgramRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(CommunityProgram $model)
     {
         parent::__construct($model);

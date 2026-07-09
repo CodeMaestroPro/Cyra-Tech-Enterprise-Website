@@ -14,21 +14,21 @@
 @endphp
 
 <section @class([
-    'border-b border-cyra-border/60 py-16',
-    'bg-cyra-navy/20' => ($section['slug'] ?? '') === 'industries',
+    'cyra-section border-b border-cyra-border/60',
+    'bg-cyra-soft' => ($section['slug'] ?? '') === 'industries',
 ]) aria-labelledby="homepage-{{ $section['slug'] }}-title">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="cyra-container">
         <x-ui.section-heading
             :eyebrow="$section['eyebrow'] ?? null"
             :title="$section['title'] ?? ''"
             :description="$section['description'] ?? null"
             id="homepage-{{ $section['slug'] }}-title"
-            class="mb-10"
+            class="cyra-section-heading"
         />
 
-        <div @class(['grid gap-6', $gridClass])>
+        <div @class(['grid gap-6', $gridClass]) data-animate-stagger>
             @foreach ($items as $item)
-                <article class="cyra-card flex h-full flex-col p-6">
+                <article class="cyra-card-interactive flex h-full flex-col p-5 sm:p-6" data-animate="fade-up">
                     <div class="flex items-start justify-between gap-3">
                         <h3 class="text-lg font-semibold text-cyra-text">{{ $item['title'] }}</h3>
                         @if (! empty($item['badge']))
@@ -43,7 +43,7 @@
                         <p class="mt-4 text-xs uppercase tracking-wide text-cyra-muted">{{ $item['meta'] }}</p>
                     @endif
                     @if (! empty($item['route']))
-                        <a href="{{ route($item['route']) }}" class="mt-4 text-sm font-medium text-cyra-accent hover:text-cyra-primary">
+                        <a href="{{ route($item['route']) }}" class="mt-4 text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover">
                             Read more →
                         </a>
                     @endif

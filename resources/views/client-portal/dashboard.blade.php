@@ -11,7 +11,7 @@
     @endphp
 
     <section aria-label="Client portal dashboard">
-        <header class="mb-8">
+        <header class="cyra-section-heading">
             <p class="text-sm font-medium uppercase tracking-[0.2em] text-cyra-accent">Client Portal</p>
             <h1 class="mt-2 text-2xl font-bold text-cyra-text">{{ $account['name'] ?? 'Dashboard' }}</h1>
             <p class="mt-2 max-w-3xl text-sm text-cyra-muted">

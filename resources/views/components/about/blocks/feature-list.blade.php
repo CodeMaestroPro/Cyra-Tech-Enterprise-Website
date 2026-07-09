@@ -1,6 +1,6 @@
 @props(['block'])
 
-<section class="py-10">
+<section>
     @if (! empty($block['title']))
         <h2 class="cyra-heading-3 mb-6">{{ $block['title'] }}</h2>
     @endif

@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\ProductOffering;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProductOfferingRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(ProductOffering $model)
     {
         parent::__construct($model);

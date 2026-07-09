@@ -12,7 +12,7 @@
     <x-ui.section-heading
         title="Create Project"
         description="Add a new enterprise delivery program to the Cyra-Tech project portfolio."
-        class="mb-8"
+        class="cyra-section-heading"
     />
 
     @include('admin.projects._form', [

@@ -9,7 +9,7 @@
             ['label' => $engagement['title']],
         ]" class="mb-6" />
 
-        <header class="mb-8">
+        <header class="cyra-section-heading">
             <div class="flex flex-wrap items-center gap-2">
                 <x-ui.badge variant="primary">{{ $engagement['phase'] }}</x-ui.badge>
                 <x-ui.badge variant="purple">{{ $engagement['status_label'] }}</x-ui.badge>
@@ -65,7 +65,7 @@
                 @if (! empty($engagement['portfolio_slug']))
                     <div class="mt-6 border-t border-cyra-border/60 pt-4">
                         <p class="text-xs uppercase tracking-wide text-cyra-muted">Related Case Study</p>
-                        <a href="{{ route('portfolio.show', $engagement['portfolio_slug']) }}" class="mt-2 inline-block text-sm font-medium text-cyra-accent hover:text-cyra-primary">
+                        <a href="{{ route('portfolio.show', $engagement['portfolio_slug']) }}" class="mt-2 inline-block text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover">
                             View portfolio project →
                         </a>
                     </div>

@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\CareerOpening;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class CareerOpeningRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(CareerOpening $model)
     {
         parent::__construct($model);

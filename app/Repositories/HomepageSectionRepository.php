@@ -22,4 +22,14 @@ class HomepageSectionRepository extends BaseRepository
             ->orderBy('sort_order')
             ->get();
     }
+
+    /**
+     * @return Collection<int, HomepageSection>
+     */
+    public function getAllSections(): Collection
+    {
+        return $this->model->newQuery()
+            ->orderBy('sort_order')
+            ->get();
+    }
 }

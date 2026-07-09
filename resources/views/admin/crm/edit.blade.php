@@ -12,7 +12,7 @@
     <x-ui.section-heading
         title="Edit Lead"
         :description="$lead['name'].' · '.$lead['pipeline_stage_label']"
-        class="mb-8"
+        class="cyra-section-heading"
     />
 
     @if (session('success'))

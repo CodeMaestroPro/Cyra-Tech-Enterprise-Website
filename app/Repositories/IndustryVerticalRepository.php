@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\IndustryVertical;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class IndustryVerticalRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(IndustryVertical $model)
     {
         parent::__construct($model);

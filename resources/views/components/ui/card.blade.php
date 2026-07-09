@@ -1,9 +1,10 @@
 @props([
     'title' => null,
     'description' => null,
+    'interactive' => false,
 ])
 
-<section {{ $attributes->merge(['class' => 'cyra-card p-6']) }}>
+<section {{ $attributes->merge(['class' => ($interactive ? 'cyra-card-interactive' : 'cyra-card') . ' p-4 sm:p-6']) }}>
     @if ($title || $description)
         <header class="mb-4">
             @if ($title)

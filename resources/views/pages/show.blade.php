@@ -14,15 +14,16 @@
 
 @section('content')
     <main id="main-content">
-        <section class="border-b border-cyra-border/60 bg-cyra-navy/30">
-            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <section class="cyra-page-hero">
+            <div class="cyra-page-hero-glow" aria-hidden="true"></div>
+            <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
                     ['label' => $page['title']],
                 ]" />
 
                 @if (! empty($page['eyebrow']))
-                    <p class="cyra-caption mt-6">{{ $page['eyebrow'] }}</p>
+                    <p class="cyra-hero-badge mt-6">{{ $page['eyebrow'] }}</p>
                 @endif
                 <h1 class="mt-3 cyra-display">{{ $page['title'] }}</h1>
                 @if (! empty($page['description']))
@@ -31,7 +32,8 @@
             </div>
         </section>
 
-        <div class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div class="cyra-container cyra-section">
+            <div class="cyra-section-stack">
             @foreach ($page['blocks'] as $block)
                 @switch($block['type'])
                     @case('prose')
@@ -57,6 +59,7 @@
                         @break
                 @endswitch
             @endforeach
+            </div>
         </div>
     </main>
 @endsection

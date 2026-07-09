@@ -22,7 +22,7 @@
         @if($autocomplete) autocomplete="{{ $autocomplete }}" @endif
         @if($placeholder) placeholder="{{ $placeholder }}" @endif
         @class([
-            'block w-full rounded-lg border bg-cyra-navy px-4 py-2.5 text-sm text-cyra-text placeholder:text-cyra-muted focus:border-cyra-primary focus:outline-none focus:ring-2 focus:ring-cyra-primary/30',
+            'cyra-input',
             'border-cyra-danger' => $errors->has($name),
             'border-cyra-border' => ! $errors->has($name),
         ])

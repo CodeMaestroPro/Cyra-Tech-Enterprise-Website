@@ -21,15 +21,16 @@
     @endphp
 
     <main id="main-content">
-        <section class="border-b border-cyra-border/60 bg-cyra-navy/30">
-            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <section class="cyra-page-hero">
+            <div class="cyra-page-hero-glow" aria-hidden="true"></div>
+            <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
                     ['label' => 'Contact'],
                 ]" />
 
                 @if (! empty($hero['eyebrow']))
-                    <p class="cyra-caption mt-6">{{ $hero['eyebrow'] }}</p>
+                    <p class="cyra-hero-badge mt-6">{{ $hero['eyebrow'] }}</p>
                 @endif
                 <h1 class="mt-3 cyra-display">{{ $hero['title'] ?? 'Contact' }}</h1>
                 @if (! empty($hero['description']))
@@ -38,15 +39,15 @@
             </div>
         </section>
 
-        <section class="py-16">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section class="cyra-section">
+            <div class="cyra-container">
                 <div class="grid gap-10 lg:grid-cols-3">
                     <div class="lg:col-span-2">
                         <x-ui.section-heading
                             :eyebrow="$form['eyebrow'] ?? 'Get in Touch'"
                             :title="$form['title'] ?? 'Send us a message'"
                             :description="$form['description'] ?? null"
-                            class="mb-8"
+                            class="cyra-section-heading"
                         />
 
                         @if (session('success'))
@@ -156,7 +157,7 @@
                                 @foreach ($channels as $channel)
                                     <li>
                                         <p class="text-sm font-medium text-cyra-text">{{ $channel['label'] ?? '' }}</p>
-                                        <a href="mailto:{{ $channel['email'] ?? '' }}" class="text-sm text-cyra-accent hover:text-cyra-primary">
+                                        <a href="mailto:{{ $channel['email'] ?? '' }}" class="text-sm text-cyra-primary hover:text-cyra-primary-hover">
                                             {{ $channel['email'] ?? '' }}
                                         </a>
                                     </li>
@@ -165,7 +166,7 @@
                         </div>
 
                         @if (! empty($support))
-                            <div class="rounded-lg border border-cyra-border/70 bg-cyra-surface/40 p-6">
+                            <div class="cyra-chip p-6">
                                 <h2 class="text-sm font-semibold uppercase tracking-wide text-cyra-muted">{{ $support['title'] ?? 'Support' }}</h2>
                                 <p class="mt-2 text-sm leading-relaxed text-cyra-text">{{ $support['description'] ?? '' }}</p>
                             </div>

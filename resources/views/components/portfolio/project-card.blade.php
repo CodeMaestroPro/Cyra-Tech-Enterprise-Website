@@ -1,11 +1,11 @@
 @props(['project'])
 
 <article
-    class="cyra-card flex h-full flex-col p-6 transition-colors hover:border-cyra-primary/40"
+    class="cyra-card-interactive flex h-full flex-col p-6"
     data-portfolio-card
     data-portfolio-category="{{ $project['category'] }}"
 >
-    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-cyra-primary/15 text-cyra-accent">
+    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyra-primary/10 text-cyra-primary shadow-sm shadow-cyra-primary/10">
         <x-homepage.icon :name="$project['icon'] ?? 'spark'" />
     </div>
 
@@ -18,7 +18,7 @@
         <p class="mt-4 text-sm font-semibold text-cyra-success">{{ $project['metrics'][0]['value'] }} {{ strtolower($project['metrics'][0]['label'] ?? '') }}</p>
     @endif
 
-    <a href="{{ route('portfolio.show', $project['slug']) }}" class="mt-6 text-sm font-medium text-cyra-accent hover:text-cyra-primary">
+    <a href="{{ route('portfolio.show', $project['slug']) }}" class="mt-6 text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover">
         View case study →
     </a>
 </article>

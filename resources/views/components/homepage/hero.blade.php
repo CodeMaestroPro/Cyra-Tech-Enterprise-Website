@@ -3,24 +3,23 @@
 @php
     $content = $section['content'] ?? [];
     $actions = $content['actions'] ?? [];
-    $highlights = $content['highlights'] ?? [];
 @endphp
 
 <section class="relative overflow-hidden border-b border-cyra-border/60" aria-labelledby="homepage-hero-title">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_40%),radial-gradient(circle_at_top_right,rgba(6,182,212,0.12),transparent_35%)]"></div>
-    <div class="pointer-events-none absolute -right-20 top-20 h-72 w-72 rounded-full bg-cyra-primary/10 blur-3xl"></div>
-
-    <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div class="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-                @if (! empty($section['eyebrow']))
-                    <p class="cyra-caption">{{ $section['eyebrow'] }}</p>
+    <div class="cyra-container relative cyra-section-hero-inner">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div data-animate="fade-up">
+                @if (! empty($content['badge']))
+                    <p class="cyra-hero-badge">{{ $content['badge'] }}</p>
                 @endif
-                <h1 id="homepage-hero-title" class="mt-4 cyra-display">
-                    <span class="cyra-gradient-text">{{ $section['title'] ?? config('cyra.tagline') }}</span>
+
+                <h1 id="homepage-hero-title" class="cyra-display mt-6 uppercase leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+                    <span class="block">{{ $content['title_line_1'] ?? 'INNOVATING TODAY.' }}</span>
+                    <span class="mt-1 block cyra-gradient-text">{{ $content['title_line_2'] ?? 'EMPOWERING TOMORROW.' }}</span>
                 </h1>
+
                 @if (! empty($section['description']))
-                    <p class="mt-6 max-w-xl text-lg leading-relaxed text-cyra-muted">
+                    <p class="mt-6 max-w-xl text-base leading-relaxed text-cyra-muted sm:text-lg">
                         {{ $section['description'] }}
                     </p>
                 @endif
@@ -30,8 +29,13 @@
                         @foreach ($actions as $action)
                             <x-ui.button
                                 href="{{ route($action['route']) }}"
-                                :variant="$action['variant'] === 'primary' ? 'primary' : 'secondary'"
+                                :variant="$action['variant'] === 'primary' ? 'primary' : 'outline'"
                             >
+                                @if (($action['icon'] ?? null) === 'play')
+                                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                @endif
                                 {{ $action['label'] }}
                             </x-ui.button>
                         @endforeach
@@ -39,19 +43,19 @@
                 @endif
             </div>
 
-            <div class="cyra-card p-6 lg:p-8">
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyra-accent">Platform Highlights</p>
-                <ul class="mt-6 space-y-4">
-                    @foreach ($highlights as $highlight)
-                        <li class="flex items-start gap-3 rounded-lg border border-cyra-border/70 bg-cyra-navy/50 px-4 py-3">
-                            <span class="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-cyra-primary/15 text-cyra-accent">
-                                <x-homepage.icon />
-                            </span>
-                            <span class="text-sm font-medium text-cyra-text">{{ $highlight }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+            <figure class="cyra-hero-image" data-animate="scale-in">
+                <img
+                    src="{{ asset('images/homepage/hero-visual.png') }}"
+                    alt="Cyra-Tech Enterprise: AI and automation, cloud solutions, cybersecurity, and software development."
+                    class="cyra-hero-image__photo"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    width="1024"
+                    height="720"
+                >
+                <span class="cyra-hero-image__glow" aria-hidden="true"></span>
+            </figure>
         </div>
     </div>
 </section>

@@ -58,13 +58,16 @@ class PlatformService extends BaseService
 
         return collect($configuredModules)->map(function (array $module) use ($storedModules) {
             $stored = $storedModules->get($module['slug']);
+            $status = $module['status'];
 
             return [
                 'id' => $module['id'],
                 'slug' => $module['slug'],
                 'name' => $module['name'],
-                'status' => $stored?->status ?? $module['status'],
-                'completed_at' => $stored?->completed_at?->toIso8601String(),
+                'status' => $status,
+                'completed_at' => $status === 'completed'
+                    ? $stored?->completed_at?->toIso8601String()
+                    : null,
             ];
         })->values()->all();
     }

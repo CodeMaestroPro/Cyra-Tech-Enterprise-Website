@@ -24,6 +24,7 @@ use App\Repositories\InnovationInitiativeRepository;
 use App\Repositories\IndustryVerticalRepository;
 use App\Repositories\LeadershipProfileRepository;
 use App\Repositories\NavigationItemRepository;
+use App\Repositories\NewsletterSubscriberRepository;
 use App\Repositories\PortfolioProjectRepository;
 use App\Repositories\ProductOfferingRepository;
 use App\Repositories\SolutionOfferingRepository;
@@ -51,6 +52,7 @@ use App\Services\InnovationLabService;
 use App\Services\IndustryService;
 use App\Services\LeadershipService;
 use App\Services\NavigationService;
+use App\Services\NewsletterService;
 use App\Services\PortfolioService;
 use App\Services\ProductService;
 use App\Services\SolutionService;
@@ -66,6 +68,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(PlatformModuleRepository::class);
         $this->app->singleton(NavigationItemRepository::class);
+        $this->app->singleton(NewsletterSubscriberRepository::class);
         $this->app->singleton(HomepageSectionRepository::class);
         $this->app->singleton(AboutPageRepository::class);
         $this->app->singleton(LeadershipProfileRepository::class);
@@ -93,6 +96,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(DashboardService::class);
         $this->app->singleton(PlatformService::class);
         $this->app->singleton(NavigationService::class);
+        $this->app->singleton(NewsletterService::class);
         $this->app->singleton(HomepageService::class);
         $this->app->singleton(AboutService::class);
         $this->app->singleton(LeadershipService::class);

@@ -2,18 +2,21 @@
 
 @section('title', 'Sign In')
 
+@section('body_class')
+    bg-cyra-midnight
+@endsection
+
 @section('content')
-    <main class="flex min-h-screen items-center justify-center px-4 py-12">
-        <div class="w-full max-w-md">
+    <main id="main-content" class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-10 sm:py-12">
+        <div class="w-full max-w-md" data-animate="scale-in">
             <div class="mb-8 text-center">
-                <p class="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-cyra-accent">
-                    {{ config('cyra.name') }} Command Center
-                </p>
-                <h1 class="text-3xl font-bold text-cyra-text">Sign in to your account</h1>
-                <p class="mt-2 text-sm text-cyra-muted">Secure access for authorized Cyra-Tech team members.</p>
+                <x-brand.logo variant="full" size="lg" class="mx-auto justify-center" />
+                <p class="cyra-hero-badge mx-auto mt-6 w-fit">Command Center</p>
+                <h1 class="mt-4 cyra-display text-3xl sm:text-4xl">Sign in to your account</h1>
+                <p class="mt-3 text-sm text-cyra-muted">Secure access for authorized Cyra-Tech team members.</p>
             </div>
 
-            <section class="cyra-card p-8">
+            <section class="cyra-card p-6 sm:p-8">
                 @if (session('success'))
                     <x-ui.alert variant="success" class="mb-6">{{ session('success') }}</x-ui.alert>
                 @endif
@@ -53,7 +56,7 @@
 
                     <div class="flex items-center justify-between gap-4">
                         <x-ui.checkbox name="remember" label="Remember me" />
-                        <a href="{{ route('home') }}" class="text-sm text-cyra-accent hover:text-cyra-primary">Back to site</a>
+                        <a href="{{ route('home') }}" class="text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover">Back to site</a>
                     </div>
 
                     <x-ui.button type="submit" class="w-full" id="login-submit">

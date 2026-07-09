@@ -13,7 +13,7 @@
             eyebrow="Module 03 Complete"
             title="Cyra-Tech Design System"
             description="Blade components, Tailwind CSS 4 tokens, and vanilla JavaScript behaviors. No React."
-            class="mb-8"
+            class="cyra-section-heading"
         />
 
         <x-ui.tabs id="design-system-tabs" :labels="['Colors', 'Typography', 'Components', 'Interactive']">

@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\InnovationInitiative;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class InnovationInitiativeRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(InnovationInitiative $model)
     {
         parent::__construct($model);

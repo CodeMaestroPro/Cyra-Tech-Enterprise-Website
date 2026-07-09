@@ -4,21 +4,22 @@
     $items = $section['content']['items'] ?? [];
 @endphp
 
-<section class="border-b border-cyra-border/60 py-12" aria-labelledby="homepage-partners-title">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <x-ui.section-heading
-            :eyebrow="$section['eyebrow'] ?? null"
-            :title="$section['title'] ?? ''"
-            id="homepage-partners-title"
-            class="mb-8 text-center"
-        />
+<section class="cyra-section-tight cyra-section-band" aria-labelledby="homepage-partners-title">
+    <div class="cyra-container">
+        <div class="flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
+            @if (! empty($section['title']))
+                <p id="homepage-partners-title" class="max-w-xs text-center text-xs font-semibold uppercase tracking-[0.16em] text-cyra-muted lg:max-w-sm lg:text-left">
+                    {{ $section['title'] }}
+                </p>
+            @endif
 
-        <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            @foreach ($items as $item)
-                <li class="flex items-center justify-center rounded-lg border border-cyra-border/60 bg-cyra-surface/40 px-4 py-5 text-center text-sm font-semibold text-cyra-muted">
-                    {{ $item }}
-                </li>
-            @endforeach
-        </ul>
+            <ul class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-8 xl:gap-10">
+                @foreach ($items as $item)
+                    <li class="flex items-center justify-center lg:justify-end">
+                        <span class="cyra-partner-logo">{{ $item }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 </section>

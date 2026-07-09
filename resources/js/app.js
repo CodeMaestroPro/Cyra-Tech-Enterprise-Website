@@ -1,5 +1,12 @@
 import './bootstrap';
 import { initNavigation } from './components/navigation';
+import { initAdminNavigation } from './components/admin-navigation';
+import { initPublicNavigationSearch } from './components/public-navigation-search';
+import { initNewsletterForm } from './components/newsletter-form';
+import { initAdminCommandCenter } from './components/admin-command-center';
+import { initTheme } from './components/theme';
+import { initPortalNavigation } from './components/portal-navigation';
+import { initMotion } from './components/motion';
 import { initModals, initTabs } from './components/ui';
 import { initCareersPage } from './pages/careers';
 import { initContactPage } from './pages/contact';
@@ -16,10 +23,12 @@ import { initHomepage } from './pages/homepage';
 import { initDesignSystemPage } from './pages/design-system';
 import { initInitializationPage } from './pages/initialization';
 import { initLoginPage } from './pages/login';
+import { initAiAssistantPage } from './pages/ai-assistant';
 
 document.addEventListener('DOMContentLoaded', () => {
     initInitializationPage();
     initLoginPage();
+    initAiAssistantPage();
     initHomepage();
     initLeadershipPage();
     initSolutionsPage();
@@ -34,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initPartnerHubPage();
     initDesignSystemPage();
     initNavigation();
+    initPublicNavigationSearch();
+    initNewsletterForm();
+    initAdminNavigation();
+    initAdminCommandCenter();
+    initPortalNavigation();
+    initTheme();
+    initMotion();
     initModals();
     initTabs();
 });

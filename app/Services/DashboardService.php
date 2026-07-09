@@ -3,13 +3,16 @@
 namespace App\Services;
 
 use App\Models\ClientEngagement;
+use App\Models\NewsletterSubscriber;
 use App\Models\User;
+use App\Repositories\NewsletterSubscriberRepository;
 
 class DashboardService extends BaseService
 {
     public function __construct(
         private readonly AnalyticsService $analyticsService,
         private readonly PlatformService $platformService,
+        private readonly NewsletterSubscriberRepository $newsletterSubscriberRepository,
     ) {
     }
 
@@ -39,6 +42,7 @@ class DashboardService extends BaseService
             'tasks' => config('cyra.command_center.tasks', []),
             'system_status' => $this->buildSystemStatus(),
             'recent_activities' => config('cyra.command_center.recent_activities', []),
+            'newsletter_subscriptions' => $this->buildNewsletterSubscriptions(),
             'platform' => [
                 'modules_completed' => $this->platformService->getStatus()['modules']['completed'] ?? 0,
                 'modules_total' => $this->platformService->getStatus()['modules']['total'] ?? 25,
@@ -230,6 +234,43 @@ class DashboardService extends BaseService
             })
             ->values()
             ->all();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildNewsletterSubscriptions(): array
+    {
+        $subscribers = $this->newsletterSubscriberRepository
+            ->getRecentActive(8)
+            ->map(fn (NewsletterSubscriber $subscriber) => [
+                'email' => $subscriber->email,
+                'source' => ucfirst(str_replace('-', ' ', $subscriber->source)),
+                'subscribed_at' => ($subscriber->subscribed_at ?? $subscriber->created_at)?->format('M j, Y'),
+                'subscribed_relative' => ($subscriber->subscribed_at ?? $subscriber->created_at)?->diffForHumans(),
+            ])
+            ->values()
+            ->all();
+
+        return [
+            'title' => 'Newsletter Subscriptions',
+            'description' => 'Recent footer sign-ups and active subscribers.',
+            'stats' => [
+                [
+                    'label' => 'Total Active',
+                    'value' => (string) $this->newsletterSubscriberRepository->countActive(),
+                ],
+                [
+                    'label' => 'This Week',
+                    'value' => (string) $this->newsletterSubscriberRepository->countActiveSince(now()->startOfWeek()),
+                ],
+                [
+                    'label' => 'This Month',
+                    'value' => (string) $this->newsletterSubscriberRepository->countActiveSince(now()->startOfMonth()),
+                ],
+            ],
+            'subscribers' => $subscribers,
+        ];
     }
 
     /**

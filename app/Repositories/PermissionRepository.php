@@ -15,4 +15,16 @@ class PermissionRepository extends BaseRepository
     {
         return $this->model->newQuery()->where('slug', $slug)->first();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int, Permission>
+     */
+    public function getAllOrdered()
+    {
+        return $this->model->newQuery()
+            ->where('slug', '!=', '*')
+            ->orderBy('group')
+            ->orderBy('name')
+            ->get();
+    }
 }

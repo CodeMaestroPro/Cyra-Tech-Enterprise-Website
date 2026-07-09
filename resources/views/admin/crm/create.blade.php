@@ -12,7 +12,7 @@
     <x-ui.section-heading
         title="Create CRM Lead"
         description="Add a new enterprise lead to the Cyra-Tech sales pipeline."
-        class="mb-8"
+        class="cyra-section-heading"
     />
 
     @include('admin.crm._form', [

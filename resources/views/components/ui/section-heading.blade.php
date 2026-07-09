@@ -4,7 +4,7 @@
     'description' => null,
 ])
 
-<header {{ $attributes->merge(['class' => 'space-y-2']) }}>
+<header {{ $attributes->merge(['class' => 'space-y-2']) }} data-animate="fade-up">
     @if ($eyebrow)
         <p class="cyra-caption">{{ $eyebrow }}</p>
     @endif

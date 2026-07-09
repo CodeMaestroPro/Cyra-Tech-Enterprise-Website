@@ -35,4 +35,26 @@ class NavigationItemRepository extends BaseRepository
             ->orderBy('sort_order')
             ->get();
     }
+
+    /**
+     * @return Collection<int, NavigationItem>
+     */
+    public function getAllAdminItems(): Collection
+    {
+        return $this->model->newQuery()
+            ->where('location', 'admin_sidebar')
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function updateItem(NavigationItem $item, array $attributes): NavigationItem
+    {
+        $item->update($attributes);
+
+        return $item->refresh();
+    }
 }

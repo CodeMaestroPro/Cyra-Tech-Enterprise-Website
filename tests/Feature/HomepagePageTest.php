@@ -25,11 +25,15 @@ class HomepagePageTest extends TestCase
             ->assertViewIs('home.index')
             ->assertViewHas('sections')
             ->assertViewHas('seo')
-            ->assertSee('Built on Vision. Driven by Intelligence.')
+            ->assertSee('INNOVATING TODAY.')
+            ->assertSee('EMPOWERING TOMORROW.')
+            ->assertSee('images/homepage/hero-visual.png', false)
             ->assertSee('Explore Solutions')
-            ->assertSee('End-to-end capabilities for modern enterprises')
-            ->assertSee('Innovation Lab')
-            ->assertSee('Ready to transform your enterprise?')
+            ->assertSee('Intelligent Solutions. Real Impact.')
+            ->assertSee('Cyra HRMS')
+            ->assertSee('Building a Better Future Through Technology')
+            ->assertSee('images/homepage/our-commitment.png', false)
+            ->assertSee('Community Impact')
             ->assertSee('application/ld+json', false);
     }
 

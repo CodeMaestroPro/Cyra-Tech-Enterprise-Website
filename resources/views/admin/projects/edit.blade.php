@@ -12,7 +12,7 @@
     <x-ui.section-heading
         title="Edit Project"
         :description="$project['name'].' · '.$project['status_label']"
-        class="mb-8"
+        class="cyra-section-heading"
     />
 
     @if (session('success'))

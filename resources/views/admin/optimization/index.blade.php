@@ -12,7 +12,7 @@
         eyebrow="Module 25 Complete"
         title="Testing & Optimization"
         description="Platform QA readiness, health monitoring, performance checks, SEO validation, and optimization actions for the Cyra-Tech enterprise stack."
-        class="mb-8"
+        class="cyra-section-heading"
     />
 
     @if (session('success'))

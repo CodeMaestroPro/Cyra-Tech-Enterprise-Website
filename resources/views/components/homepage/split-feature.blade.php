@@ -6,10 +6,10 @@
     $action = $content['action'] ?? null;
 @endphp
 
-<section class="border-b border-cyra-border/60 py-16" aria-labelledby="homepage-{{ $section['slug'] }}-title">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section class="cyra-section border-b border-cyra-border/60" aria-labelledby="homepage-{{ $section['slug'] }}-title">
+    <div class="cyra-container">
         <div class="grid items-center gap-10 lg:grid-cols-2">
-            <div>
+            <div data-animate="fade-up">
                 <x-ui.section-heading
                     :eyebrow="$section['eyebrow'] ?? null"
                     :title="$section['title'] ?? ''"
@@ -26,7 +26,7 @@
                 @endif
             </div>
 
-            <div class="cyra-card p-6 lg:p-8">
+            <div class="cyra-card-interactive p-5 sm:p-6 lg:p-8" data-animate="slide-left">
                 <ul class="space-y-4">
                     @foreach ($bullets as $bullet)
                         <li class="flex items-start gap-3">

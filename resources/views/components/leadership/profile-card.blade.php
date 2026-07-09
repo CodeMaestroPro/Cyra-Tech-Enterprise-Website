@@ -1,6 +1,6 @@
 @props(['profile'])
 
-<article class="cyra-card flex h-full flex-col p-6 transition-colors hover:border-cyra-primary/40">
+<article class="cyra-card-interactive flex h-full flex-col p-6">
     <div class="flex items-start gap-4">
         <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyra-primary to-cyra-accent text-lg font-bold text-white">
             {{ $profile['initials'] }}
@@ -28,7 +28,7 @@
     <div class="mt-6">
         <button
             type="button"
-            class="text-sm font-medium text-cyra-accent hover:text-cyra-primary"
+            class="text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover"
             data-leadership-open
             data-profile="{{ e(json_encode($profile)) }}"
             aria-haspopup="dialog"

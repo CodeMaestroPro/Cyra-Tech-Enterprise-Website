@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\LeadershipProfile;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class LeadershipProfileRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(LeadershipProfile $model)
     {
         parent::__construct($model);

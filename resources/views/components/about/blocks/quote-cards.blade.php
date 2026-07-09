@@ -1,6 +1,6 @@
 @props(['block'])
 
-<section class="py-10">
+<section>
     <div class="grid gap-6 md:grid-cols-2">
         @foreach ($block['items'] ?? [] as $item)
             <article class="cyra-card p-6">

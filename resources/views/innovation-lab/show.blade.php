@@ -10,8 +10,9 @@
 
 @section('content')
     <main id="main-content">
-        <section class="border-b border-cyra-border/60 bg-cyra-navy/30">
-            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <section class="cyra-page-hero">
+            <div class="cyra-page-hero-glow" aria-hidden="true"></div>
+            <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
                     ['label' => 'Innovation Lab', 'href' => route('innovation-lab')],
@@ -19,7 +20,7 @@
                 ]" />
 
                 <div class="mt-6 flex items-start gap-4">
-                    <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-cyra-primary/15 text-cyra-accent">
+                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-cyra-primary/10 text-cyra-primary shadow-sm shadow-cyra-primary/10">
                         <x-homepage.icon :name="$initiative['icon'] ?? 'spark'" />
                     </div>
                     <div>
@@ -37,7 +38,7 @@
             </div>
         </section>
 
-        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="cyra-container cyra-section">
             <div class="grid gap-10 lg:grid-cols-3">
                 <div class="lg:col-span-2">
                     <h2 class="cyra-heading-2">Program Overview</h2>
@@ -46,7 +47,7 @@
                     <h2 class="cyra-heading-2 mt-10">Focus Areas</h2>
                     <div class="mt-6 grid gap-4 sm:grid-cols-2">
                         @foreach ($initiative['focus_areas'] ?? [] as $area)
-                            <article class="rounded-lg border border-cyra-border/70 bg-cyra-surface/40 px-4 py-3 text-sm text-cyra-text">
+                            <article class="cyra-chip">
                                 {{ $area }}
                             </article>
                         @endforeach

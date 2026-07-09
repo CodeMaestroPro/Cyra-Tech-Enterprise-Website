@@ -22,11 +22,14 @@ class NavigationTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('CYRA')
-            ->assertSee('Built on Vision. Driven by Intelligence.')
+            ->assertSee('images/brand/cyra-tech-logo.png', false)
+            ->assertSee('Built on Vision. Driven by Intelligence.', false)
+            ->assertSee('Innovating Today. Empowering Tomorrow.')
             ->assertSee('Explore Solutions')
             ->assertSee('Stay ahead with Cyra-Tech')
-            ->assertSee('All rights reserved.');
+            ->assertSee('All rights reserved.')
+            ->assertSee('data-public-nav-search-open', false)
+            ->assertSee('public-navigation-index', false);
     }
 
     public function test_login_page_does_not_render_public_navigation(): void
@@ -171,6 +174,19 @@ class NavigationTest extends TestCase
             ->assertSee('Command Center')
             ->assertSee('Executive')
             ->assertSee('Digital Headquarters')
+            ->assertSee('Company Pulse')
+            ->assertSee('Business Intelligence')
+            ->assertSee('Strategic Roadmap')
+            ->assertSee('AI Assistant')
+            ->assertSee('Homepage Builder')
+            ->assertSee('Team Members')
+            ->assertSee('Applicants')
+            ->assertSee('Marketing')
+            ->assertSee('Users & Roles')
+            ->assertSee('Calendar')
+            ->assertSee('Security')
+            ->assertSee('Logs')
+            ->assertSee('Enterprise Settings')
             ->assertSee('Component Library');
     }
 }

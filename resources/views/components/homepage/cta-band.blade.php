@@ -6,16 +6,18 @@
     $actions = $content['actions'] ?? [];
     $variant = $content['variant'] ?? 'surface';
     $wrapperClass = match ($variant) {
-        'gradient' => 'border-cyra-primary/30 bg-gradient-to-r from-cyra-primary/20 via-cyra-navy to-cyra-accent/10',
-        'primary' => 'border-cyra-primary/30 bg-cyra-primary/10',
-        default => 'border-cyra-border/70 bg-cyra-surface/40',
+        'gradient', 'primary' => 'cyra-cta-premium px-5 py-8 sm:px-10 sm:py-10',
+        default => 'cyra-card px-5 py-8 sm:px-10 sm:py-10',
     };
 @endphp
 
-<section class="py-12" aria-labelledby="homepage-{{ $section['slug'] }}-title">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div @class(['rounded-2xl border px-6 py-10 sm:px-10', $wrapperClass])>
-            <div class="max-w-3xl">
+<section class="cyra-section" aria-labelledby="homepage-{{ $section['slug'] }}-title">
+    <div class="cyra-container">
+        <div @class([$wrapperClass]) data-animate="fade-up">
+            @if (in_array($variant, ['gradient', 'primary'], true))
+                <div class="cyra-cta-premium-glow" aria-hidden="true"></div>
+            @endif
+            <div @class(['max-w-3xl', 'relative' => in_array($variant, ['gradient', 'primary'], true)])>
                 @if (! empty($section['eyebrow']))
                     <p class="cyra-caption">{{ $section['eyebrow'] }}</p>
                 @endif
@@ -39,7 +41,7 @@
                         @foreach ($actions as $item)
                             <x-ui.button
                                 href="{{ route($item['route']) }}"
-                                :variant="$item['variant'] === 'primary' ? 'primary' : 'secondary'"
+                                :variant="$item['variant'] === 'primary' ? 'primary' : 'outline'"
                             >
                                 {{ $item['label'] }}
                             </x-ui.button>

@@ -1,6 +1,6 @@
 @props(['block'])
 
-<section class="py-10" aria-label="Company timeline">
+<section aria-label="Company timeline">
     <ol class="relative space-y-8 border-l border-cyra-border/80 pl-6">
         @foreach ($block['items'] ?? [] as $item)
             <li class="relative" data-timeline-item>

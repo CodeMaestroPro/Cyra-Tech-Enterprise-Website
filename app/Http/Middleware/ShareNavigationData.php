@@ -18,10 +18,12 @@ class ShareNavigationData
     {
         if (! $request->routeIs('login')) {
             view()->share('publicNavigation', $this->navigationService->getPublicNavigation());
+            view()->share('publicSearchIndex', $this->navigationService->getPublicSearchIndex());
         }
 
         if ($request->is('admin*') && auth()->check()) {
             view()->share('adminNavigation', $this->navigationService->getAdminNavigation());
+            view()->share('adminSearchIndex', $this->navigationService->getAdminSearchIndex());
         }
 
         return $next($request);

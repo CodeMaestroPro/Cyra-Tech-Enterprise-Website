@@ -1,12 +1,12 @@
 @props(['opening'])
 
 <article
-    class="cyra-card flex h-full flex-col p-6 transition-colors hover:border-cyra-primary/40"
+    class="cyra-card-interactive flex h-full flex-col p-6"
     data-career-card
     data-career-category="{{ $opening['category'] }}"
 >
     <div class="mb-4 flex items-start justify-between gap-3">
-        <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyra-primary/15 text-cyra-accent">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyra-primary/10 text-cyra-primary shadow-sm shadow-cyra-primary/10">
             <x-homepage.icon :name="$opening['icon'] ?? 'spark'" />
         </div>
         @if (! empty($opening['badge']))
@@ -25,7 +25,7 @@
         <span>{{ $opening['work_type'] }}</span>
     </div>
 
-    <a href="{{ route('careers.show', $opening['slug']) }}" class="mt-6 text-sm font-medium text-cyra-accent hover:text-cyra-primary">
+    <a href="{{ route('careers.show', $opening['slug']) }}" class="mt-6 text-sm font-medium text-cyra-primary hover:text-cyra-primary-hover">
         View role →
     </a>
 </article>

@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\PortfolioProject;
+use App\Repositories\Concerns\HasCatalogCrud;
 use Illuminate\Database\Eloquent\Collection;
 
 class PortfolioProjectRepository extends BaseRepository
 {
+    use HasCatalogCrud;
     public function __construct(PortfolioProject $model)
     {
         parent::__construct($model);

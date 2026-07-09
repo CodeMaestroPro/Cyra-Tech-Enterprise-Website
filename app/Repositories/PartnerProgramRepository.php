@@ -23,11 +23,52 @@ class PartnerProgramRepository extends BaseRepository
             ->get();
     }
 
+    /**
+     * @return Collection<int, PartnerProgram>
+     */
+    public function getAllPrograms(): Collection
+    {
+        return $this->model->newQuery()
+            ->orderBy('sort_order')
+            ->orderBy('title')
+            ->get();
+    }
+
     public function findActiveBySlug(string $slug): ?PartnerProgram
     {
         return $this->model->newQuery()
             ->where('slug', $slug)
             ->where('is_active', true)
             ->first();
+    }
+
+    public function findBySlug(string $slug): ?PartnerProgram
+    {
+        return $this->model->newQuery()
+            ->where('slug', $slug)
+            ->first();
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function createProgram(array $attributes): PartnerProgram
+    {
+        return $this->model->newQuery()->create($attributes);
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function updateProgram(PartnerProgram $program, array $attributes): PartnerProgram
+    {
+        $program->update($attributes);
+
+        return $program->refresh();
+    }
+
+    public function deleteProgram(PartnerProgram $program): void
+    {
+        $program->delete();
     }
 }

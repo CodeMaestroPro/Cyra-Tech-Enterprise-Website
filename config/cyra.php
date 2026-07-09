@@ -9,8 +9,13 @@ return [
     */
 
     'name' => env('CYRA_APP_NAME', 'Cyra-Tech'),
-    'tagline' => env('CYRA_TAGLINE', 'Built on Vision. Driven by Intelligence.'),
+    'tagline' => env('CYRA_TAGLINE', 'Innovating Today. Empowering Tomorrow.'),
     'version' => env('CYRA_VERSION', '1.0.0'),
+
+    'brand' => [
+        'logo' => 'images/brand/cyra-tech-logo.png',
+        'logo_alt' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -88,6 +93,10 @@ return [
                 'projects.manage',
                 'optimization.view',
                 'optimization.manage',
+                'partners.view',
+                'partners.create',
+                'partners.update',
+                'partners.delete',
             ],
         ],
         'manager' => [
@@ -170,6 +179,10 @@ return [
         'projects.manage' => ['name' => 'Manage Project Tasks', 'group' => 'Project Management'],
         'optimization.view' => ['name' => 'View Testing & Optimization', 'group' => 'Testing & Optimization'],
         'optimization.manage' => ['name' => 'Run Optimization Actions', 'group' => 'Testing & Optimization'],
+        'partners.view' => ['name' => 'View Partners', 'group' => 'Partners'],
+        'partners.create' => ['name' => 'Create Partners', 'group' => 'Partners'],
+        'partners.update' => ['name' => 'Update Partners', 'group' => 'Partners'],
+        'partners.delete' => ['name' => 'Delete Partners', 'group' => 'Partners'],
     ],
 
     /*
@@ -203,22 +216,26 @@ return [
         'version' => '1.0.0',
         'stack' => 'Blade + JavaScript + Tailwind CSS 4',
         'colors' => [
-            'midnight' => '#050810',
-            'navy' => '#0b1120',
-            'surface' => '#111827',
-            'border' => '#1e293b',
+            'midnight' => '#030711',
+            'navy' => '#000b26',
+            'surface' => '#0f172a',
+            'border' => '#1e3a5f',
             'text' => '#f8fafc',
             'muted' => '#94a3b8',
-            'primary' => '#2563eb',
-            'primary-hover' => '#1d4ed8',
-            'accent' => '#06b6d4',
+            'primary' => '#0052ff',
+            'primary-hover' => '#3d7bff',
+            'accent' => '#38bdf8',
             'success' => '#22c55e',
             'warning' => '#f59e0b',
             'danger' => '#ef4444',
             'purple' => '#8b5cf6',
+            'soft' => '#081428',
+            'elevated' => '#121f38',
+            'ink' => '#000b26',
         ],
         'typography' => [
             'font-family' => 'Inter, ui-sans-serif, system-ui, sans-serif',
+            'display-family' => 'Plus Jakarta Sans, Inter, ui-sans-serif, system-ui, sans-serif',
             'display' => '3rem / 700',
             'heading-1' => '2.25rem / 700',
             'heading-2' => '1.875rem / 600',
@@ -250,33 +267,50 @@ return [
 
     'homepage' => [
         'seo' => [
-            'title' => 'Cyra-Tech | Built on Vision. Driven by Intelligence.',
-            'description' => 'Cyra-Tech delivers enterprise digital transformation, cloud infrastructure, AI intelligence, and secure innovation for global organizations.',
+            'title' => 'Cyra-Tech | Innovating Today. Empowering Tomorrow.',
+            'description' => 'Cyra-Tech delivers intelligent software, cloud solutions, AI automation, and cybersecurity for organizations across Africa and beyond.',
             'keywords' => [
-                'enterprise technology',
-                'digital transformation',
-                'cloud infrastructure',
-                'AI solutions',
                 'Cyra-Tech',
+                'enterprise technology',
+                'software development',
+                'cloud solutions',
+                'AI automation',
+                'cybersecurity',
             ],
         ],
         'sections' => [
             [
                 'slug' => 'hero',
                 'type' => 'hero',
-                'eyebrow' => 'Enterprise Technology Partner',
-                'title' => 'Built on Vision. Driven by Intelligence.',
-                'description' => 'Cyra-Tech architects intelligent digital ecosystems that accelerate growth, strengthen security, and unlock enterprise innovation at scale.',
+                'description' => 'We partner with forward-thinking organizations to design, build, and scale technology that solves real-world problems and creates lasting impact.',
                 'content' => [
-                    'highlights' => [
-                        'Digital Transformation',
-                        'AI & Intelligence',
-                        'Cloud at Scale',
-                        'Secure by Design',
+                    'badge' => 'Welcome to Cyra-Tech',
+                    'title_line_1' => 'INNOVATING TODAY.',
+                    'title_line_2' => 'EMPOWERING TOMORROW.',
+                    'pills' => [
+                        ['label' => 'AI & Automation', 'icon' => 'ai'],
+                        ['label' => 'Cloud Solutions', 'icon' => 'cloud'],
+                        ['label' => 'Cybersecurity', 'icon' => 'shield'],
+                        ['label' => 'Software Development', 'icon' => 'transform'],
                     ],
                     'actions' => [
                         ['label' => 'Explore Solutions', 'route' => 'solutions', 'variant' => 'primary'],
-                        ['label' => 'Talk to Our Team', 'route' => 'contact', 'variant' => 'secondary'],
+                        ['label' => 'Watch Our Story', 'route' => 'about', 'variant' => 'outline', 'icon' => 'play'],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'partners',
+                'type' => 'logos',
+                'title' => 'Trusted by organizations across Africa and beyond',
+                'content' => [
+                    'items' => [
+                        'Microsoft',
+                        'AWS',
+                        'Oracle',
+                        'Google Cloud',
+                        'Huawei',
+                        'IBM',
                     ],
                 ],
             ],
@@ -284,216 +318,77 @@ return [
                 'slug' => 'stats',
                 'type' => 'stats',
                 'content' => [
+                    'variant' => 'bar',
                     'items' => [
-                        ['label' => 'Enterprise Projects Delivered', 'value' => '500', 'suffix' => '+'],
-                        ['label' => 'Client Satisfaction', 'value' => '98', 'suffix' => '%'],
-                        ['label' => 'Industries Served', 'value' => '25', 'suffix' => '+'],
-                        ['label' => 'Global Technology Experts', 'value' => '120', 'suffix' => '+'],
+                        ['label' => 'Projects Delivered', 'value' => '250', 'suffix' => '+', 'icon' => 'projects'],
+                        ['label' => 'Countries Served', 'value' => '50', 'suffix' => '+', 'icon' => 'globe'],
+                        ['label' => 'Happy Clients', 'value' => '300', 'suffix' => '+', 'icon' => 'clients'],
+                        ['label' => 'Lives Impacted', 'value' => '1', 'suffix' => 'M+', 'icon' => 'impact'],
+                        ['label' => 'Products Built', 'value' => '30', 'suffix' => '+', 'icon' => 'products'],
+                        ['label' => 'Team Members', 'value' => '120', 'suffix' => '+', 'icon' => 'team'],
                     ],
                 ],
             ],
             [
-                'slug' => 'partners',
-                'type' => 'logos',
-                'eyebrow' => 'Trusted By',
-                'title' => 'Organizations that scale with Cyra-Tech',
+                'slug' => 'solutions-ecosystem',
+                'type' => 'solutions-ecosystem',
+                'eyebrow' => 'Our Solutions Ecosystem',
+                'title' => 'Intelligent Solutions. Real Impact.',
+                'description' => 'From custom software to cloud infrastructure and AI automation, Cyra-Tech delivers end-to-end capabilities engineered for performance, resilience, and measurable outcomes.',
                 'content' => [
                     'items' => [
-                        'NovaBank', 'Helix Health', 'Astra Logistics', 'Vertex Energy', 'Quantum Retail', 'Pinnacle GovTech',
-                    ],
-                ],
-            ],
-            [
-                'slug' => 'solutions',
-                'type' => 'feature-grid',
-                'eyebrow' => 'Solutions',
-                'title' => 'End-to-end capabilities for modern enterprises',
-                'description' => 'From strategy to execution, Cyra-Tech delivers modular solutions engineered for performance, resilience, and measurable outcomes.',
-                'content' => [
-                    'items' => [
-                        [
-                            'title' => 'Digital Transformation',
-                            'description' => 'Modernize legacy systems, streamline operations, and build future-ready digital platforms.',
-                            'route' => 'solutions',
-                            'icon' => 'transform',
-                        ],
-                        [
-                            'title' => 'Cloud & Infrastructure',
-                            'description' => 'Design secure, scalable cloud architectures with observability and cost optimization built in.',
-                            'route' => 'solutions',
-                            'icon' => 'cloud',
-                        ],
-                        [
-                            'title' => 'AI & Intelligence',
-                            'description' => 'Deploy practical AI, automation, and data intelligence that drive decision velocity.',
-                            'route' => 'innovation-lab',
-                            'icon' => 'ai',
-                        ],
-                        [
-                            'title' => 'Cybersecurity',
-                            'description' => 'Protect critical assets with zero-trust frameworks, compliance readiness, and proactive monitoring.',
-                            'route' => 'solutions',
-                            'icon' => 'shield',
-                        ],
+                        ['title' => 'Software Development', 'description' => 'Custom applications, platforms, and integrations built for scale and reliability.', 'route' => 'solutions', 'icon' => 'transform'],
+                        ['title' => 'AI & Automation', 'description' => 'Intelligent workflows, copilots, and data-driven automation that accelerate decisions.', 'route' => 'innovation-lab', 'icon' => 'ai'],
+                        ['title' => 'Cloud Solutions', 'description' => 'Secure, scalable cloud architectures with observability and cost optimization built in.', 'route' => 'solutions', 'icon' => 'cloud'],
+                        ['title' => 'Cybersecurity', 'description' => 'Zero-trust frameworks, compliance readiness, and proactive threat monitoring.', 'route' => 'solutions', 'icon' => 'shield'],
+                        ['title' => 'IT Consulting', 'description' => 'Strategic advisory to align technology roadmaps with business outcomes.', 'route' => 'solutions', 'icon' => 'spark'],
+                        ['title' => 'Training & Capacity', 'description' => 'Workforce upskilling and digital literacy programs for sustainable transformation.', 'route' => 'community', 'icon' => 'spark'],
+                        ['title' => 'Community Impact', 'description' => 'Technology initiatives that empower youth, NGOs, and underserved communities.', 'route' => 'community', 'icon' => 'spark'],
+                        ['title' => 'Digital Transformation', 'description' => 'Modernize legacy systems and build future-ready digital operating models.', 'route' => 'solutions', 'icon' => 'transform'],
                     ],
                     'action' => ['label' => 'View All Solutions', 'route' => 'solutions'],
                 ],
             ],
             [
-                'slug' => 'products',
-                'type' => 'card-grid',
-                'eyebrow' => 'Products',
+                'slug' => 'featured-products',
+                'type' => 'featured-products',
+                'eyebrow' => 'Featured Products',
                 'title' => 'Platform products built for enterprise velocity',
                 'description' => 'Composable products that integrate with your stack and scale across teams, regions, and business units.',
                 'content' => [
                     'items' => [
-                        [
-                            'title' => 'Cyra Command',
-                            'description' => 'Unified operations dashboard for executives, teams, and digital headquarters workflows.',
-                            'route' => 'products',
-                            'badge' => 'Flagship',
-                        ],
-                        [
-                            'title' => 'Cyra Pulse',
-                            'description' => 'Real-time business intelligence with executive briefings and automated insights.',
-                            'route' => 'products',
-                            'badge' => 'Analytics',
-                        ],
-                        [
-                            'title' => 'Cyra Shield',
-                            'description' => 'Enterprise security posture management with compliance automation and threat visibility.',
-                            'route' => 'products',
-                            'badge' => 'Security',
-                        ],
+                        ['title' => 'Cyra HRMS', 'description' => 'Unified human capital management with payroll, performance, and workforce analytics.', 'route' => 'products', 'badge' => 'HR'],
+                        ['title' => 'Cyra LMS', 'description' => 'Enterprise learning platform with certifications, cohorts, and skills tracking.', 'route' => 'products', 'badge' => 'Learning'],
+                        ['title' => 'Cyra CRM', 'description' => 'Pipeline intelligence, client engagement, and revenue operations in one workspace.', 'route' => 'products', 'badge' => 'CRM'],
+                        ['title' => 'Cyra Projects', 'description' => 'Project delivery hub with tasks, milestones, and cross-team collaboration.', 'route' => 'products', 'badge' => 'PM'],
                     ],
                     'action' => ['label' => 'Explore Products', 'route' => 'products'],
                 ],
             ],
             [
-                'slug' => 'industries',
-                'type' => 'card-grid',
-                'eyebrow' => 'Industries',
-                'title' => 'Deep domain expertise across regulated and high-growth sectors',
+                'slug' => 'commitment',
+                'type' => 'commitment',
                 'content' => [
-                    'columns' => 3,
-                    'items' => [
-                        ['title' => 'Financial Services', 'description' => 'Secure digital banking, fraud prevention, and regulatory-ready platforms.', 'route' => 'industries'],
-                        ['title' => 'Healthcare', 'description' => 'Patient-centric systems, interoperability, and HIPAA-aligned infrastructure.', 'route' => 'industries'],
-                        ['title' => 'Government', 'description' => 'Mission-critical systems with accessibility, security, and citizen experience.', 'route' => 'industries'],
-                        ['title' => 'Energy & Utilities', 'description' => 'IoT-enabled operations, grid intelligence, and sustainability analytics.', 'route' => 'industries'],
-                        ['title' => 'Retail & Commerce', 'description' => 'Omnichannel experiences, inventory intelligence, and personalization engines.', 'route' => 'industries'],
-                        ['title' => 'Technology', 'description' => 'Product engineering, platform modernization, and SaaS acceleration.', 'route' => 'industries'],
-                    ],
-                    'action' => ['label' => 'View Industries', 'route' => 'industries'],
-                ],
-            ],
-            [
-                'slug' => 'innovation-lab',
-                'type' => 'split-feature',
-                'eyebrow' => 'Innovation Lab',
-                'title' => 'Prototype the future before your market demands it',
-                'description' => 'Cyra-Tech Innovation Lab combines research, rapid prototyping, and production engineering to turn bold ideas into enterprise-ready products.',
-                'content' => [
-                    'bullets' => [
-                        'AI copilots and intelligent automation',
-                        'Emerging tech proof-of-concepts',
-                        'Design sprints and venture partnerships',
-                    ],
-                    'action' => ['label' => 'Enter Innovation Lab', 'route' => 'innovation-lab'],
-                ],
-            ],
-            [
-                'slug' => 'portfolio',
-                'type' => 'card-grid',
-                'eyebrow' => 'Portfolio',
-                'title' => 'Proven outcomes across complex enterprise programs',
-                'content' => [
-                    'items' => [
-                        [
-                            'title' => 'NovaBank Digital Core',
-                            'description' => 'Migrated 40+ legacy services to a cloud-native banking platform in 14 months.',
-                            'route' => 'portfolio',
-                            'metric' => '40% faster time-to-market',
-                        ],
-                        [
-                            'title' => 'Helix Health Network',
-                            'description' => 'Unified patient data platform serving 2M+ records with real-time analytics.',
-                            'route' => 'portfolio',
-                            'metric' => '99.95% uptime SLA',
-                        ],
-                        [
-                            'title' => 'Astra Logistics Command',
-                            'description' => 'AI-driven supply chain visibility across 18 countries and 120 distribution hubs.',
-                            'route' => 'portfolio',
-                            'metric' => '22% cost reduction',
+                    'commitment' => [
+                        'eyebrow' => 'Our Commitment',
+                        'title' => 'Building a Better Future Through Technology',
+                        'values' => [
+                            ['title' => 'Innovation', 'description' => 'Pushing boundaries with research, experimentation, and bold engineering.', 'icon' => 'ai'],
+                            ['title' => 'Impact', 'description' => 'Delivering measurable outcomes that improve lives and strengthen communities.', 'icon' => 'spark'],
+                            ['title' => 'Integrity', 'description' => 'Operating with transparency, accountability, and ethical technology practices.', 'icon' => 'shield'],
+                            ['title' => 'Excellence', 'description' => 'Maintaining world-class standards across every engagement and product.', 'icon' => 'transform'],
                         ],
                     ],
-                    'action' => ['label' => 'View Case Studies', 'route' => 'portfolio'],
-                ],
-            ],
-            [
-                'slug' => 'insights',
-                'type' => 'card-grid',
-                'eyebrow' => 'Insights',
-                'title' => 'Executive perspectives on technology and transformation',
-                'content' => [
-                    'items' => [
-                        [
-                            'title' => 'The Executive Guide to AI Readiness',
-                            'description' => 'A practical framework for adopting AI without compromising governance or security.',
-                            'route' => 'insights',
-                            'meta' => '8 min read',
+                    'community' => [
+                        'eyebrow' => 'Community Impact',
+                        'stats' => [
+                            ['label' => 'Youth Trained', 'value' => '25K+'],
+                            ['label' => 'Community Projects', 'value' => '200+'],
+                            ['label' => 'Scholarships', 'value' => '15+'],
+                            ['label' => 'NGO Partners', 'value' => '50+'],
                         ],
-                        [
-                            'title' => 'Cloud FinOps for Enterprise Scale',
-                            'description' => 'How CIOs are aligning cloud spend with business outcomes and innovation budgets.',
-                            'route' => 'insights',
-                            'meta' => '6 min read',
-                        ],
-                        [
-                            'title' => 'Zero Trust in Regulated Industries',
-                            'description' => 'Implementing identity-first security models across financial and public sector environments.',
-                            'route' => 'insights',
-                            'meta' => '10 min read',
-                        ],
+                        'action' => ['label' => 'Explore Community', 'route' => 'community'],
                     ],
-                    'action' => ['label' => 'Read Insights', 'route' => 'insights'],
-                ],
-            ],
-            [
-                'slug' => 'community',
-                'type' => 'cta-band',
-                'eyebrow' => 'Community',
-                'title' => 'Join builders, leaders, and innovators shaping what\'s next',
-                'description' => 'Connect with Cyra-Tech practitioners, partners, and enterprise leaders in our global technology community.',
-                'content' => [
-                    'action' => ['label' => 'Join the Community', 'route' => 'community'],
-                    'variant' => 'surface',
-                ],
-            ],
-            [
-                'slug' => 'careers',
-                'type' => 'cta-band',
-                'eyebrow' => 'Careers',
-                'title' => 'Build the future of enterprise technology with us',
-                'description' => 'We\'re hiring engineers, strategists, designers, and operators who thrive on complex challenges.',
-                'content' => [
-                    'action' => ['label' => 'View Open Roles', 'route' => 'careers'],
-                    'variant' => 'primary',
-                ],
-            ],
-            [
-                'slug' => 'contact-cta',
-                'type' => 'cta-band',
-                'eyebrow' => 'Let\'s Talk',
-                'title' => 'Ready to transform your enterprise?',
-                'description' => 'Partner with Cyra-Tech to design, build, and scale intelligent systems that deliver lasting impact.',
-                'content' => [
-                    'actions' => [
-                        ['label' => 'Contact Us', 'route' => 'contact', 'variant' => 'primary'],
-                        ['label' => 'Client Portal', 'route' => 'client-portal', 'variant' => 'secondary'],
-                    ],
-                    'variant' => 'gradient',
                 ],
             ],
         ],
@@ -732,6 +627,154 @@ return [
                 'tier' => 'extended',
                 'bio' => 'Marcus Chen leads talent strategy, culture, and organizational development across Cyra-Tech\'s global teams. He champions inclusive leadership and the growth of high-performance engineering and consulting teams.',
                 'focus_areas' => ['Talent Strategy', 'Culture', 'Organizational Development'],
+                'is_featured' => false,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Team Members Content
+    |--------------------------------------------------------------------------
+    */
+
+    'team_members' => [
+        'profiles' => [
+            [
+                'slug' => 'david-okafor',
+                'name' => 'David Okafor',
+                'title' => 'Senior Cloud Architect',
+                'department' => 'engineering',
+                'location' => 'Lagos, Nigeria',
+                'work_type' => 'Hybrid',
+                'bio' => 'David leads cloud architecture for enterprise migration and modernization programs across West Africa and global accounts.',
+                'skills' => ['AWS', 'Azure', 'Landing Zones', 'Migration Strategy'],
+                'linkedin_url' => 'https://www.linkedin.com/in/davidokafor',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'fatima-al-hassan',
+                'name' => 'Fatima Al-Hassan',
+                'title' => 'Lead Full-Stack Engineer',
+                'department' => 'engineering',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Fatima leads full-stack delivery for Cyra-Tech client platforms using Laravel, JavaScript, and the Cyra design system.',
+                'skills' => ['Laravel', 'JavaScript', 'Tailwind CSS', 'Test-Driven Delivery'],
+                'linkedin_url' => 'https://www.linkedin.com/in/fatimaalhassan',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'kwame-mensah',
+                'name' => 'Kwame Mensah',
+                'title' => 'AI / ML Engineer',
+                'department' => 'innovation',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Kwame builds production AI copilots and intelligent automation pilots with governance and monitoring built in.',
+                'skills' => ['LLM Integration', 'RAG', 'Python', 'Responsible AI'],
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'sophie-laurent',
+                'name' => 'Sophie Laurent',
+                'title' => 'Enterprise Solutions Consultant',
+                'department' => 'consulting',
+                'location' => 'London, UK',
+                'work_type' => 'Hybrid',
+                'bio' => 'Sophie partners with enterprise clients on transformation discovery, solution design, and executive steering.',
+                'skills' => ['Discovery Workshops', 'Solution Architecture', 'Stakeholder Management'],
+                'linkedin_url' => 'https://www.linkedin.com/in/sophielaurent',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'nina-patel',
+                'name' => 'Nina Patel',
+                'title' => 'Program Delivery Manager',
+                'department' => 'delivery',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Nina governs multi-workstream delivery programs with milestone tracking, risk management, and client reporting.',
+                'skills' => ['Program Governance', 'Agile Delivery', 'Risk Management'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'omar-hassan',
+                'name' => 'Omar Hassan',
+                'title' => 'UX / Product Designer',
+                'department' => 'design',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Omar designs enterprise dashboards, client portals, and marketing experiences aligned to the Cyra-Tech design system.',
+                'skills' => ['Enterprise UX', 'Figma', 'Design Systems', 'Accessibility'],
+                'linkedin_url' => 'https://www.linkedin.com/in/omarhassan',
+                'is_featured' => true,
+            ],
+            [
+                'slug' => 'rachel-nguyen',
+                'name' => 'Rachel Nguyen',
+                'title' => 'DevOps Engineer',
+                'department' => 'engineering',
+                'location' => 'Singapore',
+                'work_type' => 'Hybrid',
+                'bio' => 'Rachel builds CI/CD pipelines, observability stacks, and infrastructure automation for client platforms.',
+                'skills' => ['CI/CD', 'Kubernetes', 'Observability', 'Infrastructure as Code'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'tom-bradley',
+                'name' => 'Tom Bradley',
+                'title' => 'Security Architect',
+                'department' => 'engineering',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Tom embeds zero-trust security, compliance readiness, and threat monitoring into Cyra-Tech delivery programs.',
+                'skills' => ['Zero Trust', 'Compliance', 'Threat Modeling', 'Security Architecture'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'aisha-diallo',
+                'name' => 'Aisha Diallo',
+                'title' => 'Client Success Manager',
+                'department' => 'operations',
+                'location' => 'Nairobi, Kenya',
+                'work_type' => 'Hybrid',
+                'bio' => 'Aisha ensures client engagements stay aligned to outcomes with proactive communication and success planning.',
+                'skills' => ['Client Success', 'Account Management', 'Executive Reporting'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'luis-fernandez',
+                'name' => 'Luis Fernandez',
+                'title' => 'Data Engineer',
+                'department' => 'engineering',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Luis designs data pipelines, analytics foundations, and integration layers for enterprise intelligence programs.',
+                'skills' => ['Data Pipelines', 'ETL', 'Analytics Platforms', 'API Integration'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'grace-kim',
+                'name' => 'Grace Kim',
+                'title' => 'Technical Writer',
+                'department' => 'design',
+                'location' => 'Remote — Global',
+                'work_type' => 'Remote',
+                'bio' => 'Grace produces documentation, runbooks, and client-facing guides that support adoption and operational excellence.',
+                'skills' => ['Technical Documentation', 'Runbooks', 'Knowledge Management'],
+                'is_featured' => false,
+            ],
+            [
+                'slug' => 'henry-brooks',
+                'name' => 'Henry Brooks',
+                'title' => 'Solutions Architect',
+                'department' => 'consulting',
+                'location' => 'New York, USA',
+                'work_type' => 'Hybrid',
+                'bio' => 'Henry translates business requirements into scalable solution architectures for regulated enterprise clients.',
+                'skills' => ['Solution Design', 'Enterprise Integration', 'Architecture Reviews'],
+                'linkedin_url' => 'https://www.linkedin.com/in/henrybrooks',
                 'is_featured' => false,
             ],
         ],
@@ -1813,6 +1856,151 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Career Applicants (Talent Pipeline)
+    |--------------------------------------------------------------------------
+    */
+
+    'career_applicants' => [
+        'applications' => [
+            [
+                'reference' => 'APP-2026-001',
+                'opening_slug' => 'ux-product-designer',
+                'name' => 'Chiamaka Eze',
+                'email' => 'chiamaka.eze@example.com',
+                'phone' => '+234 801 234 5678',
+                'location' => 'Lagos, Nigeria',
+                'linkedin_url' => 'https://www.linkedin.com/in/chiamakaeze',
+                'portfolio_url' => 'https://portfolio.example.com/chiamaka',
+                'cover_letter' => 'I am excited to apply for the UX / Product Designer role. My portfolio includes enterprise dashboard and design system work aligned to WCAG standards.',
+                'resume_filename' => 'chiamaka-eze-resume.pdf',
+                'status' => 'new',
+                'source' => 'website',
+                'applied_days_ago' => 1,
+            ],
+            [
+                'reference' => 'APP-2026-002',
+                'opening_slug' => 'senior-cloud-architect',
+                'name' => 'Michael Torres',
+                'email' => 'michael.torres@example.com',
+                'phone' => '+1 415 555 0192',
+                'location' => 'San Francisco, USA',
+                'linkedin_url' => 'https://www.linkedin.com/in/michaeltorres',
+                'resume_filename' => 'michael-torres-cv.pdf',
+                'status' => 'screening',
+                'source' => 'linkedin',
+                'notes' => 'Strong AWS landing zone experience; schedule technical screen.',
+                'applied_days_ago' => 4,
+            ],
+            [
+                'reference' => 'APP-2026-003',
+                'opening_slug' => 'lead-full-stack-engineer',
+                'name' => 'Adaeze Nwankwo',
+                'email' => 'adaeze.nwankwo@example.com',
+                'location' => 'Abuja, Nigeria',
+                'linkedin_url' => 'https://www.linkedin.com/in/adaezenwankwo',
+                'portfolio_url' => 'https://github.com/adaezenwankwo',
+                'cover_letter' => 'Seven years building Laravel platforms with TDD and RBAC patterns for enterprise clients.',
+                'resume_filename' => 'adaeze-nwankwo-resume.pdf',
+                'status' => 'interview',
+                'source' => 'referral',
+                'notes' => 'Referred by David Okafor. Panel interview scheduled.',
+                'applied_days_ago' => 7,
+            ],
+            [
+                'reference' => 'APP-2026-004',
+                'opening_slug' => 'ai-ml-engineer',
+                'name' => 'Yuki Tanaka',
+                'email' => 'yuki.tanaka@example.com',
+                'location' => 'Tokyo, Japan',
+                'linkedin_url' => 'https://www.linkedin.com/in/yukitanaka',
+                'resume_filename' => 'yuki-tanaka-resume.pdf',
+                'status' => 'screening',
+                'source' => 'website',
+                'applied_days_ago' => 3,
+            ],
+            [
+                'reference' => 'APP-2026-005',
+                'opening_slug' => 'enterprise-solutions-consultant',
+                'name' => 'Sarah O\'Connor',
+                'email' => 'sarah.oconnor@example.com',
+                'phone' => '+44 20 7946 0958',
+                'location' => 'Dublin, Ireland',
+                'linkedin_url' => 'https://www.linkedin.com/in/sarahoconnor',
+                'cover_letter' => 'Ten years leading digital transformation programs in financial services across EMEA.',
+                'resume_filename' => 'sarah-oconnor-cv.pdf',
+                'status' => 'offer',
+                'source' => 'linkedin',
+                'notes' => 'Offer extended — awaiting response by end of week.',
+                'applied_days_ago' => 21,
+            ],
+            [
+                'reference' => 'APP-2026-006',
+                'opening_slug' => 'program-delivery-manager',
+                'name' => 'Daniel Brooks',
+                'email' => 'daniel.brooks@example.com',
+                'location' => 'Washington, DC, USA',
+                'linkedin_url' => 'https://www.linkedin.com/in/danielbrooks',
+                'resume_filename' => 'daniel-brooks-resume.pdf',
+                'status' => 'interview',
+                'source' => 'website',
+                'applied_days_ago' => 10,
+            ],
+            [
+                'reference' => 'APP-2026-007',
+                'opening_slug' => 'ux-product-designer',
+                'name' => 'Priya Mehta',
+                'email' => 'priya.mehta@example.com',
+                'location' => 'Bangalore, India',
+                'portfolio_url' => 'https://behance.net/priyamehta',
+                'resume_filename' => 'priya-mehta-portfolio.pdf',
+                'status' => 'rejected',
+                'source' => 'website',
+                'notes' => 'Strong portfolio but limited enterprise B2B experience for this cycle.',
+                'applied_days_ago' => 14,
+            ],
+            [
+                'reference' => 'APP-2026-008',
+                'opening_slug' => 'ai-ml-engineer',
+                'name' => 'Emmanuel Adeyemi',
+                'email' => 'emmanuel.adeyemi@example.com',
+                'location' => 'Accra, Ghana',
+                'linkedin_url' => 'https://www.linkedin.com/in/emmanueladeyemi',
+                'resume_filename' => 'emmanuel-adeyemi-cv.pdf',
+                'status' => 'hired',
+                'source' => 'referral',
+                'notes' => 'Accepted offer — start date confirmed for next month.',
+                'applied_days_ago' => 45,
+            ],
+            [
+                'reference' => 'APP-2026-009',
+                'opening_slug' => 'senior-cloud-architect',
+                'name' => 'Lisa Chen',
+                'email' => 'lisa.chen@example.com',
+                'phone' => '+65 9123 4567',
+                'location' => 'Singapore',
+                'linkedin_url' => 'https://www.linkedin.com/in/lisachen',
+                'resume_filename' => 'lisa-chen-resume.pdf',
+                'status' => 'new',
+                'source' => 'website',
+                'applied_days_ago' => 0,
+            ],
+            [
+                'reference' => 'APP-2026-010',
+                'opening_slug' => 'lead-full-stack-engineer',
+                'name' => 'James Okoro',
+                'email' => 'james.okoro@example.com',
+                'location' => 'Port Harcourt, Nigeria',
+                'portfolio_url' => 'https://github.com/jamesokoro',
+                'resume_filename' => 'james-okoro-resume.pdf',
+                'status' => 'screening',
+                'source' => 'careers-page',
+                'applied_days_ago' => 5,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Contact Content
     |--------------------------------------------------------------------------
     */
@@ -2788,7 +2976,7 @@ return [
         ],
         'test_suites' => [
             ['slug' => 'project-initialization', 'label' => 'Project Initialization', 'patterns' => ['Platform', 'Health', 'Initialization']],
-            ['slug' => 'authentication-rbac', 'label' => 'Authentication & RBAC', 'patterns' => ['Login', 'Rbac', 'Auth', 'AdminDashboard', 'DashboardApi']],
+            ['slug' => 'authentication-rbac', 'label' => 'Authentication & RBAC', 'patterns' => ['Login', 'Rbac', 'Auth']],
             ['slug' => 'design-system', 'label' => 'Design System', 'patterns' => ['DesignSystem']],
             ['slug' => 'global-navigation', 'label' => 'Global Navigation', 'patterns' => ['Navigation']],
             ['slug' => 'homepage', 'label' => 'Homepage', 'patterns' => ['Homepage']],
@@ -2827,6 +3015,7 @@ return [
             [
                 'slug' => 'company-health',
                 'label' => 'Company Health',
+                'icon' => 'health',
                 'value' => 'Excellent',
                 'change' => '+12.5%',
                 'positive' => true,
@@ -2835,6 +3024,7 @@ return [
             [
                 'slug' => 'projects-running',
                 'label' => 'Projects Running',
+                'icon' => 'folder',
                 'value' => '26',
                 'change' => '+8.1%',
                 'positive' => true,
@@ -2843,6 +3033,7 @@ return [
             [
                 'slug' => 'revenue-growth',
                 'label' => 'Revenue Growth',
+                'icon' => 'finance',
                 'value' => '₦45.8M',
                 'change' => '+18.3%',
                 'positive' => true,
@@ -2851,6 +3042,7 @@ return [
             [
                 'slug' => 'new-leads',
                 'label' => 'New Leads',
+                'icon' => 'crm',
                 'value' => '14',
                 'change' => '+20.5%',
                 'positive' => true,
@@ -2859,6 +3051,7 @@ return [
             [
                 'slug' => 'community-reach',
                 'label' => 'Community Reach',
+                'icon' => 'globe',
                 'value' => '1.2M',
                 'change' => '+15.7%',
                 'positive' => true,
@@ -2948,6 +3141,808 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Strategic Roadmap (Executive)
+    |--------------------------------------------------------------------------
+    */
+
+    'strategic_roadmap' => [
+        'horizon' => '2026–2028',
+        'vision' => 'Build the most trusted enterprise intelligence platform in West Africa — unifying digital experience, client delivery, and operational command into one cohesive Cyra-Tech ecosystem.',
+        'executive_summary' => 'The 25-module platform foundation is complete. Strategic focus now shifts to enterprise scale-out: AI-assisted operations, partner ecosystem growth, regulated-industry expansion, and continuous optimization of the digital headquarters.',
+        'pillars' => [
+            [
+                'title' => 'Platform Excellence',
+                'description' => 'Maintain a production-grade modular stack with full QA coverage, performance optimization, and secure RBAC across every admin surface.',
+                'icon' => 'server',
+                'progress' => 100,
+                'status' => 'completed',
+            ],
+            [
+                'title' => 'Intelligent Operations',
+                'description' => 'Expand AI executive briefings, predictive analytics, and automated workflow signals across CRM, projects, and client portal.',
+                'icon' => 'ai',
+                'progress' => 68,
+                'status' => 'in_progress',
+            ],
+            [
+                'title' => 'Market Expansion',
+                'description' => 'Deepen presence in financial services, healthcare, and public sector through industry-specific solution bundles and partner co-sell programs.',
+                'icon' => 'trending-up',
+                'progress' => 54,
+                'status' => 'in_progress',
+            ],
+            [
+                'title' => 'Client Success',
+                'description' => 'Elevate delivery velocity, portal engagement, and executive visibility for every enterprise account in the portfolio.',
+                'icon' => 'users',
+                'progress' => 72,
+                'status' => 'in_progress',
+            ],
+        ],
+        'phases' => [
+            [
+                'label' => 'Foundation',
+                'period' => 'Modules 01–10',
+                'description' => 'Core platform, design system, navigation, and public experience modules.',
+                'status' => 'completed',
+                'progress' => 100,
+            ],
+            [
+                'label' => 'Growth Surface',
+                'period' => 'Modules 11–18',
+                'description' => 'Portfolio, community, insights, careers, contact, partner hub, and client portal.',
+                'status' => 'completed',
+                'progress' => 100,
+            ],
+            [
+                'label' => 'Command Center',
+                'period' => 'Modules 19–25',
+                'description' => 'CMS, media, analytics, dashboard, CRM, project management, and optimization.',
+                'status' => 'completed',
+                'progress' => 100,
+            ],
+            [
+                'label' => 'Enterprise Scale',
+                'period' => '2026 H2 – 2027',
+                'description' => 'Advanced BI, AI assistant, marketing automation, and multi-region deployment readiness.',
+                'status' => 'in_progress',
+                'progress' => 35,
+            ],
+        ],
+        'quarters' => [
+            [
+                'label' => 'Q3 2026',
+                'period' => 'Jul – Sep 2026',
+                'status' => 'in_progress',
+                'theme' => 'Operational Intelligence',
+                'initiatives' => [
+                    ['title' => 'Launch Strategic Roadmap executive workspace', 'owner' => 'Product', 'status' => 'on-track', 'progress' => 90],
+                    ['title' => 'AI Executive Brief v2 with CRM and project signals', 'owner' => 'Engineering', 'status' => 'on-track', 'progress' => 65],
+                    ['title' => 'Partner Hub co-sell pipeline integration', 'owner' => 'Growth', 'status' => 'in-progress', 'progress' => 48],
+                    ['title' => 'Regulated-industry compliance content pack', 'owner' => 'CMS', 'status' => 'planned', 'progress' => 15],
+                ],
+            ],
+            [
+                'label' => 'Q4 2026',
+                'period' => 'Oct – Dec 2026',
+                'status' => 'planned',
+                'theme' => 'Client & Partner Acceleration',
+                'initiatives' => [
+                    ['title' => 'Client portal milestone automation', 'owner' => 'Delivery', 'status' => 'planned', 'progress' => 0],
+                    ['title' => 'Marketing campaign orchestration module', 'owner' => 'Growth', 'status' => 'planned', 'progress' => 0],
+                    ['title' => 'Multi-tenant admin workspace pilot', 'owner' => 'Platform', 'status' => 'planned', 'progress' => 0],
+                ],
+            ],
+            [
+                'label' => 'Q1 2027',
+                'period' => 'Jan – Mar 2027',
+                'status' => 'planned',
+                'theme' => 'AI-Native Enterprise',
+                'initiatives' => [
+                    ['title' => 'Cyra AI Assistant for admin and client surfaces', 'owner' => 'Innovation Lab', 'status' => 'planned', 'progress' => 0],
+                    ['title' => 'Predictive revenue and delivery forecasting', 'owner' => 'Analytics', 'status' => 'planned', 'progress' => 0],
+                ],
+            ],
+            [
+                'label' => 'Q2 2027',
+                'period' => 'Apr – Jun 2027',
+                'status' => 'planned',
+                'theme' => 'Regional Expansion',
+                'initiatives' => [
+                    ['title' => 'East Africa partner network launch', 'owner' => 'Partnerships', 'status' => 'planned', 'progress' => 0],
+                    ['title' => 'Localized industry solution bundles', 'owner' => 'Solutions', 'status' => 'planned', 'progress' => 0],
+                ],
+            ],
+        ],
+        'milestones' => [
+            ['title' => '25/25 platform modules production-ready', 'target' => 'Jul 2026', 'status' => 'completed', 'owner' => 'Platform'],
+            ['title' => 'Strategic Roadmap executive page live', 'target' => 'Jul 2026', 'status' => 'on-track', 'owner' => 'Product'],
+            ['title' => '100 enterprise leads in CRM pipeline', 'target' => 'Sep 2026', 'status' => 'on-track', 'owner' => 'Growth'],
+            ['title' => 'AI Assistant beta for admin users', 'target' => 'Q1 2027', 'status' => 'planned', 'owner' => 'Innovation Lab'],
+            ['title' => 'Regional expansion readiness review', 'target' => 'Q2 2027', 'status' => 'planned', 'owner' => 'Executive'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Company Pulse (Executive)
+    |--------------------------------------------------------------------------
+    */
+
+    'homepage_builder' => [
+        'summary' => 'Compose, preview, and manage the public marketing homepage sections, SEO metadata, and related digital assets.',
+        'section_type_meta' => [
+            'hero' => [
+                'label' => 'Hero Banner',
+                'icon' => 'home',
+                'description' => 'Primary headline, CTAs, and platform highlights.',
+            ],
+            'stats' => [
+                'label' => 'Statistics Bar',
+                'icon' => 'chart-bar',
+                'description' => 'Animated enterprise metrics and proof points.',
+            ],
+            'logos' => [
+                'label' => 'Partner Logos',
+                'icon' => 'partners',
+                'description' => 'Trusted-by partner and technology strip.',
+            ],
+            'feature-grid' => [
+                'label' => 'Feature Grid',
+                'icon' => 'sparkles',
+                'description' => 'Multi-column capability or solution cards.',
+            ],
+            'card-grid' => [
+                'label' => 'Card Grid',
+                'icon' => 'collection',
+                'description' => 'Product, industry, or content card layouts.',
+            ],
+            'split-feature' => [
+                'label' => 'Split Feature',
+                'icon' => 'document',
+                'description' => 'Two-column promotional feature block.',
+            ],
+            'solutions-ecosystem' => [
+                'label' => 'Solutions Ecosystem',
+                'icon' => 'briefcase',
+                'description' => 'End-to-end solution capability showcase.',
+            ],
+            'featured-products' => [
+                'label' => 'Featured Products',
+                'icon' => 'cube',
+                'description' => 'Platform product highlights and CTAs.',
+            ],
+            'commitment' => [
+                'label' => 'Commitment & Impact',
+                'icon' => 'spark',
+                'description' => 'Values, community impact, and social proof.',
+            ],
+            'cta-band' => [
+                'label' => 'CTA Band',
+                'icon' => 'mail',
+                'description' => 'Conversion-focused call-to-action strip.',
+            ],
+        ],
+        'quick_links' => [
+            [
+                'label' => 'View Live Homepage',
+                'description' => 'Open the public homepage in a new tab.',
+                'route' => 'home',
+                'icon' => 'globe',
+                'external' => true,
+            ],
+            [
+                'label' => 'CMS Pages',
+                'description' => 'Manage legal, policy, and editorial pages.',
+                'route' => 'admin.cms.index',
+                'icon' => 'document',
+            ],
+            [
+                'label' => 'Media Library',
+                'description' => 'Upload and manage homepage imagery.',
+                'route' => 'admin.media.index',
+                'icon' => 'photo',
+            ],
+            [
+                'label' => 'Component Library',
+                'description' => 'Browse homepage UI primitives and tokens.',
+                'route' => 'admin.design-system',
+                'icon' => 'cube',
+            ],
+        ],
+        'assets' => [
+            ['path' => 'images/homepage/hero-visual.png', 'label' => 'Hero Visual'],
+            ['path' => 'images/homepage/our-commitment.png', 'label' => 'Commitment Illustration'],
+        ],
+        'workspace_notes' => [
+            'Section content is defined in config/cyra.php and persisted in the homepage_sections table.',
+            'Run php artisan db:seed --class=HomepageSeeder to sync config changes to the database.',
+            'Inline section editing will be available in a future release — this workspace provides preview and oversight.',
+        ],
+    ],
+
+    'team_members_workspace' => [
+        'summary' => 'Manage the Cyra-Tech team directory — delivery specialists, engineers, consultants, and operators across global practice areas.',
+        'department_meta' => [
+            'engineering' => ['label' => 'Engineering', 'icon' => 'server'],
+            'consulting' => ['label' => 'Consulting', 'icon' => 'briefcase'],
+            'design' => ['label' => 'Design', 'icon' => 'cube'],
+            'delivery' => ['label' => 'Delivery', 'icon' => 'folder'],
+            'innovation' => ['label' => 'Innovation Lab', 'icon' => 'light-bulb'],
+            'operations' => ['label' => 'Operations', 'icon' => 'cog'],
+        ],
+        'quick_links' => [
+            [
+                'label' => 'Leadership Profiles',
+                'description' => 'View executive leadership on the public site.',
+                'route' => 'leadership',
+                'icon' => 'star',
+                'external' => true,
+            ],
+            [
+                'label' => 'Careers & Open Roles',
+                'description' => 'Open positions and hiring pipeline.',
+                'route' => 'careers',
+                'icon' => 'career',
+                'external' => true,
+            ],
+            [
+                'label' => 'Media Library',
+                'description' => 'Team headshots and profile imagery.',
+                'route' => 'admin.media.index',
+                'icon' => 'photo',
+            ],
+            [
+                'label' => 'Project Teams',
+                'description' => 'Delivery team assignments in client engagements.',
+                'route' => 'admin.projects.index',
+                'icon' => 'folder',
+            ],
+        ],
+        'workspace_notes' => [
+            'Team member profiles are defined in config/cyra.php and persisted in the team_members table.',
+            'Run php artisan db:seed --class=TeamMemberSeeder to sync config changes to the database.',
+            'Inline profile editing will be available in a future release — this workspace provides directory oversight.',
+        ],
+    ],
+
+    'applicants_workspace' => [
+        'summary' => 'Review and track career applications across open roles — from new submissions through screening, interviews, offers, and hiring decisions.',
+        'status_meta' => [
+            'new' => ['label' => 'New', 'variant' => 'primary', 'icon' => 'mail'],
+            'screening' => ['label' => 'Screening', 'variant' => 'warning', 'icon' => 'clipboard'],
+            'interview' => ['label' => 'Interview', 'variant' => 'primary', 'icon' => 'users'],
+            'offer' => ['label' => 'Offer', 'variant' => 'success', 'icon' => 'star'],
+            'hired' => ['label' => 'Hired', 'variant' => 'success', 'icon' => 'checklist'],
+            'rejected' => ['label' => 'Rejected', 'variant' => 'default', 'icon' => 'logs'],
+        ],
+        'source_meta' => [
+            'website' => 'Website',
+            'careers-page' => 'Careers Page',
+            'linkedin' => 'LinkedIn',
+            'referral' => 'Referral',
+        ],
+        'quick_links' => [
+            [
+                'label' => 'Open Roles',
+                'description' => 'Public careers catalog and role descriptions.',
+                'route' => 'careers',
+                'icon' => 'career',
+                'external' => true,
+            ],
+            [
+                'label' => 'Team Members',
+                'description' => 'Current Cyra-Tech team directory.',
+                'route' => 'admin.team-members.index',
+                'icon' => 'users',
+            ],
+            [
+                'label' => 'Media Library',
+                'description' => 'Resumes and applicant documents.',
+                'route' => 'admin.media.index',
+                'icon' => 'photo',
+            ],
+        ],
+        'workspace_notes' => [
+            'Applications are seeded from config/cyra.php and stored in the career_applicants table.',
+            'Run php artisan db:seed --class=CareerApplicantSeeder to sync config changes.',
+            'Application status updates and review workflows will be available in a future release.',
+        ],
+    ],
+
+    'security_workspace' => [
+        'summary' => 'Monitor platform security posture, active controls, infrastructure health, and compliance readiness across the Cyra-Tech enterprise stack.',
+        'status_meta' => [
+            'enabled' => ['label' => 'Enabled', 'variant' => 'success'],
+            'monitoring' => ['label' => 'Monitoring', 'variant' => 'warning'],
+            'planned' => ['label' => 'Planned', 'variant' => 'default'],
+        ],
+        'quick_links' => [
+            ['label' => 'Users & Roles', 'description' => 'RBAC roles and permission assignments.', 'route' => 'admin.users-roles.index', 'icon' => 'shield'],
+            ['label' => 'Testing & Optimization', 'description' => 'Platform health and QA checks.', 'route' => 'admin.optimization.index', 'icon' => 'wrench'],
+            ['label' => 'Enterprise Settings', 'description' => 'Platform configuration overview.', 'route' => 'admin.enterprise-settings.index', 'icon' => 'cog'],
+        ],
+        'workspace_notes' => [
+            'Security posture combines live health checks with configured platform controls.',
+            'Full SIEM integration and automated threat response will ship in a future release.',
+        ],
+    ],
+
+    'security' => [
+        'controls' => [
+            ['slug' => 'session-auth', 'label' => 'Session Authentication', 'category' => 'Access', 'icon' => 'lock', 'status' => 'enabled', 'description' => 'Secure session-based login with CSRF protection and remember-token support.'],
+            ['slug' => 'rbac', 'label' => 'Role-Based Access Control', 'category' => 'Access', 'icon' => 'shield', 'status' => 'enabled', 'description' => 'Granular permissions enforced via middleware, policies, and route guards.'],
+            ['slug' => 'rate-limiting', 'label' => 'Rate Limiting', 'category' => 'Network', 'icon' => 'server', 'status' => 'enabled', 'description' => 'Login, contact, and API endpoints throttled to prevent abuse.'],
+            ['slug' => 'password-hashing', 'label' => 'Credential Hashing', 'category' => 'Data', 'icon' => 'lock', 'status' => 'enabled', 'description' => 'Bcrypt-hashed passwords with Laravel credential validation.'],
+            ['slug' => 'client-isolation', 'label' => 'Client Portal Isolation', 'category' => 'Access', 'icon' => 'portal', 'status' => 'enabled', 'description' => 'Engagement data scoped per client account with dedicated RBAC role.'],
+            ['slug' => 'audit-logging', 'label' => 'Audit Logging', 'category' => 'Monitoring', 'icon' => 'logs', 'status' => 'monitoring', 'description' => 'Platform activity captured in the Logs workspace with expanded SIEM export planned.'],
+            ['slug' => 'encryption-transit', 'label' => 'Encryption In Transit', 'category' => 'Network', 'icon' => 'shield', 'status' => 'enabled', 'description' => 'HTTPS enforced for production deployments with secure cookie settings.'],
+            ['slug' => 'mfa', 'label' => 'Multi-Factor Authentication', 'category' => 'Access', 'icon' => 'lock', 'status' => 'planned', 'description' => 'Enterprise MFA for admin and client portal accounts — planned for next release.'],
+        ],
+        'compliance' => [
+            ['framework' => 'ISO 27001', 'status' => 'Aligned', 'description' => 'Information security management practices embedded in delivery and platform operations.', 'icon' => 'shield'],
+            ['framework' => 'GDPR', 'status' => 'Ready', 'description' => 'Privacy policy, data handling, and consent workflows published via CMS.', 'icon' => 'document'],
+            ['framework' => 'SOC 2', 'status' => 'In Progress', 'description' => 'Control mapping and evidence collection underway for Type II readiness.', 'icon' => 'checklist'],
+            ['framework' => 'OWASP Top 10', 'status' => 'Mitigated', 'description' => 'Secure coding standards, input validation, and RBAC reduce common web vulnerabilities.', 'icon' => 'lock'],
+        ],
+    ],
+
+    'logs_workspace' => [
+        'summary' => 'Review platform audit logs, security events, and recent system activity across admin modules.',
+        'severity_meta' => [
+            'info' => ['label' => 'Info', 'variant' => 'primary', 'icon' => 'logs'],
+            'warning' => ['label' => 'Warning', 'variant' => 'warning', 'icon' => 'logs'],
+            'critical' => ['label' => 'Critical', 'variant' => 'danger', 'icon' => 'shield'],
+        ],
+        'type_meta' => [
+            'auth' => ['label' => 'Authentication', 'icon' => 'lock'],
+            'user' => ['label' => 'User', 'icon' => 'users'],
+            'content' => ['label' => 'Content', 'icon' => 'document'],
+            'crm' => ['label' => 'CRM', 'icon' => 'crm'],
+            'media' => ['label' => 'Media', 'icon' => 'photo'],
+            'security' => ['label' => 'Security', 'icon' => 'shield'],
+            'system' => ['label' => 'System', 'icon' => 'server'],
+            'project' => ['label' => 'Project', 'icon' => 'folder'],
+            'career' => ['label' => 'Careers', 'icon' => 'career'],
+            'lead' => ['label' => 'Lead', 'icon' => 'mail'],
+        ],
+        'quick_links' => [
+            ['label' => 'Security', 'description' => 'Security posture and controls.', 'route' => 'admin.security.index', 'icon' => 'lock'],
+            ['label' => 'Users & Roles', 'description' => 'Account and RBAC audit context.', 'route' => 'admin.users-roles.index', 'icon' => 'shield'],
+            ['label' => 'Analytics', 'description' => 'Digital activity and event tracking.', 'route' => 'admin.analytics.index', 'icon' => 'analytics'],
+        ],
+        'workspace_notes' => [
+            'Audit entries are defined in config/cyra.php under platform_logs.',
+            'Live log streaming and export to SIEM will be available in a future release.',
+        ],
+    ],
+
+    'platform_logs' => [
+        'entries' => [
+            ['reference' => 'LOG-2026-0142', 'action' => 'Admin login successful', 'actor' => 'admin@cyratech.com', 'type' => 'auth', 'severity' => 'info', 'occurred_at' => 'Jul 8, 2026 9:45 AM', 'occurred_ago' => '28 minutes ago', 'details' => 'Session established from 127.0.0.1', 'sort_order' => 142],
+            ['reference' => 'LOG-2026-0141', 'action' => 'RBAC roles synced', 'actor' => 'System', 'type' => 'system', 'severity' => 'info', 'occurred_at' => 'Jul 8, 2026 10:06 AM', 'occurred_ago' => '7 minutes ago', 'details' => 'RolePermissionSeeder executed successfully', 'sort_order' => 141],
+            ['reference' => 'LOG-2026-0140', 'action' => 'CMS page published', 'actor' => 'Admin', 'type' => 'content', 'severity' => 'info', 'occurred_at' => 'Jul 7, 2026 4:30 PM', 'occurred_ago' => '18 hours ago', 'details' => 'Privacy Policy page status changed to published', 'sort_order' => 140],
+            ['reference' => 'LOG-2026-0139', 'action' => 'CRM lead created', 'actor' => 'Admin', 'type' => 'crm', 'severity' => 'info', 'occurred_at' => 'Jul 7, 2026 2:15 PM', 'occurred_ago' => '20 hours ago', 'details' => 'New lead: TechNova Solutions — ₦12,500,000 pipeline value', 'sort_order' => 139],
+            ['reference' => 'LOG-2026-0138', 'action' => 'Media asset uploaded', 'actor' => 'Admin', 'type' => 'media', 'severity' => 'info', 'occurred_at' => 'Jul 7, 2026 11:00 AM', 'occurred_ago' => '23 hours ago', 'details' => 'Uploaded marketing banner: enterprise-hero-abstract.png', 'sort_order' => 138],
+            ['reference' => 'LOG-2026-0137', 'action' => 'Failed login attempt', 'actor' => 'unknown@example.com', 'type' => 'security', 'severity' => 'warning', 'occurred_at' => 'Jul 6, 2026 8:22 PM', 'occurred_ago' => '2 days ago', 'details' => 'Invalid credentials — rate limit applied after 3 attempts', 'sort_order' => 137],
+            ['reference' => 'LOG-2026-0136', 'action' => 'Optimization action executed', 'actor' => 'Collins Pever', 'type' => 'system', 'severity' => 'info', 'occurred_at' => 'Jul 6, 2026 3:00 PM', 'occurred_ago' => '2 days ago', 'details' => 'Artisan optimize completed — config and routes cached', 'sort_order' => 136],
+            ['reference' => 'LOG-2026-0135', 'action' => 'Client portal login', 'actor' => 'client@novabank.com', 'type' => 'auth', 'severity' => 'info', 'occurred_at' => 'Jul 5, 2026 10:15 AM', 'occurred_ago' => '3 days ago', 'details' => 'Client portal session for NovaBank engagement', 'sort_order' => 135],
+            ['reference' => 'LOG-2026-0134', 'action' => 'Permission denied', 'actor' => 'viewer@cyratech.com', 'type' => 'security', 'severity' => 'warning', 'occurred_at' => 'Jul 4, 2026 1:45 PM', 'occurred_ago' => '4 days ago', 'details' => 'Access denied to admin.users-roles.index — missing roles.view', 'sort_order' => 134],
+            ['reference' => 'LOG-2026-0133', 'action' => 'Database connection restored', 'actor' => 'System', 'type' => 'system', 'severity' => 'critical', 'occurred_at' => 'Jul 3, 2026 6:00 AM', 'occurred_ago' => '5 days ago', 'details' => 'MySQL connection recovered after brief maintenance window', 'sort_order' => 133],
+        ],
+    ],
+
+    'enterprise_settings_workspace' => [
+        'summary' => 'Review enterprise platform identity, API configuration, environment status, and bootstrap settings for the Cyra-Tech digital headquarters.',
+        'quick_links' => [
+            ['label' => 'Users & Roles', 'description' => 'Identity and access management.', 'route' => 'admin.users-roles.index', 'icon' => 'shield'],
+            ['label' => 'Security', 'description' => 'Security posture overview.', 'route' => 'admin.security.index', 'icon' => 'lock'],
+            ['label' => 'Testing & Optimization', 'description' => 'Platform health and modules.', 'route' => 'admin.optimization.index', 'icon' => 'wrench'],
+        ],
+        'workspace_notes' => [
+            'Settings are read from config/cyra.php and environment variables.',
+            'Inline settings editing and .env management UI will ship in a future release.',
+        ],
+    ],
+
+    'enterprise_settings' => [
+        'groups' => [
+            [
+                'label' => 'Platform Identity',
+                'description' => 'Core brand and version metadata for the Cyra-Tech platform.',
+                'icon' => 'command',
+                'settings' => [
+                    ['key' => 'cyra.name', 'label' => 'Platform Name', 'editable' => false],
+                    ['key' => 'cyra.tagline', 'label' => 'Tagline', 'editable' => false],
+                    ['key' => 'cyra.version', 'label' => 'Version', 'editable' => false],
+                    ['key' => 'modules.progress', 'label' => 'Module Progress', 'editable' => false],
+                ],
+            ],
+            [
+                'label' => 'Brand Assets',
+                'description' => 'Logo and visual identity references.',
+                'icon' => 'photo',
+                'settings' => [
+                    ['key' => 'cyra.brand.logo', 'label' => 'Logo Path', 'editable' => false],
+                    ['key' => 'cyra.brand.logo_alt', 'label' => 'Logo Alt Text', 'editable' => false],
+                ],
+            ],
+            [
+                'label' => 'API Configuration',
+                'description' => 'Public API routing and rate limiting.',
+                'icon' => 'server',
+                'settings' => [
+                    ['key' => 'cyra.api.prefix', 'label' => 'API Prefix', 'editable' => false],
+                    ['key' => 'cyra.api.rate_limit', 'label' => 'Rate Limit (req/min)', 'editable' => false],
+                ],
+            ],
+            [
+                'label' => 'Environment',
+                'description' => 'Runtime environment and database connectivity.',
+                'icon' => 'cog',
+                'settings' => [
+                    ['key' => 'app.environment', 'label' => 'Environment', 'editable' => false],
+                    ['key' => 'database.driver', 'label' => 'Database Driver', 'editable' => false],
+                    ['key' => 'database.connected', 'label' => 'Database Status', 'editable' => false],
+                ],
+            ],
+            [
+                'label' => 'Bootstrap Admin',
+                'description' => 'Default administrator account seeded on platform initialization.',
+                'icon' => 'shield',
+                'settings' => [
+                    ['key' => 'cyra.admin.email', 'label' => 'Admin Email', 'editable' => false],
+                    ['key' => 'cyra.admin.role', 'label' => 'Default Role', 'editable' => false],
+                ],
+            ],
+        ],
+    ],
+
+    'calendar_workspace' => [
+        'summary' => 'Unified schedule of meetings, events, operational tasks, and executive deadlines across the Cyra-Tech command center.',
+        'type_meta' => [
+            'meeting' => ['label' => 'Meeting', 'icon' => 'users', 'variant' => 'primary'],
+            'call' => ['label' => 'Call', 'icon' => 'mail', 'variant' => 'accent'],
+            'event' => ['label' => 'Event', 'icon' => 'calendar', 'variant' => 'success'],
+            'task' => ['label' => 'Task', 'icon' => 'checklist', 'variant' => 'warning'],
+            'review' => ['label' => 'Review', 'icon' => 'report', 'variant' => 'purple'],
+        ],
+        'quick_links' => [
+            ['label' => 'Projects', 'description' => 'Delivery programs and milestones.', 'route' => 'admin.projects.index', 'icon' => 'folder'],
+            ['label' => 'Tasks Board', 'description' => 'Operational task workload.', 'route' => 'admin.projects.tasks', 'icon' => 'checklist'],
+            ['label' => 'Marketing', 'description' => 'Campaign events and webinars.', 'route' => 'admin.marketing.index', 'icon' => 'megaphone'],
+        ],
+        'workspace_notes' => [
+            'Calendar items combine Command Center events, tasks, and configured schedule entries.',
+            'Full calendar sync with Outlook and Google Calendar will ship in a future release.',
+        ],
+    ],
+
+    'calendar' => [
+        'events' => [
+            ['title' => 'Innovation Summit Prep Session', 'datetime' => 'Mon, 10:00 AM WAT', 'type' => 'meeting', 'location' => 'Virtual', 'source' => 'Events Team', 'sort_order' => 90],
+            ['title' => 'Q3 Executive Business Review', 'datetime' => 'Wed, 2:00 PM WAT', 'type' => 'review', 'location' => 'Lagos HQ', 'source' => 'Executive', 'sort_order' => 85],
+            ['title' => 'NovaBank Steering Committee', 'datetime' => 'Thu, 11:00 AM WAT', 'type' => 'call', 'location' => 'Client Portal', 'source' => 'Delivery', 'sort_order' => 80],
+            ['title' => 'Platform Security Review', 'datetime' => 'Fri, 3:30 PM WAT', 'type' => 'review', 'location' => 'Virtual', 'source' => 'Security', 'sort_order' => 75],
+        ],
+    ],
+
+    'users_roles_workspace' => [
+        'summary' => 'Govern platform identity — user accounts, RBAC roles, and permission assignments across the Cyra-Tech enterprise platform.',
+        'role_meta' => [
+            'super-admin' => ['icon' => 'shield', 'accent' => 'text-cyra-success'],
+            'admin' => ['icon' => 'cog', 'accent' => 'text-cyra-primary'],
+            'manager' => ['icon' => 'briefcase', 'accent' => 'text-cyra-accent'],
+            'editor' => ['icon' => 'document', 'accent' => 'text-cyra-purple'],
+            'viewer' => ['icon' => 'users', 'accent' => 'text-cyra-muted'],
+            'client' => ['icon' => 'portal', 'accent' => 'text-cyra-warning'],
+            'unassigned' => ['icon' => 'users', 'accent' => 'text-cyra-muted'],
+        ],
+        'quick_links' => [
+            ['label' => 'Command Center', 'description' => 'Executive dashboard and platform overview.', 'route' => 'admin.dashboard', 'icon' => 'command'],
+            ['label' => 'Team Members', 'description' => 'Public-facing team directory.', 'route' => 'admin.team-members.index', 'icon' => 'users'],
+            ['label' => 'Testing & Optimization', 'description' => 'Platform health and security checks.', 'route' => 'admin.optimization.index', 'icon' => 'wrench'],
+        ],
+        'workspace_notes' => [
+            'Roles and permissions are defined in config/cyra.php and synced via RolePermissionSeeder.',
+            'Run php artisan db:seed --class=RolePermissionSeeder to refresh RBAC definitions.',
+            'Super administrators can create users, assign roles, and promote accounts to Administrator from this workspace.',
+        ],
+    ],
+
+    'marketing_workspace' => [
+        'range_label' => 'Last 30 Days',
+        'summary' => 'Orchestrate growth campaigns, track digital performance, and align content channels with CRM and analytics for the Cyra-Tech brand.',
+        'channel_meta' => [
+            'content' => ['label' => 'Content Marketing', 'icon' => 'document'],
+            'social' => ['label' => 'Social Media', 'icon' => 'community'],
+            'email' => ['label' => 'Email & Nurture', 'icon' => 'mail'],
+            'events' => ['label' => 'Events & Webinars', 'icon' => 'calendar'],
+            'partner' => ['label' => 'Partner Co-Marketing', 'icon' => 'partners'],
+            'digital' => ['label' => 'Digital / Web', 'icon' => 'globe'],
+        ],
+        'status_meta' => [
+            'draft' => ['label' => 'Draft', 'variant' => 'default', 'icon' => 'document'],
+            'scheduled' => ['label' => 'Scheduled', 'variant' => 'warning', 'icon' => 'calendar'],
+            'active' => ['label' => 'Active', 'variant' => 'success', 'icon' => 'megaphone'],
+            'paused' => ['label' => 'Paused', 'variant' => 'warning', 'icon' => 'logs'],
+            'completed' => ['label' => 'Completed', 'variant' => 'primary', 'icon' => 'checklist'],
+        ],
+        'content_channels' => [
+            ['label' => 'Homepage', 'description' => 'Primary conversion and brand entry point.', 'route' => 'home', 'icon' => 'home', 'external' => true],
+            ['label' => 'Insights', 'description' => 'Thought leadership and executive briefings.', 'route' => 'insights', 'icon' => 'light-bulb', 'external' => true],
+            ['label' => 'Partner Hub', 'description' => 'Co-marketing and alliance programs.', 'route' => 'partner-hub', 'icon' => 'partners', 'external' => true],
+            ['label' => 'Community', 'description' => 'Engagement programs and forums.', 'route' => 'community', 'icon' => 'community', 'external' => true],
+            ['label' => 'CMS Pages', 'description' => 'Editorial and campaign landing pages.', 'route' => 'admin.cms.index', 'icon' => 'document'],
+            ['label' => 'Media Library', 'description' => 'Campaign creative and brand assets.', 'route' => 'admin.media.index', 'icon' => 'photo'],
+        ],
+        'quick_links' => [
+            ['label' => 'Cyra Pulse Analytics', 'description' => 'Traffic, conversion, and engagement metrics.', 'route' => 'admin.analytics.index', 'icon' => 'analytics'],
+            ['label' => 'Leads & CRM', 'description' => 'Pipeline and inbound lead conversion.', 'route' => 'admin.crm.index', 'icon' => 'crm'],
+            ['label' => 'Homepage Builder', 'description' => 'Homepage sections and SEO metadata.', 'route' => 'admin.homepage-builder.index', 'icon' => 'home'],
+            ['label' => 'Business Intelligence', 'description' => 'Executive growth and performance view.', 'route' => 'admin.business-intelligence.index', 'icon' => 'chart-bar'],
+        ],
+        'workspace_notes' => [
+            'Campaigns are defined in config/cyra.php under the marketing key.',
+            'Performance metrics combine live Cyra Pulse Analytics and CRM pipeline data.',
+            'Full campaign orchestration and automation workflows will ship in a future release.',
+        ],
+    ],
+
+    'marketing' => [
+        'campaigns' => [
+            [
+                'slug' => 'q3-enterprise-launch',
+                'name' => 'Q3 Enterprise Launch',
+                'channel' => 'content',
+                'status' => 'active',
+                'objective' => 'Drive enterprise solution awareness and qualified demo requests across West Africa and EMEA.',
+                'audience' => 'CIOs, CTOs, and transformation leaders',
+                'budget' => '₦2.5M',
+                'period' => 'Jul – Sep 2026',
+                'owner' => 'Growth Team',
+                'metrics' => ['impressions' => 45200, 'clicks' => 3180, 'leads' => 52],
+            ],
+            [
+                'slug' => 'innovation-summit-2026',
+                'name' => 'Innovation Summit 2026',
+                'channel' => 'events',
+                'status' => 'scheduled',
+                'objective' => 'Promote flagship event registrations and partner showcase sessions.',
+                'audience' => 'Enterprise innovators and technology partners',
+                'budget' => '₦1.8M',
+                'period' => 'Aug – Oct 2026',
+                'owner' => 'Events Team',
+                'metrics' => ['impressions' => 12800, 'clicks' => 940, 'leads' => 18],
+            ],
+            [
+                'slug' => 'linkedin-thought-leadership',
+                'name' => 'LinkedIn Thought Leadership',
+                'channel' => 'social',
+                'status' => 'active',
+                'objective' => 'Amplify Insights articles and executive commentary on AI readiness and cloud modernization.',
+                'audience' => 'Technology executives and decision makers',
+                'budget' => '₦800K',
+                'period' => 'Ongoing',
+                'owner' => 'Brand Team',
+                'metrics' => ['impressions' => 68400, 'clicks' => 4210, 'leads' => 34],
+            ],
+            [
+                'slug' => 'partner-co-marketing-wave',
+                'name' => 'Partner Co-Marketing Wave',
+                'channel' => 'partner',
+                'status' => 'active',
+                'objective' => 'Joint campaigns with cloud alliance and channel partners for co-branded solution briefs.',
+                'audience' => 'Partner sales teams and mid-market buyers',
+                'budget' => '₦1.2M',
+                'period' => 'Q3 2026',
+                'owner' => 'Partner Success',
+                'metrics' => ['impressions' => 22100, 'clicks' => 1560, 'leads' => 27],
+            ],
+            [
+                'slug' => 'cyra-pulse-webinar-series',
+                'name' => 'Cyra Pulse Webinar Series',
+                'channel' => 'email',
+                'status' => 'active',
+                'objective' => 'Nurture marketing-qualified leads through monthly executive briefings and product demos.',
+                'audience' => 'Newsletter subscribers and CRM contacts',
+                'budget' => '₦450K',
+                'period' => 'Monthly',
+                'owner' => 'Demand Gen',
+                'metrics' => ['impressions' => 18600, 'clicks' => 2890, 'leads' => 41],
+            ],
+            [
+                'slug' => 'homepage-conversion-optimization',
+                'name' => 'Homepage Conversion Optimization',
+                'channel' => 'digital',
+                'status' => 'active',
+                'objective' => 'Improve homepage CTA performance and solution discovery through A/B testing and SEO refinement.',
+                'audience' => 'Organic and paid web traffic',
+                'budget' => '₦350K',
+                'period' => 'Jul – Aug 2026',
+                'owner' => 'Digital Team',
+                'metrics' => ['impressions' => 92300, 'clicks' => 6120, 'leads' => 63],
+            ],
+            [
+                'slug' => 'financial-services-abm',
+                'name' => 'Financial Services ABM',
+                'channel' => 'content',
+                'status' => 'draft',
+                'objective' => 'Account-based campaign targeting regulated financial institutions with portfolio case studies.',
+                'audience' => 'Financial services IT and compliance leaders',
+                'budget' => '₦1.5M',
+                'period' => 'Q4 2026',
+                'owner' => 'Industry Marketing',
+                'metrics' => ['impressions' => 0, 'clicks' => 0, 'leads' => 0],
+            ],
+            [
+                'slug' => 'community-growth-program',
+                'name' => 'Community Growth Program',
+                'channel' => 'social',
+                'status' => 'paused',
+                'objective' => 'Expand Cyra Connect forum membership and youth training program awareness.',
+                'audience' => 'Developers, students, and NGO partners',
+                'budget' => '₦600K',
+                'period' => 'H1 2026',
+                'owner' => 'Community Team',
+                'metrics' => ['impressions' => 31400, 'clicks' => 2100, 'leads' => 22],
+            ],
+        ],
+    ],
+
+    'company_pulse_workspace' => [
+        'range_label' => 'Current Quarter',
+        'summary' => 'Organizational health across financial, operational, delivery, client, team, and innovation dimensions — synthesized for executive steering.',
+        'thresholds' => [
+            'excellent' => 90,
+            'good' => 80,
+            'watch' => 70,
+        ],
+        'dimension_meta' => [
+            'Financial Health' => [
+                'icon' => 'finance',
+                'focus' => 'Revenue pipeline, fiscal discipline, and growth indicators.',
+            ],
+            'Operational Efficiency' => [
+                'icon' => 'cog',
+                'focus' => 'Platform health, process throughput, and system reliability.',
+            ],
+            'Project Delivery' => [
+                'icon' => 'folder',
+                'focus' => 'Program progress, milestone adherence, and delivery velocity.',
+            ],
+            'Client Satisfaction' => [
+                'icon' => 'users',
+                'focus' => 'Engagement quality, portal activity, and client success signals.',
+            ],
+            'Team Productivity' => [
+                'icon' => 'checklist',
+                'focus' => 'Task completion, workload balance, and delivery cadence.',
+            ],
+            'Innovation Index' => [
+                'icon' => 'sparkles',
+                'focus' => 'Innovation lab activity, strategic initiatives, and R&D momentum.',
+            ],
+        ],
+        'recommendations' => [
+            'Financial Health' => 'Review CRM pipeline value and prioritize high-priority enterprise leads.',
+            'Operational Efficiency' => 'Monitor Testing & Optimization health checks and platform QA scores.',
+            'Project Delivery' => 'Align steering reviews with active program milestones and overdue tasks.',
+            'Client Satisfaction' => 'Increase client portal engagement and proactive milestone communications.',
+            'Team Productivity' => 'Clear overdue tasks and rebalance workload across delivery programs.',
+            'Innovation Index' => 'Advance Innovation Lab initiatives and Q3 strategic programs.',
+        ],
+        'watchlist' => [
+            ['label' => 'Team Productivity', 'reason' => 'Lowest pulse dimension — review task backlog and resourcing.'],
+            ['label' => 'Innovation Index', 'reason' => 'Ensure innovation programs stay aligned to strategic roadmap priorities.'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Business Intelligence (Executive)
+    |--------------------------------------------------------------------------
+    */
+
+    'business_intelligence' => [
+        'range_label' => 'Last 30 Days',
+        'data_domains' => [
+            ['slug' => 'revenue', 'label' => 'Revenue & CRM', 'icon' => 'finance', 'source' => 'CRM Pipeline'],
+            ['slug' => 'digital', 'label' => 'Digital Performance', 'icon' => 'analytics', 'source' => 'Cyra Pulse Analytics'],
+            ['slug' => 'delivery', 'label' => 'Delivery & Projects', 'icon' => 'folder', 'source' => 'Project Management'],
+            ['slug' => 'operations', 'label' => 'Operations & Pulse', 'icon' => 'pulse', 'source' => 'Command Center'],
+            ['slug' => 'platform', 'label' => 'Platform Health', 'icon' => 'server', 'source' => 'Testing & Optimization'],
+        ],
+        'reports' => [
+            ['label' => 'Executive KPI Summary', 'description' => 'Cross-functional KPIs from Command Center.', 'route' => 'admin.dashboard'],
+            ['label' => 'Traffic & Conversion', 'description' => 'Website analytics and lead conversion.', 'route' => 'admin.analytics.index'],
+            ['label' => 'CRM Pipeline Analysis', 'description' => 'Lead stages, value, and inbound inquiries.', 'route' => 'admin.crm.index'],
+            ['label' => 'Delivery Portfolio', 'description' => 'Program progress and task workload.', 'route' => 'admin.projects.index'],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | AI Assistant (Executive)
+    |--------------------------------------------------------------------------
+    */
+
+    'ai_assistant' => [
+        'name' => 'Cyra AI',
+        'tagline' => 'Executive intelligence for the entire Cyra-Tech Enterprise Platform.',
+        'model' => [
+            'label' => 'Cyra Intelligence Engine',
+            'version' => '2.0',
+            'status' => 'operational',
+            'latency' => '< 2s',
+        ],
+        'capabilities' => [
+            [
+                'title' => 'Full Platform Knowledge',
+                'description' => 'Answer questions about all 25 modules, admin workspaces, CMS, media, CRM, projects, and optimization.',
+                'icon' => 'server',
+            ],
+            [
+                'title' => 'Executive Briefings',
+                'description' => 'Summarize KPIs, company pulse, strategic priorities, and attention items in natural language.',
+                'icon' => 'ai',
+            ],
+            [
+                'title' => 'Public & Commercial Data',
+                'description' => 'Explain products, solutions, industries, portfolio, careers, partners, and innovation lab content.',
+                'icon' => 'briefcase',
+            ],
+            [
+                'title' => 'Enterprise Guidance',
+                'description' => 'Provide contextual advice on cloud, AI, digital transformation, and security aligned to Cyra-Tech practice.',
+                'icon' => 'light-bulb',
+            ],
+        ],
+        'prompts' => [
+            ['label' => 'Summarize company health', 'slug' => 'company-health', 'icon' => 'health'],
+            ['label' => 'Review lead pipeline', 'slug' => 'lead-pipeline', 'icon' => 'crm'],
+            ['label' => 'Project delivery status', 'slug' => 'project-status', 'icon' => 'folder'],
+            ['label' => 'Website performance brief', 'slug' => 'website-performance', 'icon' => 'analytics'],
+            ['label' => 'List platform modules', 'slug' => 'platform-modules', 'icon' => 'server'],
+            ['label' => 'What products do we offer?', 'slug' => 'products', 'icon' => 'cube'],
+            ['label' => 'Platform tech stack', 'slug' => 'platform-overview', 'icon' => 'cog'],
+            ['label' => 'What needs my attention?', 'slug' => 'attention', 'icon' => 'activity'],
+        ],
+        'guardrails' => [
+            'Responses are generated from live platform data and configured executive content.',
+            'Cyra AI does not execute admin actions — it provides analysis and recommendations only.',
+            'Sensitive credentials and personal data are never included in assistant outputs.',
+        ],
+        'external_topics' => [
+            [
+                'keywords' => ['cloud computing', 'cloud migration', 'hybrid cloud', 'aws', 'azure', 'google cloud'],
+                'response' => "Cloud computing delivers on-demand infrastructure and platform services over the internet. Cyra-Tech's practice aligns cloud migration with governance, security, and cost optimization — typical enterprise paths include assess → migrate → modernize → operate. On this platform, cloud capabilities are reflected in Solutions, Products (Cyra Command), and Innovation Lab initiatives. For project-specific cloud status, ask about active delivery programs or solutions offerings.",
+            ],
+            [
+                'keywords' => ['artificial intelligence', 'machine learning', 'generative ai', 'llm', 'copilot', ' ai '],
+                'response' => "Enterprise AI combines data platforms, model governance, and workflow integration to augment decision-making — not replace accountability. Cyra-Tech addresses AI through Innovation Lab initiatives, AI Executive Brief on the Command Center, and planned Cyra AI Assistant expansion. Responsible AI requires clear guardrails, human review, and domain-specific evaluation. Ask about Innovation Lab or strategic roadmap initiatives for Cyra-specific AI programs.",
+            ],
+            [
+                'keywords' => ['digital transformation', 'enterprise modernization', 'legacy modernization'],
+                'response' => "Digital transformation aligns business outcomes with technology investments across people, process, and platforms. Cyra-Tech's approach spans discovery, architecture, delivery, and continuous optimization — visible across Solutions, Portfolio case studies, and Project Management modules. Successful programs tie executive KPIs to incremental releases rather than big-bang replatforming.",
+            ],
+            [
+                'keywords' => ['cybersecurity', 'security posture', 'zero trust', 'compliance', 'gdpr', 'iso 27001'],
+                'response' => "Enterprise security requires layered controls: identity, data protection, monitoring, and incident response embedded in every delivery phase. Cyra-Tech serves regulated industries (financial services, healthcare, government) with compliance-aware engineering. On this platform, legal pages (privacy, terms), RBAC roles, and Testing & Optimization health checks support governance. Ask about users & roles or optimization QA for current platform security posture.",
+            ],
+            [
+                'keywords' => ['devops', 'ci/cd', 'automation', 'deployment pipeline'],
+                'response' => "DevOps unifies development and operations through automated testing, deployment pipelines, and observability. The Cyra-Tech stack uses Laravel, Vite, PHPUnit feature tests, and an Optimization module that tracks health scores and test coverage. Mature DevOps reduces release risk and improves mean time to recovery — ask about optimization QA or platform modules for current engineering readiness.",
+            ],
+            [
+                'keywords' => ['erp', 'crm strategy', 'customer relationship', 'sales enablement'],
+                'response' => "CRM strategy connects marketing, sales, and delivery around a single customer truth. Cyra-Tech's platform includes a live CRM module with pipeline stages, lead priorities, and inquiry conversion from Contact. Effective CRM programs define stages, SLAs, and executive dashboards — ask \"Review lead pipeline\" for current CRM data on this platform.",
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Global Navigation
     |--------------------------------------------------------------------------
     */
@@ -2971,7 +3966,7 @@ return [
                 ['label' => 'Careers', 'route' => 'careers', 'sort' => 10],
             ],
             'actions' => [
-                ['label' => 'Client Portal', 'route' => 'client-portal', 'style' => 'link', 'sort' => 1],
+                ['label' => 'Client Portal', 'route' => 'client-portal', 'style' => 'outline', 'sort' => 1],
                 ['label' => 'Contact Us', 'route' => 'contact', 'style' => 'button', 'sort' => 2],
             ],
             'footer_columns' => [
@@ -3029,80 +4024,89 @@ return [
                 'description' => 'Enterprise insights, product updates, and innovation stories delivered to your inbox.',
                 'placeholder' => 'Enter your work email',
                 'button' => 'Subscribe',
+                'success_message' => 'Thank you for subscribing to Cyra-Tech updates.',
+                'already_subscribed_message' => 'You are already subscribed to Cyra-Tech updates.',
             ],
         ],
         'admin' => [
             'groups' => [
                 [
                     'label' => 'Executive',
+                    'icon' => 'chart-pie',
                     'items' => [
-                        ['label' => 'Client Portal', 'route' => 'client-portal', 'permission' => 'modules.view'],
-                        ['label' => 'Brief', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
-                        ['label' => 'Company Pulse', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Business Intelligence', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Strategic Roadmap', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'AI Assistant', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Client Portal', 'icon' => 'portal', 'route' => 'admin.client-portal.index', 'permission' => 'modules.view'],
+                        ['label' => 'Brief', 'icon' => 'command', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
+                        ['label' => 'Company Pulse', 'icon' => 'pulse', 'route' => 'admin.company-pulse.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Business Intelligence', 'icon' => 'chart-bar', 'route' => 'admin.business-intelligence.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Strategic Roadmap', 'icon' => 'map', 'route' => 'admin.strategic-roadmap.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'AI Assistant', 'icon' => 'ai', 'route' => 'admin.ai-assistant.index', 'permission' => 'dashboard.access'],
                     ],
                 ],
                 [
                     'label' => 'Digital Headquarters',
+                    'icon' => 'globe',
                     'items' => [
-                        ['label' => 'Homepage Builder', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Pages', 'route' => 'admin.cms.index', 'permission' => 'cms.view'],
-                        ['label' => 'Navigation', 'route' => 'admin.dashboard', 'permission' => 'dashboard.access'],
-                        ['label' => 'Media Library', 'route' => 'admin.media.index', 'permission' => 'media.view'],
-                        ['label' => 'Component Library', 'route' => 'admin.design-system', 'permission' => 'modules.view'],
+                        ['label' => 'Homepage Builder', 'icon' => 'home', 'route' => 'admin.homepage-builder.index', 'permission' => 'modules.view'],
+                        ['label' => 'Pages', 'icon' => 'document', 'route' => 'admin.cms.index', 'permission' => 'cms.view'],
+                        ['label' => 'Navigation', 'icon' => 'menu', 'route' => 'admin.navigation.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Media Library', 'icon' => 'photo', 'route' => 'admin.media.index', 'permission' => 'media.view'],
+                        ['label' => 'Component Library', 'icon' => 'cube', 'route' => 'admin.design-system', 'permission' => 'modules.view'],
                     ],
                 ],
                 [
                     'label' => 'Solutions',
+                    'icon' => 'sparkles',
                     'items' => [
-                        ['label' => 'Services', 'route' => 'solutions', 'permission' => 'modules.view'],
-                        ['label' => 'Industries', 'route' => 'industries', 'permission' => 'modules.view'],
-                        ['label' => 'Products', 'route' => 'products', 'permission' => 'modules.view'],
-                        ['label' => 'Innovation Lab', 'route' => 'innovation-lab', 'permission' => 'modules.view'],
-                        ['label' => 'Portfolio', 'route' => 'portfolio', 'permission' => 'modules.view'],
-                        ['label' => 'Case Studies', 'route' => 'portfolio', 'permission' => 'modules.view'],
+                        ['label' => 'Services', 'icon' => 'briefcase', 'route' => 'admin.solutions.index', 'permission' => 'modules.view'],
+                        ['label' => 'Industries', 'icon' => 'building', 'route' => 'admin.industries.index', 'permission' => 'modules.view'],
+                        ['label' => 'Products', 'icon' => 'cube', 'route' => 'admin.products.index', 'permission' => 'modules.view'],
+                        ['label' => 'Innovation Lab', 'icon' => 'light-bulb', 'route' => 'admin.innovation-lab.index', 'permission' => 'modules.view'],
+                        ['label' => 'Portfolio', 'icon' => 'collection', 'route' => 'admin.portfolio.index', 'permission' => 'modules.view'],
+                        ['label' => 'Case Studies', 'icon' => 'document', 'route' => 'admin.portfolio.index', 'permission' => 'modules.view'],
                     ],
                 ],
                 [
                     'label' => 'Growth',
+                    'icon' => 'trending-up',
                     'items' => [
-                        ['label' => 'Contact', 'route' => 'contact', 'permission' => 'modules.view'],
-                        ['label' => 'Leads & CRM', 'route' => 'admin.crm.index', 'permission' => 'crm.view'],
-                        ['label' => 'Partners', 'route' => 'partner-hub', 'permission' => 'modules.view'],
-                        ['label' => 'Marketing', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Insights', 'route' => 'insights', 'permission' => 'modules.view'],
-                        ['label' => 'Analytics', 'route' => 'admin.analytics.index', 'permission' => 'analytics.view'],
+                        ['label' => 'Contact', 'icon' => 'mail', 'route' => 'admin.contact.index', 'permission' => 'modules.view'],
+                        ['label' => 'Leads & CRM', 'icon' => 'crm', 'route' => 'admin.crm.index', 'permission' => 'crm.view'],
+                        ['label' => 'Partners', 'icon' => 'partners', 'route' => 'admin.partners.index', 'permission' => 'partners.view'],
+                        ['label' => 'Marketing', 'icon' => 'megaphone', 'route' => 'admin.marketing.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Insights', 'icon' => 'light-bulb', 'route' => 'admin.insights.index', 'permission' => 'modules.view'],
+                        ['label' => 'Analytics', 'icon' => 'analytics', 'route' => 'admin.analytics.index', 'permission' => 'analytics.view'],
                     ],
                 ],
                 [
                     'label' => 'People',
+                    'icon' => 'users',
                     'items' => [
-                        ['label' => 'Leadership', 'route' => 'leadership', 'permission' => 'modules.view'],
-                        ['label' => 'Team Members', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Careers', 'route' => 'careers', 'permission' => 'modules.view'],
-                        ['label' => 'Applicants', 'permission' => 'modules.view', 'available' => false],
-                        ['label' => 'Community', 'route' => 'community', 'permission' => 'modules.view'],
+                        ['label' => 'Leadership', 'icon' => 'star', 'route' => 'admin.leadership.index', 'permission' => 'modules.view'],
+                        ['label' => 'Team Members', 'icon' => 'users', 'route' => 'admin.team-members.index', 'permission' => 'modules.view'],
+                        ['label' => 'Careers', 'icon' => 'career', 'route' => 'admin.careers.index', 'permission' => 'modules.view'],
+                        ['label' => 'Applicants', 'icon' => 'clipboard', 'route' => 'admin.applicants.index', 'permission' => 'modules.view'],
+                        ['label' => 'Community', 'icon' => 'community', 'route' => 'admin.community.index', 'permission' => 'modules.view'],
                     ],
                 ],
                 [
                     'label' => 'Operations',
+                    'icon' => 'cog',
                     'items' => [
-                        ['label' => 'Projects', 'route' => 'admin.projects.index', 'permission' => 'projects.view'],
-                        ['label' => 'Tasks', 'route' => 'admin.projects.tasks', 'permission' => 'projects.view'],
-                        ['label' => 'Calendar', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Reports', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
+                        ['label' => 'Projects', 'icon' => 'folder', 'route' => 'admin.projects.index', 'permission' => 'projects.view'],
+                        ['label' => 'Tasks', 'icon' => 'checklist', 'route' => 'admin.projects.tasks', 'permission' => 'projects.view'],
+                        ['label' => 'Calendar', 'icon' => 'calendar', 'route' => 'admin.calendar.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Reports', 'icon' => 'report', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
                     ],
                 ],
                 [
                     'label' => 'System',
+                    'icon' => 'server',
                     'items' => [
-                        ['label' => 'Users & Roles', 'permission' => 'roles.view', 'available' => false],
-                        ['label' => 'Security', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Logs', 'permission' => 'dashboard.access', 'available' => false],
-                        ['label' => 'Testing & Optimization', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
-                        ['label' => 'Enterprise Settings', 'permission' => 'dashboard.access', 'available' => false],
+                        ['label' => 'Users & Roles', 'icon' => 'shield', 'route' => 'admin.users-roles.index', 'permission' => 'roles.view'],
+                        ['label' => 'Security', 'icon' => 'lock', 'route' => 'admin.security.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Logs', 'icon' => 'logs', 'route' => 'admin.logs.index', 'permission' => 'dashboard.access'],
+                        ['label' => 'Testing & Optimization', 'icon' => 'wrench', 'route' => 'admin.optimization.index', 'permission' => 'optimization.view'],
+                        ['label' => 'Enterprise Settings', 'icon' => 'cog', 'route' => 'admin.enterprise-settings.index', 'permission' => 'dashboard.access'],
                     ],
                 ],
             ],

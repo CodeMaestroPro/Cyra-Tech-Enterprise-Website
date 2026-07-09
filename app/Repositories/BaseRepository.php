@@ -12,6 +12,11 @@ abstract class BaseRepository implements RepositoryInterface
     {
     }
 
+    public function getModel(): Model
+    {
+        return $this->model;
+    }
+
     public function all(array $columns = ['*']): Collection
     {
         return $this->model->newQuery()->get($columns);

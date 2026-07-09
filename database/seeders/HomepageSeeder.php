@@ -10,8 +10,11 @@ class HomepageSeeder extends Seeder
     public function run(): void
     {
         $sort = 1;
+        $configuredSlugs = [];
 
         foreach (config('cyra.homepage.sections', []) as $section) {
+            $configuredSlugs[] = $section['slug'];
+
             HomepageSection::query()->updateOrCreate(
                 ['slug' => $section['slug']],
                 [
@@ -25,5 +28,9 @@ class HomepageSeeder extends Seeder
                 ],
             );
         }
+
+        HomepageSection::query()
+            ->whereNotIn('slug', $configuredSlugs)
+            ->update(['is_active' => false]);
     }
 }

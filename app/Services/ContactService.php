@@ -82,6 +82,109 @@ class ContactService extends BaseService
     /**
      * @return array<string, mixed>
      */
+    public function getAdminWorkspace(): array
+    {
+        $typeLabels = $this->getInquiryTypeOptions();
+
+        $inquiries = $this->contactInquiryRepository
+            ->getAllOrdered()
+            ->map(fn (ContactInquiry $inquiry) => [
+                'reference' => $inquiry->reference,
+                'name' => $inquiry->name,
+                'email' => $inquiry->email,
+                'company' => $inquiry->company,
+                'phone' => $inquiry->phone,
+                'inquiry_type' => $inquiry->inquiry_type,
+                'inquiry_type_label' => $typeLabels[$inquiry->inquiry_type] ?? ucfirst(str_replace('-', ' ', $inquiry->inquiry_type)),
+                'message' => $inquiry->message,
+                'status' => $inquiry->status,
+                'submitted_at' => $inquiry->created_at?->format('M j, Y g:i A'),
+                'submitted_ago' => $inquiry->created_at?->diffForHumans(),
+                'edit_url' => route('admin.contact.edit', $inquiry->reference),
+            ])
+            ->values()
+            ->all();
+
+        return [
+            'description' => 'Review inbound contact form submissions and route inquiries to CRM.',
+            'summary' => [
+                'total' => count($inquiries),
+                'pending' => collect($inquiries)->where('status', 'pending')->count(),
+                'converted' => collect($inquiries)->where('status', 'converted')->count(),
+            ],
+            'inquiries' => $inquiries,
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function getAdminInquiry(string $reference): ?array
+    {
+        $inquiry = $this->contactInquiryRepository->findByReference($reference);
+
+        if ($inquiry === null) {
+            return null;
+        }
+
+        $typeLabels = $this->getInquiryTypeOptions();
+
+        return [
+            'reference' => $inquiry->reference,
+            'name' => $inquiry->name,
+            'email' => $inquiry->email,
+            'company' => $inquiry->company,
+            'phone' => $inquiry->phone,
+            'inquiry_type' => $inquiry->inquiry_type,
+            'inquiry_type_label' => $typeLabels[$inquiry->inquiry_type] ?? ucfirst(str_replace('-', ' ', $inquiry->inquiry_type)),
+            'message' => $inquiry->message,
+            'status' => $inquiry->status,
+            'submitted_at' => $inquiry->created_at?->format('M j, Y g:i A'),
+        ];
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function getStatusOptions(): array
+    {
+        return ['pending', 'reviewed', 'converted', 'closed'];
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    public function updateInquiry(string $reference, array $data): ?array
+    {
+        $inquiry = $this->contactInquiryRepository->findByReference($reference);
+
+        if ($inquiry === null) {
+            return null;
+        }
+
+        $inquiry = $this->contactInquiryRepository->updateInquiry($inquiry, [
+            'status' => $data['status'],
+        ]);
+
+        return $this->getAdminInquiry($inquiry->reference);
+    }
+
+    public function deleteInquiry(string $reference): bool
+    {
+        $inquiry = $this->contactInquiryRepository->findByReference($reference);
+
+        if ($inquiry === null) {
+            return false;
+        }
+
+        $this->contactInquiryRepository->deleteInquiry($inquiry);
+
+        return true;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
     private function resolveInquiryType(string $slug): array
     {
         $types = collect(config('cyra.contact.inquiry_types', []));

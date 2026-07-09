@@ -4,6 +4,7 @@
 export function initNavigation() {
     const toggle = document.querySelector('[data-mobile-nav-toggle]');
     const panel = document.querySelector('[data-mobile-nav-panel]');
+    const drawer = document.querySelector('[data-mobile-nav-drawer]');
     const backdrop = document.querySelector('[data-mobile-nav-backdrop]');
     const closeButtons = document.querySelectorAll('[data-mobile-nav-close]');
     const navLinks = document.querySelectorAll('[data-mobile-nav-link]');
@@ -16,14 +17,19 @@ export function initNavigation() {
         panel.classList.remove('hidden');
         panel.setAttribute('aria-hidden', 'false');
         toggle.setAttribute('aria-expanded', 'true');
+        drawer?.setAttribute('data-open', 'true');
         document.body.classList.add('overflow-hidden');
     };
 
     const closeMenu = () => {
-        panel.classList.add('hidden');
-        panel.setAttribute('aria-hidden', 'true');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('overflow-hidden');
+        drawer?.setAttribute('data-open', 'false');
+
+        window.setTimeout(() => {
+            panel.classList.add('hidden');
+            panel.setAttribute('aria-hidden', 'true');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('overflow-hidden');
+        }, 220);
     };
 
     toggle.addEventListener('click', () => {
