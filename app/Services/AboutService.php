@@ -16,6 +16,60 @@ class AboutService extends BaseService
     /**
      * @return array<string, mixed>|null
      */
+    public function getAboutPage(): ?array
+    {
+        $pages = $this->aboutPageRepository->getActivePages();
+
+        if ($pages->isEmpty()) {
+            return null;
+        }
+
+        $overview = $pages->firstWhere('slug', 'overview') ?? $pages->first();
+        $seo = $overview->seo ?? [];
+        $lastIndex = $pages->count() - 1;
+
+        $sections = $pages
+            ->values()
+            ->map(function (AboutPage $page, int $index) use ($lastIndex) {
+                $blocks = collect($page->content ?? [])
+                    ->filter(function (array $block) use ($index, $lastIndex) {
+                        if (($block['type'] ?? null) !== 'cta') {
+                            return true;
+                        }
+
+                        return $index === $lastIndex;
+                    })
+                    ->values()
+                    ->all();
+
+                return [
+                    'id' => $page->slug,
+                    'nav_label' => $page->nav_label,
+                    'eyebrow' => $page->eyebrow,
+                    'title' => $page->title,
+                    'description' => $page->description,
+                    'show_heading' => $page->slug !== 'overview',
+                    'blocks' => $blocks,
+                ];
+            })
+            ->all();
+
+        return [
+            'eyebrow' => $overview->eyebrow,
+            'title' => $overview->title,
+            'description' => $overview->description,
+            'sections' => $sections,
+            'seo' => [
+                'title' => $seo['title'] ?? $overview->title.' | '.config('cyra.name'),
+                'description' => $seo['description'] ?? $overview->description,
+                'keywords' => $seo['keywords'] ?? [],
+            ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
     public function getPage(string $slug): ?array
     {
         $page = $this->aboutPageRepository->findActiveBySlug($slug);
@@ -37,8 +91,8 @@ class AboutService extends BaseService
             ->map(fn (AboutPage $page) => [
                 'slug' => $page->slug,
                 'label' => $page->nav_label,
-                'route' => $page->route_name,
-                'url' => Route::has($page->route_name) ? route($page->route_name) : '#',
+                'route' => 'about',
+                'url' => route('about').'#'.$page->slug,
                 'active' => $page->slug === ($currentSlug ?? 'overview'),
             ])
             ->values()
@@ -59,6 +113,7 @@ class AboutService extends BaseService
         return [
             'navigation' => $this->getNavigation(),
             'pages' => $pages,
+            'page' => $this->getAboutPage(),
         ];
     }
 

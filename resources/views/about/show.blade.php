@@ -19,8 +19,7 @@
             <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
-                    ['label' => 'About', 'href' => route('about')],
-                    ['label' => $page['nav_label']],
+                    ['label' => 'About'],
                 ]" />
 
                 @if (! empty($page['eyebrow']))
@@ -33,36 +32,59 @@
             </div>
         </section>
 
-        <x-about.nav :items="$aboutNav" />
+        @foreach ($page['sections'] as $index => $section)
+            <section
+                id="{{ $section['id'] }}"
+                @class([
+                    'scroll-mt-28',
+                    'border-y border-cyra-border/70 bg-cyra-soft/60' => $index % 2 === 1,
+                ])
+                @if ($section['show_heading'])
+                    aria-labelledby="about-section-{{ $section['id'] }}"
+                @endif
+            >
+                <div class="cyra-container cyra-section">
+                    <div class="mx-auto flex max-w-5xl flex-col gap-12 lg:gap-14">
+                        @if ($section['show_heading'])
+                            <header class="max-w-3xl">
+                                @if (! empty($section['eyebrow']))
+                                    <p class="cyra-caption">{{ $section['eyebrow'] }}</p>
+                                @endif
+                                <h2 id="about-section-{{ $section['id'] }}" class="mt-3 cyra-heading-1">{{ $section['title'] }}</h2>
+                                @if (! empty($section['description']))
+                                    <p class="mt-4 text-base leading-relaxed text-cyra-muted sm:text-lg">{{ $section['description'] }}</p>
+                                @endif
+                            </header>
+                        @endif
 
-        <div class="cyra-container cyra-section">
-            <div class="mx-auto flex max-w-5xl flex-col gap-12 lg:gap-16">
-                @foreach ($page['blocks'] as $block)
-                    @switch($block['type'])
-                        @case('prose')
-                            <x-about.blocks.prose :block="$block" />
-                            @break
-                        @case('stats-row')
-                            <x-about.blocks.stats-row :block="$block" />
-                            @break
-                        @case('feature-list')
-                            <x-about.blocks.feature-list :block="$block" />
-                            @break
-                        @case('quote-cards')
-                            <x-about.blocks.quote-cards :block="$block" />
-                            @break
-                        @case('value-grid')
-                            <x-about.blocks.value-grid :block="$block" />
-                            @break
-                        @case('timeline')
-                            <x-about.blocks.timeline :block="$block" />
-                            @break
-                        @case('cta')
-                            <x-about.blocks.cta :block="$block" />
-                            @break
-                    @endswitch
-                @endforeach
-            </div>
-        </div>
+                        @foreach ($section['blocks'] as $block)
+                            @switch($block['type'])
+                                @case('prose')
+                                    <x-about.blocks.prose :block="$block" />
+                                    @break
+                                @case('stats-row')
+                                    <x-about.blocks.stats-row :block="$block" />
+                                    @break
+                                @case('feature-list')
+                                    <x-about.blocks.feature-list :block="$block" />
+                                    @break
+                                @case('quote-cards')
+                                    <x-about.blocks.quote-cards :block="$block" />
+                                    @break
+                                @case('value-grid')
+                                    <x-about.blocks.value-grid :block="$block" />
+                                    @break
+                                @case('timeline')
+                                    <x-about.blocks.timeline :block="$block" />
+                                    @break
+                                @case('cta')
+                                    <x-about.blocks.cta :block="$block" />
+                                    @break
+                            @endswitch
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endforeach
     </main>
 @endsection

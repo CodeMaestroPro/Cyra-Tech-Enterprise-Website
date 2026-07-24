@@ -432,7 +432,6 @@ return [
                             'description' => 'Join us as we shape the future, one solution at a time.',
                         ],
                     ]],
-                    ['type' => 'cta', 'title' => 'Ready to turn your idea into a working product?', 'description' => 'Tell us about your goals. We will help you design and deliver a solution tailored to your organization.', 'action' => ['label' => 'Contact Us', 'route' => 'contact']],
                 ],
             ],
             [
@@ -463,7 +462,6 @@ return [
                         'Our goal is to empower businesses, individuals, and organizations with innovative software solutions that simplify operations, enhance productivity, and drive sustainable growth. We aim to bridge the gap between ideas and reality by delivering reliable, scalable, and user-friendly applications tailored to each client\'s unique needs.',
                         'At CYRA-TECH, we are committed to continuous innovation, excellence, and creating technology that makes a real impact in everyday life.',
                     ]],
-                    ['type' => 'cta', 'title' => 'Let\'s build something that matters', 'description' => 'From first concept to long-term growth, we partner with you to deliver technology that creates lasting value.', 'action' => ['label' => 'Start a Conversation', 'route' => 'contact']],
                 ],
             ],
             [

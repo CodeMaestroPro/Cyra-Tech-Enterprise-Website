@@ -49,11 +49,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomepageController::class)->name('home');
 Route::get('/platform/initialization', InitializationController::class)->name('platform.initialization');
 
-Route::get('/about', [AboutController::class, 'show'])->defaults('slug', 'overview')->name('about');
-Route::get('/about/vision-mission', [AboutController::class, 'show'])->defaults('slug', 'vision-mission')->name('about.vision-mission');
-Route::get('/about/values', [AboutController::class, 'show'])->defaults('slug', 'values')->name('about.values');
-Route::get('/about/history', [AboutController::class, 'show'])->defaults('slug', 'history')->name('about.history');
-Route::get('/about/why-choose-us', [AboutController::class, 'show'])->defaults('slug', 'why-choose-us')->name('about.why-choose-us');
+Route::get('/about', [AboutController::class, 'show'])->name('about');
+Route::redirect('/about/vision-mission', '/about#vision-mission')->name('about.vision-mission');
+Route::redirect('/about/values', '/about#values')->name('about.values');
+Route::redirect('/about/history', '/about#history')->name('about.history');
+Route::redirect('/about/why-choose-us', '/about#why-choose-us')->name('about.why-choose-us');
 
 Route::get('/leadership', LeadershipController::class)->name('leadership');
 

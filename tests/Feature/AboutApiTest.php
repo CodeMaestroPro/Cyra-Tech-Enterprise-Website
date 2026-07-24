@@ -41,7 +41,7 @@ class AboutApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('success', true)
             ->assertJsonPath('data.slug', 'values')
-            ->assertJsonPath('data.title', 'Principles that define how we work');
+            ->assertJsonPath('data.title', 'The principles behind every solution we deliver');
     }
 
     public function test_about_page_api_returns_not_found_for_invalid_slug(): void

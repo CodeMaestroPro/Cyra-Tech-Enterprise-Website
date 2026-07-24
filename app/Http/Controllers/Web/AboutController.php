@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Services\AboutService;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AboutController extends Controller
@@ -14,15 +13,14 @@ class AboutController extends Controller
     ) {
     }
 
-    public function show(Request $request, string $slug = 'overview'): View
+    public function show(): View
     {
-        $page = $this->aboutService->getPage($slug);
+        $page = $this->aboutService->getAboutPage();
 
         abort_if($page === null, 404);
 
         return view('about.show', [
             'page' => $page,
-            'aboutNav' => $this->aboutService->getNavigation($slug),
         ]);
     }
 }
