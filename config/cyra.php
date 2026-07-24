@@ -305,12 +305,10 @@ return [
                 'title' => 'Trusted by organizations across Africa and beyond',
                 'content' => [
                     'items' => [
-                        'Microsoft',
-                        'AWS',
-                        'Oracle',
-                        'Google Cloud',
-                        'Huawei',
-                        'IBM',
+                        'SKYHUB NG',
+                        'BLUEVASE',
+                        'PRINON TECH',
+                        'MAVSPACE INNOVATION',
                     ],
                 ],
             ],
