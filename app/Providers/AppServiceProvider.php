@@ -60,6 +60,7 @@ use App\Services\DashboardService;
 use App\Services\PlatformService;
 use App\Services\RoleService;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -124,6 +125,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Shared hosting / older MySQL: utf8mb4 indexes must stay within 1000 bytes.
+        Schema::defaultStringLength(191);
+
         Gate::policy(User::class, UserPolicy::class);
         Gate::define('manage-roles', [RolePolicy::class, 'manage']);
         Gate::define('view-roles', [RolePolicy::class, 'viewAny']);
