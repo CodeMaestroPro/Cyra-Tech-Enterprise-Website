@@ -133,15 +133,42 @@
     }
 
     html[data-cyra-theme='light'] .cyra-page-hero {
-        border-color: #e2e8f0;
-        background-color: #ffffff;
+        border-color: #1e3a5f;
+        background-color: #000b26;
         background-image:
-            radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in srgb, #0052ff 9%, transparent), transparent 55%),
-            radial-gradient(ellipse 55% 65% at 0% 100%, color-mix(in srgb, #38bdf8 7%, transparent), transparent 50%);
+            radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in srgb, #0052ff 28%, transparent), transparent 55%),
+            radial-gradient(ellipse 55% 65% at 0% 100%, color-mix(in srgb, #38bdf8 16%, transparent), transparent 50%),
+            linear-gradient(160deg, #000b26 0%, #030711 100%);
+        color: #f8fafc;
     }
 
     html[data-cyra-theme='light'] .cyra-page-hero-glow {
-        opacity: 0.35;
+        opacity: 1;
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero .cyra-display,
+    html[data-cyra-theme='light'] .cyra-page-hero .cyra-heading-1,
+    html[data-cyra-theme='light'] .cyra-page-hero .cyra-heading-2,
+    html[data-cyra-theme='light'] .cyra-page-hero h1,
+    html[data-cyra-theme='light'] .cyra-page-hero h2 {
+        color: #f8fafc;
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero .text-cyra-muted,
+    html[data-cyra-theme='light'] .cyra-page-hero .text-cyra-text,
+    html[data-cyra-theme='light'] .cyra-page-hero nav,
+    html[data-cyra-theme='light'] .cyra-page-hero nav a,
+    html[data-cyra-theme='light'] .cyra-page-hero nav span {
+        color: color-mix(in srgb, #f8fafc 72%, transparent);
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero nav .font-semibold,
+    html[data-cyra-theme='light'] .cyra-page-hero nav [aria-current='page'] {
+        color: #f8fafc;
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero nav a:hover {
+        color: #38bdf8;
     }
 
     html[data-cyra-theme='light'] .cyra-hero-visual {
