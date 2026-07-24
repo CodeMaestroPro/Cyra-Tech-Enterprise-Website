@@ -434,17 +434,30 @@
             linear-gradient(160deg, #001233 0%, #000b26 45%, #001a4d 100%);
     }
 
-    .cyra-hero-image,
+    .cyra-hero-image {
+        @apply relative mx-auto w-full max-w-xl overflow-visible;
+        background: transparent;
+    }
+
     .cyra-commitment-image {
         @apply relative w-full overflow-hidden rounded-2xl bg-white shadow-2xl shadow-cyra-primary/20 ring-1 ring-cyra-primary/10 sm:rounded-[1.35rem];
     }
 
-    .cyra-hero-image__photo,
+    .cyra-hero-image__photo {
+        @apply block h-auto w-full object-contain transition-transform duration-700 ease-out will-change-transform;
+        /* Knock out the illustration's solid black backdrop against the deep blue hero. */
+        mix-blend-mode: screen;
+        filter: contrast(1.05) saturate(1.05);
+    }
+
     .cyra-commitment-image__photo {
         @apply block h-auto w-full object-contain transition-transform duration-700 ease-out will-change-transform;
     }
 
-    .cyra-hero-image__glow,
+    .cyra-hero-image__glow {
+        display: none;
+    }
+
     .cyra-commitment-image__glow {
         @apply pointer-events-none absolute inset-0 rounded-[inherit];
         background: radial-gradient(ellipse at 50% 15%, color-mix(in srgb, var(--color-cyra-primary) 22%, transparent), transparent 62%);

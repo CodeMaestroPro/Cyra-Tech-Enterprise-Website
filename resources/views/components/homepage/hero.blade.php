@@ -47,13 +47,13 @@
             <figure class="cyra-hero-image" data-animate="scale-in">
                 <img
                     src="{{ asset('images/homepage/hero-visual.png') }}"
-                    alt="Cyra-Tech Enterprise: AI and automation, cloud solutions, cybersecurity, and software development."
+                    alt="Cyra-Tech teams collaborating around analytics, strategy, and digital project delivery."
                     class="cyra-hero-image__photo"
                     loading="eager"
                     decoding="async"
                     fetchpriority="high"
-                    width="1024"
-                    height="720"
+                    width="496"
+                    height="503"
                 >
                 <span class="cyra-hero-image__glow" aria-hidden="true"></span>
             </figure>
