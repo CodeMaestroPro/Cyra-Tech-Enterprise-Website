@@ -334,6 +334,16 @@
         background: #eef3fb;
     }
 
+    .cyra-header-mobile-toggle {
+        display: inline-flex;
+    }
+
+    @media (min-width: 1024px) {
+        .cyra-header-mobile-toggle {
+            display: none !important;
+        }
+    }
+
     .cyra-header-secondary {
         @apply px-3 text-sm font-semibold transition-colors;
         color: #001a4d;

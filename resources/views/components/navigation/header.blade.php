@@ -12,12 +12,12 @@
     Skip to main content
 </a>
 
-<header class="cyra-header-shell sticky top-0 z-40" data-navigation-header>
+<header class="cyra-header-shell" data-navigation-header>
     <div class="cyra-header-pill">
         <div class="flex min-w-0 items-center gap-2 sm:gap-3">
             <button
                 type="button"
-                class="cyra-header-icon-btn lg:hidden"
+                class="cyra-header-icon-btn cyra-header-mobile-toggle"
                 aria-controls="mobile-navigation"
                 aria-expanded="false"
                 data-mobile-nav-toggle
