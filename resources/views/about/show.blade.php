@@ -26,9 +26,9 @@
                 @if (! empty($page['eyebrow']))
                     <p class="cyra-hero-badge mt-6">{{ $page['eyebrow'] }}</p>
                 @endif
-                <h1 class="mt-3 cyra-display">{{ $page['title'] }}</h1>
+                <h1 class="mt-4 max-w-4xl cyra-display">{{ $page['title'] }}</h1>
                 @if (! empty($page['description']))
-                    <p class="mt-4 max-w-3xl text-lg leading-relaxed text-cyra-muted">{{ $page['description'] }}</p>
+                    <p class="mt-5 max-w-3xl text-lg leading-relaxed text-cyra-muted sm:text-xl">{{ $page['description'] }}</p>
                 @endif
             </div>
         </section>
@@ -36,32 +36,32 @@
         <x-about.nav :items="$aboutNav" />
 
         <div class="cyra-container cyra-section">
-            <div class="cyra-section-stack">
-            @foreach ($page['blocks'] as $block)
-                @switch($block['type'])
-                    @case('prose')
-                        <x-about.blocks.prose :block="$block" />
-                        @break
-                    @case('stats-row')
-                        <x-about.blocks.stats-row :block="$block" />
-                        @break
-                    @case('feature-list')
-                        <x-about.blocks.feature-list :block="$block" />
-                        @break
-                    @case('quote-cards')
-                        <x-about.blocks.quote-cards :block="$block" />
-                        @break
-                    @case('value-grid')
-                        <x-about.blocks.value-grid :block="$block" />
-                        @break
-                    @case('timeline')
-                        <x-about.blocks.timeline :block="$block" />
-                        @break
-                    @case('cta')
-                        <x-about.blocks.cta :block="$block" />
-                        @break
-                @endswitch
-            @endforeach
+            <div class="mx-auto flex max-w-5xl flex-col gap-12 lg:gap-16">
+                @foreach ($page['blocks'] as $block)
+                    @switch($block['type'])
+                        @case('prose')
+                            <x-about.blocks.prose :block="$block" />
+                            @break
+                        @case('stats-row')
+                            <x-about.blocks.stats-row :block="$block" />
+                            @break
+                        @case('feature-list')
+                            <x-about.blocks.feature-list :block="$block" />
+                            @break
+                        @case('quote-cards')
+                            <x-about.blocks.quote-cards :block="$block" />
+                            @break
+                        @case('value-grid')
+                            <x-about.blocks.value-grid :block="$block" />
+                            @break
+                        @case('timeline')
+                            <x-about.blocks.timeline :block="$block" />
+                            @break
+                        @case('cta')
+                            <x-about.blocks.cta :block="$block" />
+                            @break
+                    @endswitch
+                @endforeach
             </div>
         </div>
     </main>

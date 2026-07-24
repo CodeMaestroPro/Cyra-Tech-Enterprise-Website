@@ -160,7 +160,7 @@ class NavigationTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('about.show')
-            ->assertSee('Engineering intelligent enterprise futures');
+            ->assertSee('Powerful, user-focused software for modern organizations');
     }
 
     public function test_admin_dashboard_renders_command_center_sidebar_groups(): void

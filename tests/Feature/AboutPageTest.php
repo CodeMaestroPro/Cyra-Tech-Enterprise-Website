@@ -23,8 +23,8 @@ class AboutPageTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('about.show')
-            ->assertSee('Engineering intelligent enterprise futures')
-            ->assertSee('Our Story')
+            ->assertSee('Powerful, user-focused software for modern organizations')
+            ->assertSee('Who we are')
             ->assertSee('Overview')
             ->assertSee('Vision & Mission');
     }
@@ -33,22 +33,22 @@ class AboutPageTest extends TestCase
     {
         $this->get(route('about.vision-mission'))
             ->assertOk()
-            ->assertSee('Vision')
+            ->assertSee('Our Goal')
             ->assertSee('Mission');
 
         $this->get(route('about.values'))
             ->assertOk()
-            ->assertSee('Integrity')
+            ->assertSee('Client focus')
             ->assertSee('Innovation');
 
         $this->get(route('about.history'))
             ->assertOk()
-            ->assertSee('2010')
-            ->assertSee('Cyra-Tech founded');
+            ->assertSee('Discover')
+            ->assertSee('From idea to scalable product');
 
         $this->get(route('about.why-choose-us'))
             ->assertOk()
-            ->assertSee('Enterprise-grade delivery')
+            ->assertSee('User-focused by design')
             ->assertSee('Contact Us');
     }
 

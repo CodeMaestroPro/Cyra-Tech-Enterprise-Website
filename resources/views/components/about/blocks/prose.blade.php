@@ -1,12 +1,23 @@
 @props(['block'])
 
-<section>
+@php
+    $paragraphs = $block['paragraphs'] ?? [];
+@endphp
+
+<section class="about-prose">
     @if (! empty($block['title']))
-        <h2 class="cyra-heading-3 mb-4">{{ $block['title'] }}</h2>
+        <h2 class="cyra-heading-2">{{ $block['title'] }}</h2>
     @endif
-    <div class="space-y-4 text-base leading-relaxed text-cyra-muted">
-        @foreach ($block['paragraphs'] ?? [] as $paragraph)
-            <p>{{ $paragraph }}</p>
+
+    <div @class(['mt-5 space-y-5' => ! empty($block['title']), 'space-y-5' => empty($block['title'])])>
+        @foreach ($paragraphs as $index => $paragraph)
+            <p @class([
+                'leading-relaxed text-cyra-muted',
+                'text-lg text-cyra-text sm:text-xl sm:leading-relaxed' => $index === 0,
+                'text-base sm:text-lg' => $index > 0,
+            ])>
+                {{ $paragraph }}
+            </p>
         @endforeach
     </div>
 </section>
