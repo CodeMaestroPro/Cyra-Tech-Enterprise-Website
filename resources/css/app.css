@@ -147,6 +147,21 @@
         @apply from-cyra-primary/10 via-white to-slate-50;
     }
 
+    /* Keep the site footer on the deep blue brand palette in light mode. */
+    html[data-cyra-theme='light'] [data-navigation-footer] {
+        --color-cyra-midnight: #030711;
+        --color-cyra-navy: #000b26;
+        --color-cyra-surface: #0f172a;
+        --color-cyra-border: #1e3a5f;
+        --color-cyra-text: #f8fafc;
+        --color-cyra-muted: #94a3b8;
+        --color-cyra-soft: #081428;
+        --color-cyra-elevated: #121f38;
+        border-color: #1e3a5f;
+        background-image: linear-gradient(to bottom, #000b26, #030711);
+        color: #f8fafc;
+    }
+
     html[data-cyra-theme='light'] [data-cyra-theme-toggle] [data-cyra-theme-icon='sun'] {
         display: block;
     }
