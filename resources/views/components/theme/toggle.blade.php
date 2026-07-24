@@ -7,9 +7,9 @@
     {{ $attributes->merge([
         'class' => 'inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text '.$class,
         'data-cyra-theme-toggle' => true,
-        'aria-label' => 'Switch to light mode',
-        'title' => 'Switch to light mode',
-        'aria-pressed' => 'false',
+        'aria-label' => 'Switch to dark mode',
+        'title' => 'Switch to dark mode',
+        'aria-pressed' => 'true',
     ]) }}
 >
     <svg data-cyra-theme-icon="moon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

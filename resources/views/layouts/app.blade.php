@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ config('cyra.tagline') }}">
-        <meta name="theme-color" content="#000B26">
+        <meta name="theme-color" content="#ffffff">
 
         <title>@yield('title', config('cyra.name'))</title>
 

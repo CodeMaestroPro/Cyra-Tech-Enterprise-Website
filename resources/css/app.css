@@ -68,10 +68,10 @@
 
     html[data-cyra-theme='light'] {
         color-scheme: light;
-        --color-cyra-midnight: #f1f5f9;
+        --color-cyra-midnight: #ffffff;
         --color-cyra-navy: #ffffff;
         --color-cyra-surface: #ffffff;
-        --color-cyra-border: #cbd5e1;
+        --color-cyra-border: #e2e8f0;
         --color-cyra-text: #0f172a;
         --color-cyra-muted: #64748b;
         --color-cyra-light: #e2e8f0;

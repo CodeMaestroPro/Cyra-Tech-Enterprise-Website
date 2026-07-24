@@ -4,21 +4,21 @@ export function getStoredTheme() {
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
 
-        return stored === 'light' ? 'light' : 'dark';
+        return stored === 'dark' ? 'dark' : 'light';
     } catch {
-        return 'dark';
+        return 'light';
     }
 }
 
 export function applyTheme(theme) {
-    const resolved = theme === 'light' ? 'light' : 'dark';
+    const resolved = theme === 'dark' ? 'dark' : 'light';
 
     document.documentElement.setAttribute('data-cyra-theme', resolved);
     document.documentElement.style.colorScheme = resolved;
 
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-        metaTheme.setAttribute('content', resolved === 'light' ? '#f1f5f9' : '#050810');
+        metaTheme.setAttribute('content', resolved === 'light' ? '#ffffff' : '#050810');
     }
 
     document.querySelectorAll('[data-cyra-theme-toggle]').forEach((button) => {
@@ -30,7 +30,7 @@ export function applyTheme(theme) {
 }
 
 export function setTheme(theme) {
-    const resolved = theme === 'light' ? 'light' : 'dark';
+    const resolved = theme === 'dark' ? 'dark' : 'light';
 
     try {
         localStorage.setItem(STORAGE_KEY, resolved);

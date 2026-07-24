@@ -3,12 +3,13 @@
         try {
             var theme = localStorage.getItem('cyra-theme');
 
-            if (theme === 'light') {
+            if (theme !== 'dark') {
                 document.documentElement.setAttribute('data-cyra-theme', 'light');
                 document.documentElement.style.colorScheme = 'light';
             }
         } catch (error) {
-            // Ignore storage failures during first paint.
+            document.documentElement.setAttribute('data-cyra-theme', 'light');
+            document.documentElement.style.colorScheme = 'light';
         }
     })();
 </script>
