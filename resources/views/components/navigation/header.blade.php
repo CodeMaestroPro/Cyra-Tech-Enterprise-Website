@@ -17,7 +17,7 @@
         <div class="flex min-w-0 items-center gap-2 sm:gap-3">
             <button
                 type="button"
-                class="cyra-header-icon-btn xl:hidden"
+                class="cyra-header-icon-btn lg:hidden"
                 aria-controls="mobile-navigation"
                 aria-expanded="false"
                 data-mobile-nav-toggle
