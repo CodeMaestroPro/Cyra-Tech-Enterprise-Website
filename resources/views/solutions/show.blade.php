@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', $offering['title'].' | Solutions')
+@section('title', $offering['title'].' | Services')
 
 @push('head')
     <meta name="description" content="{{ $offering['summary'] }}">
-    <meta property="og:title" content="{{ $offering['title'] }} | Cyra-Tech Solutions">
+    <meta property="og:title" content="{{ $offering['title'] }} | Cyra-Tech Services">
     <meta property="og:description" content="{{ $offering['summary'] }}">
 @endpush
 
@@ -15,7 +15,7 @@
             <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
-                    ['label' => 'Solutions', 'href' => route('solutions')],
+                    ['label' => 'Services', 'href' => route('solutions')],
                     ['label' => $offering['title']],
                 ]" />
 
@@ -62,7 +62,7 @@
 
             <div class="mt-12 flex flex-wrap gap-3">
                 <x-ui.button href="{{ route('contact') }}">Start a Project</x-ui.button>
-                <x-ui.button href="{{ route('solutions') }}" variant="secondary">Back to Solutions</x-ui.button>
+                <x-ui.button href="{{ route('solutions') }}" variant="secondary">Back to Services</x-ui.button>
             </div>
         </div>
     </main>

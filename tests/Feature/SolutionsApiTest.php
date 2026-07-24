@@ -40,12 +40,12 @@ class SolutionsApiTest extends TestCase
 
     public function test_solutions_api_returns_single_offering(): void
     {
-        $response = $this->getJson(route('api.solutions.show', ['slug' => 'education-campus-portals']));
+        $response = $this->getJson(route('api.solutions.show', ['slug' => 'ai-solutions']));
 
         $response
             ->assertOk()
             ->assertJsonPath('success', true)
-            ->assertJsonPath('data.title', 'Education & Campus Portals');
+            ->assertJsonPath('data.title', 'AI');
     }
 
     public function test_solutions_api_returns_not_found_for_invalid_slug(): void

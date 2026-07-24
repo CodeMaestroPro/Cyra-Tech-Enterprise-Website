@@ -25,7 +25,7 @@ class NavigationTest extends TestCase
             ->assertSee('images/brand/cyra-tech-logo.png', false)
             ->assertSee('Built on Vision. Driven by Intelligence.', false)
             ->assertSee('Innovating Today. Empowering Tomorrow.')
-            ->assertSee('Explore Solutions')
+            ->assertSee('Explore Services')
             ->assertSee('Stay ahead with Cyra-Tech')
             ->assertSee('All rights reserved.')
             ->assertSee('data-public-nav-search-open', false)
@@ -42,7 +42,7 @@ class NavigationTest extends TestCase
         $headerLabels = collect($navigation['header'])->pluck('label')->all();
 
         $this->assertSame(
-            ['Home', 'About', 'Solutions', 'Products', 'Portfolio'],
+            ['Home', 'About', 'Services', 'Products', 'Portfolio'],
             $headerLabels,
         );
 
@@ -54,6 +54,9 @@ class NavigationTest extends TestCase
             $this->assertContains($label, $footerLabels);
             $this->assertNotContains($label, $headerLabels);
         }
+
+        $this->assertNotContains('Solutions', $headerLabels);
+        $this->assertNotContains('Innovation Lab', $headerLabels);
     }
 
     public function test_login_page_does_not_render_public_navigation(): void

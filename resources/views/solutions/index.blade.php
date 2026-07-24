@@ -26,13 +26,13 @@
             <div class="cyra-container relative cyra-section-hero-inner">
                 <x-ui.breadcrumb :items="[
                     ['label' => 'Home', 'href' => route('home')],
-                    ['label' => 'Solutions'],
+                    ['label' => 'Services'],
                 ]" />
 
                 @if (! empty($hero['eyebrow']))
                     <p class="cyra-hero-badge mt-6">{{ $hero['eyebrow'] }}</p>
                 @endif
-                <h1 class="mt-3 cyra-display">{{ $hero['title'] ?? 'Solutions' }}</h1>
+                <h1 class="mt-3 cyra-display">{{ $hero['title'] ?? 'Services' }}</h1>
                 @if (! empty($hero['description']))
                     <p class="mt-4 max-w-3xl text-lg leading-relaxed text-cyra-muted">{{ $hero['description'] }}</p>
                 @endif
@@ -48,7 +48,7 @@
                     class="cyra-section-heading"
                 />
 
-                <div class="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter solutions by category">
+                <div class="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter services by category">
                     @foreach ($categories as $category)
                         <button
                             type="button"

@@ -46,9 +46,12 @@ class NavigationSeeder extends Seeder
     private function seedFooterColumns(): void
     {
         $sort = 1;
+        $keepKeys = [];
 
         foreach (config('cyra.navigation.public.footer_columns', []) as $column) {
             foreach ($column['links'] as $link) {
+                $keepKeys[] = $column['title'].'|'.$link['label'];
+
                 NavigationItem::query()->updateOrCreate(
                     [
                         'location' => 'footer_column',
@@ -67,6 +70,17 @@ class NavigationSeeder extends Seeder
                 );
             }
         }
+
+        NavigationItem::query()
+            ->where('location', 'footer_column')
+            ->get()
+            ->each(function (NavigationItem $item) use ($keepKeys): void {
+                $key = ($item->group_label ?? '').'|'.$item->label;
+
+                if (! in_array($key, $keepKeys, true)) {
+                    $item->update(['is_active' => false]);
+                }
+            });
     }
 
     private function seedFooterSocial(): void

@@ -23,22 +23,24 @@ class SolutionsPageTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('solutions.index')
-            ->assertSee('Practical software solutions for growing organizations')
+            ->assertSee('Services that turn ideas into working software')
             ->assertSee('Custom Software Development')
-            ->assertSee('Operations & Inventory Systems')
+            ->assertSee('Web Application Development')
+            ->assertSee('Mobile Application Development')
+            ->assertSee('AI')
             ->assertSee('How we take ideas to working software')
             ->assertSee('data-solution-filter', false);
     }
 
     public function test_solution_detail_page_renders_offering(): void
     {
-        $response = $this->get(route('solutions.show', 'custom-software-development'));
+        $response = $this->get(route('solutions.show', 'ui-ux-design'));
 
         $response
             ->assertOk()
             ->assertViewIs('solutions.show')
-            ->assertSee('Custom Software Development')
-            ->assertSee('Web application development')
+            ->assertSee('UI/UX Design')
+            ->assertSee('Wireframes and interactive prototypes')
             ->assertSee('Start a Project');
     }
 
