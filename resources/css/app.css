@@ -289,7 +289,7 @@
     }
 
     .cyra-header-shell {
-        @apply pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-5;
+        @apply pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-4 sm:px-5 sm:pt-5;
         background: transparent;
     }
 
@@ -370,9 +370,14 @@
         background: color-mix(in srgb, #0052ff 12%, #ffffff);
     }
 
-    /* Keep page content clear of the fixed floating nav when the first block is not a hero. */
-    body.theme-public:has([data-navigation-header]) .cyra-page-enter > :first-child:not(.cyra-page-hero) {
-        padding-top: 5.5rem;
+    /* Only offset non-hero pages. Homepage/About wrap the hero in <main>, so padding
+       on main was creating the white band under the floating nav. */
+    body.theme-public:has([data-navigation-header]) .cyra-page-enter > main:not(:has(> .cyra-page-hero:first-child)) {
+        padding-top: 5.75rem;
+    }
+
+    body.theme-public:has([data-navigation-header]) .cyra-page-enter > :first-child:not(main):not(.cyra-page-hero) {
+        padding-top: 5.75rem;
     }
 
     .cyra-hero-badge {
