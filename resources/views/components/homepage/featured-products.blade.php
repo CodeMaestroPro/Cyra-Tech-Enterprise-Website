@@ -13,11 +13,11 @@
                 @if (! empty($section['eyebrow']))
                     <p class="cyra-caption text-cyra-primary">{{ $section['eyebrow'] }}</p>
                 @endif
-                <h2 id="homepage-{{ $section['slug'] }}-title" class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                <h2 id="homepage-{{ $section['slug'] }}-title" class="mt-3 text-2xl font-bold tracking-tight sm:text-4xl">
                     {{ $section['title'] ?? '' }}
                 </h2>
                 @if (! empty($section['description']))
-                    <p class="mt-4 text-base leading-relaxed text-white/70">
+                    <p class="mt-4 text-sm leading-relaxed text-white/70 sm:text-base">
                         {{ $section['description'] }}
                     </p>
                 @endif

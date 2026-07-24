@@ -14,7 +14,7 @@
 >
     <div class="absolute inset-0 bg-cyra-midnight/80 backdrop-blur-sm transition-opacity duration-300" data-admin-nav-backdrop></div>
 
-    <div class="absolute inset-y-0 left-0 flex w-full max-w-xs flex-col border-r border-cyra-border bg-cyra-navy shadow-2xl transition-transform duration-300 ease-out -translate-x-full" data-admin-nav-drawer>
+    <div class="absolute inset-y-0 left-0 flex w-full max-w-xs flex-col border-r border-cyra-border bg-cyra-navy shadow-2xl transition-[translate] duration-300 ease-out" data-admin-nav-drawer>
         <div class="flex items-center justify-between border-b border-cyra-border px-4 py-4">
             <x-brand.logo size="sm" variant="compact" />
             <button

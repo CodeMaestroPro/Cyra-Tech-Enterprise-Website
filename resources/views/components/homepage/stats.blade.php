@@ -8,7 +8,7 @@
 @if ($variant === 'bar')
     <section class="cyra-stats-bar" aria-label="Company metrics">
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <dl class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" data-animate-stagger>
+            <dl class="grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-3 xl:grid-cols-6" data-animate-stagger>
                 @foreach ($items as $item)
                     <div class="flex flex-col items-center text-center sm:items-start sm:text-left xl:items-center xl:text-center" data-animate="fade-up">
                         <dt class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-white/70">
@@ -17,7 +17,7 @@
                             </span>
                             <span>{{ $item['label'] }}</span>
                         </dt>
-                        <dd class="mt-3 text-3xl font-bold text-white sm:text-4xl">
+                        <dd class="mt-3 text-2xl font-bold text-white sm:text-4xl">
                             <span
                                 data-stat-value="{{ $item['value'] }}"
                                 data-stat-suffix="{{ $item['suffix'] ?? '' }}"

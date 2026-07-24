@@ -6,11 +6,11 @@
     data-product-category="{{ $product['category'] }}"
 >
     @if (! empty($product['image']))
-        <div class="border-b border-cyra-border/70 bg-[#0b1730] px-3 pt-3">
+        <div class="border-b border-cyra-border/70 bg-[#0b1730] px-2 pt-2 sm:px-3 sm:pt-3">
             <img
                 src="{{ asset($product['image']) }}"
                 alt="{{ $product['title'] }} product preview"
-                class="block w-full rounded-t-md object-contain"
+                class="block max-h-44 w-full rounded-t-md object-contain sm:max-h-56"
                 loading="lazy"
                 decoding="async"
             >
@@ -26,9 +26,9 @@
         </div>
     @endif
 
-    <div class="flex flex-1 flex-col p-6">
+    <div class="flex flex-1 flex-col p-4 sm:p-6">
         <div class="mb-2 flex items-start justify-between gap-3">
-            <h3 class="text-lg font-semibold text-cyra-text">{{ $product['title'] }}</h3>
+            <h3 class="text-base font-semibold text-cyra-text sm:text-lg">{{ $product['title'] }}</h3>
             @if (! empty($product['image']) && ! empty($product['badge']))
                 <x-ui.badge variant="purple">{{ $product['badge'] }}</x-ui.badge>
             @endif

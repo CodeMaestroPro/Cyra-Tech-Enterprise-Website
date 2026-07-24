@@ -33,10 +33,12 @@
     html {
         color-scheme: light;
         scroll-behavior: smooth;
+        overflow-x: clip;
     }
 
     body {
         background-color: var(--color-cyra-midnight);
+        overflow-x: clip;
         background-image:
             radial-gradient(circle at top left, color-mix(in srgb, var(--color-cyra-primary) 12%, transparent), transparent 30%),
             radial-gradient(circle at top right, color-mix(in srgb, var(--color-cyra-accent) 8%, transparent), transparent 25%);
@@ -224,7 +226,7 @@
     }
 
     .cyra-section-hero-inner {
-        @apply pb-12 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36;
+        @apply pb-10 pt-24 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36;
     }
 
     .cyra-section-footer {
@@ -252,7 +254,7 @@
     }
 
     .cyra-display {
-        @apply font-display text-3xl font-bold tracking-tight text-cyra-text sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08];
+        @apply font-display text-[1.75rem] font-bold tracking-tight text-cyra-text break-words sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08];
     }
 
     .cyra-heading-1 {
@@ -289,12 +291,19 @@
     }
 
     .cyra-header-shell {
-        @apply pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-4 sm:px-5 sm:pt-5;
+        @apply pointer-events-none fixed inset-x-0 top-0 z-40 px-3 sm:px-5;
+        padding-top: max(0.75rem, env(safe-area-inset-top));
         background: transparent;
     }
 
+    @media (min-width: 640px) {
+        .cyra-header-shell {
+            padding-top: max(1.25rem, env(safe-area-inset-top));
+        }
+    }
+
     .cyra-header-pill {
-        @apply pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-2 px-3 py-2 sm:gap-3 sm:px-4 sm:py-2.5 lg:max-w-6xl;
+        @apply pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-1.5 px-2.5 py-2 sm:gap-3 sm:px-4 sm:py-2.5 xl:max-w-6xl;
         border-radius: 9999px;
         border: 1px solid #e8eef5;
         background: #ffffff;
@@ -304,11 +313,11 @@
     }
 
     .cyra-header-links {
-        @apply hidden flex-1 items-center justify-center gap-0.5 lg:flex;
+        @apply hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex;
     }
 
     .cyra-header-pill .cyra-nav-link {
-        @apply rounded-full px-3 py-2 text-sm font-semibold transition-all duration-200;
+        @apply rounded-full px-2.5 py-2 text-[13px] font-semibold transition-all duration-200 xl:px-3 xl:text-sm;
         color: #001a4d;
     }
 
@@ -338,7 +347,7 @@
         display: inline-flex;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1280px) {
         .cyra-header-mobile-toggle {
             display: none !important;
         }
@@ -354,7 +363,7 @@
     }
 
     .cyra-header-cta {
-        @apply !rounded-full !px-5 !py-2.5 !text-sm !font-semibold;
+        @apply !rounded-full !px-4 !py-2 !text-sm !font-semibold sm:!px-5 sm:!py-2.5;
         box-shadow: 0 8px 20px color-mix(in srgb, #0052ff 28%, transparent) !important;
     }
 
@@ -383,11 +392,11 @@
     /* Only offset non-hero pages. Homepage/About wrap the hero in <main>, so padding
        on main was creating the white band under the floating nav. */
     body.theme-public:has([data-navigation-header]) .cyra-page-enter > main:not(:has(> .cyra-page-hero:first-child)) {
-        padding-top: 5.75rem;
+        padding-top: max(5.25rem, calc(env(safe-area-inset-top) + 4.5rem));
     }
 
     body.theme-public:has([data-navigation-header]) .cyra-page-enter > :first-child:not(main):not(.cyra-page-hero) {
-        padding-top: 5.75rem;
+        padding-top: max(5.25rem, calc(env(safe-area-inset-top) + 4.5rem));
     }
 
     .cyra-hero-badge {
@@ -438,12 +447,13 @@
         @apply overflow-hidden;
         background:
             linear-gradient(180deg, #10203d 0%, #0b1730 100%);
-        padding: 0.75rem 0.75rem 0;
+        padding: 0.625rem 0.625rem 0;
     }
 
     .cyra-product-card-image {
         @apply block w-full rounded-t-md;
         height: auto;
+        max-height: 11rem;
         aspect-ratio: auto;
         object-fit: contain;
         object-position: top center;
@@ -451,13 +461,25 @@
         box-shadow: 0 8px 24px color-mix(in srgb, black 35%, transparent);
     }
 
+    @media (min-width: 640px) {
+        .cyra-product-card-image {
+            max-height: 14rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .cyra-product-card-image {
+            max-height: 16rem;
+        }
+    }
+
     .cyra-product-card-body {
-        @apply p-5;
+        @apply p-4 sm:p-5;
         background: linear-gradient(180deg, #0f1d38 0%, #0b1730 100%);
     }
 
     .cyra-product-card-title {
-        @apply text-lg font-semibold;
+        @apply text-base font-semibold sm:text-lg;
         color: #f8fafc;
     }
 
@@ -648,7 +670,7 @@
     }
 
     .cyra-filter-pill {
-        @apply rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200;
+        @apply rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200 sm:px-4 sm:py-2 sm:text-sm;
     }
 
     .cyra-filter-pill-active {
@@ -671,7 +693,7 @@
     }
 
     .cyra-input {
-        @apply block w-full rounded-lg border border-cyra-border bg-cyra-navy px-4 py-2.5 text-sm text-cyra-text placeholder:text-cyra-muted focus:border-cyra-primary focus:outline-none focus:ring-2 focus:ring-cyra-primary/30;
+        @apply block w-full rounded-lg border border-cyra-border bg-cyra-navy px-3 py-2.5 text-base text-cyra-text placeholder:text-cyra-muted focus:border-cyra-primary focus:outline-none focus:ring-2 focus:ring-cyra-primary/30 sm:px-4 sm:text-sm;
     }
 
     .cyra-input-error {
@@ -846,9 +868,15 @@
         animation: cyra-glow-pulse 3s ease-in-out infinite;
     }
 
+    [data-admin-nav-drawer],
+    [data-portal-nav-drawer],
+    [data-mobile-nav-drawer] {
+        translate: -100%;
+    }
+
     [data-admin-nav-drawer][data-open='true'],
     [data-portal-nav-drawer][data-open='true'],
     [data-mobile-nav-drawer][data-open='true'] {
-        transform: translateX(0);
+        translate: 0;
     }
 }

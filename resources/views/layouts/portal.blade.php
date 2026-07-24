@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <meta name="theme-color" content="#ffffff">
         <title>@yield('title', 'Client Portal') - {{ config('cyra.name') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -41,7 +41,7 @@
                 aria-hidden="true"
             >
                 <div class="absolute inset-0 bg-cyra-midnight/80 backdrop-blur-sm" data-portal-nav-backdrop></div>
-                <div class="absolute inset-y-0 left-0 flex w-full max-w-xs flex-col border-r border-cyra-border bg-cyra-navy shadow-2xl transition-transform duration-300 ease-out -translate-x-full" data-portal-nav-drawer>
+                <div class="absolute inset-y-0 left-0 flex w-full max-w-xs flex-col border-r border-cyra-border bg-cyra-navy shadow-2xl transition-[translate] duration-300 ease-out" data-portal-nav-drawer>
                     <div class="flex items-center justify-between border-b border-cyra-border px-4 py-4">
                         <x-brand.logo href="{{ route('client-portal.dashboard') }}" size="sm" variant="compact" />
                         <button type="button" class="rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-surface hover:text-cyra-text" aria-label="Close portal navigation menu" data-portal-nav-close>

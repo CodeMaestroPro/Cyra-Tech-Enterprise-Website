@@ -40,11 +40,11 @@
 
         <div class="cyra-container cyra-section">
             @if (! empty($product['image']))
-                <div class="mb-10 overflow-hidden rounded-2xl border border-cyra-border bg-[#0b1730] p-3 shadow-lg shadow-black/10 sm:p-4">
+                <div class="mb-10 overflow-hidden rounded-2xl border border-cyra-border bg-[#0b1730] p-2 shadow-lg shadow-black/10 sm:p-4">
                     <img
                         src="{{ asset($product['image']) }}"
                         alt="{{ $product['title'] }} product preview"
-                        class="block w-full rounded-xl object-contain"
+                        class="block max-h-[16rem] w-full rounded-xl object-contain sm:max-h-[22rem] lg:max-h-none"
                         loading="lazy"
                         decoding="async"
                     >

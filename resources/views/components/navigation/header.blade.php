@@ -14,20 +14,7 @@
 
 <header class="cyra-header-shell" data-navigation-header>
     <div class="cyra-header-pill">
-        <div class="flex min-w-0 items-center gap-2 sm:gap-3">
-            <button
-                type="button"
-                class="cyra-header-icon-btn cyra-header-mobile-toggle"
-                aria-controls="mobile-navigation"
-                aria-expanded="false"
-                data-mobile-nav-toggle
-            >
-                <span class="sr-only">Open navigation menu</span>
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-
+        <div class="flex min-w-0 flex-1 items-center">
             <x-brand.logo size="sm" variant="compact" class="min-w-0" />
         </div>
 
@@ -46,7 +33,7 @@
             @endforeach
         </nav>
 
-        <div class="flex items-center justify-end gap-1.5 sm:gap-2">
+        <div class="flex shrink-0 items-center justify-end gap-1 sm:gap-1.5">
             <button
                 type="button"
                 class="cyra-header-icon-btn"
@@ -60,18 +47,18 @@
                 </svg>
             </button>
 
-            <x-theme.toggle class="cyra-header-icon-btn hidden !border-0 md:inline-flex" />
+            <x-theme.toggle class="cyra-header-icon-btn hidden !border-0 xl:inline-flex" />
 
             @foreach ($actions as $action)
                 @php($style = $action['style'] ?? 'link')
                 @if ($style === 'button')
-                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="cyra-header-cta hidden sm:inline-flex">
+                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="cyra-header-cta hidden xl:inline-flex">
                         {{ $action['label'] }}
                     </x-ui.button>
                 @elseif ($style === 'outline')
                     <a
                         href="{{ $action['url'] }}"
-                        class="cyra-header-secondary hidden lg:inline-flex"
+                        class="cyra-header-secondary hidden xl:inline-flex"
                         @if ($action['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
                     >
                         {{ $action['label'] }}
@@ -79,13 +66,26 @@
                 @else
                     <a
                         href="{{ $action['url'] }}"
-                        class="cyra-header-secondary hidden sm:inline-flex"
+                        class="cyra-header-secondary hidden xl:inline-flex"
                         @if ($action['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
                     >
                         {{ $action['label'] }}
                     </a>
                 @endif
             @endforeach
+
+            <button
+                type="button"
+                class="cyra-header-icon-btn cyra-header-mobile-toggle"
+                aria-controls="mobile-navigation"
+                aria-expanded="false"
+                data-mobile-nav-toggle
+            >
+                <span class="sr-only">Open navigation menu</span>
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
     </div>
 </header>

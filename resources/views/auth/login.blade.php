@@ -40,7 +40,7 @@
                         name="email"
                         type="email"
                         label="Email address"
-                        placeholder="admin@cyratech.com"
+                        placeholder="admin@cyratechltd.com"
                         autocomplete="email"
                         required
                     />

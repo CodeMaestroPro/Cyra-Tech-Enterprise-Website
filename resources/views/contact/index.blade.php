@@ -68,7 +68,7 @@
                         <form
                             method="POST"
                             action="{{ route('contact.store') }}"
-                            class="cyra-card space-y-5 p-6"
+                            class="cyra-card space-y-5 p-4 sm:p-6"
                             id="contact-form"
                             novalidate
                         >
@@ -134,7 +134,7 @@
                     </div>
 
                     <aside class="space-y-6">
-                        <div class="cyra-card p-6">
+                        <div class="cyra-card p-4 sm:p-6">
                             <h2 class="text-lg font-semibold text-cyra-text">Global Offices</h2>
                             <ul class="mt-4 space-y-4">
                                 @foreach ($offices as $office)
@@ -151,15 +151,21 @@
                             </ul>
                         </div>
 
-                        <div class="cyra-card p-6">
+                        <div class="cyra-card p-4 sm:p-6">
                             <h2 class="text-lg font-semibold text-cyra-text">Direct Channels</h2>
                             <ul class="mt-4 space-y-3">
                                 @foreach ($channels as $channel)
                                     <li>
                                         <p class="text-sm font-medium text-cyra-text">{{ $channel['label'] ?? '' }}</p>
-                                        <a href="mailto:{{ $channel['email'] ?? '' }}" class="text-sm text-cyra-primary hover:text-cyra-primary-hover">
-                                            {{ $channel['email'] ?? '' }}
-                                        </a>
+                                        @if (! empty($channel['url']))
+                                            <a href="{{ $channel['url'] }}" class="text-sm text-cyra-primary hover:text-cyra-primary-hover" target="_blank" rel="noreferrer">
+                                                {{ parse_url($channel['url'], PHP_URL_HOST) ?: $channel['url'] }}
+                                            </a>
+                                        @elseif (! empty($channel['email']))
+                                            <a href="mailto:{{ $channel['email'] }}" class="text-sm text-cyra-primary hover:text-cyra-primary-hover">
+                                                {{ $channel['email'] }}
+                                            </a>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>

@@ -20,6 +20,11 @@
                 <p class="mt-4 max-w-sm text-sm leading-relaxed text-cyra-muted">
                     {{ config('cyra.tagline') }}
                 </p>
+                <p class="mt-3 text-sm text-cyra-muted">
+                    <a href="{{ config('cyra.website') }}" class="text-cyra-primary transition-colors hover:text-cyra-primary-hover" target="_blank" rel="noreferrer">
+                        cyratechltd.com
+                    </a>
+                </p>
 
                 @if (! empty($newsletter))
                     <div id="newsletter-signup" class="mt-6 scroll-mt-24">
@@ -79,7 +84,7 @@
                 @endif
             </div>
 
-            <div class="grid gap-8 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-4">
+            <div class="grid gap-8 sm:grid-cols-2 lg:col-span-5 xl:grid-cols-4">
                 @foreach ($columns as $column)
                     <div>
                         <h2 class="text-sm font-semibold uppercase tracking-wide text-cyra-text">{{ $column['title'] }}</h2>

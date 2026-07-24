@@ -75,7 +75,7 @@
 
                 <x-ui.card title="Form Controls">
                     <div class="grid gap-4 md:grid-cols-2">
-                        <x-ui.input name="demo_email" label="Email" placeholder="name@cyratech.com" />
+                        <x-ui.input name="demo_email" label="Email" placeholder="name@cyratechltd.com" />
                         <x-ui.select name="demo_role" label="Role" placeholder="Select role" :options="['admin' => 'Administrator', 'viewer' => 'Viewer']" />
                         <x-ui.textarea name="demo_notes" label="Notes" placeholder="Enter notes..." class="md:col-span-2" />
                         <x-ui.checkbox name="demo_remember" label="Remember preference" />

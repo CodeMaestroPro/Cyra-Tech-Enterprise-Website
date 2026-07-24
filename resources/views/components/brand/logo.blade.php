@@ -15,7 +15,7 @@
     $sizeKey = array_key_exists($size, $sizes) ? $size : 'md';
     $variantKey = in_array($variant, ['compact', 'full'], true) ? $variant : 'compact';
     $heightClass = $sizes[$sizeKey][$variantKey];
-    $maxWidthClass = $variantKey === 'full' ? 'max-w-[16rem] sm:max-w-xs' : 'max-w-[11rem] sm:max-w-[12rem]';
+    $maxWidthClass = $variantKey === 'full' ? 'max-w-[12rem] sm:max-w-xs' : 'max-w-[7.5rem] sm:max-w-[11rem] md:max-w-[12rem]';
     $logoUrl = asset(config('cyra.brand.logo', 'images/brand/cyra-tech-logo.png'));
     $logoAlt = config('cyra.brand.logo_alt', config('cyra.name'));
     $homeUrl = $href ?? route('home');
@@ -24,7 +24,7 @@
 <a
     {{ $attributes->merge([
         'href' => $homeUrl,
-        'class' => 'cyra-brand-logo group inline-flex shrink-0 items-center',
+        'class' => 'cyra-brand-logo group inline-flex min-w-0 shrink items-center',
         'aria-label' => config('cyra.name') . ' home',
     ]) }}
 >

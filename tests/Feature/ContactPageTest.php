@@ -27,8 +27,14 @@ class ContactPageTest extends TestCase
             ->assertSee('Ready to transform your enterprise?')
             ->assertSee('Send us a message')
             ->assertSee('Global Offices')
-            ->assertSee('Lagos, Nigeria')
-            ->assertSee('sales@cyratech.com');
+            ->assertSee('Makurdi, Nigeria')
+            ->assertSee('No. 2 Kuanum Ackaa crescent old GRA, Makurdi')
+            ->assertSee('Abuja, Nigeria')
+            ->assertSee('Higgins Peters Dr, opposite Federal Ministry of Transport, Central Business District, Abuja 900103')
+            ->assertDontSee('London, United Kingdom')
+            ->assertDontSee('Washington, DC')
+            ->assertSee('sales@cyratechltd.com')
+            ->assertSee('cyratechltd.com');
     }
 
     public function test_contact_form_submission_creates_inquiry_and_redirects_with_success(): void

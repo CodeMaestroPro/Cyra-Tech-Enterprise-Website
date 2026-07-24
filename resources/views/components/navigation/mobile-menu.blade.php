@@ -15,19 +15,29 @@
 >
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-mobile-nav-backdrop></div>
 
-    <div class="absolute inset-y-0 left-0 flex w-full max-w-sm flex-col border-r border-cyra-border bg-cyra-surface shadow-2xl shadow-black/40 transition-transform duration-300 ease-out -translate-x-full" data-mobile-nav-drawer>
-        <div class="flex items-center justify-between border-b border-cyra-border px-4 py-4">
+    <div
+        class="absolute inset-y-0 left-0 flex w-full max-w-sm flex-col border-r border-cyra-border bg-cyra-surface shadow-2xl shadow-black/40 transition-[translate] duration-300 ease-out"
+        data-mobile-nav-drawer
+        style="padding-bottom: env(safe-area-inset-bottom);"
+    >
+        <div
+            class="flex items-center justify-between border-b border-cyra-border px-4 py-4"
+            style="padding-top: max(1rem, env(safe-area-inset-top));"
+        >
             <x-brand.logo size="sm" variant="compact" />
-            <button
-                type="button"
-                class="rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-soft hover:text-cyra-text"
-                aria-label="Close navigation menu"
-                data-mobile-nav-close
-            >
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+            <div class="flex items-center gap-2">
+                <x-theme.toggle class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyra-border text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text xl:hidden" />
+                <button
+                    type="button"
+                    class="rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-soft hover:text-cyra-text"
+                    aria-label="Close navigation menu"
+                    data-mobile-nav-close
+                >
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <nav class="flex-1 overflow-y-auto px-4 py-4" aria-label="Mobile navigation">

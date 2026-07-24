@@ -14,23 +14,24 @@
                     <p class="cyra-hero-badge">{{ $content['badge'] }}</p>
                 @endif
 
-                <h1 id="homepage-hero-title" class="cyra-display mt-6 uppercase leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+                <h1 id="homepage-hero-title" class="cyra-display mt-5 uppercase leading-[1.05] tracking-tight break-words sm:mt-6 sm:text-5xl lg:text-6xl">
                     <span class="block">{{ $content['title_line_1'] ?? 'INNOVATING TODAY.' }}</span>
                     <span class="mt-1 block cyra-gradient-text">{{ $content['title_line_2'] ?? 'EMPOWERING TOMORROW.' }}</span>
                 </h1>
 
                 @if (! empty($section['description']))
-                    <p class="mt-6 max-w-xl text-base leading-relaxed text-cyra-muted sm:text-lg">
+                    <p class="mt-5 max-w-xl text-sm leading-relaxed text-cyra-muted sm:mt-6 sm:text-lg">
                         {{ $section['description'] }}
                     </p>
                 @endif
 
                 @if (count($actions) > 0)
-                    <div class="mt-8 flex flex-wrap gap-3">
+                    <div class="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:flex-wrap">
                         @foreach ($actions as $action)
                             <x-ui.button
                                 href="{{ route($action['route']) }}"
                                 :variant="$action['variant'] === 'primary' ? 'primary' : 'outline'"
+                                class="w-full justify-center sm:w-auto"
                             >
                                 @if (($action['icon'] ?? null) === 'play')
                                     <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
