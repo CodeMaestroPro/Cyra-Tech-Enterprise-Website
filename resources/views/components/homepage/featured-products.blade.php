@@ -4,12 +4,6 @@
     $content = $section['content'] ?? [];
     $items = $content['items'] ?? [];
     $action = $content['action'] ?? null;
-    $productThemes = [
-        'Cyra HRMS' => 'from-blue-600/30 via-indigo-900/40 to-slate-900',
-        'Cyra LMS' => 'from-cyan-600/30 via-blue-900/40 to-slate-900',
-        'Cyra CRM' => 'from-violet-600/30 via-blue-900/40 to-slate-900',
-        'Cyra Projects' => 'from-emerald-600/30 via-blue-900/40 to-slate-900',
-    ];
 @endphp
 
 <section class="cyra-section cyra-section-dark" aria-labelledby="homepage-{{ $section['slug'] }}-title">
@@ -28,7 +22,7 @@
                     </p>
                 @endif
                 @if ($action)
-                    <div class="mt-8">
+                    <div class="mt-8 hidden lg:block">
                         <x-ui.button href="{{ route($action['route']) }}" variant="outline-white">
                             {{ $action['label'] }}
                         </x-ui.button>
@@ -39,37 +33,36 @@
             <div class="lg:col-span-8">
                 <div class="grid gap-4 sm:grid-cols-2" data-animate-stagger>
                     @foreach ($items as $item)
-                        @php($theme = $productThemes[$item['title']] ?? 'from-blue-600/30 via-blue-900/40 to-slate-900')
+                        @php
+                            $href = ! empty($item['route_params'])
+                                ? route($item['route'], $item['route_params'])
+                                : route($item['route']);
+                        @endphp
                         <article class="cyra-product-card" data-animate="fade-up">
-                            <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br {{ $theme }}">
-                                <div class="absolute inset-4 rounded-lg border border-white/10 bg-[#0d1528]/80 p-3 shadow-inner">
-                                    <div class="mb-3 flex items-center gap-2">
-                                        <span class="h-2 w-2 rounded-full bg-red-400"></span>
-                                        <span class="h-2 w-2 rounded-full bg-yellow-400"></span>
-                                        <span class="h-2 w-2 rounded-full bg-green-400"></span>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <div class="h-2 w-2/3 rounded bg-white/20"></div>
-                                        <div class="grid grid-cols-3 gap-2">
-                                            <div class="h-10 rounded bg-cyra-primary/30"></div>
-                                            <div class="h-10 rounded bg-white/10"></div>
-                                            <div class="h-10 rounded bg-white/10"></div>
-                                        </div>
-                                        <div class="h-16 rounded bg-white/5"></div>
-                                    </div>
-                                </div>
+                            <div class="cyra-product-card-media">
+                                @if (! empty($item['image']))
+                                    <img
+                                        src="{{ asset($item['image']) }}"
+                                        alt="{{ $item['title'] }} product preview"
+                                        class="cyra-product-card-image"
+                                        loading="lazy"
+                                        decoding="async"
+                                    >
+                                @else
+                                    <div class="aspect-[16/9] bg-gradient-to-br from-blue-600/30 via-blue-900/40 to-slate-900"></div>
+                                @endif
                             </div>
-                            <div class="p-5">
+                            <div class="cyra-product-card-body">
                                 <div class="flex items-start justify-between gap-3">
-                                    <h3 class="text-lg font-semibold text-white">{{ $item['title'] }}</h3>
+                                    <h3 class="cyra-product-card-title">{{ $item['title'] }}</h3>
                                     @if (! empty($item['badge']))
-                                        <span class="rounded-full bg-cyra-primary/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-cyra-primary">
+                                        <span class="cyra-product-card-badge">
                                             {{ $item['badge'] }}
                                         </span>
                                     @endif
                                 </div>
-                                <p class="mt-2 text-sm leading-relaxed text-white/70">{{ $item['description'] }}</p>
-                                <a href="{{ route($item['route']) }}" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cyra-primary hover:text-white">
+                                <p class="cyra-product-card-copy">{{ $item['description'] }}</p>
+                                <a href="{{ $href }}" class="cyra-product-card-link">
                                     Learn More
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -79,6 +72,14 @@
                         </article>
                     @endforeach
                 </div>
+
+                @if ($action)
+                    <div class="mt-8 flex justify-center lg:hidden" data-animate="fade-up">
+                        <x-ui.button href="{{ route($action['route']) }}" variant="outline-white">
+                            {{ $action['label'] }}
+                        </x-ui.button>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

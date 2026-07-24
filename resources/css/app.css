@@ -424,7 +424,67 @@
     }
 
     .cyra-product-card {
-        @apply overflow-hidden rounded-xl border border-cyra-border/80 bg-cyra-elevated shadow-xl shadow-black/40 transition-transform duration-300 hover:-translate-y-1 hover:border-cyra-primary/30;
+        @apply overflow-hidden rounded-xl border shadow-xl transition-transform duration-300 hover:-translate-y-1;
+        border-color: color-mix(in srgb, #0052ff 28%, #1e3a5f);
+        background-color: #0b1730;
+        box-shadow: 0 18px 40px color-mix(in srgb, black 45%, transparent);
+    }
+
+    .cyra-product-card:hover {
+        border-color: color-mix(in srgb, #0052ff 55%, #1e3a5f);
+    }
+
+    .cyra-product-card-media {
+        @apply overflow-hidden;
+        background:
+            linear-gradient(180deg, #10203d 0%, #0b1730 100%);
+        padding: 0.75rem 0.75rem 0;
+    }
+
+    .cyra-product-card-image {
+        @apply block w-full rounded-t-md;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        object-position: top center;
+        background-color: #08122a;
+        box-shadow: 0 8px 24px color-mix(in srgb, black 35%, transparent);
+    }
+
+    .cyra-product-card-body {
+        @apply p-5;
+        background: linear-gradient(180deg, #0f1d38 0%, #0b1730 100%);
+    }
+
+    .cyra-product-card-title {
+        @apply text-lg font-semibold;
+        color: #f8fafc;
+    }
+
+    .cyra-product-card-badge {
+        @apply shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide;
+        background-color: color-mix(in srgb, #0052ff 22%, transparent);
+        color: #93c5fd;
+    }
+
+    .cyra-product-card-copy {
+        @apply mt-2 text-sm leading-relaxed;
+        color: color-mix(in srgb, #f8fafc 86%, transparent);
+    }
+
+    .cyra-product-card-link {
+        @apply mt-4 inline-flex items-center gap-1 text-sm font-semibold;
+        color: #7eb6ff;
+    }
+
+    .cyra-product-card-link:hover {
+        color: #ffffff;
+    }
+
+    html[data-cyra-theme='light'] .cyra-product-card {
+        border-color: color-mix(in srgb, #0052ff 28%, #1e3a5f);
+        background-color: #0b1730;
+        box-shadow: 0 18px 40px color-mix(in srgb, #000b26 28%, transparent);
     }
 
     .cyra-hero-visual {

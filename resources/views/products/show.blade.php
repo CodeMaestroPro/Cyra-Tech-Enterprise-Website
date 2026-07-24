@@ -39,6 +39,18 @@
         </section>
 
         <div class="cyra-container cyra-section">
+            @if (! empty($product['image']))
+                <div class="mb-10 overflow-hidden rounded-2xl border border-cyra-border bg-[#0b1730] p-3 shadow-lg shadow-black/10 sm:p-4">
+                    <img
+                        src="{{ asset($product['image']) }}"
+                        alt="{{ $product['title'] }} product preview"
+                        class="block w-full rounded-xl object-contain"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+            @endif
+
             <div class="grid gap-10 lg:grid-cols-3">
                 <div class="lg:col-span-2">
                     <h2 class="cyra-heading-2">Product Overview</h2>

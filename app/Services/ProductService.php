@@ -82,6 +82,8 @@ class ProductService extends BaseService
             'features' => $product->features ?? [],
             'use_cases' => $product->use_cases ?? [],
             'icon' => $product->icon,
+            'image' => collect(config('cyra.products.items', []))
+                ->firstWhere('slug', $product->slug)['image'] ?? null,
             'is_featured' => $product->is_featured,
         ];
     }

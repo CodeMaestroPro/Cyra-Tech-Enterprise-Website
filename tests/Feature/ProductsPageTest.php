@@ -23,7 +23,11 @@ class ProductsPageTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('products.index')
-            ->assertSee('Platform products built for enterprise velocity')
+            ->assertSee('Platform products built for real operations')
+            ->assertSee('Inventory Management System')
+            ->assertSee('Hotel Management System')
+            ->assertSee('GoldSash')
+            ->assertSee('Sellpadi')
             ->assertSee('Cyra Command')
             ->assertSee('Cyra Pulse')
             ->assertSee('Cyra Shield')
