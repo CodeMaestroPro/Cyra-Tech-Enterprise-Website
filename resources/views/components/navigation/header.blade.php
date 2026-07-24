@@ -8,16 +8,16 @@
     $publicSearchIndex = $publicSearchIndex ?? [];
 @endphp
 
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-cyra-primary focus:px-4 focus:py-2 focus:text-white">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-cyra-primary focus:px-4 focus:py-2 focus:text-white">
     Skip to main content
 </a>
 
-<header class="cyra-header-glass sticky top-0 z-40" data-navigation-header>
-    <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:px-8">
-        <div class="flex min-w-0 items-center gap-2 sm:gap-3 lg:flex-1">
+<header class="cyra-header-shell sticky top-0 z-40" data-navigation-header>
+    <div class="cyra-header-pill">
+        <div class="flex min-w-0 items-center gap-2 sm:gap-3">
             <button
                 type="button"
-                class="inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted hover:bg-cyra-soft hover:text-cyra-text xl:hidden"
+                class="cyra-header-icon-btn xl:hidden"
                 aria-controls="mobile-navigation"
                 aria-expanded="false"
                 data-mobile-nav-toggle
@@ -31,7 +31,7 @@
             <x-brand.logo size="sm" variant="compact" class="min-w-0" />
         </div>
 
-        <nav class="hidden flex-1 items-center justify-center gap-0.5 xl:flex" aria-label="Primary navigation">
+        <nav class="cyra-header-links" aria-label="Primary navigation">
             @foreach ($headerLinks as $link)
                 <a
                     href="{{ $link['url'] }}"
@@ -46,10 +46,10 @@
             @endforeach
         </nav>
 
-        <div class="flex flex-1 items-center justify-end gap-2 sm:gap-3">
+        <div class="flex items-center justify-end gap-1.5 sm:gap-2">
             <button
                 type="button"
-                class="inline-flex items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text"
+                class="cyra-header-icon-btn"
                 aria-label="Search site"
                 aria-controls="public-nav-search"
                 aria-expanded="false"
@@ -60,22 +60,26 @@
                 </svg>
             </button>
 
-            <x-theme.toggle class="hidden md:inline-flex" />
+            <x-theme.toggle class="cyra-header-icon-btn hidden !border-0 md:inline-flex" />
 
             @foreach ($actions as $action)
                 @php($style = $action['style'] ?? 'link')
                 @if ($style === 'button')
-                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="hidden sm:inline-flex">
+                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="cyra-header-cta hidden sm:inline-flex">
                         {{ $action['label'] }}
                     </x-ui.button>
                 @elseif ($style === 'outline')
-                    <x-ui.button href="{{ $action['url'] }}" variant="outline" size="sm" class="hidden sm:inline-flex">
+                    <a
+                        href="{{ $action['url'] }}"
+                        class="cyra-header-secondary hidden lg:inline-flex"
+                        @if ($action['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
+                    >
                         {{ $action['label'] }}
-                    </x-ui.button>
+                    </a>
                 @else
                     <a
                         href="{{ $action['url'] }}"
-                        class="hidden text-sm font-medium text-cyra-muted transition-colors hover:text-cyra-primary sm:inline-flex"
+                        class="cyra-header-secondary hidden sm:inline-flex"
                         @if ($action['opens_in_new_tab']) target="_blank" rel="noreferrer" @endif
                     >
                         {{ $action['label'] }}
@@ -120,7 +124,7 @@
 
                 <button
                     type="button"
-                    class="inline-flex shrink-0 items-center justify-center rounded-lg border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text"
+                    class="inline-flex shrink-0 items-center justify-center rounded-full border border-cyra-border p-2 text-cyra-muted transition-colors hover:bg-cyra-soft hover:text-cyra-text"
                     aria-label="Close search"
                     data-public-nav-search-close
                 >

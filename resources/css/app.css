@@ -103,8 +103,41 @@
         @apply shadow-md shadow-slate-200/80;
     }
 
-    html[data-cyra-theme='light'] .cyra-header-glass {
-        @apply border-slate-200 bg-white/95 shadow-md shadow-slate-200/70;
+    html[data-cyra-theme='light'] .cyra-header-pill {
+        background: #ffffff;
+        border-color: color-mix(in srgb, #cbd5e1 70%, transparent);
+        box-shadow:
+            0 10px 30px color-mix(in srgb, #0f172a 8%, transparent),
+            0 2px 8px color-mix(in srgb, #0f172a 4%, transparent);
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-pill .cyra-nav-link {
+        color: #475569;
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-pill .cyra-nav-link:hover,
+    html[data-cyra-theme='light'] .cyra-header-pill .cyra-nav-link-active {
+        color: #0f172a;
+        background: #f1f5f9;
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-pill .cyra-nav-link-active {
+        background: color-mix(in srgb, #0052ff 10%, #f8fafc);
+        color: #0052ff;
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-secondary {
+        color: #475569;
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-icon-btn {
+        color: #64748b;
+        background: transparent;
+    }
+
+    html[data-cyra-theme='light'] .cyra-header-icon-btn:hover {
+        color: #0f172a;
+        background: #f1f5f9;
     }
 
     html[data-cyra-theme='light'] .cyra-stats-bar {
@@ -293,11 +326,70 @@
     }
 
     .cyra-nav-link {
-        @apply rounded-lg px-3 py-2 text-sm font-medium text-cyra-muted transition-all duration-200 hover:bg-cyra-light/40 hover:text-cyra-text;
+        @apply rounded-full px-3 py-2 text-sm font-semibold transition-all duration-200;
+        color: #cbd5e1;
+    }
+
+    .cyra-nav-link:hover {
+        color: #f8fafc;
+        background: color-mix(in srgb, #ffffff 8%, transparent);
     }
 
     .cyra-nav-link-active {
-        @apply bg-cyra-primary/15 text-cyra-text;
+        color: #ffffff;
+        background: color-mix(in srgb, #0052ff 22%, transparent);
+    }
+
+    .cyra-header-shell {
+        @apply pointer-events-none px-3 pt-3 sm:px-4 sm:pt-4;
+        background: transparent;
+    }
+
+    .cyra-header-pill {
+        @apply pointer-events-auto mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-3 py-2 sm:gap-4 sm:px-4 sm:py-2.5;
+        border-radius: 9999px;
+        border: 1px solid color-mix(in srgb, #1e3a5f 80%, transparent);
+        background: color-mix(in srgb, #000b26 92%, transparent);
+        box-shadow:
+            0 14px 40px color-mix(in srgb, #030711 45%, transparent),
+            0 2px 10px color-mix(in srgb, #0052ff 12%, transparent);
+        backdrop-filter: blur(18px);
+    }
+
+    .cyra-header-links {
+        @apply hidden flex-1 items-center justify-center gap-0.5 xl:flex;
+    }
+
+    .cyra-header-icon-btn {
+        @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors;
+        color: #94a3b8;
+        border: 0;
+        background: transparent;
+    }
+
+    .cyra-header-icon-btn:hover {
+        color: #f8fafc;
+        background: color-mix(in srgb, #ffffff 8%, transparent);
+    }
+
+    .cyra-header-secondary {
+        @apply px-3 text-sm font-semibold transition-colors;
+        color: #94a3b8;
+    }
+
+    .cyra-header-secondary:hover {
+        color: #f8fafc;
+    }
+
+    .cyra-header-cta {
+        @apply !rounded-full !px-4 !py-2;
+        box-shadow: 0 8px 20px color-mix(in srgb, #0052ff 28%, transparent) !important;
+    }
+
+    .cyra-header-pill [data-cyra-theme-toggle] {
+        border: 0 !important;
+        border-radius: 9999px;
+        background: transparent;
     }
 
     .cyra-hero-badge {
@@ -387,8 +479,8 @@
         @apply inline-flex items-center gap-2 rounded-full border border-cyra-primary/30 bg-cyra-elevated/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-cyra-accent shadow-lg shadow-black/30 backdrop-blur-sm sm:text-[11px];
     }
 
-    .cyra-header-glass {
-        @apply border-b border-cyra-border/80 bg-cyra-navy/90 shadow-lg shadow-black/20 backdrop-blur-xl;
+    .cyra-header-pill .cyra-brand-logo img {
+        @apply rounded-full bg-white px-1.5 py-0.5;
     }
 
     .cyra-brand-logo img {
