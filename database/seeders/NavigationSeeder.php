@@ -19,9 +19,21 @@ class NavigationSeeder extends Seeder
 
     private function seedPublicHeader(): void
     {
+        $labels = [];
+
         foreach (config('cyra.navigation.public.header', []) as $item) {
+            $labels[] = $item['label'];
             $this->upsertItem('public_header', $item);
         }
+
+        NavigationItem::query()
+            ->where('location', 'public_header')
+            ->when(
+                $labels !== [],
+                fn ($query) => $query->whereNotIn('label', $labels),
+                fn ($query) => $query,
+            )
+            ->update(['is_active' => false]);
     }
 
     private function seedPublicActions(): void

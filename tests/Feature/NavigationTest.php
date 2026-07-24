@@ -29,7 +29,31 @@ class NavigationTest extends TestCase
             ->assertSee('Stay ahead with Cyra-Tech')
             ->assertSee('All rights reserved.')
             ->assertSee('data-public-nav-search-open', false)
-            ->assertSee('public-navigation-index', false);
+            ->assertSee('public-navigation-index', false)
+            ->assertSee('Careers')
+            ->assertSee('Industries')
+            ->assertSee('Insights')
+            ->assertSee('Community');
+    }
+
+    public function test_public_header_omits_secondary_links_kept_in_footer(): void
+    {
+        $navigation = app(\App\Services\NavigationService::class)->getPublicNavigation();
+        $headerLabels = collect($navigation['header'])->pluck('label')->all();
+
+        $this->assertSame(
+            ['Home', 'About', 'Solutions', 'Products', 'Portfolio', 'Innovation Lab'],
+            $headerLabels,
+        );
+
+        $footerLabels = collect($navigation['footer']['columns'] ?? [])
+            ->flatMap(fn (array $column) => collect($column['links'] ?? [])->pluck('label'))
+            ->all();
+
+        foreach (['Careers', 'Industries', 'Insights', 'Community'] as $label) {
+            $this->assertContains($label, $footerLabels);
+            $this->assertNotContains($label, $headerLabels);
+        }
     }
 
     public function test_login_page_does_not_render_public_navigation(): void
