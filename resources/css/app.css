@@ -108,7 +108,11 @@
     }
 
     html[data-cyra-theme='light'] .cyra-stats-bar {
-        @apply from-slate-100 via-white to-slate-100 text-slate-900;
+        --color-cyra-navy: #000b26;
+        --color-cyra-border: #1e3a5f;
+        border-color: #1e3a5f;
+        background-image: linear-gradient(to right, #000b26, #001433, #000b26);
+        color: #ffffff;
     }
 
     html[data-cyra-theme='light'] .cyra-section-dark {
