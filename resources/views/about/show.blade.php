@@ -37,7 +37,7 @@
                 id="{{ $section['id'] }}"
                 @class([
                     'scroll-mt-28',
-                    'border-y border-cyra-border/70 bg-cyra-soft/60' => $index % 2 === 1,
+                    'border-y border-slate-200/90 bg-slate-50/80' => $index % 2 === 1,
                 ])
                 @if ($section['show_heading'])
                     aria-labelledby="about-section-{{ $section['id'] }}"

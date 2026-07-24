@@ -133,7 +133,15 @@
     }
 
     html[data-cyra-theme='light'] .cyra-page-hero {
-        @apply from-white via-slate-50 to-white;
+        border-color: #e2e8f0;
+        background-color: #ffffff;
+        background-image:
+            radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in srgb, #0052ff 9%, transparent), transparent 55%),
+            radial-gradient(ellipse 55% 65% at 0% 100%, color-mix(in srgb, #38bdf8 7%, transparent), transparent 50%);
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero-glow {
+        opacity: 0.35;
     }
 
     html[data-cyra-theme='light'] .cyra-hero-visual {
@@ -148,7 +156,11 @@
     }
 
     html[data-cyra-theme='light'] .cyra-cta-premium {
-        @apply from-cyra-primary/10 via-white to-slate-50;
+        border-color: color-mix(in srgb, #0052ff 18%, #e2e8f0);
+        background-color: #ffffff;
+        background-image:
+            radial-gradient(circle at top right, color-mix(in srgb, #0052ff 10%, transparent), transparent 45%),
+            linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     }
 
     /* Keep the site footer on the deep blue brand palette in light mode. */
@@ -388,7 +400,12 @@
     }
 
     .cyra-page-hero {
-        @apply relative overflow-hidden border-b border-cyra-border/80 bg-gradient-to-br from-cyra-navy via-[#00102a] to-cyra-midnight;
+        @apply relative overflow-hidden border-b border-cyra-border/80;
+        background-color: var(--color-cyra-navy);
+        background-image:
+            radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in srgb, var(--color-cyra-primary) 22%, transparent), transparent 55%),
+            radial-gradient(ellipse 55% 65% at 0% 100%, color-mix(in srgb, var(--color-cyra-accent) 14%, transparent), transparent 50%),
+            linear-gradient(160deg, var(--color-cyra-navy) 0%, var(--color-cyra-midnight) 100%);
     }
 
     .cyra-page-hero-glow {
