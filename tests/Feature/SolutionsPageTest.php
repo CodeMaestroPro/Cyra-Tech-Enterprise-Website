@@ -23,23 +23,23 @@ class SolutionsPageTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('solutions.index')
-            ->assertSee('End-to-end capabilities for modern enterprises')
-            ->assertSee('Digital Transformation')
-            ->assertSee('Cloud & Infrastructure')
-            ->assertSee('How Cyra-Tech delivers enterprise solutions')
+            ->assertSee('Practical software solutions for growing organizations')
+            ->assertSee('Custom Software Development')
+            ->assertSee('Operations & Inventory Systems')
+            ->assertSee('How we take ideas to working software')
             ->assertSee('data-solution-filter', false);
     }
 
     public function test_solution_detail_page_renders_offering(): void
     {
-        $response = $this->get(route('solutions.show', 'cybersecurity'));
+        $response = $this->get(route('solutions.show', 'custom-software-development'));
 
         $response
             ->assertOk()
             ->assertViewIs('solutions.show')
-            ->assertSee('Cybersecurity')
-            ->assertSee('Zero-trust architecture')
-            ->assertSee('Request Consultation');
+            ->assertSee('Custom Software Development')
+            ->assertSee('Web application development')
+            ->assertSee('Start a Project');
     }
 
     public function test_unknown_solution_returns_not_found(): void

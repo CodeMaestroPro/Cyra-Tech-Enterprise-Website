@@ -303,7 +303,8 @@
     }
 
     .cyra-header-pill {
-        @apply pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-1.5 px-2.5 py-2 sm:gap-3 sm:px-4 sm:py-2.5 xl:max-w-6xl;
+        @apply pointer-events-auto mx-auto grid w-full max-w-5xl items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 xl:max-w-6xl;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
         border-radius: 9999px;
         border: 1px solid #e8eef5;
         background: #ffffff;
@@ -312,12 +313,20 @@
             0 2px 10px color-mix(in srgb, #0f172a 6%, transparent);
     }
 
+    .cyra-header-brand {
+        @apply flex min-w-0 items-center justify-self-start;
+    }
+
     .cyra-header-links {
-        @apply hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex;
+        @apply hidden items-center justify-center gap-1 justify-self-center xl:flex;
+    }
+
+    .cyra-header-actions {
+        @apply flex shrink-0 items-center justify-end gap-1 justify-self-end sm:gap-1.5;
     }
 
     .cyra-header-pill .cyra-nav-link {
-        @apply rounded-full px-2.5 py-2 text-[13px] font-semibold transition-all duration-200 xl:px-3 xl:text-sm;
+        @apply whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-all duration-200;
         color: #001a4d;
     }
 

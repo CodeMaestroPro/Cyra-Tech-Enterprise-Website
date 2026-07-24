@@ -61,7 +61,7 @@
             </section>
 
             <div class="mt-12 flex flex-wrap gap-3">
-                <x-ui.button href="{{ route('contact') }}">Request Consultation</x-ui.button>
+                <x-ui.button href="{{ route('contact') }}">Start a Project</x-ui.button>
                 <x-ui.button href="{{ route('solutions') }}" variant="secondary">Back to Solutions</x-ui.button>
             </div>
         </div>

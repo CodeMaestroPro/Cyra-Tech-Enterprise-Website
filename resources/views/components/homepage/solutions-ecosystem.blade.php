@@ -33,7 +33,12 @@
             <div class="lg:col-span-8">
                 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-2" data-animate-stagger>
                     @foreach ($items as $item)
-                        <a href="{{ route($item['route']) }}" class="cyra-solution-card group" data-animate="fade-up">
+                        @php
+                            $href = ! empty($item['route_params'])
+                                ? route($item['route'], $item['route_params'])
+                                : route($item['route']);
+                        @endphp
+                        <a href="{{ $href }}" class="cyra-solution-card group" data-animate="fade-up">
                             <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-cyra-primary/10 text-cyra-primary">
                                 <x-homepage.icon :name="$item['icon'] ?? 'spark'" />
                             </div>

@@ -10,8 +10,11 @@ class SolutionSeeder extends Seeder
     public function run(): void
     {
         $sort = 1;
+        $configuredSlugs = [];
 
         foreach (config('cyra.solutions.offerings', []) as $offering) {
+            $configuredSlugs[] = $offering['slug'];
+
             SolutionOffering::query()->updateOrCreate(
                 ['slug' => $offering['slug']],
                 [
@@ -28,5 +31,13 @@ class SolutionSeeder extends Seeder
                 ],
             );
         }
+
+        SolutionOffering::query()
+            ->when(
+                $configuredSlugs !== [],
+                fn ($query) => $query->whereNotIn('slug', $configuredSlugs),
+                fn ($query) => $query,
+            )
+            ->update(['is_active' => false]);
     }
 }

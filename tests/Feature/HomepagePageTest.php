@@ -29,7 +29,7 @@ class HomepagePageTest extends TestCase
             ->assertSee('EMPOWERING TOMORROW.')
             ->assertSee('images/homepage/hero-visual.png', false)
             ->assertSee('Explore Solutions')
-            ->assertSee('Intelligent Solutions. Real Impact.')
+            ->assertSee('Practical software. Real impact.')
             ->assertSee('Inventory Management System')
             ->assertSee('Hotel Management System')
             ->assertSee('GoldSash')

@@ -42,7 +42,7 @@ class NavigationTest extends TestCase
         $headerLabels = collect($navigation['header'])->pluck('label')->all();
 
         $this->assertSame(
-            ['Home', 'About', 'Solutions', 'Products', 'Portfolio', 'Innovation Lab'],
+            ['Home', 'About', 'Solutions', 'Products', 'Portfolio'],
             $headerLabels,
         );
 
@@ -50,7 +50,7 @@ class NavigationTest extends TestCase
             ->flatMap(fn (array $column) => collect($column['links'] ?? [])->pluck('label'))
             ->all();
 
-        foreach (['Careers', 'Industries', 'Insights', 'Community'] as $label) {
+        foreach (['Careers', 'Industries', 'Insights', 'Community', 'Innovation Lab'] as $label) {
             $this->assertContains($label, $footerLabels);
             $this->assertNotContains($label, $headerLabels);
         }
@@ -174,7 +174,7 @@ class NavigationTest extends TestCase
         $response
             ->assertOk()
             ->assertViewIs('solutions.index')
-            ->assertSee('Digital Transformation');
+            ->assertSee('Custom Software Development');
     }
 
     public function test_about_page_renders_full_about_module(): void

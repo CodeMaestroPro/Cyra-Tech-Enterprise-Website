@@ -14,7 +14,7 @@
 
 <header class="cyra-header-shell" data-navigation-header>
     <div class="cyra-header-pill">
-        <div class="flex min-w-0 flex-1 items-center">
+        <div class="cyra-header-brand">
             <x-brand.logo size="sm" variant="compact" class="min-w-0" />
         </div>
 
@@ -33,7 +33,7 @@
             @endforeach
         </nav>
 
-        <div class="flex shrink-0 items-center justify-end gap-1 sm:gap-1.5">
+        <div class="cyra-header-actions">
             <button
                 type="button"
                 class="cyra-header-icon-btn"

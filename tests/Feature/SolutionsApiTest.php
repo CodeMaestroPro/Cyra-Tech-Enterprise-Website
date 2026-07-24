@@ -35,17 +35,17 @@ class SolutionsApiTest extends TestCase
                     'cta',
                 ],
             ])
-            ->assertJsonPath('data.offerings.0.slug', 'digital-transformation');
+            ->assertJsonPath('data.offerings.0.slug', 'custom-software-development');
     }
 
     public function test_solutions_api_returns_single_offering(): void
     {
-        $response = $this->getJson(route('api.solutions.show', ['slug' => 'ai-intelligence']));
+        $response = $this->getJson(route('api.solutions.show', ['slug' => 'education-campus-portals']));
 
         $response
             ->assertOk()
             ->assertJsonPath('success', true)
-            ->assertJsonPath('data.title', 'AI & Intelligence');
+            ->assertJsonPath('data.title', 'Education & Campus Portals');
     }
 
     public function test_solutions_api_returns_not_found_for_invalid_slug(): void
