@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Mail\ContactInquirySubmitted;
 use App\Models\ContactInquiry;
 use App\Repositories\ContactInquiryRepository;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ContactService extends BaseService
@@ -49,10 +52,31 @@ class ContactService extends BaseService
             'ip_address' => $ipAddress,
         ]);
 
+        $this->sendInquiryNotification($inquiry, $inquiryType['label'] ?? ucfirst($inquiryType['slug']));
+
         return [
             'reference' => $inquiry->reference,
             'message' => config('cyra.contact.form.success_message', 'Thank you. Our team will respond shortly.'),
         ];
+    }
+
+    private function sendInquiryNotification(ContactInquiry $inquiry, string $inquiryTypeLabel): void
+    {
+        $recipient = config('cyra.contact.notification_email');
+
+        if (! filled($recipient)) {
+            return;
+        }
+
+        try {
+            Mail::to($recipient)->send(new ContactInquirySubmitted($inquiry, $inquiryTypeLabel));
+        } catch (\Throwable $exception) {
+            Log::error('Failed to send contact inquiry notification email.', [
+                'reference' => $inquiry->reference,
+                'recipient' => $recipient,
+                'error' => $exception->getMessage(),
+            ]);
+        }
     }
 
     /**

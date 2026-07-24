@@ -2279,6 +2279,7 @@ return [
     */
 
     'contact' => [
+        'notification_email' => env('CONTACT_NOTIFICATION_EMAIL', 'cyratech01@gmail.com'),
         'seo' => [
             'title' => 'Contact Us | Cyra-Tech',
             'description' => 'Contact Cyra-Tech for sales inquiries, support, partnerships, careers, and general questions. Our team responds within one business day.',

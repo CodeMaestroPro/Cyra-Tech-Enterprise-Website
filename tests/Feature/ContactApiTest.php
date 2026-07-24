@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\ContactInquiry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ContactApiTest extends TestCase
@@ -15,6 +16,7 @@ class ContactApiTest extends TestCase
         parent::setUp();
 
         $this->seed();
+        Mail::fake();
     }
 
     public function test_contact_api_returns_page_configuration(): void

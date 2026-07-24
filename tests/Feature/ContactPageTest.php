@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Mail\ContactInquirySubmitted;
 use App\Models\ContactInquiry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ContactPageTest extends TestCase
@@ -15,6 +17,7 @@ class ContactPageTest extends TestCase
         parent::setUp();
 
         $this->seed();
+        Mail::fake();
     }
 
     public function test_contact_page_renders_form_and_office_details(): void
@@ -61,6 +64,11 @@ class ContactPageTest extends TestCase
         $this->assertSame('sales', $inquiry->inquiry_type);
         $this->assertSame('pending', $inquiry->status);
         $this->assertNotNull($inquiry->reference);
+
+        Mail::assertSent(ContactInquirySubmitted::class, function (ContactInquirySubmitted $mail) use ($inquiry) {
+            return $mail->inquiry->is($inquiry)
+                && $mail->hasTo(config('cyra.contact.notification_email'));
+        });
     }
 
     public function test_contact_form_validation_errors_are_returned(): void
