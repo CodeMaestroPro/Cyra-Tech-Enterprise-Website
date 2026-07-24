@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'cyra-theme';
+const STORAGE_KEY = 'cyra-theme-v2';
 
 export function getStoredTheme() {
     try {

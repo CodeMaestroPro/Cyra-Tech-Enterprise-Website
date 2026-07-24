@@ -31,7 +31,7 @@
 
 @layer base {
     html {
-        color-scheme: dark;
+        color-scheme: light;
         scroll-behavior: smooth;
     }
 
@@ -42,7 +42,8 @@
             radial-gradient(circle at top right, color-mix(in srgb, var(--color-cyra-accent) 8%, transparent), transparent 25%);
     }
 
-    body.theme-public {
+    /* Dark palette only when light theme is not active (must live on body so utilities inherit it). */
+    html:not([data-cyra-theme='light']) body.theme-public {
         --color-cyra-midnight: #030711;
         --color-cyra-navy: #000b26;
         --color-cyra-surface: #0f172a;
@@ -62,11 +63,13 @@
         color: var(--color-cyra-text);
     }
 
-    html:has(body.theme-public) {
+    html:has(body.theme-public):not([data-cyra-theme='light']) {
         color-scheme: dark;
     }
 
-    html[data-cyra-theme='light'] {
+    /* White base: set tokens on body so they win over @theme defaults and dark utilities. */
+    html[data-cyra-theme='light'],
+    html[data-cyra-theme='light'] body {
         color-scheme: light;
         --color-cyra-midnight: #ffffff;
         --color-cyra-navy: #ffffff;
@@ -77,17 +80,19 @@
         --color-cyra-light: #e2e8f0;
         --color-cyra-soft: #f8fafc;
         --color-cyra-elevated: #f1f5f9;
+        --color-cyra-ink: #0f172a;
     }
 
     html[data-cyra-theme='light'] body {
-        background-color: var(--color-cyra-midnight);
+        background-color: #ffffff;
         background-image:
             radial-gradient(circle at top left, color-mix(in srgb, var(--color-cyra-primary) 8%, transparent), transparent 32%),
             radial-gradient(circle at top right, color-mix(in srgb, var(--color-cyra-accent) 6%, transparent), transparent 28%);
+        color: var(--color-cyra-text);
     }
 
     html[data-cyra-theme='light'] body.theme-public {
-        background-color: var(--color-cyra-midnight);
+        background-color: #ffffff;
         background-image:
             radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--color-cyra-primary) 10%, transparent), transparent 34%),
             radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--color-cyra-accent) 8%, transparent), transparent 30%);
@@ -99,7 +104,7 @@
     }
 
     html[data-cyra-theme='light'] .cyra-header-glass {
-        @apply bg-white/90 shadow-md shadow-slate-200/70;
+        @apply border-slate-200 bg-white/95 shadow-md shadow-slate-200/70;
     }
 
     html[data-cyra-theme='light'] .cyra-stats-bar {
@@ -107,7 +112,7 @@
     }
 
     html[data-cyra-theme='light'] .cyra-section-dark {
-        @apply from-slate-100 to-slate-200 text-slate-900;
+        @apply from-slate-50 to-slate-100 text-slate-900;
     }
 
     html[data-cyra-theme='light'] .cyra-section-dark .cyra-caption,
@@ -121,6 +126,25 @@
     html[data-cyra-theme='light'] .cyra-section-dark h2,
     html[data-cyra-theme='light'] .cyra-section-dark h3 {
         @apply text-slate-900;
+    }
+
+    html[data-cyra-theme='light'] .cyra-page-hero {
+        @apply from-white via-slate-50 to-white;
+    }
+
+    html[data-cyra-theme='light'] .cyra-hero-visual {
+        background:
+            radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-cyra-primary) 18%, transparent), transparent 45%),
+            radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--color-cyra-accent) 14%, transparent), transparent 40%),
+            linear-gradient(160deg, #ffffff 0%, #f8fafc 45%, #eff6ff 100%);
+    }
+
+    html[data-cyra-theme='light'] .cyra-section-band {
+        @apply border-slate-200 bg-slate-50;
+    }
+
+    html[data-cyra-theme='light'] .cyra-cta-premium {
+        @apply from-cyra-primary/10 via-white to-slate-50;
     }
 
     html[data-cyra-theme='light'] [data-cyra-theme-toggle] [data-cyra-theme-icon='sun'] {
