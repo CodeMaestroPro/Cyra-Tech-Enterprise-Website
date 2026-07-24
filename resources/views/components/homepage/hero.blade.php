@@ -5,7 +5,8 @@
     $actions = $content['actions'] ?? [];
 @endphp
 
-<section class="relative overflow-hidden border-b border-cyra-border/60" aria-labelledby="homepage-hero-title">
+<section class="cyra-page-hero" aria-labelledby="homepage-hero-title">
+    <div class="cyra-page-hero-glow" aria-hidden="true"></div>
     <div class="cyra-container relative cyra-section-hero-inner">
         <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div data-animate="fade-up">
