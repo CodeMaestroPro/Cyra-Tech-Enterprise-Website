@@ -52,8 +52,8 @@
                     loading="eager"
                     decoding="async"
                     fetchpriority="high"
-                    width="496"
-                    height="503"
+                    width="992"
+                    height="1006"
                 >
                 <span class="cyra-hero-image__glow" aria-hidden="true"></span>
             </figure>
