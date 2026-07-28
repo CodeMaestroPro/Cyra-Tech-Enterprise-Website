@@ -2301,10 +2301,7 @@ return [
             ],
         ],
         'channels' => [
-            ['label' => 'Sales', 'email' => 'sales@cyratechltd.com'],
-            ['label' => 'Support', 'email' => 'support@cyratechltd.com'],
-            ['label' => 'Careers', 'email' => 'careers@cyratechltd.com'],
-            ['label' => 'Partnerships', 'email' => 'partners@cyratechltd.com'],
+            ['label' => 'Email', 'email' => 'cyratech01@gmail.com'],
             ['label' => 'Website', 'url' => 'https://cyratechltd.com'],
         ],
         'form' => [
@@ -2316,7 +2313,7 @@ return [
         ],
         'support' => [
             'title' => 'Existing clients',
-            'description' => 'For active engagements, reach your delivery team through the Client Portal or email support@cyratechltd.com for priority assistance.',
+            'description' => 'For active engagements, reach your delivery team through the Client Portal or email cyratech01@gmail.com for priority assistance.',
         ],
     ],
 

@@ -36,7 +36,7 @@ class ContactPageTest extends TestCase
             ->assertSee('Higgins Peters Dr, opposite Federal Ministry of Transport, Central Business District, Abuja 900103')
             ->assertDontSee('London, United Kingdom')
             ->assertDontSee('Washington, DC')
-            ->assertSee('sales@cyratechltd.com')
+            ->assertSee('cyratech01@gmail.com')
             ->assertSee('cyratechltd.com');
     }
 
