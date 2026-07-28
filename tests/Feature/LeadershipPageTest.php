@@ -28,6 +28,8 @@ class LeadershipPageTest extends TestCase
             ->assertSee('Executive Chairman')
             ->assertSee('Shirgba Joel K.')
             ->assertSee('Strategic Partnership Board Member')
+            ->assertSee('Zaki Asen')
+            ->assertSee('International Partner')
             ->assertSee('Pever Collins')
             ->assertSee('CTO')
             ->assertSee('Terngu Philip')

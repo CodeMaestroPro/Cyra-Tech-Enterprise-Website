@@ -36,9 +36,10 @@ class LeadershipApiTest extends TestCase
             ])
             ->assertJsonPath('data.executives.0.slug', 'sir-alex-addingi')
             ->assertJsonPath('data.executives.1.slug', 'shirgba-joel-k')
-            ->assertJsonPath('data.executives.2.slug', 'pever-collins')
-            ->assertJsonPath('data.executives.3.slug', 'terngu-philip')
-            ->assertJsonPath('data.executives.4.slug', 'shie-paul');
+            ->assertJsonPath('data.executives.2.slug', 'zaki-asen')
+            ->assertJsonPath('data.executives.3.slug', 'pever-collins')
+            ->assertJsonPath('data.executives.4.slug', 'terngu-philip')
+            ->assertJsonPath('data.executives.5.slug', 'shie-paul');
     }
 
     public function test_leadership_profile_api_returns_single_leader(): void
