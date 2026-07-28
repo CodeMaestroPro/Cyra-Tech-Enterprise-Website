@@ -52,7 +52,7 @@
                     class="cyra-section-heading"
                 />
 
-                <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3">
                     @foreach ($executives as $profile)
                         <x-leadership.profile-card :profile="$profile" />
                     @endforeach
@@ -137,7 +137,7 @@
                 <div class="flex items-start gap-4">
                     <div
                         id="leadership-profile-modal-avatar"
-                        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyra-primary to-cyra-accent text-lg font-bold text-white"
+                        class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-cyra-primary to-cyra-accent text-lg font-bold text-white"
                     ></div>
                     <div>
                         <h2 id="leadership-profile-modal-title" class="cyra-heading-3"></h2>

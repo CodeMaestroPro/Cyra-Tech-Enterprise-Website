@@ -24,20 +24,19 @@ class LeadershipPageTest extends TestCase
             ->assertOk()
             ->assertViewIs('leadership.index')
             ->assertSee('Stewards of vision, accountability, and enterprise impact')
-            ->assertSee('Collins Pever')
-            ->assertSee('Chief Executive Officer')
-            ->assertSee('Dr. Amara Okonkwo')
+            ->assertSee('Sir Alex Addingi')
+            ->assertSee('Executive Chairman')
+            ->assertSee('Shirgba Joel K.')
+            ->assertSee('Strategic Partnership Board Member')
+            ->assertSee('Pever Collins')
+            ->assertSee('CTO')
+            ->assertSee('Terngu Philip')
+            ->assertSee('COO')
+            ->assertSee('Shie Paul')
+            ->assertSee('Software Lead')
             ->assertSee('Accountability built into how we operate')
-            ->assertSee('View full profile');
-    }
-
-    public function test_leadership_page_includes_extended_leadership(): void
-    {
-        $response = $this->get(route('leadership'));
-
-        $response
-            ->assertOk()
-            ->assertSee('Priya Sharma')
-            ->assertSee('Chief Financial Officer');
+            ->assertSee('View full profile')
+            ->assertDontSee('Dr. Amara Okonkwo')
+            ->assertDontSee('Priya Sharma');
     }
 }

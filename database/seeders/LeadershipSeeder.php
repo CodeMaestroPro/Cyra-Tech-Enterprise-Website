@@ -9,9 +9,11 @@ class LeadershipSeeder extends Seeder
 {
     public function run(): void
     {
+        $profiles = config('cyra.leadership.profiles', []);
+        $configuredSlugs = collect($profiles)->pluck('slug')->filter()->all();
         $sort = 1;
 
-        foreach (config('cyra.leadership.profiles', []) as $profile) {
+        foreach ($profiles as $profile) {
             LeadershipProfile::query()->updateOrCreate(
                 ['slug' => $profile['slug']],
                 [
@@ -28,5 +30,13 @@ class LeadershipSeeder extends Seeder
                 ],
             );
         }
+
+        LeadershipProfile::query()
+            ->when(
+                $configuredSlugs !== [],
+                fn ($query) => $query->whereNotIn('slug', $configuredSlugs),
+                fn ($query) => $query,
+            )
+            ->update(['is_active' => false]);
     }
 }

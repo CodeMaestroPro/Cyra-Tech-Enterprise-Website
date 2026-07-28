@@ -26,7 +26,19 @@ export function initLeadershipPage() {
         title.textContent = profile.name || '';
         role.textContent = profile.title || '';
         bio.textContent = profile.bio || '';
-        avatar.textContent = profile.initials || '';
+
+        avatar.textContent = '';
+        avatar.querySelector('img')?.remove();
+
+        if (profile.photo_url) {
+            const image = document.createElement('img');
+            image.src = profile.photo_url;
+            image.alt = profile.name || '';
+            image.className = 'h-full w-full object-cover object-top';
+            avatar.appendChild(image);
+        } else {
+            avatar.textContent = profile.initials || '';
+        }
 
         links.innerHTML = '';
 

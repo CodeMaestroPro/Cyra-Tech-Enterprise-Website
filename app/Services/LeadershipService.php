@@ -72,6 +72,11 @@ class LeadershipService extends BaseService
             ->map(fn (string $part) => strtoupper(substr($part, 0, 1)))
             ->implode('');
 
+        $configProfile = collect(config('cyra.leadership.profiles', []))
+            ->firstWhere('slug', $profile->slug);
+
+        $photo = is_array($configProfile) ? ($configProfile['photo'] ?? null) : null;
+
         return [
             'slug' => $profile->slug,
             'name' => $profile->name,
@@ -81,6 +86,7 @@ class LeadershipService extends BaseService
             'focus_areas' => $profile->focus_areas ?? [],
             'linkedin_url' => $profile->linkedin_url,
             'email' => $profile->email,
+            'photo_url' => filled($photo) ? asset($photo) : null,
             'initials' => $initials,
             'is_featured' => $profile->is_featured,
         ];
