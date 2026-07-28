@@ -47,12 +47,12 @@
                 </svg>
             </button>
 
-            <x-theme.toggle class="cyra-header-icon-btn hidden !border-0 xl:inline-flex" />
+            <x-theme.toggle class="cyra-header-icon-btn !border-0" />
 
             @foreach ($actions as $action)
                 @php($style = $action['style'] ?? 'link')
                 @if ($style === 'button')
-                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="cyra-header-cta hidden xl:inline-flex">
+                    <x-ui.button href="{{ $action['url'] }}" size="sm" class="cyra-header-cta">
                         {{ $action['label'] }}
                     </x-ui.button>
                 @elseif ($style === 'outline')
