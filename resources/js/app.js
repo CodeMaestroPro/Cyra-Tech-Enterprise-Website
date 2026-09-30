@@ -19,6 +19,7 @@ import { initPortfolioPage } from './Pages/portfolio';
 import { initProductsPage } from './Pages/products';
 import { initSolutionsPage } from './Pages/solutions';
 import { initLeadershipPage } from './Pages/leadership';
+import { initItRegistrationPage } from './Pages/it-registration';
 import { initHomepage } from './Pages/homepage';
 import { initDesignSystemPage } from './Pages/design-system';
 import { initInitializationPage } from './Pages/initialization';
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAiAssistantPage();
     initHomepage();
     initLeadershipPage();
+    initItRegistrationPage();
     initSolutionsPage();
     initProductsPage();
     initIndustriesPage();

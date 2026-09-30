@@ -892,4 +892,107 @@
     [data-mobile-nav-drawer][data-open='true'] {
         translate: 0;
     }
+
+    .cyra-it-wizard {
+        @apply rounded-2xl border border-cyra-border bg-cyra-surface p-4 shadow-lg shadow-black/5 sm:rounded-3xl sm:p-8;
+    }
+
+    .cyra-it-wizard-steps {
+        @apply relative mb-4 flex items-start justify-between gap-2;
+    }
+
+    .cyra-it-wizard-steps::before {
+        content: '';
+        position: absolute;
+        top: 1rem;
+        left: 14%;
+        right: 14%;
+        height: 2px;
+        background: #e2e8f0;
+    }
+
+    .cyra-it-wizard-step {
+        @apply relative z-[1] flex min-w-0 flex-1 flex-col items-center gap-1.5 bg-transparent px-1 text-center;
+    }
+
+    .cyra-it-wizard-step-index {
+        @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-sm font-bold;
+        background: #ffffff;
+        color: #334155;
+    }
+
+    .cyra-it-wizard-step.is-active .cyra-it-wizard-step-index {
+        border-color: #0052ff;
+        background: #0052ff;
+        color: #fff;
+        box-shadow: 0 0 0 4px color-mix(in srgb, #0052ff 16%, transparent);
+    }
+
+    .cyra-it-wizard-step.is-complete .cyra-it-wizard-step-index {
+        border-color: #16a34a;
+        background: #16a34a;
+        color: #fff;
+    }
+
+    .cyra-it-wizard-step-label {
+        @apply max-w-full truncate text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-500 sm:text-xs sm:tracking-[0.12em];
+    }
+
+    .cyra-it-wizard-step.is-active .cyra-it-wizard-step-label {
+        color: #0052ff;
+    }
+
+    .cyra-it-wizard-step.is-complete .cyra-it-wizard-step-label {
+        color: #16a34a;
+    }
+
+    .cyra-it-wizard-meta {
+        @apply mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyra-accent;
+    }
+
+    .cyra-it-wizard-title {
+        @apply text-lg font-semibold text-cyra-text sm:text-xl;
+    }
+
+    .cyra-it-wizard .cyra-input,
+    .cyra-it-wizard select.cyra-input,
+    .cyra-it-wizard textarea.cyra-input {
+        min-height: 3rem;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .cyra-it-wizard-actions {
+        @apply mt-6 flex flex-col-reverse gap-3 border-t border-cyra-border pt-5 sm:mt-8 sm:flex-row sm:items-center sm:justify-end sm:pt-6;
+    }
+
+    .cyra-it-wizard-btn {
+        @apply inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition sm:w-auto sm:min-w-32;
+    }
+
+    .cyra-it-wizard-btn-primary {
+        @apply bg-cyra-primary text-white shadow-lg shadow-cyra-primary/25 hover:bg-cyra-primary-hover;
+    }
+
+    .cyra-it-wizard-btn-secondary {
+        @apply border border-cyra-border bg-white text-cyra-text hover:bg-cyra-soft;
+    }
+
+    .cyra-it-swal {
+        border-radius: 1.25rem !important;
+        width: min(92vw, 32rem) !important;
+        padding: 1.25rem !important;
+    }
+
+    @media (max-width: 639px) {
+        .cyra-it-wizard-steps::before {
+            left: 16%;
+            right: 16%;
+        }
+
+        #registration-success .flex.flex-col a,
+        #registration-success .flex.flex-col button {
+            width: 100%;
+        }
+    }
 }

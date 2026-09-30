@@ -33,5 +33,7 @@
                 <x-navigation.footer :navigation="$publicNavigation" />
             @endisset
         @endunless
+
+        @stack('scripts')
     </body>
 </html>

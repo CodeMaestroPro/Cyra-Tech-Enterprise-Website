@@ -2332,6 +2332,91 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | IT Student Registration
+    |--------------------------------------------------------------------------
+    */
+
+    'it_students' => [
+        'notification_email' => env('CONTACT_NOTIFICATION_EMAIL', 'cyratech01@gmail.com'),
+        'whatsapp_number' => env('CYRA_WHATSAPP_NUMBER', ''),
+        'seo' => [
+            'title' => 'IT Student Registration | Cyra-Tech',
+            'description' => 'Register as an IT student with Cyra-Tech. Join our learning and talent pipeline for hands-on technology experience.',
+            'keywords' => ['IT student registration', 'Cyra-Tech internship', 'tech training', 'student program'],
+        ],
+        'hero' => [
+            'eyebrow' => 'IT Student Intake',
+            'title' => 'Start your journey with Cyra-Tech',
+            'description' => 'We are opening our doors to motivated IT students ready to learn, build, and grow with a real technology team. Complete the form below to register.',
+        ],
+        'form' => [
+            'eyebrow' => 'Student Registration',
+            'title' => 'Register in 3 easy steps',
+            'description' => 'Complete each step, review your details, and submit. You will get an acknowledgement slip ready to send on WhatsApp.',
+            'submit_label' => 'Complete Registration',
+            'success_message' => 'Registration successful! Your acknowledgement slip is ready — tap WhatsApp to send it now.',
+            'steps' => [
+                ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal details'],
+                ['key' => 'education', 'label' => 'Education', 'title' => 'Education details'],
+                ['key' => 'interest', 'label' => 'Interest', 'title' => 'Interest & availability'],
+            ],
+        ],
+        'whatsapp' => [
+            'label' => 'Send acknowledgement on WhatsApp',
+            'hint' => 'WhatsApp will open with your acknowledgement already filled in. Just tap Send.',
+            'message_template' => "*CYRA-TECH IT STUDENT ACKNOWLEDGEMENT SLIP*\n\nReference: :reference\nDate: :date\nStatus: Registered\n\nName: :name\nEmail: :email\nPhone: :phone\nInstitution: :institution\nCourse: :course\nLevel: :level\nInterest: :interest\nAvailability: :availability\n\nI hereby submit my acknowledgement slip for IT student registration with Cyra-Tech.\nThank you.",
+        ],
+        'highlights' => [
+            [
+                'title' => 'Real project exposure',
+                'description' => 'Learn alongside engineers building products used by businesses and institutions.',
+            ],
+            [
+                'title' => 'Mentorship & growth',
+                'description' => 'Get guided practice across software, cloud, and digital delivery workflows.',
+            ],
+            [
+                'title' => 'Clear next steps',
+                'description' => 'Register once, receive your acknowledgement slip, and confirm via WhatsApp.',
+            ],
+        ],
+        'academic_levels' => [
+            ['slug' => 'nd1', 'label' => 'ND 1'],
+            ['slug' => 'nd2', 'label' => 'ND 2'],
+            ['slug' => 'hnd1', 'label' => 'HND 1'],
+            ['slug' => 'hnd2', 'label' => 'HND 2'],
+            ['slug' => '100l', 'label' => '100 Level'],
+            ['slug' => '200l', 'label' => '200 Level'],
+            ['slug' => '300l', 'label' => '300 Level'],
+            ['slug' => '400l', 'label' => '400 Level'],
+            ['slug' => '500l', 'label' => '500 Level'],
+            ['slug' => 'graduate', 'label' => 'Graduate / Fresh Graduate'],
+            ['slug' => 'other', 'label' => 'Other'],
+        ],
+        'interest_areas' => [
+            ['slug' => 'web-development', 'label' => 'Web Development'],
+            ['slug' => 'ui-ux-design', 'label' => 'UI/UX Design'],
+            ['slug' => 'cyber-security', 'label' => 'Cyber Security'],
+            ['slug' => 'data-analysis', 'label' => 'Data Analysis'],
+            ['slug' => 'ai-automation', 'label' => 'AI Automation'],
+        ],
+        'availability_options' => [
+            ['slug' => 'internship', 'label' => 'Internship'],
+            ['slug' => 'siwes', 'label' => 'SIWES / Industrial Training'],
+            ['slug' => 'part-time', 'label' => 'Part-time'],
+            ['slug' => 'full-time', 'label' => 'Full-time'],
+            ['slug' => 'volunteer', 'label' => 'Volunteer / Learning'],
+        ],
+        'acknowledgement' => [
+            'title' => 'Acknowledgement Slip',
+            'subtitle' => 'Cyra-Tech IT Student Registration',
+            'note' => 'Keep this slip for your records. Tap WhatsApp below to submit it to our team and complete your acknowledgement.',
+            'company_line' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Partner Hub Content
     |--------------------------------------------------------------------------
     */
@@ -4241,6 +4326,7 @@ return [
                         ['label' => 'About Us', 'route' => 'about'],
                         ['label' => 'Leadership', 'route' => 'leadership'],
                         ['label' => 'Careers', 'route' => 'careers'],
+                        ['label' => 'IT', 'route' => 'it'],
                         ['label' => 'Contact', 'route' => 'contact'],
                     ],
                 ],
@@ -4350,6 +4436,7 @@ return [
                         ['label' => 'Team Members', 'icon' => 'users', 'route' => 'admin.team-members.index', 'permission' => 'modules.view'],
                         ['label' => 'Careers', 'icon' => 'career', 'route' => 'admin.careers.index', 'permission' => 'modules.view'],
                         ['label' => 'Applicants', 'icon' => 'clipboard', 'route' => 'admin.applicants.index', 'permission' => 'modules.view'],
+                        ['label' => 'IT Registrations', 'icon' => 'clipboard', 'route' => 'admin.it.index', 'permission' => 'modules.view'],
                         ['label' => 'Community', 'icon' => 'community', 'route' => 'admin.community.index', 'permission' => 'modules.view'],
                     ],
                 ],
