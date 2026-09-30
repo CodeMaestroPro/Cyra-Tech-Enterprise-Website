@@ -197,6 +197,30 @@
                                 </div>
                             </div>
                         </article>
+
+                        <div class="no-print mt-4 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 p-5 sm:p-6">
+                            <p class="text-sm font-semibold text-cyra-text">Missed the popup? Send your acknowledgement here.</p>
+                            <p class="mt-1 text-sm leading-relaxed text-cyra-muted">
+                                Tap WhatsApp and your acknowledgement slip is already filled in. Then press Send.
+                            </p>
+                            <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                                @forelse ($registration['whatsapp_links'] ?? [] as $link)
+                                    <a
+                                        href="{{ $link['url'] }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:bg-[#1ebe57] sm:w-auto"
+                                    >
+                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.12 1.6 5.92L0 24l6.4-1.67a11.8 11.8 0 005.64 1.44h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.45zM12.05 21.5h-.01a9.64 9.64 0 01-4.91-1.35l-.35-.21-3.8.99 1.02-3.7-.23-.38a9.64 9.64 0 01-1.48-5.15c0-5.33 4.34-9.66 9.68-9.66 2.58 0 5.01 1.01 6.84 2.84a9.6 9.6 0 012.83 6.83c0 5.33-4.34 9.66-9.67 9.66zm5.3-7.23c-.29-.15-1.72-.85-1.99-.94-.27-.1-.46-.15-.66.15-.19.29-.76.94-.93 1.13-.17.2-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.19 0-.5.07-.76.37-.26.29-1 1-1 2.43s1.02 2.82 1.16 3.01c.15.19 2.01 3.07 4.87 4.31.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/>
+                                        </svg>
+                                        {{ $link['label'] }}
+                                    </a>
+                                @empty
+                                    <p class="text-sm text-cyra-muted">WhatsApp is not configured yet. Email your acknowledgement instead.</p>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                 @endif
 
