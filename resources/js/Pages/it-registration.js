@@ -22,7 +22,8 @@ function initWizard(page) {
     const prevBtn = form.querySelector('[data-it-prev]');
     const nextBtn = form.querySelector('[data-it-next]');
     const submitBtn = form.querySelector('[data-it-submit]');
-    const stepMeta = form.querySelector('[data-it-step-meta]');
+    const stepMeta = page.querySelector('[data-it-step-meta]');
+    const progressFill = page.querySelector('[data-it-progress]');
     const totalSteps = panels.length;
     let currentStep = Number(form.dataset.initialStep || 1);
 
@@ -32,12 +33,24 @@ function initWizard(page) {
         3: ['interest_area', 'availability', 'motivation'],
     };
 
+    const updateProgress = (step) => {
+        if (!progressFill) {
+            return;
+        }
+
+        const percent = (step / totalSteps) * 100;
+        progressFill.style.width = `${percent}%`;
+    };
+
     const showStep = (step) => {
         currentStep = step;
 
         panels.forEach((panel) => {
             const panelStep = Number(panel.dataset.stepPanel);
-            panel.classList.toggle('hidden', panelStep !== step);
+            const isActive = panelStep === step;
+
+            panel.classList.toggle('hidden', !isActive);
+            panel.classList.toggle('is-active', isActive);
         });
 
         indicators.forEach((indicator) => {
@@ -53,6 +66,8 @@ function initWizard(page) {
         if (stepMeta) {
             stepMeta.textContent = `Step ${step} of ${totalSteps}`;
         }
+
+        updateProgress(step);
     };
 
     const validateStep = (step) => {

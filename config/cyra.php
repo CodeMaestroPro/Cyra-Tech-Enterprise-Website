@@ -2356,9 +2356,9 @@ return [
             'submit_label' => 'Complete Registration',
             'success_message' => 'Registration successful! Your acknowledgement slip is ready — tap WhatsApp to send it now.',
             'steps' => [
-                ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal details'],
-                ['key' => 'education', 'label' => 'Education', 'title' => 'Education details'],
-                ['key' => 'interest', 'label' => 'Interest', 'title' => 'Interest & availability'],
+                ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal details', 'description' => 'Share your contact information so we can reach you about your application.'],
+                ['key' => 'education', 'label' => 'Education', 'title' => 'Education details', 'description' => 'Tell us about your school, course, and current academic level.'],
+                ['key' => 'interest', 'label' => 'Interest', 'title' => 'Interest & availability', 'description' => 'Choose your focus area and let us know why you want to join Cyra-Tech.'],
             ],
         ],
         'whatsapp' => [
@@ -2368,14 +2368,17 @@ return [
         ],
         'highlights' => [
             [
+                'icon' => 'code',
                 'title' => 'Real project exposure',
                 'description' => 'Learn alongside engineers building products used by businesses and institutions.',
             ],
             [
+                'icon' => 'mentor',
                 'title' => 'Mentorship & growth',
                 'description' => 'Get guided practice across software, cloud, and digital delivery workflows.',
             ],
             [
+                'icon' => 'check',
                 'title' => 'Clear next steps',
                 'description' => 'Register once, receive your acknowledgement slip, and confirm via WhatsApp.',
             ],
@@ -2411,6 +2414,161 @@ return [
             'title' => 'Acknowledgement Slip',
             'subtitle' => 'Cyra-Tech IT Student Registration',
             'note' => 'Keep this slip for your records. Tap WhatsApp below to submit it to our team and complete your acknowledgement.',
+            'company_line' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Paid Student Training Registration
+    |--------------------------------------------------------------------------
+    */
+
+    'student_registrations' => [
+        'notification_email' => env('CONTACT_NOTIFICATION_EMAIL', 'cyratech01@gmail.com'),
+        'whatsapp_number' => env('CYRA_WHATSAPP_NUMBER', ''),
+        'currency' => 'NGN',
+        'currency_symbol' => '₦',
+        'seo' => [
+            'title' => 'Student Training Registration | Cyra-Tech',
+            'description' => 'Register for Cyra-Tech training programs. Choose your track, pay securely with Paystack, and receive your registration receipt.',
+            'keywords' => ['student registration', 'Cyra-Tech training', 'Paystack payment', 'tech courses Nigeria'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Training Programs',
+            'title' => 'Enroll in a Cyra-Tech training program',
+            'description' => 'Choose your program, complete registration, and pay securely with Paystack. Start your journey into professional software and technology skills.',
+        ],
+        'form' => [
+            'eyebrow' => 'Student Registration',
+            'title' => 'Register and pay in 3 steps',
+            'description' => 'Fill in your details, select a program, and proceed to Paystack to complete your payment. Your official receipt will be ready to print or save immediately after payment.',
+            'submit_label' => 'Proceed to Paystack',
+            'success_message' => 'Payment successful! Print or save your official receipt on this page.',
+            'partial_success_message' => 'Your 60% installment payment was successful. Print or save your receipt, then complete the remaining 40% anytime from this portal.',
+            'steps' => [
+                ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal information', 'description' => 'Share your contact details so we can reach you about your enrollment.'],
+                ['key' => 'education', 'label' => 'Education', 'title' => 'Education', 'description' => 'Tell us about your highest qualification and field of study.'],
+                ['key' => 'program', 'label' => 'Program', 'title' => 'Program & experience', 'description' => 'Choose your training track and tell us your current skill level.'],
+            ],
+        ],
+        'payment' => [
+            'provider' => 'Paystack',
+            'secure_note' => 'Payments are processed securely by Paystack. You will be redirected to complete your payment.',
+            'installment_initial_percent' => 60,
+            'installment_balance_percent' => 40,
+            'plans' => [
+                'full' => [
+                    'label' => 'Pay in full',
+                    'description' => 'Pay the complete program fee in one transaction.',
+                ],
+                'installment' => [
+                    'label' => 'Pay in installments',
+                    'description' => 'Pay 60% now and complete the remaining 40% later.',
+                ],
+            ],
+        ],
+        'whatsapp' => [
+            'label' => 'Send receipt on WhatsApp',
+            'hint' => 'WhatsApp will open with your payment receipt already filled in. Just tap Send.',
+            'message_template' => "*CYRA-TECH STUDENT TRAINING RECEIPT*\n\nReference: :reference\nDate: :date\nStatus: Paid\n\nName: :name\nEmail: :email\nPhone: :phone\nLocation: :location\nProgram: :program\nAmount: :amount\nEducation: :education\nField of study: :field\nSkill level: :skill\n\nI have completed payment for my Cyra-Tech training registration.\nThank you.",
+        ],
+        'highlights' => [
+            [
+                'icon' => 'code',
+                'title' => 'Industry-ready skills',
+                'description' => 'Learn practical skills across frontend, backend, security, and emerging technologies.',
+            ],
+            [
+                'icon' => 'mentor',
+                'title' => 'Expert-led training',
+                'description' => 'Train with professionals who build real products for businesses and institutions.',
+            ],
+            [
+                'icon' => 'check',
+                'title' => 'Secure Paystack checkout',
+                'description' => 'Pay online with confidence, then print or save your official QR-verified receipt.',
+            ],
+        ],
+        'programs' => [
+            [
+                'slug' => 'frontend-development',
+                'label' => 'Frontend Development',
+                'description' => 'HTML, CSS, JavaScript, React, and modern UI engineering.',
+                'amount' => 100,
+            ],
+            [
+                'slug' => 'backend-development',
+                'label' => 'Backend Development',
+                'description' => 'APIs, databases, authentication, and server-side architecture.',
+                'amount' => 100000,
+            ],
+            [
+                'slug' => 'fullstack-development',
+                'label' => 'Full Stack Development',
+                'description' => 'End-to-end web development from frontend to backend deployment.',
+                'amount' => 250000,
+            ],
+            [
+                'slug' => 'cyber-security',
+                'label' => 'Cyber Security',
+                'description' => 'Security fundamentals, threat analysis, and defensive practices.',
+                'amount' => 150000,
+            ],
+            [
+                'slug' => 'ui-ux-design',
+                'label' => 'UI/UX Design',
+                'description' => 'User research, wireframing, prototyping, and design systems.',
+                'amount' => 120000,
+            ],
+            [
+                'slug' => 'data-analysis',
+                'label' => 'Data Analysis',
+                'description' => 'Data cleaning, visualization, dashboards, and insight delivery.',
+                'amount' => 120000,
+            ],
+            [
+                'slug' => 'ai-automation',
+                'label' => 'AI Automation',
+                'description' => 'Workflow automation, AI tools, and intelligent process design.',
+                'amount' => 180000,
+            ],
+        ],
+        'genders' => [
+            ['slug' => 'male', 'label' => 'Male'],
+            ['slug' => 'female', 'label' => 'Female'],
+            ['slug' => 'prefer-not-to-say', 'label' => 'Prefer not to say'],
+        ],
+        'states' => [
+            'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
+            'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT', 'Gombe', 'Imo',
+            'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
+            'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba',
+            'Yobe', 'Zamfara',
+        ],
+        'education_levels' => [
+            ['slug' => 'ssce', 'label' => 'SSCE / WAEC / NECO'],
+            ['slug' => 'nd', 'label' => 'National Diploma (ND)'],
+            ['slug' => 'hnd', 'label' => 'Higher National Diploma (HND)'],
+            ['slug' => 'bachelors', 'label' => "Bachelor's Degree"],
+            ['slug' => 'masters', 'label' => "Master's Degree"],
+            ['slug' => 'phd', 'label' => 'PhD'],
+            ['slug' => 'other', 'label' => 'Other'],
+        ],
+        'skill_levels' => [
+            ['slug' => 'beginner', 'label' => 'Beginner'],
+            ['slug' => 'intermediate', 'label' => 'Intermediate'],
+            ['slug' => 'advanced', 'label' => 'Advanced'],
+        ],
+        'tech_experience' => [
+            ['slug' => 'yes', 'label' => 'Yes'],
+            ['slug' => 'no', 'label' => 'No'],
+        ],
+        'acknowledgement' => [
+            'title' => 'Official Payment Receipt',
+            'subtitle' => 'Training Academy',
+            'note' => 'Print this receipt or save it as a PDF on your phone. Scan the QR code anytime to verify authenticity.',
+            'qr_caption' => 'Scan to verify this receipt',
             'company_line' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
         ],
     ],
@@ -4327,6 +4485,7 @@ return [
                         ['label' => 'Leadership', 'route' => 'leadership'],
                         ['label' => 'Careers', 'route' => 'careers'],
                         ['label' => 'IT', 'route' => 'it'],
+                        ['label' => 'Training', 'route' => 'students'],
                         ['label' => 'Contact', 'route' => 'contact'],
                     ],
                 ],
@@ -4437,6 +4596,7 @@ return [
                         ['label' => 'Careers', 'icon' => 'career', 'route' => 'admin.careers.index', 'permission' => 'modules.view'],
                         ['label' => 'Applicants', 'icon' => 'clipboard', 'route' => 'admin.applicants.index', 'permission' => 'modules.view'],
                         ['label' => 'IT Registrations', 'icon' => 'clipboard', 'route' => 'admin.it.index', 'permission' => 'modules.view'],
+                        ['label' => 'Student Registrations', 'icon' => 'clipboard', 'route' => 'admin.students.index', 'permission' => 'modules.view'],
                         ['label' => 'Community', 'icon' => 'community', 'route' => 'admin.community.index', 'permission' => 'modules.view'],
                     ],
                 ],

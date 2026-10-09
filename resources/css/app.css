@@ -893,30 +893,71 @@
         translate: 0;
     }
 
+    /* IT registration page */
+    .cyra-it-section {
+        @apply pb-16 pt-0 sm:pb-20;
+    }
+
+    .cyra-it-wizard-shell {
+        @apply overflow-hidden rounded-2xl border border-cyra-border bg-cyra-surface shadow-xl shadow-black/[0.06] sm:rounded-3xl;
+    }
+
+    .cyra-it-wizard-shell--done {
+        @apply p-6 sm:p-8;
+    }
+
+    .cyra-it-wizard-header {
+        @apply flex flex-col gap-4 border-b border-cyra-border bg-gradient-to-br from-cyra-soft/80 to-transparent px-5 py-6 sm:flex-row sm:items-start sm:justify-between sm:px-8 sm:py-7;
+    }
+
+    .cyra-it-wizard-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.16em] text-cyra-accent;
+    }
+
+    .cyra-it-wizard-heading {
+        @apply mt-1 text-xl font-bold tracking-tight text-cyra-text sm:text-2xl;
+    }
+
+    .cyra-it-wizard-lead {
+        @apply mt-2 max-w-xl text-sm leading-relaxed text-cyra-muted;
+    }
+
+    .cyra-it-wizard-meta {
+        @apply shrink-0 rounded-full border border-cyra-border bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-cyra-accent;
+    }
+
+    .cyra-it-wizard-progress {
+        @apply h-1 w-full bg-slate-100;
+    }
+
+    .cyra-it-wizard-progress-fill {
+        @apply h-full bg-gradient-to-r from-cyra-primary to-cyra-accent transition-[width] duration-300 ease-out;
+    }
+
     .cyra-it-wizard {
-        @apply rounded-2xl border border-cyra-border bg-cyra-surface p-4 shadow-lg shadow-black/5 sm:rounded-3xl sm:p-8;
+        @apply px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6;
     }
 
     .cyra-it-wizard-steps {
-        @apply relative mb-4 flex items-start justify-between gap-2;
+        @apply relative mb-6 flex items-start justify-between gap-2;
     }
 
     .cyra-it-wizard-steps::before {
         content: '';
         position: absolute;
-        top: 1rem;
+        top: 1.125rem;
         left: 14%;
         right: 14%;
         height: 2px;
-        background: #e2e8f0;
+        background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 50%, #e2e8f0 100%);
     }
 
     .cyra-it-wizard-step {
-        @apply relative z-[1] flex min-w-0 flex-1 flex-col items-center gap-1.5 bg-transparent px-1 text-center;
+        @apply relative z-[1] flex min-w-0 flex-1 flex-col items-center gap-2 bg-transparent px-1 text-center;
     }
 
     .cyra-it-wizard-step-index {
-        @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-sm font-bold;
+        @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-sm font-bold transition-all duration-300;
         background: #ffffff;
         color: #334155;
     }
@@ -925,7 +966,8 @@
         border-color: #0052ff;
         background: #0052ff;
         color: #fff;
-        box-shadow: 0 0 0 4px color-mix(in srgb, #0052ff 16%, transparent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, #0052ff 18%, transparent);
+        transform: scale(1.05);
     }
 
     .cyra-it-wizard-step.is-complete .cyra-it-wizard-step-index {
@@ -946,12 +988,36 @@
         color: #16a34a;
     }
 
-    .cyra-it-wizard-meta {
-        @apply mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyra-accent;
+    .cyra-it-wizard-body {
+        @apply min-h-[18rem];
+    }
+
+    .cyra-it-wizard-panel {
+        animation: cyra-it-panel-in 0.35s ease-out;
+    }
+
+    @keyframes cyra-it-panel-in {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .cyra-it-wizard-title {
         @apply text-lg font-semibold text-cyra-text sm:text-xl;
+    }
+
+    .cyra-it-wizard-description {
+        @apply mt-2 mb-5 text-sm leading-relaxed text-cyra-muted;
+    }
+
+    .cyra-it-field-grid {
+        @apply grid gap-4 sm:grid-cols-2;
     }
 
     .cyra-it-wizard .cyra-input,
@@ -963,11 +1029,15 @@
     }
 
     .cyra-it-wizard-actions {
-        @apply mt-6 flex flex-col-reverse gap-3 border-t border-cyra-border pt-5 sm:mt-8 sm:flex-row sm:items-center sm:justify-end sm:pt-6;
+        @apply mt-6 flex flex-col-reverse gap-3 border-t border-cyra-border pt-5 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-6;
+    }
+
+    .cyra-it-wizard-actions-primary {
+        @apply flex w-full flex-col gap-3 sm:ml-auto sm:w-auto sm:flex-row;
     }
 
     .cyra-it-wizard-btn {
-        @apply inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition sm:w-auto sm:min-w-32;
+        @apply inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition sm:w-auto sm:min-w-36;
     }
 
     .cyra-it-wizard-btn-primary {
@@ -978,21 +1048,1144 @@
         @apply border border-cyra-border bg-white text-cyra-text hover:bg-cyra-soft;
     }
 
+    .cyra-it-done-card {
+        @apply rounded-2xl border border-cyra-border bg-cyra-soft/60 p-6 text-center sm:p-8;
+    }
+
+    /* Success state */
+    .cyra-it-success-pill {
+        @apply inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-700;
+    }
+
+    .cyra-it-success-banner {
+        @apply relative overflow-hidden rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50 via-white to-cyra-soft p-6 sm:rounded-3xl sm:p-8;
+    }
+
+    .cyra-it-success-banner-glow {
+        @apply pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-200/40 blur-3xl;
+    }
+
+    .cyra-it-slip {
+        @apply mt-6 overflow-hidden rounded-2xl border border-cyra-border bg-white shadow-lg shadow-black/[0.04] sm:rounded-3xl;
+    }
+
+    .cyra-it-slip-header {
+        @apply flex flex-col gap-4 border-b border-cyra-border bg-gradient-to-r from-cyra-soft/70 to-transparent px-6 py-5 sm:flex-row sm:items-start sm:justify-between sm:px-8 sm:py-6;
+    }
+
+    .cyra-it-slip-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.14em] text-cyra-accent;
+    }
+
+    .cyra-it-slip-title {
+        @apply mt-1 text-xl font-bold text-cyra-text sm:text-2xl;
+    }
+
+    .cyra-it-slip-subtitle {
+        @apply mt-1 text-sm text-cyra-muted;
+    }
+
+    .cyra-it-slip-ref {
+        @apply rounded-xl border border-cyra-border bg-white px-4 py-3 text-right;
+    }
+
+    .cyra-it-slip-ref-label {
+        @apply text-[10px] font-semibold uppercase tracking-[0.14em] text-cyra-muted;
+    }
+
+    .cyra-it-slip-ref-value {
+        @apply mt-1 font-mono text-sm font-bold text-cyra-accent;
+    }
+
+    .cyra-it-slip-grid {
+        @apply grid gap-4 p-6 sm:grid-cols-2 sm:gap-5 sm:p-8;
+    }
+
+    .cyra-it-slip-field {
+        @apply rounded-xl border border-cyra-border/70 bg-cyra-soft/40 px-4 py-3;
+    }
+
+    .cyra-it-slip-field-label {
+        @apply text-[10px] font-semibold uppercase tracking-[0.12em] text-cyra-muted;
+    }
+
+    .cyra-it-slip-field-value {
+        @apply mt-1 text-sm font-medium text-cyra-text;
+    }
+
+    .cyra-it-slip-status {
+        @apply mt-1 inline-flex rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-700;
+    }
+
+    .cyra-it-whatsapp-card {
+        @apply mt-6 flex flex-col gap-4 rounded-2xl border border-[#25D366]/25 bg-[#25D366]/[0.06] p-5 sm:flex-row sm:items-center sm:rounded-3xl sm:p-6;
+    }
+
+    .cyra-it-whatsapp-card-icon {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30;
+    }
+
+    .cyra-it-whatsapp-btn {
+        @apply inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#25D366]/25 transition hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366];
+    }
+
+    .cyra-it-whatsapp-btn--primary {
+        @apply min-h-[3.25rem] text-base;
+    }
+
+    .cyra-it-btn-ghost {
+        @apply inline-flex min-h-12 items-center justify-center rounded-full border border-cyra-border bg-white px-5 py-3 text-sm font-semibold text-cyra-text transition hover:bg-cyra-soft;
+    }
+
+    /* Sidebar */
+    .cyra-it-sidebar-intro {
+        @apply rounded-2xl border border-cyra-border bg-gradient-to-br from-cyra-primary/5 to-transparent p-5;
+    }
+
+    .cyra-it-sidebar-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.14em] text-cyra-accent;
+    }
+
+    .cyra-it-sidebar-title {
+        @apply mt-1 text-lg font-bold text-cyra-text;
+    }
+
+    .cyra-it-sidebar-card {
+        @apply flex gap-4 rounded-2xl border border-cyra-border bg-cyra-surface p-4 shadow-sm shadow-black/[0.03] transition hover:border-cyra-primary/20 hover:shadow-md;
+    }
+
+    .cyra-it-highlight-icon {
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyra-primary/10 text-cyra-primary;
+    }
+
+    .cyra-it-sidebar-card-title {
+        @apply text-sm font-semibold text-cyra-text;
+    }
+
+    .cyra-it-sidebar-card-text {
+        @apply mt-1 text-sm leading-relaxed text-cyra-muted;
+    }
+
+    .cyra-it-help-card {
+        @apply rounded-2xl border border-dashed border-cyra-border bg-cyra-soft/50 p-4;
+    }
+
+    .cyra-it-help-label {
+        @apply text-xs font-semibold uppercase tracking-[0.12em] text-cyra-muted;
+    }
+
+    .cyra-it-help-text {
+        @apply mt-2 text-sm leading-relaxed text-cyra-muted;
+    }
+
+    .cyra-it-help-link {
+        @apply font-medium text-cyra-primary underline-offset-2 hover:underline;
+    }
+
     .cyra-it-swal {
         border-radius: 1.25rem !important;
         width: min(92vw, 32rem) !important;
         padding: 1.25rem !important;
     }
 
-    @media (max-width: 639px) {
-        .cyra-it-wizard-steps::before {
-            left: 16%;
-            right: 16%;
+    /* Training portal — standalone enrollment environment */
+    body.theme-training-portal {
+        --tp-bg: #f5f8ff;
+        --tp-surface: #ffffff;
+        --tp-surface-strong: #eef3ff;
+        --tp-border: #d6e2f5;
+        --tp-text: #0f172a;
+        --tp-muted: #64748b;
+        --tp-accent: #0052ff;
+        --tp-accent-strong: #003cd1;
+        --tp-sky: #3d7bff;
+        --tp-danger: #dc2626;
+        background: var(--tp-bg);
+        color: var(--tp-text);
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .cyra-tp {
+        @apply relative isolate min-h-screen;
+    }
+
+    .cyra-tp-ambient {
+        @apply pointer-events-none fixed inset-0 overflow-hidden;
+    }
+
+    .cyra-tp-ambient-orb {
+        @apply absolute rounded-full blur-3xl;
+    }
+
+    .cyra-tp-ambient-orb--one {
+        top: -8rem;
+        left: -6rem;
+        width: 24rem;
+        height: 24rem;
+        background: rgba(0, 82, 255, 0.14);
+    }
+
+    .cyra-tp-ambient-orb--two {
+        right: -4rem;
+        bottom: -6rem;
+        width: 28rem;
+        height: 28rem;
+        background: rgba(61, 123, 255, 0.12);
+    }
+
+    .cyra-tp-ambient-grid {
+        @apply absolute inset-0 opacity-40;
+        background-image:
+            linear-gradient(rgba(0, 82, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 82, 255, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    .cyra-tp-header {
+        @apply relative z-20 flex items-center justify-between gap-4 border-b px-4 py-4 sm:px-6 lg:px-8;
+        border-color: var(--tp-border);
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(16px);
+    }
+
+    .cyra-tp-header-brand {
+        @apply flex items-center gap-3;
+    }
+
+    .cyra-tp-header-kicker {
+        @apply text-[10px] font-semibold uppercase tracking-[0.18em];
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-header-title {
+        @apply text-sm font-semibold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-header-actions {
+        @apply flex items-center gap-3;
+    }
+
+    .cyra-tp-exit-link {
+        @apply rounded-full border px-3 py-1.5 text-xs font-medium transition;
+        border-color: var(--tp-border);
+        color: var(--tp-muted);
+        background: #ffffff;
+    }
+
+    .cyra-tp-exit-link:hover {
+        border-color: rgba(0, 82, 255, 0.35);
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-shell {
+        @apply relative z-10 grid min-h-[calc(100vh-4.5rem)] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)];
+    }
+
+    .cyra-tp-showcase {
+        @apply hidden border-r p-6 sm:p-8 lg:block;
+        border-color: var(--tp-border);
+    }
+
+    .cyra-tp-showcase-inner {
+        @apply mx-auto flex h-full max-w-xl flex-col;
+    }
+
+    .cyra-tp-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.18em];
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-headline {
+        @apply mt-3 text-3xl font-bold leading-tight tracking-tight sm:text-4xl;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-lead {
+        @apply mt-4 text-sm leading-relaxed sm:text-base;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-program-catalog {
+        @apply mt-8 flex-1;
+    }
+
+    .cyra-tp-catalog-label {
+        @apply text-[11px] font-semibold uppercase tracking-[0.16em];
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-catalog-list {
+        @apply mt-3 space-y-2;
+    }
+
+    .cyra-tp-catalog-item {
+        @apply flex items-start justify-between gap-3 rounded-2xl border p-3.5;
+        border-color: var(--tp-border);
+        background: var(--tp-surface);
+    }
+
+    .cyra-tp-catalog-title {
+        @apply text-sm font-semibold;
+    }
+
+    .cyra-tp-catalog-copy {
+        @apply mt-1 text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-catalog-price {
+        @apply shrink-0 text-sm font-bold;
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-highlights {
+        @apply mt-6 space-y-3;
+    }
+
+    .cyra-tp-highlight {
+        @apply flex gap-3 rounded-2xl border p-3.5;
+        border-color: var(--tp-border);
+        background: var(--tp-surface);
+    }
+
+    .cyra-tp-highlight-icon {
+        @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border;
+        border-color: rgba(0, 82, 255, 0.18);
+        background: rgba(0, 82, 255, 0.08);
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-highlight-title {
+        @apply text-sm font-semibold;
+    }
+
+    .cyra-tp-highlight-text {
+        @apply mt-1 text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-support {
+        @apply mt-6 text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-support a {
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-main {
+        @apply flex flex-col p-4 sm:p-6 lg:p-8;
+    }
+
+    .cyra-tp-panel {
+        @apply mx-auto flex w-full max-w-2xl flex-1 flex-col rounded-[1.75rem] border p-5 sm:p-7;
+        border-color: var(--tp-border);
+        background: #ffffff;
+        box-shadow: 0 24px 80px rgba(15, 56, 140, 0.08);
+    }
+
+    .cyra-tp-panel-top {
+        @apply flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between;
+    }
+
+    .cyra-tp-panel-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.16em];
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-panel-title {
+        @apply mt-1 text-2xl font-bold tracking-tight;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-panel-copy {
+        @apply mt-2 text-sm leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-step-pill {
+        @apply shrink-0 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em];
+        border-color: var(--tp-border);
+        background: var(--tp-surface-strong);
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-progress {
+        @apply mt-5 h-1 overflow-hidden rounded-full;
+        background: #e8eef9;
+    }
+
+    .cyra-tp-progress-fill {
+        @apply h-full rounded-full transition-[width] duration-300 ease-out;
+        background: linear-gradient(90deg, var(--tp-accent), var(--tp-sky));
+    }
+
+    .cyra-tp-alert {
+        @apply mt-5 rounded-2xl border px-4 py-3 text-sm;
+    }
+
+    .cyra-tp-alert--error {
+        border-color: rgba(220, 38, 38, 0.25);
+        background: #fef2f2;
+        color: #b91c1c;
+    }
+
+    .cyra-tp-alert--info {
+        border-color: rgba(0, 82, 255, 0.18);
+        background: #eef3ff;
+        color: #003cd1;
+    }
+
+    .cyra-tp-form {
+        @apply mt-6 flex flex-1 flex-col;
+    }
+
+    .cyra-tp-steps {
+        @apply relative mb-6 flex items-start justify-between gap-2;
+    }
+
+    .cyra-tp-steps::before {
+        content: '';
+        position: absolute;
+        top: 1.125rem;
+        left: 14%;
+        right: 14%;
+        height: 2px;
+        background: #d6e2f5;
+    }
+
+    .cyra-tp-step {
+        @apply relative z-[1] flex min-w-0 flex-1 flex-col items-center gap-2 px-1 text-center;
+    }
+
+    .cyra-tp-step-index {
+        @apply flex h-9 w-9 items-center justify-center rounded-full border text-sm font-bold transition;
+        border-color: var(--tp-border);
+        background: #ffffff;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-step.is-active .cyra-tp-step-index {
+        border-color: var(--tp-accent);
+        background: var(--tp-accent);
+        color: #ffffff;
+        box-shadow: 0 0 0 4px rgba(0, 82, 255, 0.16);
+    }
+
+    .cyra-tp-step.is-complete .cyra-tp-step-index {
+        border-color: var(--tp-sky);
+        background: var(--tp-sky);
+        color: #ffffff;
+    }
+
+    .cyra-tp-step-label {
+        @apply max-w-full truncate text-[10px] font-semibold uppercase tracking-[0.08em] sm:text-xs;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-step.is-active .cyra-tp-step-label,
+    .cyra-tp-step.is-complete .cyra-tp-step-label {
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-form-body {
+        @apply min-h-[18rem] flex-1;
+    }
+
+    .cyra-tp-form-panel {
+        animation: cyra-tp-panel-in 0.35s ease-out;
+    }
+
+    @keyframes cyra-tp-panel-in {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
         }
 
-        #registration-success .flex.flex-col a,
-        #registration-success .flex.flex-col button {
-            width: 100%;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .cyra-tp-form-title {
+        @apply text-lg font-semibold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-form-description {
+        @apply mt-2 mb-5 text-sm leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-field-grid {
+        @apply grid gap-4 sm:grid-cols-2;
+    }
+
+    .theme-training-portal .cyra-input,
+    .theme-training-portal select.cyra-input,
+    .theme-training-portal textarea.cyra-input {
+        min-height: 3rem;
+        width: 100%;
+        font-size: 16px;
+        border-color: var(--tp-border);
+        background: #ffffff;
+        color: var(--tp-text);
+    }
+
+    .theme-training-portal .cyra-input:focus,
+    .theme-training-portal select.cyra-input:focus,
+    .theme-training-portal textarea.cyra-input:focus {
+        border-color: rgba(0, 82, 255, 0.55);
+        box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.14);
+    }
+
+    .theme-training-portal label,
+    .theme-training-portal .text-cyra-muted {
+        color: var(--tp-muted) !important;
+    }
+
+    .theme-training-portal .text-cyra-danger {
+        color: var(--tp-danger) !important;
+    }
+
+    .cyra-tp-program-list {
+        @apply space-y-3;
+    }
+
+    .cyra-tp-program {
+        @apply flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition;
+        border-color: var(--tp-border);
+        background: #ffffff;
+    }
+
+    .cyra-tp-program:hover {
+        border-color: rgba(0, 82, 255, 0.35);
+    }
+
+    .cyra-tp-program.is-selected {
+        border-color: rgba(0, 82, 255, 0.55);
+        background: #eef3ff;
+        box-shadow: 0 0 0 1px rgba(0, 82, 255, 0.12);
+    }
+
+    .cyra-tp-program-radio {
+        @apply mt-1 h-5 w-5 shrink-0 rounded-full border;
+        border-color: #cbd5e1;
+        background: #ffffff;
+        box-shadow: inset 0 0 0 4px transparent;
+        transition: all 0.2s ease;
+    }
+
+    .cyra-tp-program.is-selected .cyra-tp-program-radio {
+        border-color: var(--tp-accent);
+        background: var(--tp-accent);
+        box-shadow: inset 0 0 0 3px #ffffff;
+    }
+
+    .cyra-tp-program-title {
+        @apply block text-sm font-semibold;
+    }
+
+    .cyra-tp-program-description {
+        @apply mt-1 block text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-checkout {
+        @apply mt-5 space-y-4 rounded-2xl border p-4;
+        border-color: rgba(0, 82, 255, 0.18);
+        background: #eef3ff;
+    }
+
+    .cyra-tp-checkout-label,
+    .cyra-tp-plan-list-label,
+    .cyra-tp-checkout-due-label {
+        @apply text-[11px] font-semibold uppercase tracking-[0.14em];
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-checkout-program {
+        @apply mt-1 text-sm font-semibold;
+    }
+
+    .cyra-tp-checkout-fee {
+        @apply text-2xl font-bold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-plan-list {
+        @apply space-y-3;
+    }
+
+    .cyra-tp-plan {
+        @apply flex cursor-pointer items-start gap-3 rounded-2xl border p-3.5 transition;
+        border-color: var(--tp-border);
+        background: #ffffff;
+    }
+
+    .cyra-tp-plan.is-selected {
+        border-color: rgba(0, 82, 255, 0.55);
+        background: #f8faff;
+    }
+
+    .cyra-tp-plan-radio {
+        @apply mt-0.5 h-5 w-5 shrink-0 rounded-full border;
+        border-color: #cbd5e1;
+        background: #ffffff;
+        box-shadow: inset 0 0 0 4px transparent;
+    }
+
+    .cyra-tp-plan.is-selected .cyra-tp-plan-radio {
+        border-color: var(--tp-accent);
+        background: var(--tp-accent);
+        box-shadow: inset 0 0 0 3px #ffffff;
+    }
+
+    .cyra-tp-plan-title {
+        @apply block text-sm font-semibold;
+    }
+
+    .cyra-tp-plan-description {
+        @apply mt-1 block text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-plan-meta {
+        @apply shrink-0 text-xs font-semibold;
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-checkout-due {
+        @apply rounded-xl border p-3.5;
+        border-color: rgba(0, 82, 255, 0.12);
+        background: #ffffff;
+    }
+
+    .cyra-tp-checkout-amount {
+        @apply mt-1 text-3xl font-bold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-checkout-balance {
+        @apply mt-2 text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-checkout-note {
+        @apply text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-balance {
+        @apply rounded-xl border px-4 py-2 text-sm font-semibold;
+        border-color: rgba(0, 82, 255, 0.18);
+        background: #ffffff;
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-balance-form {
+        @apply mt-4;
+    }
+
+    .cyra-tp-choice-group {
+        @apply min-w-0 border-0 p-0;
+    }
+
+    .cyra-tp-choice-legend {
+        @apply mb-3 text-sm font-semibold;
+        color: var(--tp-text);
+    }
+
+    .cyra-tp-choice-list {
+        @apply grid gap-3 sm:grid-cols-3;
+    }
+
+    .cyra-tp-choice {
+        @apply flex cursor-pointer items-center justify-center rounded-2xl border px-4 py-3 text-sm font-semibold transition;
+        border-color: var(--tp-border);
+        background: #ffffff;
+        color: var(--tp-text);
+    }
+
+    .cyra-tp-choice.is-selected {
+        border-color: rgba(0, 82, 255, 0.55);
+        background: #eef3ff;
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-lookup {
+        @apply rounded-2xl border p-5;
+        border-color: var(--tp-border);
+        background: #ffffff;
+    }
+
+    .cyra-tp-lookup-kicker {
+        @apply text-[11px] font-semibold uppercase tracking-[0.14em];
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-lookup-title {
+        @apply mt-1 text-lg font-bold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-lookup-copy {
+        @apply mt-2 text-sm leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-lookup-error {
+        @apply mt-3 rounded-xl border px-3 py-2 text-sm;
+        border-color: rgba(220, 38, 38, 0.25);
+        background: #fef2f2;
+        color: #b91c1c;
+    }
+
+    .cyra-tp-lookup-form {
+        @apply mt-4 space-y-3;
+    }
+
+    .cyra-tp-lookup-field {
+        @apply block space-y-1.5 text-xs font-semibold;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-lookup-field input {
+        @apply block w-full rounded-xl border px-3 py-2.5 text-sm font-medium;
+        border-color: var(--tp-border);
+        background: #ffffff;
+        color: var(--tp-text);
+    }
+
+    .cyra-tp-lookup-field input:focus {
+        border-color: rgba(0, 82, 255, 0.55);
+        box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.14);
+        outline: none;
+    }
+
+    .cyra-tp-form-actions {
+        @apply mt-6 flex flex-row items-center gap-3 border-t pt-5;
+        border-color: var(--tp-border);
+    }
+
+    .cyra-tp-form-actions-primary {
+        @apply flex min-w-0 flex-1;
+    }
+
+    .cyra-tp-form-actions > [data-students-prev] {
+        width: auto;
+        min-width: 6.25rem;
+        flex: 0 0 auto;
+        padding-left: 1.15rem;
+        padding-right: 1.15rem;
+    }
+
+    .cyra-tp-form-actions-primary .cyra-tp-btn {
+        @apply w-full sm:ml-auto sm:w-auto sm:min-w-36;
+    }
+
+    .cyra-tp-btn {
+        @apply inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition;
+    }
+
+    .cyra-tp-btn--primary {
+        background: linear-gradient(135deg, var(--tp-accent), var(--tp-sky));
+        color: #ffffff;
+        box-shadow: 0 12px 30px rgba(0, 82, 255, 0.22);
+    }
+
+    .cyra-tp-btn--pay {
+        background: linear-gradient(135deg, var(--tp-accent-strong), var(--tp-accent));
+        color: #ffffff;
+        box-shadow: 0 12px 30px rgba(0, 82, 255, 0.22);
+    }
+
+    .cyra-tp-btn--ghost {
+        border: 1px solid var(--tp-border);
+        background: #ffffff;
+        color: var(--tp-text);
+    }
+
+    .cyra-tp-btn--whatsapp {
+        background: #25d366;
+        color: #fff;
+    }
+
+    .cyra-tp-success {
+        @apply mx-auto flex w-full max-w-3xl flex-col gap-6;
+    }
+
+    .cyra-tp-success-hero {
+        @apply rounded-[1.75rem] border p-6 sm:p-8;
+        border-color: rgba(0, 82, 255, 0.16);
+        background: linear-gradient(135deg, #ffffff, #eef3ff);
+    }
+
+    .cyra-tp-success-badge {
+        @apply inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em];
+        border-color: rgba(0, 82, 255, 0.2);
+        color: var(--tp-accent);
+        background: #ffffff;
+    }
+
+    .cyra-tp-success-title {
+        @apply mt-4 text-3xl font-bold;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+
+    .cyra-tp-success-copy {
+        @apply mt-3 text-sm leading-relaxed sm:text-base;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-success-meta {
+        @apply mt-5 flex flex-wrap gap-3;
+    }
+
+    .cyra-tp-ref,
+    .cyra-tp-paid {
+        @apply rounded-xl border px-4 py-2 text-sm font-semibold;
+    }
+
+    .cyra-tp-ref {
+        border-color: rgba(0, 82, 255, 0.18);
+        background: #eef3ff;
+        font-family: ui-monospace, monospace;
+        color: var(--tp-accent);
+    }
+
+    .cyra-tp-paid {
+        border-color: rgba(0, 82, 255, 0.18);
+        background: #ffffff;
+        color: var(--tp-accent-strong);
+    }
+
+    .cyra-tp-balance {
+        @apply rounded-xl border px-4 py-2 text-sm font-semibold;
+        border-color: rgba(220, 38, 38, 0.18);
+        background: #fff7f7;
+        color: #b91c1c;
+    }
+
+    .cyra-tp-success-actions {
+        @apply mt-6 flex flex-col gap-3 sm:flex-row;
+    }
+
+    .cyra-tp-receipt-save-hint {
+        @apply mt-3 text-xs leading-relaxed;
+        color: var(--tp-muted);
+    }
+
+    .cyra-tp-receipt {
+        overflow: hidden;
+        border: 1px solid #c5d4ee;
+        border-radius: 1.25rem;
+        background: #ffffff;
+        color: #0f172a;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .cyra-tp-receipt-masthead {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        padding: 1.5rem 1.75rem;
+        background: linear-gradient(135deg, #003cd1, #0052ff);
+        color: #ffffff;
+    }
+
+    .cyra-tp-receipt-brand {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 0.9rem;
+    }
+
+    .cyra-tp-receipt-logo {
+        height: 2.75rem;
+        width: auto;
+        max-width: 9rem;
+        object-fit: contain;
+        background: #ffffff;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.45rem;
+    }
+
+    .cyra-tp-receipt-org {
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+
+    .cyra-tp-receipt-division {
+        margin-top: 0.15rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .cyra-tp-receipt-docmeta {
+        text-align: right;
+    }
+
+    .cyra-tp-receipt-doctype {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .cyra-tp-receipt-docno {
+        margin-top: 0.25rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .cyra-tp-receipt-statusbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 1.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        background: #f8fbff;
+    }
+
+    @media (min-width: 640px) {
+        .cyra-tp-receipt-statusbar {
+            grid-template-columns: 1fr 1fr auto;
+            align-items: center;
+        }
+    }
+
+    .cyra-tp-receipt-kicker {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #64748b;
+    }
+
+    .cyra-tp-receipt-strong {
+        margin-top: 0.2rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .cyra-tp-receipt-stamp {
+        display: inline-flex;
+        border-radius: 999px;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .cyra-tp-receipt-stamp.is-paid {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .cyra-tp-receipt-stamp.is-partial {
+        background: #fef3c7;
+        color: #b45309;
+    }
+
+    .cyra-tp-receipt-body {
+        display: grid;
+        gap: 1.25rem;
+        padding: 1.5rem 1.75rem 0.5rem;
+    }
+
+    @media (min-width: 640px) {
+        .cyra-tp-receipt-body {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .cyra-tp-receipt-name {
+        margin-top: 0.35rem;
+        font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .cyra-tp-receipt-contact {
+        margin-top: 0.5rem;
+        display: grid;
+        gap: 0.2rem;
+        font-size: 0.875rem;
+        color: #475569;
+    }
+
+    .cyra-tp-receipt-muted {
+        margin-top: 0.35rem;
+        font-size: 0.875rem;
+        line-height: 1.55;
+        color: #64748b;
+    }
+
+    .cyra-tp-receipt-table {
+        width: calc(100% - 3.5rem);
+        margin: 1rem 1.75rem 0;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+    }
+
+    .cyra-tp-receipt-table th,
+    .cyra-tp-receipt-table td {
+        padding: 0.7rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .cyra-tp-receipt-table thead th {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #64748b;
+    }
+
+    .cyra-tp-receipt-table tbody td:first-child,
+    .cyra-tp-receipt-table tfoot th:first-child {
+        color: #64748b;
+        width: 42%;
+    }
+
+    .cyra-tp-receipt-table tbody td:last-child,
+    .cyra-tp-receipt-table tfoot th:last-child {
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .cyra-tp-receipt-table tfoot th {
+        padding-top: 0.95rem;
+        border-bottom: 0;
+        font-size: 0.95rem;
+        color: #003cd1;
+    }
+
+    .cyra-tp-receipt-mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.78rem;
+        word-break: break-all;
+    }
+
+    .cyra-tp-receipt-verify {
+        display: grid;
+        gap: 1rem;
+        margin: 1.25rem 1.75rem 0;
+        padding: 1rem;
+        border: 1px dashed #93c5fd;
+        background: #f8fbff;
+        align-items: center;
+    }
+
+    @media (min-width: 640px) {
+        .cyra-tp-receipt-verify {
+            grid-template-columns: 7.5rem 1fr;
+        }
+    }
+
+    .cyra-tp-receipt-qr {
+        display: flex;
+        width: 7.25rem;
+        height: 7.25rem;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid #dbeafe;
+        background: #ffffff;
+        padding: 0.35rem;
+    }
+
+    .cyra-tp-receipt-qr svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .cyra-tp-receipt-verify-title {
+        margin-top: 0.25rem;
+        font-size: 1rem;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .cyra-tp-receipt-verify-url {
+        margin-top: 0.55rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.65rem;
+        line-height: 1.45;
+        word-break: break-all;
+        color: #0052ff;
+    }
+
+    .cyra-tp-receipt-footer {
+        margin-top: 1.25rem;
+        padding: 1rem 1.75rem 1.35rem;
+        border-top: 1px solid #e2e8f0;
+        font-size: 0.75rem;
+        line-height: 1.55;
+        color: #64748b;
+    }
+
+    .cyra-tp-receipt-legal {
+        margin-top: 0.55rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #94a3b8;
+    }
+
+    .cyra-tp-verify-shell {
+        @apply mx-auto w-full max-w-3xl px-4 py-8 sm:px-6;
+    }
+
+    .cyra-tp-verify-banner {
+        @apply mb-6 rounded-[1.75rem] border p-6 sm:p-8;
+        border-color: rgba(0, 82, 255, 0.16);
+        background: linear-gradient(135deg, #ffffff, #eef3ff);
+    }
+
+    .cyra-tp-verify-banner--invalid {
+        border-color: rgba(220, 38, 38, 0.18);
+        background: linear-gradient(135deg, #ffffff, #fff1f2);
+    }
+
+    @media (max-width: 1023px) {
+        .cyra-tp-panel-top::before {
+            content: 'Cyra-Tech Academy';
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--tp-accent);
+        }
+    }
+
+    @media (max-width: 639px) {
+        .cyra-it-wizard-steps::before,
+        .cyra-tp-steps::before {
+            left: 16%;
+            right: 16%;
         }
     }
 }

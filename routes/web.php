@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\CompanyPulseController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\InsightsController as AdminInsightsController;
 use App\Http\Controllers\Admin\ItStudentRegistrationController as AdminItStudentRegistrationController;
+use App\Http\Controllers\Admin\StudentRegistrationController as AdminStudentRegistrationController;
 use App\Http\Controllers\Admin\HomepageBuilderController;
 use App\Http\Controllers\Admin\MarketingController;
 use App\Http\Controllers\Admin\UsersRolesController;
@@ -37,6 +38,7 @@ use App\Http\Controllers\Web\ClientPortalController;
 use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\ItStudentRegistrationController;
+use App\Http\Controllers\Web\StudentRegistrationController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
 use App\Http\Controllers\Web\InnovationLabController;
@@ -88,6 +90,24 @@ Route::post('/it', [ItStudentRegistrationController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('it.store');
 Route::redirect('/it-students', '/it');
+
+Route::get('/students', [StudentRegistrationController::class, 'show'])->name('students');
+Route::post('/students', [StudentRegistrationController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('students.store');
+Route::post('/students/lookup', [StudentRegistrationController::class, 'lookup'])
+    ->middleware('throttle:10,1')
+    ->name('students.lookup');
+Route::get('/students/verify/{reference}/{token}', [StudentRegistrationController::class, 'verify'])
+    ->where(['reference' => '[A-Za-z0-9\-]+', 'token' => '[a-f0-9]{64}'])
+    ->name('students.verify');
+Route::post('/students/{reference}/pay-balance', [StudentRegistrationController::class, 'payBalance'])
+    ->middleware('throttle:10,1')
+    ->name('students.balance.pay');
+Route::get('/students/payment/callback', [StudentRegistrationController::class, 'paymentCallback'])
+    ->name('students.payment.callback');
+Route::post('/students/paystack/webhook', [StudentRegistrationController::class, 'paystackWebhook'])
+    ->name('students.paystack.webhook');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
@@ -144,6 +164,10 @@ Route::middleware(['auth', 'permission:dashboard.access'])
         Route::middleware('permission:modules.view')->prefix('it')->name('it.')->group(function () {
             Route::get('/', [AdminItStudentRegistrationController::class, 'index'])->name('index');
             Route::get('/{reference}', [AdminItStudentRegistrationController::class, 'show'])->name('show');
+        });
+        Route::middleware('permission:modules.view')->prefix('students')->name('students.')->group(function () {
+            Route::get('/', [AdminStudentRegistrationController::class, 'index'])->name('index');
+            Route::get('/{reference}', [AdminStudentRegistrationController::class, 'show'])->name('show');
         });
         Route::middleware('permission:modules.view')->prefix('insights')->name('insights.')->group(function () {
             Route::get('/', [AdminInsightsController::class, 'index'])->name('index');
