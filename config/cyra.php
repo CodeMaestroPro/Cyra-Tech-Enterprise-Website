@@ -2495,7 +2495,7 @@ return [
                 'slug' => 'frontend-development',
                 'label' => 'Frontend Development',
                 'description' => 'HTML, CSS, JavaScript, React, and modern UI engineering.',
-                'amount' => 100,
+                'amount' => 150000,
             ],
             [
                 'slug' => 'backend-development',
