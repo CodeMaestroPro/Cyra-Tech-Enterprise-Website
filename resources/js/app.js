@@ -21,6 +21,7 @@ import { initSolutionsPage } from './Pages/solutions';
 import { initLeadershipPage } from './Pages/leadership';
 import { initItRegistrationPage } from './Pages/it-registration';
 import { initStudentsRegistrationPage } from './Pages/students-registration';
+import { initFreeTrainingPage } from './Pages/free-training';
 import { initHomepage } from './Pages/homepage';
 import { initDesignSystemPage } from './Pages/design-system';
 import { initInitializationPage } from './Pages/initialization';
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLeadershipPage();
     initItRegistrationPage();
     initStudentsRegistrationPage();
+    initFreeTrainingPage();
     initSolutionsPage();
     initProductsPage();
     initIndustriesPage();

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\InsightsController as AdminInsightsController;
 use App\Http\Controllers\Admin\ItStudentRegistrationController as AdminItStudentRegistrationController;
 use App\Http\Controllers\Admin\StudentRegistrationController as AdminStudentRegistrationController;
+use App\Http\Controllers\Admin\FreeTrainingRegistrationController as AdminFreeTrainingRegistrationController;
 use App\Http\Controllers\Admin\HomepageBuilderController;
 use App\Http\Controllers\Admin\MarketingController;
 use App\Http\Controllers\Admin\UsersRolesController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\InsightsController;
 use App\Http\Controllers\Web\ItStudentRegistrationController;
 use App\Http\Controllers\Web\StudentRegistrationController;
+use App\Http\Controllers\Web\FreeTrainingRegistrationController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\InitializationController;
 use App\Http\Controllers\Web\InnovationLabController;
@@ -109,6 +111,14 @@ Route::get('/students/payment/callback', [StudentRegistrationController::class, 
 Route::post('/students/paystack/webhook', [StudentRegistrationController::class, 'paystackWebhook'])
     ->name('students.paystack.webhook');
 
+Route::get('/free-training', [FreeTrainingRegistrationController::class, 'show'])->name('free-training');
+Route::post('/free-training', [FreeTrainingRegistrationController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('free-training.store');
+Route::get('/free-training/verify/{reference}/{token}', [FreeTrainingRegistrationController::class, 'verify'])
+    ->where(['reference' => '[A-Za-z0-9\-]+', 'token' => '[a-f0-9]{64}'])
+    ->name('free-training.verify');
+
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:10,1')
@@ -168,6 +178,10 @@ Route::middleware(['auth', 'permission:dashboard.access'])
         Route::middleware('permission:modules.view')->prefix('students')->name('students.')->group(function () {
             Route::get('/', [AdminStudentRegistrationController::class, 'index'])->name('index');
             Route::get('/{reference}', [AdminStudentRegistrationController::class, 'show'])->name('show');
+        });
+        Route::middleware('permission:modules.view')->prefix('free-training')->name('free-training.')->group(function () {
+            Route::get('/', [AdminFreeTrainingRegistrationController::class, 'index'])->name('index');
+            Route::get('/{reference}', [AdminFreeTrainingRegistrationController::class, 'show'])->name('show');
         });
         Route::middleware('permission:modules.view')->prefix('insights')->name('insights.')->group(function () {
             Route::get('/', [AdminInsightsController::class, 'index'])->name('index');

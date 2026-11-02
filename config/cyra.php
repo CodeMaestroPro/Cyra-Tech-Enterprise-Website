@@ -2489,7 +2489,7 @@ return [
                 'title' => 'Secure Paystack checkout',
                 'description' => 'Pay online with confidence, then print or save your official QR-verified receipt.',
             ],
-        ],
+        ], 
         'programs' => [
             [
                 'slug' => 'frontend-development',
@@ -2501,7 +2501,7 @@ return [
                 'slug' => 'backend-development',
                 'label' => 'Backend Development',
                 'description' => 'APIs, databases, authentication, and server-side architecture.',
-                'amount' => 100000,
+                'amount' => 150000,
             ],
             [
                 'slug' => 'fullstack-development',
@@ -2525,13 +2525,13 @@ return [
                 'slug' => 'data-analysis',
                 'label' => 'Data Analysis',
                 'description' => 'Data cleaning, visualization, dashboards, and insight delivery.',
-                'amount' => 120000,
+                'amount' => 150000,
             ],
             [
                 'slug' => 'ai-automation',
                 'label' => 'AI Automation',
                 'description' => 'Workflow automation, AI tools, and intelligent process design.',
-                'amount' => 180000,
+                'amount' => 150000,
             ],
         ],
         'genders' => [
@@ -2569,6 +2569,83 @@ return [
             'subtitle' => 'Training Academy',
             'note' => 'Print this receipt or save it as a PDF on your phone. Scan the QR code anytime to verify authenticity.',
             'qr_caption' => 'Scan to verify this receipt',
+            'company_line' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Free Training Onboarding
+    |--------------------------------------------------------------------------
+    */
+
+    'free_training' => [
+        'notification_email' => env('CONTACT_NOTIFICATION_EMAIL', 'cyratech01@gmail.com'),
+        'seo' => [
+            'title' => 'Free Training | Cyra-Tech',
+            'description' => 'Join Cyra-Tech free training at no cost. Onboard for Software Development, AI Automation, Data Analysis, or Cyber Security.',
+            'keywords' => ['free training', 'Cyra-Tech academy', 'software development', 'AI automation', 'data analysis', 'cyber security'],
+        ],
+        'hero' => [
+            'eyebrow' => 'Free Training',
+            'title' => 'Learn in-demand tech skills at no cost',
+            'description' => 'Choose a course, complete your onboarding, and join the Cyra-Tech Academy community. Software Development, AI Automation, Data Analysis, and Cyber Security are open now.',
+        ],
+        'form' => [
+            'eyebrow' => 'Free Training',
+            'title' => 'Onboard in 2 steps',
+            'description' => 'Tell us about yourself, pick a course, and get your enrollment confirmation. There is no tuition fee.',
+            'submit_label' => 'Complete free enrollment',
+            'success_message' => 'You are enrolled. Print or save your confirmation on this page.',
+            'steps' => [
+                ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal information', 'description' => 'Share your contact details so we can reach you about your onboarding.'],
+                ['key' => 'course', 'label' => 'Course', 'title' => 'Choose your course', 'description' => 'Select one free training track and tell us your current skill level.'],
+            ],
+        ],
+        'highlights' => [
+            [
+                'icon' => 'code',
+                'title' => 'Four starter tracks',
+                'description' => 'Software Development, AI Automation, Data Analysis, and Cyber Security — all free to join.',
+            ],
+            [
+                'icon' => 'mentor',
+                'title' => 'Guided onboarding',
+                'description' => 'Register once and our team will follow up with class details and next steps.',
+            ],
+            [
+                'icon' => 'check',
+                'title' => 'No tuition fee',
+                'description' => 'Complete the form, save your confirmation, and start your learning journey.',
+            ],
+        ],
+        'programs' => [
+            [
+                'slug' => 'software-development',
+                'label' => 'Software Development',
+                'description' => 'HTML, CSS, JavaScript, and the foundations of building modern applications.',
+            ],
+            [
+                'slug' => 'ai-automation',
+                'label' => 'AI Automation',
+                'description' => 'Practical AI tools, workflow automation, and intelligent process design.',
+            ],
+            [
+                'slug' => 'data-analysis',
+                'label' => 'Data Analysis',
+                'description' => 'Data cleaning, visualization, dashboards, and insight delivery.',
+            ],
+            [
+                'slug' => 'cyber-security',
+                'label' => 'Cyber Security',
+                'description' => 'Security fundamentals, threat awareness, and defensive practices.',
+            ],
+        ],
+        'acknowledgement' => [
+            'title' => 'Enrollment Confirmation',
+            'subtitle' => 'Free Training Academy',
+            'note' => 'Print this confirmation or save it as a PDF on your phone. Scan the QR code anytime to verify your enrollment.',
+            'qr_caption' => 'Scan to verify this enrollment',
             'company_line' => 'Cyra-Tech — Built on Vision. Driven by Intelligence.',
         ],
     ],
@@ -4486,6 +4563,7 @@ return [
                         ['label' => 'Careers', 'route' => 'careers'],
                         ['label' => 'IT', 'route' => 'it'],
                         ['label' => 'Training', 'route' => 'students'],
+                        ['label' => 'Free Training', 'route' => 'free-training'],
                         ['label' => 'Contact', 'route' => 'contact'],
                     ],
                 ],
@@ -4597,6 +4675,7 @@ return [
                         ['label' => 'Applicants', 'icon' => 'clipboard', 'route' => 'admin.applicants.index', 'permission' => 'modules.view'],
                         ['label' => 'IT Registrations', 'icon' => 'clipboard', 'route' => 'admin.it.index', 'permission' => 'modules.view'],
                         ['label' => 'Student Registrations', 'icon' => 'clipboard', 'route' => 'admin.students.index', 'permission' => 'modules.view'],
+                        ['label' => 'Free Training', 'icon' => 'clipboard', 'route' => 'admin.free-training.index', 'permission' => 'modules.view'],
                         ['label' => 'Community', 'icon' => 'community', 'route' => 'admin.community.index', 'permission' => 'modules.view'],
                     ],
                 ],

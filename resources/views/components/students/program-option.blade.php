@@ -3,6 +3,7 @@
     'label',
     'description' => '',
     'selected' => false,
+    'badge' => null,
 ])
 
 <label class="cyra-tp-program {{ $selected ? 'is-selected' : '' }}" data-program-option="{{ $slug }}">
@@ -16,7 +17,12 @@
     >
     <span class="cyra-tp-program-radio" aria-hidden="true"></span>
     <span class="min-w-0 flex-1">
-        <span class="cyra-tp-program-title">{{ $label }}</span>
+        <span class="cyra-tp-program-title-row">
+            <span class="cyra-tp-program-title">{{ $label }}</span>
+            @if ($badge)
+                <span class="cyra-tp-program-badge">{{ $badge }}</span>
+            @endif
+        </span>
         @if ($description)
             <span class="cyra-tp-program-description">{{ $description }}</span>
         @endif
