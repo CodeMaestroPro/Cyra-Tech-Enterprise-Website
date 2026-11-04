@@ -42,6 +42,21 @@
                 max-width: 100% !important;
             }
         }
+
+        .cyra-tp-step-hidden {
+            display: none !important;
+        }
+
+        .cyra-tp-form-actions {
+            position: relative;
+            z-index: 30;
+            pointer-events: auto;
+        }
+
+        .cyra-tp-form-actions .cyra-tp-btn {
+            pointer-events: auto;
+            cursor: pointer;
+        }
     </style>
 @endpush
 
@@ -194,7 +209,7 @@
 
                             <ol class="cyra-tp-steps" aria-label="Registration steps">
                                 @foreach ($steps as $index => $step)
-                                    <li class="cyra-tp-step" data-step-indicator="{{ $index + 1 }}">
+                                    <li class="cyra-tp-step {{ $index === 0 ? 'is-active' : '' }}" data-step-indicator="{{ $index + 1 }}">
                                         <span class="cyra-tp-step-index">{{ $index + 1 }}</span>
                                         <span class="cyra-tp-step-label">{{ $step['label'] }}</span>
                                     </li>
@@ -218,7 +233,7 @@
                                     </div>
                                 </div>
 
-                                <div class="cyra-tp-form-panel hidden" data-step-panel="2">
+                                <div class="cyra-tp-form-panel cyra-tp-step-hidden" data-step-panel="2">
                                     <h3 class="cyra-tp-form-title">{{ $steps[1]['title'] ?? 'Choose your course' }}</h3>
                                     @if (! empty($steps[1]['description']))
                                         <p class="cyra-tp-form-description">{{ $steps[1]['description'] }}</p>
@@ -265,10 +280,10 @@
                             </div>
 
                             <div class="cyra-tp-form-actions">
-                                <button type="button" class="cyra-tp-btn cyra-tp-btn--ghost hidden" data-free-training-prev>Back</button>
+                                <button type="button" class="cyra-tp-btn cyra-tp-btn--ghost cyra-tp-step-hidden" data-free-training-prev>Back</button>
                                 <div class="cyra-tp-form-actions-primary">
                                     <button type="button" class="cyra-tp-btn cyra-tp-btn--primary" data-free-training-next>Next</button>
-                                    <button type="submit" class="cyra-tp-btn cyra-tp-btn--pay hidden" data-free-training-submit>
+                                    <button type="submit" class="cyra-tp-btn cyra-tp-btn--pay cyra-tp-step-hidden" data-free-training-submit>
                                         {{ $form['submit_label'] ?? 'Complete free enrollment' }}
                                     </button>
                                 </div>
@@ -280,3 +295,196 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        (function () {
+            const page = document.querySelector('[data-free-training-page]');
+            const form = page && page.querySelector('[data-free-training-wizard]');
+
+            if (!page || !form || page.getAttribute('data-wizard-ready') === 'true') {
+                return;
+            }
+
+            page.setAttribute('data-wizard-ready', 'true');
+
+            const hiddenClass = 'cyra-tp-step-hidden';
+            const panels = Array.prototype.slice.call(form.querySelectorAll('[data-step-panel]'));
+            const indicators = Array.prototype.slice.call(form.querySelectorAll('[data-step-indicator]'));
+            const prevBtn = form.querySelector('[data-free-training-prev]');
+            const nextBtn = form.querySelector('[data-free-training-next]');
+            const submitBtn = form.querySelector('[data-free-training-submit]');
+            const stepMeta = page.querySelector('[data-free-training-step-meta]');
+            const progressFill = page.querySelector('[data-free-training-progress]');
+            const courseList = form.querySelector('[data-free-training-course-list]');
+            const totalSteps = panels.length;
+            let currentStep = Number(form.getAttribute('data-initial-step') || 1);
+
+            const stepFields = {
+                1: ['name', 'email', 'phone', 'date_of_birth', 'gender', 'state', 'city'],
+                2: ['program', 'skill_level', 'has_tech_experience'],
+            };
+
+            function setHidden(element, isHidden) {
+                if (!element) {
+                    return;
+                }
+
+                element.classList.toggle(hiddenClass, isHidden);
+                element.classList.toggle('hidden', isHidden);
+            }
+
+            function setPanelEnabled(panel, enabled) {
+                Array.prototype.forEach.call(panel.querySelectorAll('input, select, textarea'), function (field) {
+                    field.disabled = !enabled;
+                });
+            }
+
+            function updateCourseSelection() {
+                const selected = form.querySelector('input[name="program"]:checked');
+                const slug = selected ? selected.value : '';
+
+                if (!courseList) {
+                    return;
+                }
+
+                Array.prototype.forEach.call(courseList.querySelectorAll('[data-program-option]'), function (option) {
+                    option.classList.toggle('is-selected', option.getAttribute('data-program-option') === slug);
+                });
+            }
+
+            function showStep(step) {
+                currentStep = step;
+
+                panels.forEach(function (panel) {
+                    const isActive = Number(panel.getAttribute('data-step-panel')) === step;
+                    setHidden(panel, !isActive);
+                    panel.classList.toggle('is-active', isActive);
+                    setPanelEnabled(panel, isActive);
+                });
+
+                indicators.forEach(function (indicator) {
+                    const indicatorStep = Number(indicator.getAttribute('data-step-indicator'));
+                    indicator.classList.toggle('is-active', indicatorStep === step);
+                    indicator.classList.toggle('is-complete', indicatorStep < step);
+                });
+
+                setHidden(prevBtn, step === 1);
+                setHidden(nextBtn, step === totalSteps);
+                setHidden(submitBtn, step !== totalSteps);
+
+                if (stepMeta) {
+                    stepMeta.textContent = 'Step ' + step + ' of ' + totalSteps;
+                }
+
+                if (progressFill) {
+                    progressFill.style.width = ((step / totalSteps) * 100) + '%';
+                }
+
+                if (step === 2) {
+                    updateCourseSelection();
+                }
+            }
+
+            function validateStep(step) {
+                const fields = stepFields[step] || [];
+                let valid = true;
+                let firstInvalid = null;
+
+                fields.forEach(function (name) {
+                    if (name === 'program' || name === 'skill_level' || name === 'has_tech_experience') {
+                        const selected = form.querySelector('input[name="' + name + '"]:checked');
+                        if (!selected) {
+                            valid = false;
+                            firstInvalid = firstInvalid || form.querySelector('input[name="' + name + '"]');
+                        }
+                        return;
+                    }
+
+                    const field = form.querySelector('[name="' + name + '"]');
+                    if (!field || field.disabled) {
+                        return;
+                    }
+
+                    const value = (field.value || '').trim();
+                    const fieldValid = field.checkValidity() && value !== '';
+                    field.classList.toggle('cyra-input-error', !fieldValid);
+
+                    if (fieldValid) {
+                        field.setCustomValidity('');
+                    } else {
+                        field.setCustomValidity('Required');
+                        valid = false;
+                        firstInvalid = firstInvalid || field;
+                    }
+                });
+
+                if (!valid && firstInvalid && typeof firstInvalid.reportValidity === 'function') {
+                    firstInvalid.reportValidity();
+                } else if (!valid && typeof form.reportValidity === 'function') {
+                    form.reportValidity();
+                }
+
+                return valid;
+            }
+
+            if (courseList) {
+                courseList.addEventListener('change', function (event) {
+                    if (event.target && event.target.name === 'program') {
+                        updateCourseSelection();
+                    }
+                });
+            }
+
+            form.addEventListener('change', function (event) {
+                const name = event.target && event.target.name;
+                if (name === 'skill_level' || name === 'has_tech_experience') {
+                    Array.prototype.forEach.call(form.querySelectorAll('input[name="' + name + '"]'), function (input) {
+                        const choice = input.closest('.cyra-tp-choice');
+                        if (choice) {
+                            choice.classList.toggle('is-selected', input.checked);
+                        }
+                    });
+                }
+            });
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (!validateStep(currentStep)) {
+                        return;
+                    }
+
+                    if (currentStep < totalSteps) {
+                        showStep(currentStep + 1);
+                    }
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    if (currentStep > 1) {
+                        showStep(currentStep - 1);
+                    }
+                });
+            }
+
+            form.addEventListener('submit', function (event) {
+                panels.forEach(function (panel) {
+                    setPanelEnabled(panel, true);
+                });
+
+                if (!validateStep(currentStep)) {
+                    event.preventDefault();
+                    showStep(currentStep);
+                }
+            });
+
+            showStep(currentStep);
+        })();
+    </script>
+@endpush

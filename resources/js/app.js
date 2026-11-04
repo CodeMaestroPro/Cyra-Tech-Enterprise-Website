@@ -28,7 +28,7 @@ import { initInitializationPage } from './Pages/initialization';
 import { initLoginPage } from './Pages/login';
 import { initAiAssistantPage } from './Pages/ai-assistant';
 
-document.addEventListener('DOMContentLoaded', () => {
+function bootApp() {
     initInitializationPage();
     initLoginPage();
     initAiAssistantPage();
@@ -58,4 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initMotion();
     initModals();
     initTabs();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootApp);
+} else {
+    bootApp();
+}

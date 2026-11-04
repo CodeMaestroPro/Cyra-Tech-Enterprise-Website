@@ -14,9 +14,11 @@ export function initFreeTrainingPage() {
 
 function initWizard(page) {
     const form = page.querySelector('[data-free-training-wizard]');
-    if (!form) {
+    if (!form || page.getAttribute('data-wizard-ready') === 'true') {
         return;
     }
+
+    page.setAttribute('data-wizard-ready', 'true');
 
     const panels = [...form.querySelectorAll('[data-step-panel]')];
     const indicators = [...form.querySelectorAll('[data-step-indicator]')];
@@ -51,6 +53,21 @@ function initWizard(page) {
         });
     };
 
+    const setHidden = (element, isHidden) => {
+        if (!element) {
+            return;
+        }
+
+        element.classList.toggle('cyra-tp-step-hidden', isHidden);
+        element.classList.toggle('hidden', isHidden);
+    };
+
+    const setPanelEnabled = (panel, enabled) => {
+        panel.querySelectorAll('input, select, textarea').forEach((field) => {
+            field.disabled = !enabled;
+        });
+    };
+
     const showStep = (step) => {
         currentStep = step;
 
@@ -58,8 +75,9 @@ function initWizard(page) {
             const panelStep = Number(panel.dataset.stepPanel);
             const isActive = panelStep === step;
 
-            panel.classList.toggle('hidden', !isActive);
+            setHidden(panel, !isActive);
             panel.classList.toggle('is-active', isActive);
+            setPanelEnabled(panel, isActive);
         });
 
         indicators.forEach((indicator) => {
@@ -68,9 +86,9 @@ function initWizard(page) {
             indicator.classList.toggle('is-complete', indicatorStep < step);
         });
 
-        prevBtn?.classList.toggle('hidden', step === 1);
-        nextBtn?.classList.toggle('hidden', step === totalSteps);
-        submitBtn?.classList.toggle('hidden', step !== totalSteps);
+        setHidden(prevBtn, step === 1);
+        setHidden(nextBtn, step === totalSteps);
+        setHidden(submitBtn, step !== totalSteps);
 
         if (stepMeta) {
             stepMeta.textContent = `Step ${step} of ${totalSteps}`;
@@ -97,7 +115,7 @@ function initWizard(page) {
             }
 
             const field = form.querySelector(`[name="${name}"]`);
-            if (!field) {
+            if (!field || field.disabled) {
                 return;
             }
 
@@ -135,7 +153,10 @@ function initWizard(page) {
         }
     });
 
-    nextBtn?.addEventListener('click', () => {
+    nextBtn?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
         if (!validateStep(currentStep)) {
             return;
         }
@@ -152,8 +173,11 @@ function initWizard(page) {
     });
 
     form.addEventListener('submit', (event) => {
+        panels.forEach((panel) => setPanelEnabled(panel, true));
+
         if (!validateStep(currentStep)) {
             event.preventDefault();
+            showStep(currentStep);
         }
     });
 

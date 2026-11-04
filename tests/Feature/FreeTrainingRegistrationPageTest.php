@@ -30,6 +30,8 @@ class FreeTrainingRegistrationPageTest extends TestCase
             ->assertSee('Learn in-demand tech skills at no cost')
             ->assertSee('Onboard in 2 steps')
             ->assertSee('Complete free enrollment')
+            ->assertSee('data-free-training-next', false)
+            ->assertSee('data-wizard-ready', false)
             ->assertSee('Software Development')
             ->assertSee('AI Automation')
             ->assertSee('Data Analysis')
