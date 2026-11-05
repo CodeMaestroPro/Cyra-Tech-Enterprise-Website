@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Mail\FreeTrainingRegistrationSubmitted;
 use App\Models\FreeTrainingRegistration;
 use App\Repositories\FreeTrainingRegistrationRepository;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -92,30 +93,50 @@ class FreeTrainingRegistrationService extends BaseService
 
     /**
      * @param  array<string, mixed>  $data
-     * @return array{reference: string, message: string}
+     * @return array{reference: string, already_registered: bool, message: string}
      */
     public function submitRegistration(array $data, ?string $ipAddress = null): array
     {
-        $registration = $this->freeTrainingRegistrationRepository->createRegistration([
-            'reference' => $this->generateReference(),
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'date_of_birth' => $data['date_of_birth'],
-            'gender' => $data['gender'],
-            'state' => $data['state'],
-            'city' => $data['city'],
-            'program' => $data['program'],
-            'skill_level' => $data['skill_level'],
-            'has_tech_experience' => ($data['has_tech_experience'] ?? 'no') === 'yes',
-            'status' => 'registered',
-            'ip_address' => $ipAddress,
-        ]);
+        $email = FreeTrainingRegistration::normalizeEmail((string) $data['email']);
+        $phoneDigits = FreeTrainingRegistration::normalizePhoneDigits((string) $data['phone']);
+
+        $existing = $this->freeTrainingRegistrationRepository->findDuplicate($email, $phoneDigits);
+
+        if ($existing !== null) {
+            return $this->alreadyRegisteredResult($existing);
+        }
+
+        try {
+            $registration = $this->freeTrainingRegistrationRepository->createRegistration([
+                'reference' => $this->generateReference(),
+                'name' => $data['name'],
+                'email' => $email,
+                'phone' => $data['phone'],
+                'date_of_birth' => $data['date_of_birth'],
+                'gender' => $data['gender'],
+                'state' => $data['state'],
+                'city' => $data['city'],
+                'program' => $data['program'],
+                'skill_level' => $data['skill_level'],
+                'has_tech_experience' => ($data['has_tech_experience'] ?? 'no') === 'yes',
+                'status' => 'registered',
+                'ip_address' => $ipAddress,
+            ]);
+        } catch (UniqueConstraintViolationException $exception) {
+            $existing = $this->freeTrainingRegistrationRepository->findDuplicate($email, $phoneDigits);
+
+            if ($existing === null) {
+                throw $exception;
+            }
+
+            return $this->alreadyRegisteredResult($existing);
+        }
 
         $this->sendRegistrationNotification($registration);
 
         return [
             'reference' => $registration->reference,
+            'already_registered' => false,
             'message' => config(
                 'cyra.free_training.form.success_message',
                 'Registration successful! Print or save your enrollment confirmation.'
@@ -282,6 +303,21 @@ class FreeTrainingRegistrationService extends BaseService
                 'error' => $exception->getMessage(),
             ]);
         }
+    }
+
+    /**
+     * @return array{reference: string, already_registered: bool, message: string}
+     */
+    private function alreadyRegisteredResult(FreeTrainingRegistration $registration): array
+    {
+        return [
+            'reference' => $registration->reference,
+            'already_registered' => true,
+            'message' => config(
+                'cyra.free_training.form.already_registered_message',
+                'You are already enrolled. Each person can register once. Your original confirmation is below.'
+            ),
+        ];
     }
 
     private function generateReference(): string

@@ -26,6 +26,20 @@ class FreeTrainingRegistrationRepository extends BaseRepository
             ->first();
     }
 
+    public function findDuplicate(string $email, string $phoneDigits): ?FreeTrainingRegistration
+    {
+        return $this->model->newQuery()
+            ->where(function ($query) use ($email, $phoneDigits) {
+                $query->whereRaw('LOWER(email) = ?', [strtolower(trim($email))]);
+
+                if ($phoneDigits !== '') {
+                    $query->orWhere('phone_digits', $phoneDigits);
+                }
+            })
+            ->orderBy('id')
+            ->first();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection<int, FreeTrainingRegistration>
      */

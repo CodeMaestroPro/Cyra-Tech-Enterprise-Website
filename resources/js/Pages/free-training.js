@@ -30,6 +30,7 @@ function initWizard(page) {
     const courseList = form.querySelector('[data-free-training-course-list]');
     const totalSteps = panels.length;
     let currentStep = Number(form.dataset.initialStep || 1);
+    let submitting = false;
 
     const stepFields = {
         1: ['name', 'email', 'phone', 'date_of_birth', 'gender', 'state', 'city'],
@@ -173,12 +174,29 @@ function initWizard(page) {
     });
 
     form.addEventListener('submit', (event) => {
+        if (submitting) {
+            event.preventDefault();
+            return;
+        }
+
         panels.forEach((panel) => setPanelEnabled(panel, true));
 
         if (!validateStep(currentStep)) {
             event.preventDefault();
             showStep(currentStep);
+            return;
         }
+
+        submitting = true;
+
+        window.setTimeout(() => {
+            if (!submitBtn) {
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+        }, 0);
     });
 
     showStep(currentStep);

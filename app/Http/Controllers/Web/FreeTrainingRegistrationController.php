@@ -46,7 +46,8 @@ class FreeTrainingRegistrationController extends Controller
         return redirect()
             ->route('free-training')
             ->with('success', $result['message'])
-            ->with('free_training_reference', $result['reference']);
+            ->with('free_training_reference', $result['reference'])
+            ->with('free_training_already_registered', $result['already_registered'] ?? false);
     }
 
     public function verify(string $reference, string $token): View

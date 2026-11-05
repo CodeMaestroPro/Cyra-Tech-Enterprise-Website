@@ -68,6 +68,7 @@
         $acknowledgement = $page['acknowledgement'] ?? [];
         $steps = $form['steps'] ?? [];
         $hasConfirmation = filled($registration['reference'] ?? null);
+        $alreadyRegistered = (bool) session('free_training_already_registered');
         $showSuccessAlert = $hasConfirmation && session('success');
         $initialStep = 1;
         if ($errors->hasAny(['program', 'skill_level', 'has_tech_experience'])) {
@@ -140,17 +141,21 @@
                         class="cyra-tp-success"
                         @if ($showSuccessAlert)
                             data-free-training-success
-                            data-success-title="You're enrolled"
+                            data-success-title="{{ $alreadyRegistered ? 'Already enrolled' : "You're enrolled" }}"
                             data-success-text="{{ session('success') }}"
                         @endif
                         data-success-reference="{{ $registration['reference'] }}"
                         data-receipt-hint="{{ $acknowledgement['note'] ?? 'Print this confirmation or save it as a PDF on your phone.' }}"
                     >
                         <div class="cyra-tp-success-hero no-print">
-                            <span class="cyra-tp-success-badge">Free training confirmed</span>
-                            <h2 class="cyra-tp-success-title">Welcome aboard</h2>
+                            <span class="cyra-tp-success-badge">{{ $alreadyRegistered ? 'Already enrolled' : 'Free training confirmed' }}</span>
+                            <h2 class="cyra-tp-success-title">{{ $alreadyRegistered ? 'You are already enrolled' : 'Welcome aboard' }}</h2>
                             <p class="cyra-tp-success-copy">
-                                Your place in <strong>{{ $registration['program_label'] }}</strong> is reserved at no cost. Print or save your confirmation below — our team will follow up with onboarding details.
+                                @if ($alreadyRegistered)
+                                    Each person can register once. Your place in <strong>{{ $registration['program_label'] }}</strong> is already reserved. Print or save the original confirmation below.
+                                @else
+                                    Your place in <strong>{{ $registration['program_label'] }}</strong> is reserved at no cost. Print or save your confirmation below — our team will follow up with onboarding details.
+                                @endif
                             </p>
                             <div class="cyra-tp-success-meta">
                                 <span class="cyra-tp-ref">{{ $registration['reference'] }}</span>
@@ -319,6 +324,7 @@
             const courseList = form.querySelector('[data-free-training-course-list]');
             const totalSteps = panels.length;
             let currentStep = Number(form.getAttribute('data-initial-step') || 1);
+            let submitting = false;
 
             const stepFields = {
                 1: ['name', 'email', 'phone', 'date_of_birth', 'gender', 'state', 'city'],
@@ -474,6 +480,11 @@
             }
 
             form.addEventListener('submit', function (event) {
+                if (submitting) {
+                    event.preventDefault();
+                    return;
+                }
+
                 panels.forEach(function (panel) {
                     setPanelEnabled(panel, true);
                 });
@@ -481,7 +492,19 @@
                 if (!validateStep(currentStep)) {
                     event.preventDefault();
                     showStep(currentStep);
+                    return;
                 }
+
+                submitting = true;
+
+                window.setTimeout(function () {
+                    if (!submitBtn) {
+                        return;
+                    }
+
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Submitting...';
+                }, 0);
             });
 
             showStep(currentStep);

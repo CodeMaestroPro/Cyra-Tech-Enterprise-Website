@@ -140,6 +140,80 @@ class FreeTrainingRegistrationPageTest extends TestCase
         $this->assertDatabaseCount('free_training_registrations', 0);
     }
 
+    public function test_duplicate_email_does_not_create_a_second_registration(): void
+    {
+        $this->post(route('free-training.store'), $this->validPayload());
+
+        $response = $this->post(route('free-training.store'), $this->validPayload([
+            'name' => 'Ada Again',
+            'program' => 'cyber-security',
+        ]));
+
+        $response
+            ->assertRedirect(route('free-training'))
+            ->assertSessionHas('free_training_reference', 'FTR-CT-001')
+            ->assertSessionHas('free_training_already_registered', true)
+            ->assertSessionHas('success', 'You are already enrolled. Each person can register once. Your original confirmation is below.');
+
+        $this->assertDatabaseCount('free_training_registrations', 1);
+        $this->assertDatabaseHas('free_training_registrations', [
+            'email' => 'ada.student@example.com',
+            'name' => 'Ada Student',
+            'program' => 'software-development',
+        ]);
+
+        Mail::assertSent(FreeTrainingRegistrationSubmitted::class, 1);
+
+        $this->followingRedirects()
+            ->post(route('free-training.store'), $this->validPayload([
+                'email' => 'Ada.Student@example.com',
+            ]))
+            ->assertOk()
+            ->assertSee('You are already enrolled')
+            ->assertSee('FTR-CT-001')
+            ->assertSee('Software Development');
+    }
+
+    public function test_duplicate_phone_does_not_create_a_second_registration(): void
+    {
+        $this->post(route('free-training.store'), $this->validPayload());
+
+        $this->post(route('free-training.store'), $this->validPayload([
+            'name' => 'Chidi Student',
+            'email' => 'chidi.student@example.com',
+            'phone' => '08001112222',
+            'program' => 'data-analysis',
+        ]))
+            ->assertRedirect(route('free-training'))
+            ->assertSessionHas('free_training_already_registered', true);
+
+        $this->assertDatabaseCount('free_training_registrations', 1);
+        $this->assertDatabaseHas('free_training_registrations', [
+            'email' => 'ada.student@example.com',
+            'phone_digits' => '2348001112222',
+        ]);
+
+        Mail::assertSent(FreeTrainingRegistrationSubmitted::class, 1);
+    }
+
+    public function test_a_different_person_can_still_register(): void
+    {
+        $this->post(route('free-training.store'), $this->validPayload());
+
+        $this->post(route('free-training.store'), $this->validPayload([
+            'name' => 'Chidi Student',
+            'email' => 'chidi.student@example.com',
+            'phone' => '+234 800 333 4444',
+            'program' => 'cyber-security',
+        ]))
+            ->assertRedirect(route('free-training'))
+            ->assertSessionHas('free_training_already_registered', false)
+            ->assertSessionHas('free_training_reference', 'FTR-CT-002');
+
+        $this->assertDatabaseCount('free_training_registrations', 2);
+        Mail::assertSent(FreeTrainingRegistrationSubmitted::class, 2);
+    }
+
     /**
      * @param  array<string, mixed>  $overrides
      * @return array<string, mixed>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class FreeTrainingRegistrationRequest extends FormRequest
@@ -57,5 +58,14 @@ class FreeTrainingRegistrationRequest extends FormRequest
             'skill_level.in' => 'Please select a valid skill level.',
             'has_tech_experience.required' => 'Please tell us if you have previous technology experience.',
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->has('email')) {
+            $this->merge([
+                'email' => Str::lower(trim((string) $this->input('email'))),
+            ]);
+        }
     }
 }

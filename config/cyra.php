@@ -2597,6 +2597,7 @@ return [
             'description' => 'Tell us about yourself, pick a course, and get your enrollment confirmation. There is no tuition fee.',
             'submit_label' => 'Complete free enrollment',
             'success_message' => 'You are enrolled. Print or save your confirmation on this page.',
+            'already_registered_message' => 'You are already enrolled. Each person can register once. Your original confirmation is below.',
             'steps' => [
                 ['key' => 'personal', 'label' => 'Personal', 'title' => 'Personal information', 'description' => 'Share your contact details so we can reach you about your onboarding.'],
                 ['key' => 'course', 'label' => 'Course', 'title' => 'Choose your course', 'description' => 'Select one free training track and tell us your current skill level.'],
